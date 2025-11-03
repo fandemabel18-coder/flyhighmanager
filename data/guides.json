@@ -1,0 +1,270 @@
+[
+  {
+    "id": "banner-oikawa-bokuto",
+    "type": "video",
+    "slug": "banner-oikawa-bokuto",
+    "title": "👉 ¡CAMBIO INESPERADO en Haikyuu Fly High! 😱 Oikawa llega antes que Bokuto 🔥",
+    "character_ids": [
+      "oikawa-ur"
+    ],
+    "school": "Aoba Johsai",
+    "creator_id": "fandemabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=MZnsvRfRwkk",
+    "published_at": "2025-10-10",
+    "featured": true,
+    "tags": [
+      "principiantes",
+      "ofensiva"
+    ]
+  },
+  {
+    "id": "reviews-oikawa",
+    "type": "video",
+    "slug": "reviews-oikawa",
+    "title": "🔥 REVIEW de Tōru Oikawa en Haikyu Fly High | Habilidades y Vínculos EXPLICADOS",
+    "character_ids": [
+      "oikawa-ur"
+    ],
+    "school": "Aoba Johsai",
+    "creator_id": "fandemabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=exhCAx3VFdo",
+    "published_at": "2025-10-12",
+    "featured": true,
+    "tags": [
+      "servicio",
+      "tips"
+    ]
+  },
+  {
+    "id": "review-tendou",
+    "type": "video",
+    "slug": "review-tendou",
+    "title": "Review Satori Tendou | Haikyu FlyHigh | FanDeMabel",
+    "character_ids": [
+      "tendo-ssr"
+    ],
+    "school": "Shiratorizawa",
+    "creator_id": "fandemabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=_tqMjvgvnVM&t=1s",
+    "published_at": "2025-10-12",
+    "featured": true,
+    "tags": [
+      "servicio",
+      "tips"
+    ]
+  },
+  {
+    "id": "ushijima-tacticas-defensivas",
+    "type": "written",
+    "slug": "ushijima-tacticas-defensivas",
+    "title": "Tácticas defensivas con Ushijima",
+    "character_ids": [
+      "ushijima"
+    ],
+    "school": "Shiratorizawa",
+    "creator_id": "kazuplayer",
+    "thumbnail": "/assets/thumbnails/ushijima.png",
+    "source_url": "https://drive.google.com/your-doc",
+    "published_at": "2025-10-08",
+    "featured": false,
+    "tags": [
+      "bloqueo",
+      "estrategia"
+    ]
+  },
+  {
+    "id": "free-sample-01",
+    "type": "video",
+    "slug": "free-sample-01",
+    "title": "Cómo rotar tu primera alineación (3 pasos)",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-02",
+    "type": "video",
+    "slug": "free-sample-02",
+    "title": "Ruta F2P para tu primer setter",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-03",
+    "type": "video",
+    "slug": "free-sample-03",
+    "title": "Build barata para libero",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-04",
+    "type": "video",
+    "slug": "free-sample-04",
+    "title": "Potentials: 2+2+2 o 4+2",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-05",
+    "type": "video",
+    "slug": "free-sample-05",
+    "title": "Cómo priorizar stats al subir",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-06",
+    "type": "video",
+    "slug": "free-sample-06",
+    "title": "WS vs OP: ¿qué elegir primero?",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-07",
+    "type": "video",
+    "slug": "free-sample-07",
+    "title": "Errores comunes al bloquear",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-08",
+    "type": "video",
+    "slug": "free-sample-08",
+    "title": "Macro: cuándo tirar pulls",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-09",
+    "type": "video",
+    "slug": "free-sample-09",
+    "title": "Cómo usar el comparador de la app",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-10",
+    "type": "video",
+    "slug": "free-sample-10",
+    "title": "Plan semanal para progresar",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-11",
+    "type": "video",
+    "slug": "free-sample-11",
+    "title": "Farm de piezas: ruta express",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  },
+  {
+    "id": "free-sample-12",
+    "type": "video",
+    "slug": "free-sample-12",
+    "title": "Tips rápidos para novatos",
+    "character_ids": [],
+    "school": "",
+    "creator_id": "coachmabel",
+    "thumbnail": "",
+    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
+    "published_at": "2025-10-01",
+    "featured": false,
+    "tags": [
+      "tips"
+    ]
+  }
+]

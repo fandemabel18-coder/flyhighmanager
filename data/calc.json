@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "bannerTypes": {
+    "UR": { "pull_cost": 150, "pity": 140 },
+    "SSR": { "pull_cost": 150, "pity": 80 }
+  },
+  "daily": {
+    "f2p": 406.67,
+    "passes": [
+      { "id": "pass_normal", "label": "Pass mensual (Normal)", "diamonds_per_day": 90 },
+      { "id": "pass_elite",  "label": "Pass mensual (Élite)",  "diamonds_per_day": 100 }
+    ]
+  },
+  "milestones": {
+    "UR": [
+      { "at_pulls": 10, "bonus_tickets": 2 },
+      { "at_pulls": 50, "bonus_tickets": 5 }
+    ]
+  },
+  "presets": [
+    { "id": "f2p", "label": "F2P", "pass_normal": false, "pass_elite": false },
+    { "id": "normal", "label": "Pass Normal", "pass_normal": true,  "pass_elite": false },
+    { "id": "elite", "label": "Pass Élite",  "pass_normal": false, "pass_elite": true }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.1.0",
+  "synergies": [
+    {
+      "id": "kamomedai_duo_hoshiumi_hirugami",
+      "name": { "es": "Dúo Kamomedai: Hoshiumi & Hirugami" },
+      "members": [
+        { "characterId": "hoshiumi-ur" },
+        { "characterId": "hirugami-ur" }
+      ],
+      "levels": [
+        { "lvl": 1, "bono": { "atq_rapido_pct": 2, "recepcion_pct": 2 }, "text": { "es": "+2% Ataque rápido y +2% Recepción" } },
+        { "lvl": 2, "bono": { "atq_rapido_pct": 4, "recepcion_pct": 4 }, "text": { "es": "+4% / +4%" } },
+        { "lvl": 3, "bono": { "atq_rapido_pct": 6, "recepcion_pct": 6 }, "text": { "es": "+6% / +6%" } },
+        { "lvl": 4, "bono": { "atq_rapido_pct": 8, "recepcion_pct": 8 }, "text": { "es": "+8% / +8%" } },
+        { "lvl": 5, "bono": { "atq_rapido_pct": 10, "recepcion_pct": 10 }, "text": { "es": "+10% / +10%" } }
+      ],
+      "priority": 90
+    }
+  ]
+}

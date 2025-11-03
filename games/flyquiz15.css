@@ -1,0 +1,16 @@
+
+/* /games/flyquiz15.css */
+.flyquiz.card{background:#0b1220;border:1px solid #1e2a44;border-radius:16px;padding:16px;margin:16px 0;color:#dbe5ff}
+.flyquiz__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.flyquiz__meta{display:flex;gap:12px;flex-wrap:wrap;font-size:.9rem;opacity:.9}
+.flyquiz__actions{margin-top:12px;display:flex;gap:8px}
+.flyquiz__board{margin-top:16px}
+.flyquiz__timer b{min-width:2ch;display:inline-block;text-align:right}
+.btn{padding:8px 12px;border-radius:10px;border:1px solid #2d3a5c;background:#16213b;color:#dbe5ff;cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,#4f46e5,#7c3aed);border-color:#4f46e5}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.q__n{opacity:.8;margin-bottom:6px}
+.q__t{font-size:1.1rem;margin-bottom:10px}
+.q__opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.center{text-align:center}
+.muted{opacity:.7}

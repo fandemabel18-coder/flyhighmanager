@@ -1,0 +1,35 @@
+{
+  "gameId": "flyquiz15",
+  "version": 1,
+  "updatedAt": 1762141221625,
+  "questions": [
+    {
+      "id": 1,
+      "q": "¿Quién es el colocador titular de Karasuno?",
+      "options": [
+        "Kageyama",
+        "Daichi",
+        "Tanaka",
+        "Asahi"
+      ],
+      "a": 0,
+      "category": "Personajes",
+      "difficulty": "Fácil",
+      "time_sec": 20
+    },
+    {
+      "id": 2,
+      "q": "¿Cómo se llama el líbero de Nekoma?",
+      "options": [
+        "Yaku",
+        "Kai",
+        "Kenma",
+        "Lev"
+      ],
+      "a": 0,
+      "category": "Personajes",
+      "difficulty": "Fácil",
+      "time_sec": 20
+    }
+  ]
+}

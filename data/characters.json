@@ -1,0 +1,4132 @@
+[
+  {
+    "id": "akaashi-sp",
+    "name": "Keiji Akaashi (Día de Playa)",
+    "avatar": "assets/characters/akaashi_sp.png",
+    "school": "Fukurodani",
+    "role": "Setter",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 242,
+      "atqPoderoso": 1754,
+      "colocacion": 1949,
+      "saque": 1848,
+      "recepcion": 1581,
+      "bloqueo": 1758,
+      "recuperacion": 1489
+    },
+    "tags": [
+      "Fukurodani"
+    ],
+    "skills": [
+      {
+        "name": "Coordinador del Equipo",
+        "icon": "",
+        "effect": "Aumenta la [Colocación] de Akaashi Keiji (Vacaciones en la Playa) en Lv1:13%, Lv2:150%, Lv3:18%.\nCuando el Espíritu de Equipo aliado aumenta, por cada 10 puntos de Espíritu de Equipo que aumente, Akaashi Keiji obtiene 1 acumulación del efecto [Conciencia Tranquila].\nCada acumulación del efecto [Conciencia Tranquila] aumenta la [Colocación] en un 1.5% (Máx. 10 acumulaciones).\nMientras la Activación del Espíritu de Equipo aliada no esté activa, al tocar el balón, Akaashi Keiji consume todas las acumulaciones de [Conciencia Tranquila]. Por cada 1 acumulación consumida, la [Percepción] de Akaashi Keiji aumenta un 3% (Máx. 30% de aumento). Este efecto dura hasta que el balón cruce la red 2 veces."
+      },
+      {
+        "name": "Sacar el 100% del Entrenamiento",
+        "icon": "",
+        "effect": "Akaashi Keiji realiza una Colocación con una potencia de [Colocación] en Lv1:140%, Lv2:155%, Lv3:170%.\nDurante la primera activación de Habilidad Definitiva de Akaashi Keiji después de esta jugada, su [Colocación] aumenta un 15%. Este efecto dura hasta que el balón cruce la red 2 veces."
+      },
+      {
+        "name": "Colocación que Desata el Ataque",
+        "icon": "",
+        "effect": "Mientras la Activación del Espíritu de Equipo aliada esté activa, al tocar el balón, Akaashi Keiji consume 5 acumulaciones de [Conciencia Tranquila] y su [Percepción] aumenta un 70%. Este efecto dura hasta que el balón cruce la red 2 veces.\nSi la Colocación de Akaashi Keiji es una Jugada Crítica, la [Percepción] del miembro aliado que realiza el primer remate (Poderoso/Rápido) después de esta jugada aumenta en la [Percepción] de Akaashi Keiji 50% (Máx. 60%).\nSi este remate es un Ataque Poderoso, la [Percepción] del miembro que lo realiza aumenta adicionalmente en la [Percepción] de Akaashi Keiji 50% (Máx. 60%).\nAl activar <Sacar el 100% del Entrenamiento>, por cada 1 acumulación de [Conciencia Tranquila], el [Ataque Poderoso] del miembro que remata (Poderoso/Rápido) aumenta en  Lv1:3% (Max 24%), Lv2:3.5% (Max 28%), Lv3:4% (Max 32%)."
+      },
+      {
+        "name": "Golpe Decisivo",
+        "icon": "",
+        "effect": "Akaashi Keiji realiza un Ataque de Engaño con una potencia de [Colocación] en  Lv1:260%, Lv2:280%, Lv3:300%  Lv4:320%, Lv5:340%. Este ataque de engaño no puede ser bloqueado.\nSi esta jugada es una Jugada Crítico, la recarga de <Sacar el 100% del Entrenamiento> se reduce en el equivalente a 4 cruces de red.Obtiene 1 acumulación del efecto [Conciencia Tranquila]."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Colocación y Estadísticas Base: KEIJI AKAASHI",
+        "rarity": "SP",
+        "icon": "assets/memories/akaashi_sp_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Colocación] +24%. Mientras los aliados tengan activado [Despertar de Moral del Equipo], la [Concentración] del miembro afectado aumenta 10%. Los aliados que tengan el efecto [En Racha] obtienen Parámetros principales +15%. Cuando un aliado pierde el efecto [En Racha], todos los aliados obtienen [Reflejos] +10%. Este efecto dura 8 cruces de red."
+      }
+    ]
+  },
+  {
+    "id": "akaashi-ssr",
+    "name": "Keiji Akaashi",
+    "avatar": "assets/characters/akaashi.png",
+    "school": "Fukurodani",
+    "role": "Setter",
+    "rarity": "SSR",
+    "updated": "2025-09-22",
+    "statsMax": {
+      "atqRapido": 184,
+      "atqPoderoso": 1331,
+      "colocacion": 1476,
+      "saque": 1396,
+      "recepcion": 1191,
+      "bloqueo": 1334,
+      "recuperacion": 1123
+    },
+    "tags": [
+      "setter",
+      "soporte",
+      "moral",
+      "saque",
+      "control",
+      "fukurodani"
+    ],
+    "skills": [
+      {
+        "name": "Claridad en movimiento",
+        "icon": "assets/skills/akaashi_claridad_en_movimiento.png",
+        "effect": "Mientras Keiji Akaashi está en la cancha, cuando un compañero logra un Bloqueo o Recepción PERFECTO, elimina todas las desventajas de ese jugador, aumenta la Percepción de Akaashi en un 8% y sube la moral del equipo en 3. (L1)"
+      },
+      {
+        "name": "Neutralización táctica",
+        "icon": "assets/skills/akaashi_neutralizacion_tactica.png",
+        "effect": "Akaashi realiza una Finta de colocador imbloqueable con el 120% de su atributo Colocación. Si el ataque anota, tu próximo Saque obtiene un 10% de poder adicional basado en el atributo Saque. (L1)"
+      },
+      {
+        "name": "Flujo desinteresado",
+        "icon": "assets/skills/akaashi_flujo_desinteresado.png",
+        "effect": "Aumenta su atributo Colocación en un 8%. Mientras tu lado está en [Despertar de moral del equipo], por cada 4 puntos de moral obtenidos, su Percepción aumenta en 1.2%. Cuando realiza una Colocación crítica, el próximo Remate de tu lado será crítico garantizado. (L1)"
+      },
+      {
+        "name": "Definitiva · Colocación consistente",
+        "icon": "assets/skills/akaashi_colocacion_consistente.png",
+        "effect": "Realiza una Colocación con el 240% de su atributo Colocación. (L1)"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "Los saques nunca fallan y la Técnica Ofensiva aumenta en +15% al sacar.",
+        "notas": ""
+      },
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "El poder de pasar aumenta en +15% adicional del atributo Pase.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Colocación: KEIJI AKAASHI",
+        "rarity": "SSR",
+        "icon": "assets/memories/akaashi_memory.png",
+        "effect": "Aumenta la Colocación del portador en un 6%. Mientras tu equipo tenga la Potenciación de moral del equipo, cuando el portador coloca un balón, el rematador recupera 4 de resistencia y obtiene +8% de Técnica Ofensiva en ese remate. Cuando el portador se libera de una desventaja, también elimina la desventaja DESANIMADO."
+      }
+    ],
+    "links": [
+      "As milagroso y colocador cariñoso (con Bokuto) — sinergia ofensiva mediante Slam (escala por nivel de vínculo).",
+      "Compañero de práctica independiente del campo de entrenamiento de Tokio — mejora de Servicio/Lanzamiento (escala por nivel)."
+    ],
+    "builds": [
+      "Prioriza Colocación y Percepción. Si juegas con Bokuto/comp morale boosters, considera algo de Saque para aprovechar Neutralización táctica."
+    ],
+    "teams": [
+      "Core Fukurodani: Bokuto (UR) + Akaashi (SSR) + libero/soporte a elección.",
+      "Con moral: añade Miya (UR) o Nishinoya (SSR) según composición."
+    ]
+  },
+  {
+    "id": "akagi-ssr",
+    "name": "Akagi Michinari",
+    "avatar": "assets/characters/akagi.png",
+    "school": "Inarizaki",
+    "role": "Libero",
+    "rarity": "SSR",
+    "updated": "2025-10-02 00:00:00",
+    "statsMax": {
+      "atqRapido": 1,
+      "atqPoderoso": 1,
+      "colocacion": 1,
+      "saque": 1,
+      "recepcion": 1,
+      "bloqueo": 1,
+      "recuperacion": 1
+    },
+    "tags": [
+      "inarizaki",
+      "recepción",
+      "soporte"
+    ],
+    "skills": [
+      {
+        "name": "Cobertura que levanta la moral",
+        "icon": "assets/skills/akagi_cobertura_que_levanta_la_moral_movimiento.png",
+        "effect": "La Recepción y Recuperación de Akagi se aumentan en 8%. Cuando Akagi recibe y recupera, la moral de sus compañeros aumenta en 10."
+      },
+      {
+        "name": "Un Libero Confiable",
+        "icon": "assets/skills/akagi_un_libero_confiable_movimiento.png",
+        "effect": "Akagi aumenta su poder de Recuperación en 120% y aumenta la tecnica defensiva de los aliados en 4%. Este efecto dura 6 cruces de red."
+      },
+      {
+        "name": "No te rindas y Consigue la pelota.",
+        "icon": "assets/skills/akagi_no_te_rindas_y_persigue_la_pelota_movimiento.png",
+        "effect": "Aumenta la recepción de Akagi en un 10%. Si Akasgi está en la cancha, le da 1 acumulación de Aproximación de desventaja al miembro oponente que realiza un ataque poderoso. Por cada acumulación de desventaja Aproximación, Ataque Poderoso se reduce en 8%. Este efecto dura hasta que la pelota pasa por encima de la red tres veces."
+      },
+      {
+        "name": "Definitiva - Recepción con Agallas",
+        "icon": "assets/skills/akagi_recibir_con_agallas_movimiento.png",
+        "effect": "Akagi aumenta su Recepción en un 240%"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Recepción Suprema",
+        "icon": "assets/potentials/recepcion_suprema.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al recibir un Remate Rápido, el poder de esta recepción tiene un aumento equivalente al 30% del atributo Recepción.",
+        "notas": ""
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al lograr una recepción PERFECTA, el poder del siguiente remate de tu equipo aumenta en un 30% de los atributos Ataque Rápido/Poderoso del rematador.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Recepción: AKAGI MICHINARI",
+        "rarity": "SSR",
+        "icon": "assets/memories/akagi_memory.png",
+        "effect": "Aumenta la Recepción del portador de esta memoria en 20%. Si el resultado de una Recepción o Recuperación no es MALO, la Tenica defensiva aumenta en 16%, este efecto se puede acumular hasta 3 veces y tiene duración de 1 Rally."
+      }
+    ]
+  },
+  {
+    "id": "aone-sp",
+    "name": "Aone Takanobu",
+    "avatar": "assets/characters/aone_sp.png",
+    "school": "Date",
+    "role": "Middle Blocker",
+    "rarity": "SP",
+    "updated": "2025-10-02 00:00:00",
+    "statsMax": {
+      "atqRapido": 1776,
+      "atqPoderoso": 245,
+      "colocacion": 1755,
+      "saque": 1865,
+      "recepcion": 1581,
+      "bloqueo": 1911,
+      "recuperacion": 1491
+    },
+    "tags": [
+      "soporte",
+      "moral",
+      "saque",
+      "bloqueo",
+      "date",
+      "control"
+    ],
+    "skills": [
+      {
+        "name": "Muro Poderoso",
+        "icon": "assets/skills/Aone_Muro_Poderoso_movimiento.png",
+        "effect": "La reacción de Aone sube un 10%. Si Aone tiene menos de 80 de resistencia Bloqueo y Saque aumentarán en un 10%. Cuando Aone bloquea, si este bloqueo es un bloqueo de 2-3 integrantes, para cada uno de ellos que etnga una habilidad de Bloqueo, el poder de este Bloqueo aumentará en un 20% del Bloqueo total de Aone."
+      },
+      {
+        "name": "Saque con Salto para Subir la Moral",
+        "icon": "assets/skills/Aone_Servicio_con_salto_que_aumenta_la_moral_movimiento.png",
+        "effect": "Aone hace un saque con salto con un 140% de Potencia de la estadistica de Saque. El tiempo de reutilización de la habilidad de colocación del oponente aumenta en 4 cruces de red. Cuando Aone abandona la cancha, si  ya había ejecutado el saque con salto que levanta la moral, la tecnica ofensiva y tecnica defensiva de todo su equipo aumenta en 5%, y el número de acumulaciones del efecto Bloqueo Fuerte es 3 o más, la tecnica defensiva y tecnica ofensiva del equipo sube otro 10%. Este efecto durará hasta la proxima aparición de Aone."
+      },
+      {
+        "name": "Un Muro Fuerte y Alto",
+        "icon": "assets/skills/Aone_Un_muro_fuerte_y_alto_movimiento.png",
+        "effect": "Si Aone está en la cancha, cada vez que un oponente hace un ataque rapido o ataque poderoso, ese jugador gana 1 acumulación del efecto Bloqueo Fuerte. Al comienzo del partido, los miembros de la cancha del oponente obtienen 1 acumulación de Bloqueo Fuerte. Si Aone está en la cancha y el oponente tiene 2 acumulaciones de Bloqueo Fuerte, se consumirán todos los efectos de Bloqueo Fuerte de ese miembro y Aone obtendrá 1 acumulación de Bloqueo Dificil. Se aumenta un 10% la reacción por cada acumulación de efecto de Bloqueo Fuerte. Hasta 20 acumulaciones."
+      },
+      {
+        "name": "Definitiva - Bloqueo de Plomo",
+        "icon": "assets/skills/Aone_Saltar_Bloque_de_plomo_afilado_movimiento.png",
+        "effect": "Aone bloquea con un 260% de su estadistica de Bloqueo. Aumenta la moral de los compaleros de equipo en 15."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "+15% Bloqueo",
+        "set4": "Aumenta la precisión de bloqueo y reduce CD de habilidades de bloqueo",
+        "notas": ""
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "+Velocidad de Bloqueo / tiempo de respuesta",
+        "set4": "Bonos al reposicionamiento y éxito de bloqueos consecutivos",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación: AOENE TAKANOBU",
+        "rarity": "SP",
+        "icon": "assets/memories/aone_sp_memory.png",
+        "effect": "Aumenta en un 12,8% la tecnica defensiva del portador. Si el miembro que participa en un bloqueo de 2/3 laumenta el bloqueo en un 12%, este efecto dura 2 cruces de red. Cuando el miembro está bloqueando, si esta jugada es un bloqueo de 2-3 miembros, el bloqueo aumenta en un 15% adicional."
+      }
+    ]
+  },
+  {
+    "id": "aone-ssr",
+    "name": "Aone Takanobu",
+    "avatar": "assets/characters/aone_ssr.png",
+    "school": "Date",
+    "role": "Middle Blocker",
+    "rarity": "SSR",
+    "updated": "2025-10-14 00:00:00",
+    "statsMax": {
+      "atqRapido": 1316,
+      "atqPoderoso": 270,
+      "colocacion": 1146,
+      "saque": 1219,
+      "recepcion": 1173,
+      "bloqueo": 1389,
+      "recuperacion": 1102
+    },
+    "skills": [
+      {
+        "name": "Cárcel para Estrellas",
+        "effect": "Si TAKANOBU AONE logra un bloqueo PERFECTO, marca al rematador rival y reduce el poder de su siguiente remate en un equivalente al 10% del atributo Ataque rápido/Ataque poderoso y aumenta su consumo de resistencia en un 30%.",
+        "icon": "assets/skills/carcel_estrellas.png"
+      },
+      {
+        "name": "Golpe Fuerte",
+        "effect": "TAKANOBU AONE ejecuta un Remate Rápido con un poder equivalente al 135% del atributo Ataque Rápido.",
+        "icon": "assets/skills/golpe_fuerte.png"
+      },
+      {
+        "name": "Bloqueo de Cobertura Total",
+        "effect": "Si TAKANOBU AONE bloquea, por cada jugador de tipo Bloqueo en tu equipo, aumenta el poder del bloqueo en un equivalente al 1% del atributo Bloqueo. Si todos los 3 jugadores de la fila delantera son de tipo Bloqueo, aumenta el poder del bloqueo en un equivalente al 4% del atributo Bloqueo.",
+        "icon": "assets/skills/bloqueo_cobertura.png"
+      },
+      {
+        "name": "Pilar de Hierro",
+        "effect": "TAKANOBU AONE ejecuta un bloqueo con un poder equivalente al 195% del atributo Bloqueo. Si bloquea un remate poderoso rival, el poder de este bloqueo aumenta en un 9% del atributo bloqueo.",
+        "icon": "assets/skills/pilar_hierro.png"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png"
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png"
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Defensa: TAKANOBU AONE",
+        "effect": "Aumenta la Técnica defensiva del portador en un 8%; cuando el resultado del bloqueo del portador no es MALO, reduce la resistencia del rematador rival en 2 puntos; si el rival es de tipo Ataque Poderoso, reduce 1 punto de resistencia adicional.",
+        "icon": "assets/memories/aone_ssr_memory.png"
+      }
+    ]
+  },
+  {
+    "id": "aran-ssr",
+    "name": "Ojiro Aran",
+    "avatar": "assets/characters/aran.png",
+    "school": "Inarizaki",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 1,
+      "atqPoderoso": 1583,
+      "colocacion": 1206,
+      "saque": 1480,
+      "recepcion": 1352,
+      "bloqueo": 1284,
+      "recuperacion": 1238
+    },
+    "tags": [
+      "Inarizaki"
+    ],
+    "skills": [
+      {
+        "name": "Ajuste de Ritmo",
+        "icon": "",
+        "effect": "Cada vez que Aran Ojiro consume 10 de Resistencia, obtiene 1 acumulación del efecto [Tiempo de Relajación]. Por cada acumulación de [Tiempo de Relajación], su [Técnica Ofensiva] aumenta en (Nv1: 3%, Nv2: 3.5%, Nv3: 4%).\nAl finalizar el Rally, todas las acumulaciones de [Tiempo de Relajación] se consumen. Por cada acumulación consumida, la Resistencia de Alan Ojiro se recupera en 4."
+      },
+      {
+        "name": "Saque de Alta Habilidad",
+        "icon": "",
+        "effect": "Aran Ojiro realiza un Saque en Salto con un Poder de [Saque] x(Nv1: 110%, Nv2: 125%, Nv3: 140%). La [Recepción] del rival que recibe se reduce un 10%. Este efecto persiste hasta que el balón cruce la red 6 veces."
+      },
+      {
+        "name": "Ataque Agresivo",
+        "icon": "",
+        "effect": "El [Ataque Poderoso] de Aran Ojiro aumenta en (Nv1: 6%, Nv2: 8%, Nv3: 10%), y su [Saque] aumenta en (Nv1: 6%, Nv2: 8%, Nv3: 10%).\nAl realizar un Ataque Poderoso, Aran Ojiro consume el 60% de su Resistencia actual, y el Poder de este Ataque Poderoso aumenta en [Ataque Poderoso] x(Nv1: 30%, Nv2: 40%, Nv3: 50%)."
+      },
+      {
+        "name": "Remate Estruendoso",
+        "icon": "",
+        "effect": "Aran Ojiro realiza un Ataque Poderoso con un Poder de [Ataque Poderoso] x(Nv1: 240%, Nv2: 255%, Nv3: 270%, Nv4: 285%, Nv5: 300%)."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Incremento de Poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Poder Vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque Poderoso: OJIRO ARAN",
+        "rarity": "SSR",
+        "icon": "assets/memories/aran_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Ataque Poderoso] +20%. Cada vez que el portador recupera 6 de Resistencia, aumenta el [Ataque Poderoso] +6.4%. Dura 5 cruces de Red. Si en una sola instancia la Resistencia recuperada supera 10, el miembro portador de esta memoria obtiene [Técnica Ofensiva] +6.4%. Dura 5 cruces de Red."
+      }
+    ]
+  },
+  {
+    "id": "asahi-ssr",
+    "name": "Asahi Azumane",
+    "avatar": "assets/characters/asahi.png",
+    "school": "Karasuno",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-10-16 00:00:00",
+    "statsMax": {
+      "atqRapido": 285,
+      "atqPoderoso": 1387,
+      "colocacion": 1118,
+      "saque": 1322,
+      "recepcion": 1254,
+      "bloqueo": 1190,
+      "recuperacion": 1122
+    },
+    "tags": [
+      "Ataque Poderoso",
+      "Saque",
+      "Wing Spiker",
+      "Karasuno"
+    ],
+    "skills": [
+      {
+        "name": "Defensa Experta",
+        "icon": "assets/skills/defensa_experta.png",
+        "effect": "ASAHI AZUMANE ejecuta una recepción con un poder equivalente al 120% del atributo Recepción."
+      },
+      {
+        "name": "Saque Supersonico",
+        "icon": "assets/skills/saque_supersonico.png",
+        "effect": "ASAHI AZUMANE ejecuta un Saque con Salto con un poder equivalente al 120% del atributo Saque."
+      },
+      {
+        "name": "Aura de Estrella",
+        "icon": "assets/skills/aura_de_estrella.png",
+        "effect": "cuando la resistencia de ASAHI AZUMANE está por encima de 70, el poder de su remate poderoso aumenta en un valor equivalente al 15% del atributo Ataque Poderoso."
+      },
+      {
+        "name": "Remate Cargado",
+        "icon": "assets/skills/remate_cargado.png",
+        "effect": "ASAHI AZUMANE consume 30 de resistencia adicional para ejecutar un Remate Poderoso con un poder equivalente al 235% del atributo Ataque Poderoso. Además obtiene 1 acumulación de Carga de Poder, al usar la habilidad Remate Cargado, cada acumulación de Carga de Poder aumenta el poder de Remate Poderoso en un 50% del atributo Ataque Poderoso."
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque Poderoso: ASAHI AZUMANE (práctica)",
+        "rarity": "SSR",
+        "icon": "assets/memories/asahi_ssr_memory.png",
+        "effect": "Cuando la resistencia del portador está por encima de 50, el atributo Ataque Poderoso aumenta en un 18%. Al usar una habilidad de Remate Poderoso que consuam más de 20 de resistencia , el poder de ese Remate Poderoso recibe un aumento equivalente al 16% del atributo Ataque Poderoso."
+      },
+      {
+        "name": "Potenciador de Percepción: ASAHI AZUMANE (práctica)",
+        "rarity": "SR",
+        "icon": "assets/memories/asahi_sr_memory.png",
+        "effect": "Aumenta la Percepción del portador en un 4% al sacar; cuando el portador marca un punto directo, recupera 5 de resistencia y el poder del siguiente saque recibe un aumento equivalente al 8% del atributo Saque."
+      }
+    ],
+    "potentialsIds": [
+      "poder-vibrante",
+      "incremento-poder"
+    ]
+  },
+  {
+    "id": "atsumu-ur",
+    "name": "Atsumu Miya",
+    "avatar": "assets/characters/atsumu.png",
+    "school": "Inarizaki",
+    "role": "Setter",
+    "rarity": "UR",
+    "updated": "2025-10-02 00:00:00",
+    "statsMax": {
+      "atqRapido": 1539,
+      "atqPoderoso": 212,
+      "colocacion": 1629,
+      "saque": 1705,
+      "recepcion": 1376,
+      "bloqueo": 1530,
+      "recuperacion": 1290
+    },
+    "tags": [
+      "saque",
+      "inarizaki",
+      "ataque-rápido",
+      "soporte",
+      "setter"
+    ],
+    "skills": [
+      {
+        "name": "Saque Táctico",
+        "icon": "assets/skills/atsumu_saque_tactico_movimiento.png",
+        "effect": "Cuando ASTUMU MIYA apunta al punto débil del oponente con un saque, aumenta su poder en un 30% de su atributo de Saque. Si no se apunta a ningún punto débil, aumenta el atributo Recepción de los jugadores de la fila trasera en un 10% durante 1 turno."
+      },
+      {
+        "name": "Colocación Impoluta",
+        "icon": "assets/skills/atsumu_colocacion_impoluta_movimiento.png",
+        "effect": "ATSUMU MIYA realiza una colocación con un 125% de su atributo Colocación. Elimina todas las desventajas del rematador que recibe esta colocación."
+      },
+      {
+        "name": "Pase Preciso",
+        "icon": "assets/skills/atsumu_pase_preciso_movimiento.png",
+        "effect": "Aumenta el atributo Colocación de ATSUMU MIYA en un 8%. Cada vez que el toque de un compañero no es Critico, MITA obtiene 2 acumulaciones de Precisión. Cada acumulación aumenta su atributo Colocación en un 2% hasta 10 acumulaciones. Al hacer una colocació, consume todas las acumulaciones de Precisión. Por cada acumulación consumida, aumenta la Tecnica Ofensiva del rematador en un 2.5% y el atributo Ataque Rápido en un 2.5% durante 10 cruces de red."
+      },
+      {
+        "name": "Definitiva - El Ambidiestro",
+        "icon": "assets/skills/atsumu_definitiva_el_ambidiestro_movimiento.png",
+        "effect": "ATSUMU MIYA alterna entre Saque flotante con salto y Saque potente con salto: Realiza un saque flotante con salto con un 230% de su atributo Saque. Eita que los rematadores oponentes usen las habilidades definitiva de Remate Poderoso o Remate Rápido durante 2 cruces de red. Potente co nsalto: Realiza un saque con salto con un 260% de su atributo de Saque. Por cada 3 de Moral de equipo, aumenta la Percepción de MIYA en un 1% durante 2 cruces de red."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "El poder de pasar aumenta en +15% adicional del atributo Pase.",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "Los saques nunca fallan y la Técnica Ofensiva aumenta en +15% al sacar.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación: ATSUMU MIYA",
+        "rarity": "UR",
+        "icon": "assets/memories/atsumu_memory.png",
+        "effect": "Aumenta el atributo Colocación del portador en un 12%. Mientras el portador está en la cancha, si la Percepción o los Reflejos de cualquier jugador aliado están por debajo del 20%, la Técnica ofesiva y la Tecnica Defensiva de esejugador aumenta en un 3.2%. Cuando un jugador aliado ejecuta una acción que no sea crítica, el portador obtiene un 1% de tecnica ofensiva y tecnica defensiva, que se acumula hasta 5 veces y dura 1 turno."
+      }
+    ]
+  },
+  {
+    "id": "bokuto-sp",
+    "name": "Kōtarō Bokuto (Día de Playa)",
+    "avatar": "assets/characters/bokuto_sp.png",
+    "school": "Fukurodani",
+    "role": "Wing Spiker",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 269,
+      "atqPoderoso": 1950,
+      "colocacion": 1574,
+      "saque": 1673,
+      "recepcion": 1856,
+      "bloqueo": 1760,
+      "recuperacion": 1572
+    },
+    "tags": [
+      "Fukurodani"
+    ],
+    "skills": [
+      {
+        "name": "Animar el Ambiente",
+        "icon": "",
+        "effect": "El [Ataque Poderoso] de Bokuto Kōtarō (Vacaciones en la Playa) aumenta en  Lv1:13%, Lv2:16%, Lv3:20% \nSi Bokuto Kōtarō está en la cancha, la efectividad de los efectos de aumento de Espíritu de Equipo aliados (aparte de <Animar el Ambiente>) se reduce en un 100%.\nPor cada 10 puntos de Espíritu de Equipo que se hubieran reducido con el punto anterior, obtiene 1 acumulación del efecto [Unidad de Equipo].\nCada acumulación del efecto [Unidad de Equipo] aumenta los Atributos Básicos de los miembros aliados un 0.16% (Máx. 199 acumulaciones).\nSi Bokuto Kōtarō está en la cancha, al final de cada rally, el Espíritu de Equipo aliado aumenta 40 puntos, y Bokuto Kōtarō obtiene 4 acumulaciones del efecto [Unidad de Equipo].\nModificación del efecto de Activación del Espíritu de Equipo aliado: Los Atributos Básicos de los miembros en la cancha aumentan un 20%. Dura hasta el décimo toque de balón aliado."
+      },
+      {
+        "name": "Participación en Defensa",
+        "icon": "",
+        "effect": "Bokuto Kōtarō realiza una Recepción con una potencia de [Recepción] x140%.\nObtiene 3 acumulaciones del efecto [Unidad de Equipo]."
+      },
+      {
+        "name": "¡Siempre con Energía!",
+        "icon": "",
+        "effect": "Si posee el efecto [Racha Caliente], al activar una Habilidad Definitiva de Bokuto Kōtarō, su [Ataque Poderoso] aumenta un 1% por cada 1 acumulación de [Unidad de Equipo] (Máx. 70%). Este efecto dura hasta que el balón cruce la red 2 veces.\nAdemás, el poder del Ataque Poderoso aumenta en [Ataque Poderoso] x1.5% por cada 1 acumulación de [Unidad de Equipo] (Máx. 120%). Este efecto dura hasta que el balón cruce la red 2 veces.\nAl activar una Habilidad Definitiva de Bokuto Kōtarō, obtiene el efecto [Altibajos].\nSi posee el efecto [Altibajos], Bokuto Kōtarō no puede activar una Habilidad Definitiva de Ataque Poderoso. El poder de su Ataque Poderoso aumenta en [Ataque Poderoso] x30%. Después de realizar un Ataque Poderoso, obtiene 3 acumulaciones del efecto [Unidad de Equipo].\nAl inicio del partido, Bokuto Kōtarō obtiene el efecto [Altibajos].\nSi Bokuto Kōtarō está en la cancha, cuando la Activación del Espíritu de Equipo aliado finaliza, el Espíritu de Equipo aliado aumenta 20 puntos.\nCuando los aliados activan el Espíritu de Equipo, Bokuto Kōtarō obtiene el efecto [Racha Caliente] y pierde el efecto [Altibajos]."
+      },
+      {
+        "name": "Remate Milagroso",
+        "icon": "",
+        "effect": "Bokuto Kōtarō realiza un Ataque Poderoso con una potencia de [Ataque Poderoso] 260%.\nLa [Técnica de Ataque] de Bokuto Kōtarō aumenta un 0.75% por cada 1 acumulación de [Unidad de Equipo] (Máx. 30%). Este efecto dura hasta que el balón cruce la red 2 veces."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Incremento de Poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Poder Vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Tecnica Ofensiva: KOTARO BOKUTO",
+        "rarity": "SP",
+        "icon": "assets/memories/bokuto_sp_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Ataque Poderoso] +24%. Al rematar, [Técnica Ofensiva] +5%. Si el tiempo restante del [Despertar de Moral del Equipo] es de 6 o más toques de balón, [Técnica Ofensiva] +20% adicional."
+      }
+    ]
+  },
+  {
+    "id": "bokuto-ur",
+    "name": "Kotaro Bokuto",
+    "avatar": "assets/characters/bokuto.png",
+    "school": "Fukurodani",
+    "role": "Wing Spiker",
+    "rarity": "UR",
+    "updated": "2025-09-22",
+    "statsMax": {
+      "atqRapido": 323,
+      "atqPoderoso": 1572,
+      "colocacion": 1262,
+      "saque": 1495,
+      "recepcion": 1417,
+      "bloqueo": 1347,
+      "recuperacion": 1268
+    },
+    "tags": [
+      "wing spiker",
+      "ataque poderoso",
+      "moral",
+      "saque",
+      "potenciador",
+      "fuerza",
+      "fukurodani"
+    ],
+    "skills": [
+      {
+        "name": "Motor de Euforia",
+        "icon": "assets/skills/bokuto_motor_de_euforia.png",
+        "effect": "Cuando Kotaro Bokuto entra en la cancha, aumenta la moral del equipo en 20. Mientras está en la cancha, cada toque de tus jugadores aumenta la moral en 4. El Despertar de moral del equipo se convierte en: todos los atributos básicos aumentan en un 32% durante 4 toques. (L1)"
+      },
+      {
+        "name": "Gran Sacador",
+        "icon": "assets/skills/bokuto_gran_sacador.png",
+        "effect": "Bokuto realiza un Saque con salto con el 125% de su atributo Saque. (L1)"
+      },
+      {
+        "name": "Cambio de Humor",
+        "icon": "assets/skills/bokuto_cambio_de_humor.png",
+        "effect": "Mientras Kenma Kozume está en la cancha, aumenta el poder de Recepción de los jugadores de tu lado en un 6% de su atributo Recepción. Si 'Sin tocar el suelo' supera 5 acumulaciones, además aumenta la Recepción y la Recuperación en un 50%. Si tu lado falla Recepción o Recuperación, consume 6 acumulaciones para convertir el resultado en PERFECTO. (L1)"
+      },
+      {
+        "name": "Definitiva · Estrella Forjada en Equipo",
+        "icon": "assets/skills/bokuto_estrella_forgada.png",
+        "effect": "Bokuto realiza un Remate poderoso con el 260% de su atributo Ataque Poderoso. Si el remate es crítico, su Fuerza aumenta en un 12% y la moral del equipo aumenta en 16. (L1)"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Poder vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "+15% Fuerza",
+        "set4": "+12% ganancia de Moral",
+        "notas": ""
+      },
+      {
+        "name": "Incremento de poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "+15% Ataque Poderoso",
+        "set4": "+12% Ataque Poderoso adicional",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Remate: KOTARO BOKUTO",
+        "rarity": "UR",
+        "icon": "assets/memories/bokuto_memory.png",
+        "effect": "Aumenta el Ataque Poderoso del portador en un 12%. Cuando tu equipo tiene la Potenciación de Moral del equipo, el portador obtiene un 4% de Ataque Poderoso adicional; se acumula hasta 3 veces. Mientras el portador esté en la cancha, la duración de la Potenciación de moral del equipo aumenta en 2 cruces de red."
+      }
+    ],
+    "links": [
+      "As milagroso y colocador cariñoso (con Akaashi) — Golpe con el poder de Slam (escala hasta Lv5).",
+      "Compañero de práctica independiente del campo de Tokio (con Akaashi) — Mejora de [Servicio] y [Lanzamiento] (escala hasta Lv5).",
+      "1er discípulo (con Kuroo) — Mejora de [Golpe] (escala hasta Lv5).",
+      "El momento en que te 'enganchas' al voleibol (con Akaashi) — Mejora de [Recepción] (escala hasta Lv5).",
+      "Compañeros de práctica independientes en el campo de entrenamiento de Tokio (con Yamaguchi) — Mejora de [Servicio] (escala hasta Lv5)."
+    ],
+    "builds": [
+      "Core de moral/equipo con capacidad de finisher: prioriza Ataque Poderoso y Fuerza; Percepción como tercera si buscas críticos constantes."
+    ],
+    "teams": [
+      "SSR Keiji Akaashi",
+      "UR Atsumu Miya",
+      "SSR Yu Nishinoya",
+      "SSR Akinori Konoha",
+      "SSR Tsutomu Goshiki"
+    ]
+  },
+  {
+    "id": "daichi-ssr",
+    "name": "Daichi Sawamura",
+    "avatar": "assets/characters/daichi.png",
+    "school": "Karasuno",
+    "role": "Opposite",
+    "rarity": "SSR",
+    "updated": "2025-10-16 00:00:00",
+    "statsMax": {
+      "atqRapido": 257,
+      "atqPoderoso": 1250,
+      "colocacion": 1123,
+      "saque": 1182,
+      "recepcion": 1385,
+      "bloqueo": 1248,
+      "recuperacion": 1191
+    },
+    "tags": [
+      "Karasuno",
+      "Potenciador",
+      "Buff",
+      "Recepción",
+      "Ataque Poderoso",
+      "Opposite",
+      "soporte"
+    ],
+    "skills": [
+      {
+        "name": "Recepción Clara",
+        "icon": "assets/skills/recepcion_clara.png",
+        "effect": "Cuando DAICHI SAWAMURA ejecuta una recepción, recupera 3 de resistencia al jguador que tenga menos resistencia de tu equipo."
+      },
+      {
+        "name": "Remate Aplastante",
+        "icon": "assets/skills/remate_aplastante.png",
+        "effect": "DAICHI SAWAMURA ejecuta un Remate Poderoso con un poder equivalente al 120% del atributo Ataque Poderoso."
+      },
+      {
+        "name": "Pilar del Equipo",
+        "icon": "assets/skills/pilar_del_equipo.png",
+        "effect": "Si DAICHI SAWAMURA está presente, el poder de recepción de los jugadores de la fila trasera de tu equipo aumenta en un valor equivalente al 10% del atributo Recepción."
+      },
+      {
+        "name": "Defensa Confiable",
+        "icon": "assets/skills/defensa_confiable.png",
+        "effect": "DAICHI SAWAMURA ejecuta una recepción con un poder equivalente al 220% del atributo Recepción. Cuando el siguiente remate de tu equipo sea un Remate Poderoso, el poder de este remate aumentará en un 15% del atributo Ataque Poderoso del rematador."
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque Poderoso/Recepción: DAICHI SAWAMURA",
+        "rarity": "SSR",
+        "icon": "assets/memories/daichi_ssr_memory.png",
+        "effect": "Aumenta el atributo Recepción del portador en un 10%. Si el portador está presente, los jugadores de tipo Ataque Poderoso de tu equipo reciben 1 acumulación de Coraje, por cada 20 de resistencia que consumas. Cada acumulación aumenta el poder de Remate Poderoso en un 2% del atributo Ataque Poderoso, que se acumula hasta 10 veces."
+      },
+      {
+        "name": "Potenciador de Remate: DAICHI SAWAMURA",
+        "rarity": "SR",
+        "icon": "assets/memories/daichi_sr_memory.png",
+        "effect": "Cuando el portador recibe, el poder del siguiente remate de tu equipo recibe un aumento eqivalente al 18% del atributo Ataque Poderoso o Ataque Rápido del rematador."
+      }
+    ],
+    "potentialsIds": [
+      "recepcion-asistencia",
+      "recepcion-suprema"
+    ]
+  },
+  {
+    "id": "futakuchi-ssr",
+    "name": "Kenji Futakuchi",
+    "avatar": "assets/characters/futakuchi.png",
+    "school": "Date",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-10-16 00:00:00",
+    "statsMax": {
+      "atqRapido": 270,
+      "atqPoderoso": 1316,
+      "colocacion": 1147,
+      "saque": 1217,
+      "recepcion": 1184,
+      "bloqueo": 1385,
+      "recuperacion": 1122
+    },
+    "tags": [
+      "Bloqueo",
+      "Soporte",
+      "Potenciador",
+      "Buff",
+      "Date",
+      "Wing Spiker",
+      "Saque"
+    ],
+    "skills": [
+      {
+        "name": "Autoridad de Capitán",
+        "icon": "assets/skills/autoridad_de_capitan.png",
+        "effect": "Si KENJI FUTAKUCHI está presente, aumenta el atributo Bloqueo de tu equipo en un valor equivalente al 8% del atributo Bloqueo de cada jugador."
+      },
+      {
+        "name": "Inicio de Ataque",
+        "icon": "assets/skills/inicio_de_ataque.png",
+        "effect": "KENJI FUTAKUCHI ejecuta un Saque con Salto con un poder equivalente al 120% del atributo Saque."
+      },
+      {
+        "name": "Defensa en Aumento",
+        "icon": "assets/skills/defensa_en_aumento.png",
+        "effect": "Si KENJI FUTAKUCHI está presente, por cada jugador de tipo Bloqueo en tu equipo, aumenta el poder del bloqueo en un equivalente al 0,5% del atributo Bloqueo."
+      },
+      {
+        "name": "Muro de Hierro Indestructible",
+        "icon": "assets/skills/muro_hierro_indestructible.png",
+        "effect": "KENJI FUTAKUCHI ejecuta un bloqueo con un poder equivalente al 195% del atributo Bloqueo. Si el rematador rival está bajo el efecto de una desventaja, el poder de este bloqueo aumenta un 10% del atributo Bloqueo."
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Bloqueo: KENJI FUTAKUCHI",
+        "rarity": "SSR",
+        "icon": "assets/memories/futakuchi_memory.png",
+        "effect": "Aumenta el atributo Bloqueo del portador en un 10%; por cada jugador de tipo Bloqueo de tu equipo, el poder de la habilidad definitiva del portador aumenta en un 3.2% del atributo total de la definitiva."
+      }
+    ],
+    "potentialsIds": [
+      "bloqueo-preciso",
+      "movimiento-bloqueo"
+    ]
+  },
+  {
+    "id": "ginyima-ssr",
+    "name": "Hitoshi Ginjima",
+    "avatar": "assets/characters/ginyima.png",
+    "school": "Inarizaki",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-10-27 00:00:00",
+    "statsMax": {
+      "atqRapido": 1,
+      "atqPoderoso": 1,
+      "colocacion": 1,
+      "saque": 1,
+      "recepcion": 1,
+      "bloqueo": 1,
+      "recuperacion": 1
+    },
+    "tags": [
+      "inarizaki"
+    ],
+    "skills": [
+      {
+        "name": "Ataque y Defensa Estables",
+        "icon": "",
+        "effect": "El [Ataque Poderoso] de Hitoshi Ginjima aumenta en: Lv1:6%, Lv2:8%, Lv3:10%.\nLa [Recepción] de Hitoshi Ginjima aumenta en: Lv1:6%, Lv2:8%, Lv3:10%.\nLa [Recepción] de Hitoshi Ginjima aumenta en: Lv1:6%, Lv2:8%, Lv3:$10%.\nDurante la Recepción de Hitoshi Ginjima, si el rival realiza un Ataque Poderoso, la potencia de esta Recepción aumenta en [Recepción] Lv1:15%, Lv2:25%, Lv3:35%."
+      },
+      {
+        "name": "Recepción Potente",
+        "icon": "",
+        "effect": "Hitoshi Ginjima realiza una Recepción con una potencia de [Recepción] Lv1:120%, Lv2:135%, Lv3:150%."
+      },
+      {
+        "name": "Ataque Lleno de Responsabilidad y Entusiasmo",
+        "icon": "",
+        "effect": "Por cada miembro de Recepción que se encuentre en la cancha aliada, la [Técnica de Ataque] de Hitoshi Ginjima aumenta: Lv1:2%, Lv2:2.5%, Lv3:3%.\nSi el resultado de la Recepción de un miembro aliado no es MALO (BAD), el [Ataque Poderoso] de Hitoshi Ginjima aumenta un 15%. Este efecto dura hasta que el balón cruce la red 4 veces."
+      },
+      {
+        "name": "Remate Violento",
+        "icon": "",
+        "effect": "Hitoshi Ginjima realiza un Ataque Poderoso con una potencia de [Ataque Poderoso] Lv1:225%, Lv2:240%, Lv3:255%, Lv4:270%, Lv5:285%.\nSi Ginjima Yui se encuentra en la zona trasera, la potencia de este Ataque Poderoso aumenta en [Ataque Poderoso] 30% adicional."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "",
+        "icon": "",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "",
+        "icon": "",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador e Ataque Poderoso / Recepción: HITOSHI GINJIMA",
+        "rarity": "SSR",
+        "icon": "assets/memories/ginyima_memory.png",
+        "effect": "Aumenta el atributo Recepción del portador en un 20%. Cuando el portador ejecuta una recepción, su Ataque Poderoso aumenta en un 16% durante 6 cruces de red."
+      }
+    ]
+  },
+  {
+    "id": "goshiki-ssr",
+    "name": "Tsutomu Goshiki",
+    "avatar": "assets/characters/goshiki.png",
+    "school": "Shiratorizawa",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-10-03 00:00:00",
+    "statsMax": {
+      "atqRapido": 284,
+      "atqPoderoso": 1383,
+      "colocacion": 1115,
+      "saque": 1188,
+      "recepcion": 1314,
+      "bloqueo": 1240,
+      "recuperacion": 1122
+    },
+    "tags": [
+      "shiratorizawa",
+      "ataque poderoso",
+      "fuerza",
+      "moral"
+    ],
+    "skills": [
+      {
+        "name": "A la altura de las circunstancias",
+        "icon": "assets/skills/goshiki_a_la_altura_de_las_circunstancia_movimiento.png",
+        "effect": "Si TSUTOMU GOSHIKI marca, la moral de tu equipo aumenta en 8."
+      },
+      {
+        "name": "Recepción Simple",
+        "icon": "assets/skills/goshiki_recepcion_simple_movimiento.png",
+        "effect": "TUTOMU GOSHIKI ejecuta una recepción con un poder equivalente al 120% del atributo Recepción."
+      },
+      {
+        "name": "Futura Estrella",
+        "icon": "assets/skills/goshiki_futura_estrella_movimiento.png",
+        "effect": "Al final de cada ronda, TSUTOMU GOSHIKI recibe 1 acumulación de Astucia. Cada acumulación aumenta el atributo de Ataque Poderoso en un 2,5%. Se acumula hasta 5 veces."
+      },
+      {
+        "name": "Definitiva - Forjador de Milagros",
+        "icon": "assets/skills/goshiki_forjador_de_milagros_definitivo_movimiento.png",
+        "effect": "TSUTOMU GOSHIKI ejecuta un Remate Poderoso con un poder equivalente al 225% del atributo Ataque Poderoso. Durante esete remate, su atributo de Percepción aumenta en un 10%."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Incremento de poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "+15% Ataque Poderoso",
+        "set4": "Tras usar Remate Poderoso, +10% Técnica Ofensiva; si marca punto, +5 resistencia",
+        "notas": ""
+      },
+      {
+        "name": "Poder vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "+15% Fuerza",
+        "set4": "+12% ganancia de Moral",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Remate: TSUTOMU GOSHIKI",
+        "rarity": "SSR",
+        "icon": "assets/memories/goshiki_memory.png",
+        "effect": "Aumenta el atributo Ataque Poderoso del portador en un 10%. Mientras tu equipo tenga la Potenciación de moral del equipo, aumenta el atributo Ataque Poderoso del portador en un 16% adicional."
+      }
+    ]
+  },
+  {
+    "id": "hinata-sp",
+    "name": "Shoyo Hinata (Festival de las flores)",
+    "avatar": "assets/characters/hinata_sp.png",
+    "school": "Karasuno",
+    "role": "Middle Blocker",
+    "rarity": "SP",
+    "updated": "2025-10-17",
+    "statsMax": {
+      "atqRapido": 1950,
+      "atqPoderoso": 269.0,
+      "colocacion": 1580,
+      "saque": 1663,
+      "recepcion": 1856,
+      "bloqueo": 1758,
+      "recuperacion": 1579
+    },
+    "tags": [
+      "Middle Blocker",
+      "Ataque Rápido",
+      "Karasuno",
+      "Potenciador",
+      "Recepción",
+      "Tecnica Defensiva",
+      "Tecnica Ofensiva",
+      "SP"
+    ],
+    "skills": [
+      {
+        "name": "Control del instante",
+        "icon": "assets/skills/hinata_controlar_un_momento_movimiento.png",
+        "effect": "Si Hinata Shōyō (Hanami) está en la cancha, los aliados en la línea delantera obtienen [Técnica Defensiva] + (Lv1: 10%, Lv2: 13%, Lv3: 16%). Cuando una jugada de Hinata (Hanami) resulta en buena jugada, su [Técnica Ofensiva] aumenta (Lv1: 3%, Lv2: 3.5%, Lv3: 4%). Máximo 4 acumulaciones."
+      },
+      {
+        "name": "Un balón como punto de apoyo",
+        "icon": "assets/skills/hinata_un_trampolín_movimiento.png",
+        "effect": "Hinata (Hanami) realiza una recepción con potencia [Recepción] × (Lv1: 140%, Lv2: 160%, Lv3: 180%) y los parámetros principales de los aliados aumentan 12%. Este efecto dura hasta que el balón cruce la red 6 veces."
+      },
+      {
+        "name": "Golpe de contraataque",
+        "icon": "assets/skills/hinata_un_trampolin_movimiento.png",
+        "effect": "Si Hinata (Hanami) está en la línea trasera, los aliados en la zaga obtienen [Técnica Defensiva] + (Lv1: 10%, Lv2: 13%, Lv3: 16%). Si Hinata (Hanami) está en la cancha y la recepción aliada no resulta en un mal resultado, el [Ataque Rápido] de Hinata aumenta (Lv1: 12%, Lv2: 16%, Lv3: 20%). Dura hasta que el balón cruce la red 2 veces. Cuando la recepción aliada resulta en buena jugada, en el primer Ataque Rápido de Hinata después de esa jugada, su [Concentración] aumenta 100%."
+      },
+      {
+        "name": "Salto hacia lo alto",
+        "icon": "assets/skills/hinata_saltar_alto_movimiento.png",
+        "effect": "Hinata (Hanami) realiza un Ataque Rápido con potencia de  (Lv1: 260%, Lv2: 275%, Lv3: 290%, Lv4: 305%, Lv5: 320%) del [Ataque Rápido] de Hinata (Hanami). Si la jugada resulta en buena jugada, la potencia aumenta adicionalmente en un (Lv1: 40%, Lv2: 45%, Lv3: 50%, Lv4: 55%, Lv5: 60%) del [Ataque Rápido] de Hinata."
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Recuerdo Potenciador de SHOYO HINATA (Festival de las flores)",
+        "rarity": "SP",
+        "icon": "assets/memories/hinata_sp_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Fuerza] +24%. Cuando el Ataque Rápido del miembro afectado resulta en buena jugada, su [Poder] aumenta 2%. Máximo 5 acumulaciones. Si el Ataque Rápido del miembro afectado resulta en buena jugada y el bloqueo rival no toca el balón, los rivales de la línea delantera sufren [Reacción] −8% y [Mental] −8%. Este efecto dura hasta que el balón cruce la red 10 veces."
+      }
+    ],
+    "potentialsIds": [
+      "ataque-veloz",
+      "sentido-agudo"
+    ]
+  },
+  {
+    "id": "hinata-ssr",
+    "name": "Shoyo Hinata",
+    "avatar": "assets/characters/hinata_ssr.png",
+    "school": "Karasuno",
+    "role": "Middle Blocker",
+    "rarity": "SSR",
+    "updated": "2025-10-14 00:00:00",
+    "statsMax": {
+      "atqRapido": 1383,
+      "atqPoderoso": 284,
+      "colocacion": 1118,
+      "saque": 1173,
+      "recepcion": 1195,
+      "bloqueo": 1250,
+      "recuperacion": 1253
+    },
+    "skills": [
+      {
+        "name": "El Mejor Señuelo",
+        "effect": "Si SHOYO HINATA está presente, aumenta en un 7% el atributo Ataque Rápido / Ataque Poderoso de los jugadores de tu equipo.",
+        "icon": "assets/skills/mejor_señuelo.png"
+      },
+      {
+        "name": "Golpe Tandém Letal",
+        "effect": "SHOYO HINATA ejecuta un Remate Rápido y el jugador que le pasa el balón es de tipo Ataque Rápido el poder de este remate aumenta en un equivalente al 15% del atributo Ataque Rápido de ese jugador.",
+        "icon": "assets/skills/golpe_letal.png"
+      },
+      {
+        "name": "Fusión con el Balón",
+        "effect": "Aumenta la Percepción de SHOYO HINATA en un 6%. Si Hinata ejecuta una jugada crítica, aumenta la Percepción en un 4% adicional. Puede acumularse hasta 1 vez.",
+        "icon": "assets/skills/fusion_balon.png"
+      },
+      {
+        "name": "Adolescente Volador",
+        "effect": "SHOYO HINATA ejecuta un Remate Rápido con un poder equivalente al 235% del atributo Ataque Rápido. Cuando este remate consigue un resultado SUPERIOR, su poder aumenta en un valor equivalente al 20% del atributo Ataque Rápido.",
+        "icon": "assets/skills/adolescente_volador.png"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Ataque Veloz",
+        "icon": "assets/potentials/ataque_veloz.png"
+      },
+      {
+        "name": "Sentido Agudo",
+        "icon": "assets/potentials/sentido_agudo.png"
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Percepción: SHOYO HINATA",
+        "effect": "Aumenta la Percepción del portador en un 8%; cuando la Percepción del portador es superior al 40% aumenta la Percepción en un 10% más y reduce el atributo Bloqueo en un 8%.",
+        "icon": "assets/memories/hinata_ssr_memory.png"
+      }
+    ]
+  },
+  {
+    "id": "hirugami-ur",
+    "name": "Sachiro Hirugami",
+    "avatar": "assets/characters/hirugami.png",
+    "school": "Kamomedai",
+    "role": "Middle Blocker",
+    "rarity": "UR",
+    "updated": "2025-10-16 00:00:00",
+    "statsMax": {
+      "atqRapido": 1536,
+      "atqPoderoso": 212,
+      "colocacion": 1535,
+      "saque": 1623,
+      "recepcion": 1377,
+      "bloqueo": 1704,
+      "recuperacion": 1304
+    },
+    "tags": [
+      "Bloqueo",
+      "Control",
+      "Buff",
+      "Debuff",
+      "Kamomedai",
+      "Middle Blocker",
+      "Saque",
+      "Potenciador"
+    ],
+    "skills": [
+      {
+        "name": "Eje Central del Kamomedai",
+        "icon": "assets/skills/hirugami_el núcleo_del_sistema_Kamomedai_movimiento.png",
+        "effect": "Cuando Yukio Hirugami sirve, [Conciencia] aumenta (Lv1: 12%, Lv2: 16%, Lv3: 20%). Si Yukiro Hirugami está en la cancha, cuando un aliado bloquea, un miembro aliado gana 1 acumulación de efectos [Sistema]. [Sistema] Por cada acumulación de efectos, los parámetros principales de los aliados aumentan en un 8%. Hasta 5 acumulaciones. Este efecto dura hasta que un aliado puntúa. [Sistema] Por cada acumulación de efectos, los parámetros principales de Yukiro Hirugami aumentan en un 10% adicional."
+      },
+      {
+        "name": "Saque Motivador",
+        "icon": "assets/skills/hirugami_un_saque_psicológicamente_presionado_movimiento.png",
+        "effect": "Yukiro Hirugami realiza un saque flotante con una potencia de [Servicio] × (Lv1: 140%, Lv2: 160%, Lv3: 180%). Si esta jugada se convierte en una buena jugada, el despertar de la moral del equipo del oponente termina. Dentro de 1 jugada, el oponente no podrá ganar la moral del equipo."
+      },
+      {
+        "name": "Una Buena Defensa es el Mejor Ataque",
+        "icon": "assets/skills/hirugami_la_defensa_es_el_mejor_ataque_movimiento.png",
+        "effect": "Si Yukiro Hirugami está en la cancha, gana 1 acumulación de [Bloqueo obstinado] cada vez que la pelota pase por encima de la red. Cuando un aliado bloquea, se activan diferentes efectos dependiendo del número de acumulaciones del efecto [Bloqueo obstinado]. 2 acumulaciones: Aumenta el poder de bloqueo del × [Bloque] del miembro bloqueador (Lv1: 15%, Lv2: 20%, Lv3: 25%). Este efecto dura hasta que la pelota pasa por encima de la red dos veces. 3 acumulaciones: Recibe poder aumenta el × [Recibir] del miembro receptor (Lv1: 15%, Lv2: 20%, Lv3: 25%). Este efecto dura hasta que la pelota pasa por encima de la red dos veces. 4 acumulaciones: El poder de Spike (Slam/Quick Attack) aumenta el [Slam/Quick Attack] × (Lv1: 15%, Lv2: 20%, Lv3: 25%) del miembro que se dispara. Este efecto dura hasta que la pelota pasa por encima de la red dos veces. Al final de la reunión, consume todos los efectos de [Bloque sólido]. Por cada acumulación de efectos de [Bloqueo sólido] consumida, la [Técnica de ataque] de tus compañeros de equipo aumenta en un 5% y la [Técnica defensiva] aumenta en un 5%. Este efecto dura 1 rally"
+      },
+      {
+        "name": "Dios inamovible del Bloqueo",
+        "icon": "assets/skills/hirugami_el_dios_inamovible_del_dia_movimiento.png",
+        "effect": "Yukiro Hirugami bloquea con el poder de [Bloque] × (Lv1: 260%, Lv2: 275%, Lv3: 290%, Lv4: 305%, Lv5: 320%). Si el oponente golpea fuerte, el poder de este bloque aumenta en [Bloque] × (Lv1: 40%, Lv2: 45%, Lv3: 50%, Lv4: 55%, Lv5: 60%)."
+      }
+    ],
+    "potentialsIds": [
+      "bloqueo-preciso",
+      "movimiento-bloqueo"
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Bloqueo: SACHIRO HIRUGAMI",
+        "rarity": "UR",
+        "icon": "assets/memories/hirugami_memory.png",
+        "effect": "El [bloqueo] del miembro que tiene este conjunto de memoria aumenta en un 20%. Cuando un aliado anota, el [Bloqueo] del portador de esta memoria aumenta un 4,8%. Hasta 3 acumulaciones. Si un aliado tiene un efecto de [Bloqueo sólido], cuando un aliado bloquea, la [Técnica defensiva] del equipo aumenta en un 2,4%. Este efecto dura hasta que la pelota pasa por encima de la red 4 veces. Hasta 3 acumulaciones."
+      }
+    ]
+  },
+  {
+    "id": "hoshiumi-ur",
+    "name": "Korai Hoshiumi",
+    "avatar": "assets/characters/hoshiumi.png",
+    "school": "Kamomedai",
+    "role": "Wing Spiker",
+    "rarity": "UR",
+    "updated": "2025-10-06",
+    "statsMax": {
+      "atqRapido": 701,
+      "atqPoderoso": 1704,
+      "colocacion": 1341,
+      "saque": 1621,
+      "recepcion": 1541,
+      "bloqueo": 1581,
+      "recuperacion": 1305
+    },
+    "tags": [
+      "bloqueo",
+      "wing spiker",
+      "potenciador",
+      "ataque poderoso",
+      "pequeño gigante"
+    ],
+    "skills": [
+      {
+        "name": "Romper de muros",
+        "icon": "assets/skills/korai_rompiendo_la_cadena_movimiento.png",
+        "effect": "Si KORAI HOSHIUMI está en la cancha, por cada 50 puntos de la estadistica de [Bloqueo] del miembro aliado que bloquea, el poder de (Ataque Poderoso/Ataque Rápido) del oponente será reducido en (Lv1: 0.3% por cada 50 puntos hasta 30%), Lv2: 0.4% por cada 50 puntos hasta 40%), Lv3: 0.5% por cada 50 puntos hasta 50%). Por cada disminución del 1% en el Remate (Ataque Poderoso/Ataque Rápido) del oponente, el poder de la siguiente habilidad de Kourai Hoshiumi aumenta en un 1%."
+      },
+      {
+        "name": "Jugador Exitoso",
+        "icon": "assets/skills/korai_una_gran_actuación_movimiento.png",
+        "effect": "Korai Hoshiumi puede activar múltiples habilidades de juego. Estas habilidades de juego comparten un tiempo de reutilización. Saque con salto: Korai Hoshiumi realiza un saque de remate con el poder de [Saque] (Lv1: 140%, Lv2: 160%, Lv3: 180%). Recibir: Korai Hoshiumi recibe un poder de [Recepción] de (Lv1: 140%, Lv2: 160%, Lv3: 180%). Bloquear: Kourai Hoshiumi bloquea con poder de [Bloqueo] de (Lv1: 140%, Lv2: 160%, Lv3: 180%)."
+      },
+      {
+        "name": "Captador de atención N°1",
+        "icon": "assets/skills/korai_el_que_más_puntos_gana_movimiento.png",
+        "effect": "El [Remate] de Korai Hoshiumi sube un 16%. Cuando se activa obtienes 1 acumulación de [Todo terreno]. Cuando se activa la habilidad de Kourai Hoshiumi, se consume el efecto [Completo] y se activan diferentes efectos según la jugada. Remate: Aumenta la [Conciencia] de Kourai Hoshiumi (Lv1: 14%, Lv2: 17%, Lv3: 20%). Este efecto dura hasta que la pelota pasa por encima de la red dos veces. Saque: Disminuye la [Recepción] del defensor del oponente (Lv1: 14%, Lv2: 17%, Lv3: 20%). Este efecto dura hasta que la pelota pasa por encima de la red dos veces. Recibir: Aumenta la [Reacción] de Kourai Hoshiumi (Lv1: 14%, Lv2: 17%, Lv3: 20%). Este efecto dura hasta que la pelota pasa por encima de la red dos veces. Bloqueo: Por 50 de los [Bloqueos] de Korai Hoshiumi, el poder de Spike (Slam/Quick Attack) del oponente disminuye el [Slam/Quick Attack] × (Lv1: 0.3%, Lv2: 0.4, Lv3: 0.5%) del miembro que dispara."
+      },
+      {
+        "name": "Anotador Estrella",
+        "icon": "assets/skills/korai_lanza_brillante_movimiento.png",
+        "effect": "Korai Hoshiui golpea con un poder de [Ataque Poderoso] de (Lv1: 265%, Lv2: 280%, Lv3: 295%, Lv4: 310%, Lv5: 325%). Si Kourai Hoshiumi está a ubicado cercano a la red, el poder de este golpe aumentará [Ataque Poderoso] en (Lv1: 40%, Lv2: 45%, Lv3: 50%, Lv4: 55%, Lv5: 60%)."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "+15% Bloqueo",
+        "set4": "Aumenta la precisión de bloqueo y reduce CD de habilidades de bloqueo",
+        "notas": null
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "+Velocidad de Bloqueo / tiempo de respuesta",
+        "set4": "Bonos al reposicionamiento y éxito de bloqueos consecutivos",
+        "notas": null
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Ataque y Defensa: KORAI HOSHIUMI",
+        "rarity": "UR",
+        "icon": "assets/memories/hoshiumi_memory.png",
+        "effect": "La [Técnica ofensiva] y la [Técnica defensiva] del miembros que tenga equipado este recuerdo aumenta en un 6,4%. Cuando se activa la habilidad o el movimiento especial del potador, el parámetro principal aumenta en un 2%. Hasta 10 acumulaciones. Si esta jugada es una buena jugada, gana 1 acumulación más."
+      }
+    ]
+  },
+  {
+    "id": "iwaizumi-sp",
+    "name": "Hajime Iwaizumi (Festival Cultural)",
+    "avatar": "assets/characters/iwaizumi_sp.png",
+    "school": "Aoba Jōsai",
+    "role": "Wing Spiker",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 244,
+      "atqPoderoso": 1766,
+      "colocacion": 1577,
+      "saque": 1665,
+      "recepcion": 1947,
+      "bloqueo": 1753,
+      "recuperacion": 1670
+    },
+    "tags": [
+      "Aoba Johsai"
+    ],
+    "skills": [
+      {
+        "name": "Alta concentración",
+        "icon": "",
+        "effect": "[Remate] y [Recepción] de Iwaizumi (Festival Cultural) aumentan. Al inicio de cada rally, si su [Concentración] supera cierto umbral, su [Recepción] aumenta aún más. Al final del rally, elimina aleatoriamente parte de sus efectos perjudiciales (debuffs)."
+      },
+      {
+        "name": "Perforar el bloqueo",
+        "icon": "",
+        "effect": "Iwaizumi (Festival Cultural) realiza un remate con potencia aumentada. Si el rival está con bloqueo doble o triple (2/3), la potencia del remate de esta jugada aumenta todavía más."
+      },
+      {
+        "name": "Pilar mental",
+        "icon": "",
+        "effect": "Si Iwaizumi (Festival Cultural) está en la cancha, los aliados en tu cancha obtienen [Poder] aumentado. Al activar una habilidad, la [Concentración] de Iwaizumi aumenta. Cuando se activa «Reflejos casi divinos», la potencia de Recepción disminuye durante un tiempo. Reinicia el enfriamiento de «Reflejos casi divinos»."
+      },
+      {
+        "name": "Habilidad especial — Reflejos casi divinos",
+        "icon": "",
+        "effect": "Iwaizumi (Festival Cultural) realiza una Recepción con potencia aumentada. La [Reacción] y el [Mental] de Iwaizumi aumentan."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Incremento de Poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Poder Vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "",
+        "rarity": "",
+        "icon": "assets/memories/",
+        "effect": ""
+      }
+    ]
+  },
+  {
+    "id": "iwaizumi-ssr",
+    "name": "HAJIME IWAIZUMI",
+    "avatar": "assets/characters/iwaizumi_ssr.png",
+    "school": "Aoba Johsai",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-10-14 00:00:00",
+    "statsMax": {
+      "atqRapido": 284,
+      "atqPoderoso": 1385,
+      "colocacion": 1118,
+      "saque": 1190,
+      "recepcion": 1314,
+      "bloqueo": 1248,
+      "recuperacion": 1129
+    },
+    "skills": [
+      {
+        "name": "Fuerza de Estrella",
+        "effect": "Aumenta la Percepción de HAJIME IWAIZUMI en un 5% y su Fuerza en un 10%.",
+        "icon": "assets/skills/fuerza_estrella.png"
+      },
+      {
+        "name": "Defensa Enfocada",
+        "effect": "HAJIME IWAIZUMI ejecuta una recepción con un poder equivalente al 120% del atributo Recepción",
+        "icon": "assets/skills/defensa_enfocada.png"
+      },
+      {
+        "name": "Reunión de Subcapitanes",
+        "effect": "Si HAJIME IWAIZUMI está presente, aumenta en un 6% la Fuerza de los jugadores de tu equipo.",
+        "icon": "assets/skills/reunion_subcapitanes.png"
+      },
+      {
+        "name": "Cara a Cara",
+        "effect": "HAJIME IWAIZUMI ejecuta un Ataque Poderoso con un poder equivalente al 255% del atributo Ataque Poderoso; cuando este remate consigue un resultado Crítico, su poder aumenta en un 15% dela tributo Ataque Poderoso.",
+        "icon": "assets/skills/cara_a_cara.png"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Poder Vibrante",
+        "icon": "assets/potentials/poder_vibrante.png"
+      },
+      {
+        "name": "Incremento de Poder",
+        "icon": "assets/potentials/incremento_poder.png"
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque Poderoso / Recepción: HAJIME IWAIZUMI",
+        "effect": "Aumenta el atributo Recepción del portador en un 10%; cuando el portador ejecuta una definitiva de Ataque Poderoso Crítica, su atributo Ataque Poderoso recibe un aumento equivalente al 8% de su atributo Recepción durante 3 cruces de Red.",
+        "icon": "assets/memories/iwaizumi_ssr_memory.png"
+      }
+    ]
+  },
+  {
+    "id": "kenma-sp",
+    "name": "Kenma Kozume (Festival de las flores)",
+    "avatar": "assets/characters/kenma_sp.png",
+    "school": "Nekoma",
+    "role": "Setter",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 230,
+      "atqPoderoso": 1668,
+      "colocacion": 1950,
+      "saque": 1669,
+      "recepcion": 1856,
+      "bloqueo": 1665,
+      "recuperacion": 1576
+    },
+    "tags": [
+      "Nekoma",
+      "Buff",
+      "Soporte"
+    ],
+    "skills": [
+      {
+        "name": "Liderazgo",
+        "icon": "",
+        "effect": "Si Kozume Kenma (Visita a los Cerezos) está en la cancha, la [Reacción] de los miembros aliados aumenta: Lv1:10%, Lv2:13%, Lv3:16%.\nSi Kozume Kenma está en la cancha, al realizar una Recepción o Recuperación, obtiene 1 acumulación del efecto [Defensa Impecable].\nCada acumulación del efecto [Defensa Impecable] aumenta la [Reacción] de los miembros aliados un 1.5% (Máx. 10 acumulaciones).\nSi el resultado de la Recepción o Recuperación de un miembro aliado no es MALO (BAD), obtiene 1 acumulación adicional del efecto [Defensa Impecable]."
+      },
+      {
+        "name": "Colocación de Mínimo Movimiento",
+        "icon": "",
+        "effect": "Kozume Kenma (Visita a los Cerezos) realiza una Colocación con una potencia de [Colocación] Lv1:140%, Lv2:160%, Lv3:180%.\nSi el miembro aliado que realiza el primer remate (Ataque Poderoso/Rápido) después de esta jugada se encuentra en la zona trasera, la potencia de remate aumenta en [Ataque Poderoso/Rápido] del miembro un 20%."
+      },
+      {
+        "name": "Buscando Debilidades",
+        "icon": "",
+        "effect": "Durante la Colocación o el Ataque de Engaño de Kozume Kenma (Visita a los Cerezos), su [Percepción] aumenta en su [Reacción] Lv1:40%, Lv2:60%, Lv3:80%.\nSi Kozume Kenma está en la cancha y el resultado del Bloqueo aliado no es MALO (BAD), la potencia de remate (Ataque Poderoso/Rápido) del rival disminuye en [Ataque Poderoso/Rápido] del rival Lv1:10%, Lv2:13%, Lv3:16%."
+      },
+      {
+        "name": "Jugada para Confundir al Rival",
+        "icon": "",
+        "effect": "Kozume Kenma (Visita a los Cerezos) realiza un Ataque de Engaño con una potencia de [Colocación] Lv1:255%, Lv2:270%, Lv3:285%, Lv4:300%, Lv5:315%.\nEste ataque de engaño no puede ser bloqueado.Durante el primer remate (Ataque Poderoso/Rápido) del rival después de esta jugada, el [Poder] del miembro que remata disminuye un 40%. Este efecto dura hasta que el balón cruce la red 2 veces."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Reflejos: KENMA KOZUME",
+        "rarity": "SP",
+        "icon": "assets/memories/kenma_sp_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Reflejos] +16%. Cuando el remate rival (potente o rápido) resulta en buena jugada, el aliado que active una habilidad de Bloqueo o Recepción obtiene 1 acumulación del efecto [Tenacidad]. Por cada acumulación de [Tenacidad], [Reflejos] aumentan +4% (máx. 3 acumulaciones). Si el remate rival (potente o rápido) resulta en buena jugada y el aliado que active Bloqueo o Recepción tiene 3 acumulaciones de [Tenacidad], consume esas 3 acumulaciones y los [Reflejos] de ese aliado aumenta 100%. Dura 1 cruce de red."
+      }
+    ]
+  },
+  {
+    "id": "kenma-ssr",
+    "name": "Kenma Kozume",
+    "avatar": "assets/characters/kenma_ssr.png",
+    "school": "Nekoma",
+    "role": "Setter",
+    "rarity": "SSR",
+    "updated": "2025-10-07",
+    "statsMax": {
+      "atqRapido": 268,
+      "atqPoderoso": 1305,
+      "colocacion": 1387,
+      "saque": 1182,
+      "recepcion": 1122,
+      "bloqueo": 1303,
+      "recuperacion": 1060
+    },
+    "tags": [
+      "nekoma",
+      "setter",
+      "control",
+      "ataque-rápido",
+      "soporte",
+      "potenciador"
+    ],
+    "skills": [
+      {
+        "name": "Visión Divina",
+        "icon": "assets/skills/kenma_vision_divina_movimiento.png",
+        "effect": "Si KENMA KOZUME está en la cancha, aumenta el poder de recepción de sus compañeros por un valor equivalente al 8% del atributo Recepción de cada jugador. Cuando la colocación de KOZUME o la recepción de tu equipo es PERFECTA, obtienes 1 acumulación de Sin tocar el suelo. Cada acumulación aumenta el atributo Recepción de los jugadores de tu equipo en un 3%. Se acumula hasta 6 veces."
+      },
+      {
+        "name": "Colocación Estable",
+        "icon": "assets/skills/kenma_colocacion_estable_movimiento.png",
+        "effect": "KENMA KOZUME ejecuta una colocación con un poder eqiuvalente al 120% del atributo Colocación."
+      },
+      {
+        "name": "Corazón del Equipo",
+        "icon": "assets/skills/kenma_corazon_del_equipo_movimiento.png",
+        "effect": "Si KENMA KOZUME está en la cancha, aumenta el poder de recepción de sus compañeros por un valor equivalente al 6% del atributo Recepción de cada jugador. Si Sin tocar el suelo supera las 5 acumulaciones, tambien aumenta el atributo Recepción y Recuperación en un 50%. Si tu equipo no logra ejecutar una recuperacion o recepción, se usan 6 acumulaciones de Sin tocar el suelo para que se vuelva una jugada PERFECTA."
+      },
+      {
+        "name": "Definitiva - Finta Engañosa",
+        "icon": "assets/skills/kenma_finta_engañosa_definitiva_movimiento.png",
+        "effect": "KENMA KOZUME ejecuta una finta de colocador imbloqueable con un poder equivalente al 220% del atributo Colocación."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "El poder de pasar aumenta en +15% adicional del atributo Pase.",
+        "notas": null
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "Los saques nunca fallan y la Técnica Ofensiva aumenta en +15% al sacar.",
+        "notas": null
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Pase: KENMA KOZUME",
+        "rarity": "SSR",
+        "icon": "assets/memories/kenma_ssr_memory.png",
+        "effect": "Aumenta el atributo Colocación del portador en un 4%; si el portador está presente, aumenta el atributo Recepción de los jugadores de la fila trasera de tu equipo en un 6%; si el portador está presente, cuando las acumulaciones de Sin tocar el suelo de tu equipo disminuyen, recibe 1 acumulación de Sin tocar el Suelo, cada acumulación de Sin tocar el suelo aumenta el atributo Recepción de los jugadores de tu equipo en un 1%, se puede acumular hasta 6 veces."
+      }
+    ]
+  },
+  {
+    "id": "kita-ssr",
+    "name": "KITA SHINSHUKE",
+    "avatar": "assets/characters/kita.png",
+    "school": "Inarizaki",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-10-14 00:00:00",
+    "statsMax": {
+      "atqRapido": 1219,
+      "colocacion": 1333,
+      "saque": 1238,
+      "recepcion": 1476,
+      "bloqueo": 1198,
+      "recuperacion": 1409
+    },
+    "skills": [
+      {
+        "name": "Repetición, continuidad, Disciplina",
+        "effect": "Todas las estadisticas básicas Shinsuke Kita se ven incrementadas en (Lv1: 6%, Lv2: 8%, Lv3: 10%). Si la recepción de Shinsuke Kita no es MALA, La [Técnica defensiva] de Shinsuke Kita aumenta en un 80% de su estadística de Reflejos.",
+        "icon": "assets/skills/kita_repetición_continuidad_y_cortesia_movimiento.png"
+      },
+      {
+        "name": "Juego Tranquilo",
+        "effect": "El atributo Recuperación de KITA aumenta en un (Lv1: 120%, Lv2: 135%, Lv3: 150%)",
+        "icon": "assets/skills/kita_juego_tranquilo_movimiento.png"
+      },
+      {
+        "name": "Hazlo bien",
+        "effect": "El atributo [Recepción] de Shinsuke Kita aumenta en un (Lv1: 8%, Lv2: 10%, Lv3: 12%). Si la recepción de Shinsuke Kita no es MALA, gana 1 acumulación de efecto [Acción segura]. [Garantizado] aumenta la [Recepción] un 3% por acumulación de efectos de [Acción segura]. Hasta 3 acumulaciones. Si tienes 3 o más acumulaciones de efecto [Acción segura], consume 3 acumulaciones de efecto [Acción segura] para aumentar la [Técnica de ataque] de tu vanguardia en un 10%. Este efecto dura 8 cruces de red.",
+        "icon": "assets/skills/kita_hazlo_bien_movimiento.png"
+      },
+      {
+        "name": "Juego Seguro",
+        "effect": "Shinsuke Kita recibe con un poder de [Recepción] equivalente a (Lv1: 235%, Lv2: 250%, Lv3: 265%, Lv4: 280%, Lv5: 295%) de su estadistica de Recepción.",
+        "icon": "assets/skills/kita_juego_solido_movimiento.png"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Recepción Suprema",
+        "icon": "assets/potentials/recepcion_suprema.png"
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png"
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Recepción: KITA SHINSHUKE",
+        "effect": "Aumenta el atributo Recepción del portador en un 20%. Si la recepción del portador no es MALA, el poder de la siguiente recepción aumenta en un 40% por cada miembro de tipo Recepción del equipo.",
+        "icon": "assets/memories/kita_memory.png"
+      }
+    ]
+  },
+  {
+    "id": "koganegawa-sp",
+    "name": "Kanji Koganegawa (Festival Deportivo)",
+    "avatar": "assets/characters/koganegawa_sp.png",
+    "school": "Date",
+    "role": "Setter",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 229,
+      "atqPoderoso": 1661,
+      "colocacion": 1858,
+      "saque": 1766,
+      "recepcion": 1661,
+      "bloqueo": 1946,
+      "recuperacion": 1573
+    },
+    "tags": [
+      "Date"
+    ],
+    "skills": [
+      {
+        "name": "Bloqueo de Soporte",
+        "icon": "",
+        "effect": "La [Colocación] de Koganegawa Kanji (Festival Deportivo) aumenta un 10%.\nSi Koganegawa Kanji está en la cancha, durante el Saque aliado, la [Percepción] del miembro que saca aumenta un 20%. (Este efecto dura 1 set, Máx. 1 acumulación).\nObtiene 1 acumulación del efecto [Creando el \"Muro de Hierro\"].\nSi la Habilidad de Saque se activa en este Saque, obtiene 1 acumulación adicional del efecto [Creando el \"Muro de Hierro\"].\nSi Koganegawa Kanji está en la cancha y los aliados realizan un Bloqueo Doble/Triple, su [Percepción] aumenta un 30% y su [Colocación] un 10% la próxima vez que coloque el balón."
+      },
+      {
+        "name": "Colocación de Distancia Mínima",
+        "icon": "",
+        "effect": "Koganegawa Kanji realiza una Colocación con una potencia de [Colocación] x140%.\nDurante el primer remate (Poderoso/Rápido) aliado después de esta jugada, la [Percepción] del miembro que remata aumenta un 10% y su [Ataque Poderoso/Rápido] aumenta un 15%. \nEste efecto dura hasta que el balón cruce la red 2 veces. El Espíritu de Equipo aliado aumenta 6 puntos."
+      },
+      {
+        "name": "Un Pilar del \"Muro de Hierro\"",
+        "icon": "",
+        "effect": "Si Koganegawa Kanji está en la cancha, al inicio del rally, la [Técnica de Ataque] y [Técnica de Defensa] de los miembros aliados con [Reacción] 200% aumentan un 10%.\nSi Koganegawa Kanji está en la cancha, al realizar un Bloqueo Doble/Triple o al activarse la Habilidad de Bloqueo de un miembro aliado, obtiene 1 acumulación del efecto [Creando el \"Muro de Hierro\"] (Máx. 12 acumulaciones).\nSi el número de acumulaciones de [Creando el \"Muro de Hierro\"] supera 3, la [Percepción] y [Reacción] de los miembros aliados aumentan un 20%. \nLa [Percepción] y [Reacción] de Koganegawa Kanji aumentan un 30% adicional.\nSi el número de acumulaciones de [Creando el \"Muro de Hierro\"] supera 7, al inicio del rally, el [Bloqueo] de los delanteros aliados aumenta en el [Bloqueo] de Koganegawa Kanji 12% (Máx. 800% de aumento posible)."
+      },
+      {
+        "name": "Muro Alto",
+        "icon": "",
+        "effect": "Koganegawa Kanji realiza un Bloqueo con una potencia de [Bloqueo] 260%.\nSi esta jugada resulta en un Bloqueo Doble/Triple, la [Reacción] de Koganegawa Kanji aumenta un 40%.\nSi <Muro Alto> no está en recarga, al activarse la Habilidad Definitiva de Bloqueo de otro miembro aliado, la potencia de Bloqueo aumenta en el [Bloqueo] del miembro 100%, y <Muro Alto> entra en recarga."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "",
+        "rarity": "",
+        "icon": "assets/memories/",
+        "effect": ""
+      }
+    ]
+  },
+  {
+    "id": "koganegawa-ssr",
+    "name": "Kanji Koganegawa",
+    "avatar": "assets/characters/koganegawa_ssr.png",
+    "school": "Date",
+    "role": "Setter",
+    "rarity": "SSR",
+    "updated": "2025-10-16 00:00:00",
+    "statsMax": {
+      "atqRapido": 270,
+      "atqPoderoso": 1302,
+      "colocacion": 1365,
+      "saque": 1166,
+      "recepcion": 1100,
+      "bloqueo": 1306,
+      "recuperacion": 1031
+    },
+    "tags": [
+      "Finta",
+      "Setter",
+      "Date",
+      "Bloqueo",
+      "Buff",
+      "Potenciador"
+    ],
+    "skills": [
+      {
+        "name": "Colocador Novato",
+        "icon": "assets/skills/colocador_novato.png",
+        "effect": "KANJI KOGANEGAWA ejecuta un pase con un poder equivalente al 120% del atributo Pase."
+      },
+      {
+        "name": "Chispa de Bloqueo",
+        "icon": "assets/skills/chispa_de_bloqueo.png",
+        "effect": "KANJI KOGANEGAWA ejecuta un bloqueo con un poder equivalente al 105% del atributo Bloqueo. Si KANJI KOGANEGAWA está presente y bloquea un Remate Poderoso Rival, el poder de este bloqueo aumenta en un equivalente al 3% del atributo Bloqueo de cada jugador que bloquee de tu equipo."
+      },
+      {
+        "name": "Muro de Hierro 3",
+        "icon": "assets/skills/muro_hierro_3.png",
+        "effect": "Si KANJI KOGANEGAWA está presente, aumenta el poder de la habilidad Bloqueo de los otros jugadores de tu equipo en un equivalente al 2% del atributo Bloqueo de cada jugador que Bloquee."
+      },
+      {
+        "name": "Finta Relampago",
+        "icon": "assets/skills/finta_relampago.png",
+        "effect": "KANJI KOGANEGAWA ejecuta una finta de colocador imbloqueable con un poder equivalente al 210% del atributo Pase."
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Colocación y Bloqueo: KANJI KOGANEGAWA",
+        "rarity": "SSR",
+        "icon": "assets/memories/koganegawa_ssr_memory.png",
+        "effect": "Aumenta el atributo Colocación del portador en un 8%; mientras el portador esté presente y el resultado del bloqueo de tu equipo no es MALO, reduce el poder del siguienre Ataque Poderoso rival en un valor equivalente al 10% del atributo Ataque Poderoso del rematador; mientras el portador está presente y el resultado del bloqueo de tu equipo no es MALO el poder del próximo bloqueo de tu eqipo tiene un aumento equivalente al 16% del atributo Bloqueo del ejecutante."
+      }
+    ],
+    "potentialsIds": [
+      "saque-preciso",
+      "pase-preciso"
+    ]
+  },
+  {
+    "id": "komi-ssr",
+    "name": "Harumi Komi",
+    "avatar": "assets/characters/komi.png",
+    "school": "Fukurodani",
+    "role": "Libero",
+    "rarity": "SSR",
+    "updated": "2025-10-14 00:00:00",
+    "statsMax": {
+      "atqRapido": 166,
+      "atqPoderoso": 1206,
+      "colocacion": 1328,
+      "saque": 1206,
+      "recepcion": 1475,
+      "bloqueo": 1172,
+      "recuperacion": 1409
+    },
+    "skills": [
+      {
+        "name": "Maestro Defensivo",
+        "effect": "Aumenta el atributo recepción de HARUKI KOMI en un 8%. Si el resultado de su recepción no es MALO, reduce la moral del equipo rival en 12.",
+        "icon": "assets/skills/haruki_maestro_defensivo_movimiento.png"
+      },
+      {
+        "name": "Asistencia al Equipo",
+        "effect": "HARUKI KOMI ejecuta una recuperación con un poder equivalente al 110% del atributo recuperación. Si el resultado no es MALO, todos los jugadores obtienen un aumento del 5% de atributos básicos durante 1 turno.",
+        "icon": "assets/skills/haruki_asistencia_para_el_equipo_movimiento.png"
+      },
+      {
+        "name": "Recepción de Confianza",
+        "effect": "Al recibir un Remate Poderoso, el atributo Recepción de HARUKI KOMI obtiene un aumento adicional del 30% de su atributo recepción.",
+        "icon": "assets/skills/haruki_recepción_comprobada_movimiento.png"
+      },
+      {
+        "name": "Definitiva - Recepción Segura",
+        "effect": "HARUKI KOMI ejecuta una recepción con un poder equivalente al 235% del atributo Recepción.",
+        "icon": "assets/skills/haruki_centro_de_defensa_movimiento.png"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Recepción Suprema",
+        "icon": "assets/potentials/recepcion_suprema.png"
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png"
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Recepción: HARUKI KOMI",
+        "effect": "Aumenta los atributos Recepción y Recuperación del portador en un 8%. Cuando el resultado de una recepción o recuperación del portador no sea MALO, tu equiop gana 10 de moral. El siguiente Remate poderoso de tu equipo obtiene una bonificación de poder equivalente al 6% del atributo Ataque Poderoso del rematador.",
+        "icon": "assets/memories/komi_memory.png"
+      }
+    ]
+  },
+  {
+    "id": "komori-ur",
+    "name": "Motoya Komori",
+    "avatar": "assets/characters/komori.png",
+    "school": "Itachiyama",
+    "role": "Libero",
+    "rarity": "UR",
+    "updated": "2025-10-06",
+    "statsMax": {
+      "atqPoderoso": 1579,
+      "colocacion": 1904,
+      "saque": 1580,
+      "recepcion": 2012,
+      "bloqueo": 1580,
+      "recuperacion": 1866,
+      "atqRapido": 0
+    },
+    "tags": [
+      "recuperación",
+      "recepción",
+      "soporte",
+      "potenciador",
+      "libero",
+      "Itachiyama"
+    ],
+    "skills": [
+      {
+        "name": "Hombre Clave del Equipo",
+        "icon": "assets/skills/motoya_la persona_clave_en_el_equipo_movimiento.png",
+        "effect": "Cuando Motoya Komori está en la cancha, la [Técnica defensiva] de sus compañero de equipo aumenta en un 10%. Si Motoya Komori está en la cancha, Motoya Komori gana 6 acumulaciones de efecto [Conectar al siguiente]. Por cada acumulación de efecto [Conectar al siguiente], La [Colocación] aumenta un 3%, [Reflejos] aumenta un 5%. Hasta 10 acumulaciones."
+      },
+      {
+        "name": "Colocación Hábil",
+        "icon": "assets/skills/motoya_lanzamiento_hábil_movimiento.png",
+        "effect": "Motoya Komori realiza una colocación con un 140% de potencia del atributo [Colocación]. Aumenta la moral de los aliados en 10. La [Conciencia] del miembro aliado que realiza el remate (ataque poderoso y ataque rápido) después de esta jugada aumenta en un 15%. Este efecto dura hasta que la pelota pasa por encima de la red dos veces."
+      },
+      {
+        "name": "Planificar el Futuro del Partido",
+        "icon": "assets/skills/motoya_creando_el_flujo_del_juego_movimiento.png",
+        "effect": "La recepción de MOTOYA KOMORI aumenta en un 12%. Cuando Motoya Komori está en la cancha y se activa una recepción que no es un movimiento especial de un miembro aliado, o cuando Motoya Komori activa el movimiento especial de recepción de Motoya Komori, consume 2 acumulaciones de efecto [Conectar al siguiente], y el poder de esta recepción aumenta en un 30% del atributo [Recepción] del miembro receptor, y cuando ocurre el remate del aliado (golpe poderoso/ataque rápido) después de esta jugada, Aumenta el [Ataque Poderoso/Ataque rápido] de los miembros aliados (ataque poderoso/ataque rápido) en un 20%. Si la recepción de un aliado consume el efecto [Conectar al siguiente] y esta jugada se convierte en una buena jugada, Motoya Komori gana 2 acumulaciones del efecto [Conectar siguiente]."
+      },
+      {
+        "name": "Recepción para Conectar",
+        "icon": "assets/skills/motoya_recibir_para_crear_impulso_movimiento.png",
+        "effect": "Motoya Komori recibe con un 260% del atributo [Recepción]. Cuando se produce un remate por parte de un aliado (ataque poderoso/ataque rápido) después de esta jugada, la [Técnica ofensiva] del miembro que atacó aumenta en un 20%. Este efecto dura hasta que la pelota pasa por encima de la red dos veces."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Recepción Suprema",
+        "icon": "assets/potentials/recepcion_suprema.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al recibir un Remate Rápido, el poder de esta recepción tiene un aumento equivalente al 30% del atributo Recepción.",
+        "notas": null
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al lograr una recepción PERFECTA, el poder del siguiente remate de tu equipo aumenta en un 30% de los atributos Ataque Rápido/Poderoso del rematador.",
+        "notas": null
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Técnica Defensiva y Técnica Ofensiva: MOTOYA KOMORI",
+        "rarity": "UR",
+        "icon": "assets/memories/komori_memory.png",
+        "effect": "La [Recepción] del miembro que tiene este conjunto de memoria aumenta en un 24%. Cuando un aliado recibe, la [Técnica defensiva] del defensor aumenta en un 2%. Hasta 3 acumulaciones. Si el portador de este recuerdo está en la cancha, cuando se activa la habilidad de recepción de un aliado, la resistencia del miembro receptor se restaura en 2 y los atributos [ataque poderoso/ataque rapido] aumenta en un 15%. Este efecto dura hasta que la pelota pasa por encima de la red dos veces."
+      }
+    ]
+  },
+  {
+    "id": "konoha-ssr",
+    "name": "Akinori Konoha",
+    "avatar": "assets/characters/konoha.png",
+    "school": "Fukurodani",
+    "role": "Opposite",
+    "rarity": "SSR",
+    "updated": "2025-10-06",
+    "statsMax": {
+      "atqRapido": 202,
+      "atqPoderoso": 1462,
+      "colocacion": 1196,
+      "saque": 1256,
+      "recepcion": 1274,
+      "bloqueo": 1333,
+      "recuperacion": 1335
+    },
+    "tags": [
+      "ataque poderoso",
+      "fukurodani",
+      "opposite",
+      "moral",
+      "soporte",
+      "recepción",
+      "recuperación"
+    ],
+    "skills": [
+      {
+        "name": "Recepción Optimizada",
+        "icon": "assets/skills/konoha_excelente_recepcion_movimiento.png",
+        "effect": "Aumenta el atributo Recepción de AKINORI KONOHA en un 8%. Mientras tu equipo tenga Potenciación de moral del equipo, los atributos Recepción y Recuperación aumentan un 10% adicional."
+      },
+      {
+        "name": "Recuperación Coordinada",
+        "icon": "assets/skills/konoha_una_combinacion_exquisita_movimiento.png",
+        "effect": "AKINORI KONOHA ejecuta una recuperación con un poder equivalente al 120% del atributo Recuperación."
+      },
+      {
+        "name": "Posición Ventajosa",
+        "icon": "assets/skills/konoha_bloque_todoterreno_movimiento.png",
+        "effect": "Mientras AKINORI KONOHA está en la fila delantera, aumenta los atributos Bloqueo y Ataque Rápido/Poderoso de los jugadores  de esa fila en un 8%. Mientras está en la fila trasera, aumenta los atributos Recepción y Recuperación de tus jugadores de la fila en un 8%."
+      },
+      {
+        "name": "Definitiva - Multifacético",
+        "icon": "assets/skills/konoha_señor_aprendiz_de_todo_maestro_de_nada_movimiento.png",
+        "effect": "AKINORI KONOHA ejecuta una recepción con un poder equivalente al 225% de su atributo de Recepción. Si el resultado no es MALO, aumenta la moral del equipo en 20."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Recepción Suprema",
+        "icon": "assets/potentials/recepcion_suprema.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al recibir un Remate Rápido, el poder de esta recepción tiene un aumento equivalente al 30% del atributo Recepción.",
+        "notas": null
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al lograr una recepción PERFECTA, el poder del siguiente remate de tu equipo aumenta en un 30% de los atributos Ataque Rápido/Poderoso del rematador.",
+        "notas": null
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potencación de Reflejos: AKINORI KONOHA",
+        "rarity": "SSR",
+        "icon": "assets/memories/konoha_memory.png",
+        "effect": "Aumenta los atributos básicos del portador en un 6%. El portador obtiene un aumento de los reflejos equivalente a un 10% de la moral actual del equipo. Bajo este efecto de la potenciación de moral del equipo, los reflejos del portador aumentan en un 4%."
+      }
+    ]
+  },
+  {
+    "id": "kunimi-sp",
+    "name": "Akira Kunimi",
+    "avatar": "assets/characters/kunimi_sp.png",
+    "school": "Aoba Jōsai",
+    "role": "Opposite",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 269,
+      "atqPoderoso": 1950,
+      "colocacion": 1573,
+      "saque": 1674,
+      "recepcion": 1857,
+      "bloqueo": 1762,
+      "recuperacion": 1570
+    },
+    "tags": [
+      "Aoba Johsai"
+    ],
+    "skills": [
+      {
+        "name": "Guardar Reserva",
+        "icon": "",
+        "effect": "El [Ataque Poderoso] de Kunimi Akira (Festival Deportivo) aumenta un 10%.\nSi la Resistencia de Kunimi Akira es inferior a 80, su [Ataque Poderoso] aumenta un 12% adicional.\nSi Kunimi Akira está en la cancha y su límite máximo de Resistencia supera 80 al final de cada rally, su límite máximo de Resistencia se reduce en 10 y su Resistencia se recupera 120.\nSi Kunimi Akira está en la cancha, por cada 10 puntos de Resistencia que pierda un miembro aliado, Kunimi Akira obtiene 1 acumulación del efecto [Conservación de Energía].\nCada acumulación del efecto [Conservación de Energía] aumenta la [Percepción] en un 7% (Máx 30; Máx. 10 acumulaciones por rally)."
+      },
+      {
+        "name": "Defensa Precisa",
+        "icon": "",
+        "effect": "Kunimi Akira realiza una Recepción con una potencia de [Recepción] x140%.\nLos Atributos Básicos de los miembros aliados aumentan un 10%. Este efecto dura hasta que el balón cruce la red 2 veces."
+      },
+      {
+        "name": "Despliegue de Máximo Esfuerzo",
+        "icon": "",
+        "effect": "Cada vez que la Resistencia de Kunimi Akira se recupera, su [Ataque Poderoso] aumenta un 0.8% (Máx. 6%).\nAl inicio del rally, si el límite máximo de Resistencia de Kunimi Akira es inferior o igual a 80, obtiene el efecto [Momento Decisivo].\nSi posee el efecto [Momento Decisivo], la recarga de <Espíritu de Lucha Ferviente> se reduce a 6 cruces de red.\nSi su [Percepción] supera el 100%, su [Poder] aumenta un 0.9% por cada 1% de exceso (Máx. 90%).\nTras obtener el efecto [Momento Decisivo], las dos primeras activaciones de <Espíritu de Lucha Ferviente> reinician su recarga."
+      },
+      {
+        "name": "Espíritu de Lucha Ferviente",
+        "icon": "",
+        "effect": "Kunimi Akira consume 8 puntos de Resistencia adicionales y realiza un Ataque Poderoso con una potencia de [Ataque Poderoso] x295%.\nSi la Resistencia de Kunimi Akira supera 50, la potencia de este Ataque Poderoso aumenta en [Ataque Poderoso] x50% adicional."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Incremento de Poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Poder Vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Tecnica Ofensiva y Resistencia: AKIRA KUNIMI",
+        "rarity": "SP",
+        "icon": "assets/memories/kunimi_sp_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Ataque Poderoso] +24%. Si la Resistencia del poortador de esta memoria es menor a 80, su [Técnica Ofensiva] aumenta 12%. Cada vez que la Resistencia del portador de esta memoria se recupera, su [Ataque Poderoso] aumenta 6%. Máximo 5 acumulaciones."
+      }
+    ]
+  },
+  {
+    "id": "kuroo-sp",
+    "name": "Tetsurō Kuroo (Festival Fuegos Artificiales)",
+    "avatar": "assets/characters/kuroo_sp.png",
+    "school": "Nekoma",
+    "role": "Middle Blocker",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 1665,
+      "atqPoderoso": 230,
+      "colocacion": 1577,
+      "saque": 1753,
+      "recepcion": 1858,
+      "bloqueo": 1946,
+      "recuperacion": 1577
+    },
+    "tags": [
+      "Nekoma"
+    ],
+    "skills": [
+      {
+        "name": "Comandante Indescifrable",
+        "icon": "",
+        "effect": "Si Tetsuro Kuroo (Festival de Fuegos Artificiales) está en la cancha, la [Espiritu] de los aliados en su misma Línea Frontal/Línea de Fondo aumenta en (Nv1: 20%, Nv2: 25%, Nv3: 30%).\nDespués de la Colocacion de Kuroo, el Poder de la siguiente jugada del mismo tipo realizada por un aliado aumenta en el Parámetro correspondiente del miembro que realiza la jugada x40%.\nSi la jugada de Kuroo resulta en una Buena Jugada, otorga la Desventaja [Ira] a 1 miembro rival aleatorio en la cancha ([Ataque Poderoso/Ataque Rápido] se reduce un 10%)."
+      },
+      {
+        "name": "Recepción Habilidosa",
+        "icon": "",
+        "effect": "Kuroo realiza una Recepción con un Poder de [Recepción] en (Nv1:140%, Nv2:160%, Nv3:180%).\nSi esta jugada resulta en una Buena Jugada, el Poder de esta Recepción aumenta en [Recepción] x20%."
+      },
+      {
+        "name": "Jugador Polivalente Impecable",
+        "icon": "",
+        "effect": "Si Kuroo está en la Línea Frontal y realiza una Colocacion, su Reflejo aumenta en el [Reflejo] x50% de cada otro aliado en la Línea Frontal (Máximo 100%), y su [ESPÍRITU] aumenta en el [ESPÍRITU] x50% de cada otro aliado en la Línea Frontal (Máximo 100%).\nAdemás, si Kuroo está en la Línea Frontal, la [Técnica Ofensiva] de los aliados aumenta en (Nv1:14%, Nv2:17%, Nv3:20%), y el Poder de su Bloqueo aumenta en [Bloqueo] x45%.\nSi Kuroo está en la Línea de Fondo y realiza una Colocacion, su Reflejo aumenta en el [Reflejo] x50% de cada otro aliado en la Línea de Fondo (Máximo 100%), y su [ESPÍRITU] aumenta en el [ESPÍRITU] x50% de cada otro aliado en la Línea de Fondo (Máximo 100%).\nAdemás, si Kuroo está en la Línea de Fondo, la [Técnica Defensiva] de los aliados aumenta en (Nv1:14%, Nv2:17%, Nv3:20%), y el Poder de su Recepción aumenta en [Recepción] x45%."
+      },
+      {
+        "name": "Bloqueo “Desagradable”",
+        "icon": "",
+        "effect": "Kuroo realiza un Bloqueo con un Poder de [Bloqueo] x(Nv1: 280%, Nv2:300%, Nv3:320%, Nv4:340%, Nv5:360%).\nSi este Bloqueo no devuelve el balón a la cancha rival, la primera Recepción aliada después de esta jugada garantiza que no se pierda un punto.\nSi este Bloqueo devuelve el balón a la cancha rival, el Parámetro Principal de los aliados aumenta un 15%. Este efecto persiste hasta que el balón cruce la red 8 veces."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Tecnica Defensiva y Bloqueo: TETSURO KUROO",
+        "rarity": "SP",
+        "icon": "assets/memories/kuroo_sp_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Bloqueo] +24%. Cuando el miembro que tiene equipada esta Memoria bloquea o recibe, si en la cancha rival hay miembros con un efecto negativo (debuff), su [Técnica Defensiva] aumenta 20%. Este efecto dura 4 cruces de red."
+      }
+    ]
+  },
+  {
+    "id": "kuroo-ssr",
+    "name": "Tetsurō Kuroo (Practica)",
+    "avatar": "assets/characters/kuroo_ssr.png",
+    "school": "Nekoma",
+    "role": "Middle Blocker",
+    "rarity": "SSR",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 1318,
+      "atqPoderoso": 271,
+      "colocacion": 1149,
+      "saque": 1221,
+      "recepcion": 1186,
+      "bloqueo": 1389,
+      "recuperacion": 1123
+    },
+    "tags": [
+      "Nekoma"
+    ],
+    "skills": [
+      {
+        "name": "Aura del Maestro",
+        "icon": "",
+        "effect": "Si Tetsuro Kuroo (Práctica) está en la cancha, el [PODER] de los miembros de Ataque Rápido en la cancha aumenta en (Nv1: 16%, Nv2: 20%, Nv3: 24%)."
+      },
+      {
+        "name": "Ataque Estable",
+        "icon": "",
+        "effect": "Tetsuro Kuroo (Práctica) realiza un Ataque Rápido con un Poder de [Ataque Rápido] en (Nv1: 125%, Nv2: 145%, Nv3: 165%), y obtiene 1 acumulación del efecto [Carga].\nAl activar <Ataque Estable>, el Poder de Ataque Rápido aumenta en [Ataque Rápido] 15% por cada acumulación de [Carga]. Máximo 2 acumulaciones."
+      },
+      {
+        "name": "Comandante del Bloqueo",
+        "icon": "",
+        "effect": "Si Tetsuro Kuroo (Práctica) está en la cancha, el [Bloqueo] de los miembros aliados en la cancha aumenta en (Nv1: 8%, Nv2: 10%, Nv3: 12%)."
+      },
+      {
+        "name": "Bloqueo Total",
+        "icon": "",
+        "effect": "Tetsuro Kuroo (Práctica) realiza un Bloqueo con un Poder de [Bloqueo] x(Nv1: 170%, Nv2: 185%, Nv3: 200%, Nv4: 215%, Nv5: 230%).\nSi hay otros miembros de Bloqueo en la línea frontal, el Poder de este Bloqueo aumenta en [Bloqueo] x15%."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque: TETSURO KUROO (práctica)",
+        "rarity": "SSR",
+        "icon": "assets/memories/kuroo_ssr_memory.png",
+        "effect": "Aumenta la Percepción del portador en un 16%; al bloquear, la tecnica defensiva del portador recibe un aumento equivalente al 24% de su Fuerza."
+      }
+    ]
+  },
+  {
+    "id": "kuroo-ur",
+    "name": "Tetsurō Kuroo",
+    "avatar": "assets/characters/kuroo.png",
+    "school": "Nekoma",
+    "role": "Middle Blocker",
+    "rarity": "UR",
+    "updated": "2025-09-29",
+    "statsMax": {
+      "atqRapido": 1489,
+      "atqPoderoso": 306,
+      "colocacion": 1296,
+      "saque": 1380,
+      "recepcion": 1339,
+      "bloqueo": 1570,
+      "recuperacion": 1268
+    },
+    "tags": [
+      "bloqueo",
+      "ataque-rápido",
+      "nekoma",
+      "mb",
+      "control"
+    ],
+    "skills": [
+      {
+        "name": "Capitán Supremo",
+        "icon": "assets/skills/kuroo_capitan_supremo.png",
+        "effect": "Aumenta el atributo Ataque Rápido de KUROO en un 10%. Si Kuroo está presente, cada cruce de red aumenta sus atributos Bloqueo y Ataque Rápido en un 5% (acumula hasta 5). (L1)"
+      },
+      {
+        "name": "Ataque Rápido A",
+        "icon": "assets/skills/kuroo_ataque_rapido_a.png",
+        "effect": "Ejecuta un Remate Rápido con poder = 125% de su atributo Ataque Rápido. Otorga 1 acumulación de «Carga de Poder»; cada acumulación incrementa el poder del remate en 5% del atributo Ataque Rápido (hasta 3). (L1)"
+      },
+      {
+        "name": "Conductor",
+        "icon": "assets/skills/kuroo_conductor.png",
+        "effect": "Aumenta el atributo Bloqueo de KUROO en 14%; con Bloqueo PERFECTO aplica «Enfurecer» al rematador rival (−10% a Ataque Rápido/Poderoso). (L1)"
+      },
+      {
+        "name": "Definitiva · Bloqueo Reactivo",
+        "icon": "assets/skills/kuroo_ult_bloqueo_reactivo.png",
+        "effect": "Ejecuta un Bloqueo con poder = 235% de su atributo Bloqueo. Si el rematador rival tiene una desventaja, el poder del bloqueo aumenta +20% del atributo Bloqueo. (L1)"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso IV",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "+15% Bloqueo",
+        "set4": "Aumenta la precisión de bloqueo y reduce CD de habilidades de bloqueo",
+        "notas": ""
+      },
+      {
+        "name": "Ataque Veloz II",
+        "icon": "assets/potentials/ataque_veloz.png",
+        "set2": "+15% Ataque Rápido",
+        "set4": "Mejora el poder de remates rápidos al encadenar cruces",
+        "notas": ""
+      },
+      {
+        "name": "Movimiento de Bloqueo II",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "+Velocidad de Bloqueo / tiempo de respuesta",
+        "set4": "Bonos al reposicionamiento y éxito de bloqueos consecutivos",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Ataque Rápido y Bloqueo: TETSURO KUROO",
+        "rarity": "UR",
+        "icon": "assets/memories/kuroo_memory.png",
+        "effect": "Aumenta el Bloqueo del portador en 12%. Al obtener un bono de Ataque Rápido por una habilidad de jugador, gana 1 acumulación de «Bloqueo Total» (cada una +1.2% Bloqueo, máx. 10). Tras usar una Definitiva de Bloqueo, consume 10 acumulaciones y reduce su enfriamiento en 10 cruces de red."
+      }
+    ],
+    "links": [
+      "Cerebro y «Torre de mando» (Kenma Kozume): tras la colocación de Kenma, Kuroo realiza un Ataque Rápido potente.",
+      "Detrás de la sonrisa (con Daichi Sawamura): aumenta la Recepción de ambos.",
+      "Personas mayores confiables (con Moniwa, Fukunaga, etc.): mejora el Ataque Rápido de Kuroo.",
+      "Maestro y discípulo (con Tsukishima): aumenta Reflejos y Bloqueo de ambos."
+    ],
+    "builds": [
+      "Core híbrido: Bloqueo Preciso (4) + Ataque Veloz (2) / o 2+2+2 según sinergias del equipo.",
+      "Alternativa defensiva: Bloqueo Preciso (2) + Movimiento de Bloqueo (4).",
+      "Alineación sugerida (según ficha): Kenma Kozume (SSR), Kanji Koganegawa (SSR), Kenji Futakuchi (SSR), Kaname Moniwa (SR)."
+    ],
+    "teams": [
+      "Nekoma orientado a control: Kenma (Setter), Kuroo (MB), Fukunaga (WS) + soporte de recepción.",
+      "Anti-rush: Kuroo + líbero fuerte en recepción + WS con remate rápido."
+    ]
+  },
+  {
+    "id": "kyotani-ssr",
+    "name": "Kentaro Kyotani",
+    "avatar": "assets/characters/kyotani.png",
+    "school": "Aoba Johsai",
+    "role": "Opposite",
+    "rarity": "SSR",
+    "updated": "2025-10-16 00:00:00",
+    "statsMax": {
+      "atqRapido": 284,
+      "atqPoderoso": 1383,
+      "colocacion": 1106,
+      "saque": 1320,
+      "recepcion": 1235,
+      "bloqueo": 1179,
+      "recuperacion": 1109
+    },
+    "tags": [
+      "Debuff",
+      "Ataque Poderoso",
+      "Opposite",
+      "Aoba Johsai",
+      "Saque"
+    ],
+    "skills": [
+      {
+        "name": "Ataque Ferviente",
+        "icon": "assets/skills/ataque_ferviente.png",
+        "effect": "KENTARO KYOTANI aumenta en un 8% su atributo Percepción y en un 5% su atributo Ataque Poderoso."
+      },
+      {
+        "name": "Saque de Perro Loco",
+        "icon": "assets/skills/saque_perro_loco.png",
+        "effect": "KENTARO KYOTANI ejecuta un saque con un poder equivalente al 130% del atributo de Saque. Para este saque, el atributo Pecepción aumenta en un 15%, pero tiene un 10% de probabilidades de fallar."
+      },
+      {
+        "name": "Explosión de Fuerza",
+        "icon": "assets/skills/explosion_de_fuerza.png",
+        "effect": "Aumenta la fuerza de KENTARO KYOTANI en un 18%."
+      },
+      {
+        "name": "Colmillo de Perro Loco",
+        "icon": "assets/skills/colmillo_perro_loco.png",
+        "effect": "KENTARO KYOTANI ejecuta un Remate Poderoso con un poder equivalente al 210% del atributo Ataque Poderoso y que reduce la resistencia del jugador rival que bloquee y reciba en 10."
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque: KENTARO KYOTANI",
+        "rarity": "SSR",
+        "icon": "assets/memories/kyotani_ssr_memory.png",
+        "effect": "Si el portador está presente, aumenta la Fuerza de los jugadores de tipo Ataque Poderoso de tu equipo en un 6%. Si el portador está presente, cuando la resistencia de un jugador rival cae por debajo de 60 puntos, reduce su atributo Bloqueo en un 8% durante 3 cruces de red. Se puede activar 1 vez por jugador en cada set."
+      },
+      {
+        "name": "Potenciador de Saque: KENTARO KYOTANI",
+        "rarity": "SR",
+        "icon": "assets/memories/kyotani_sr_memory.png",
+        "effect": "Aumenta el atributo Saque del portador en un 6%; cuando el portador ejecuta unsaque crítico, el poder de este saque recibe un aumento equivalente al 10% del atributo Saque."
+      }
+    ],
+    "potentialsIds": [
+      "poder-vibrante",
+      "incremento-poder"
+    ]
+  },
+  {
+    "id": "lev-ssr",
+    "name": "Lev Haiba",
+    "avatar": "assets/characters/lev.png",
+    "school": "Nekoma",
+    "role": "Middle Blocker",
+    "rarity": "SSR",
+    "updated": "2025-10-14 00:00:00",
+    "statsMax": {
+      "atqRapido": 1318,
+      "atqPoderoso": 271,
+      "colocacion": 1138,
+      "saque": 1206,
+      "recepcion": 1166,
+      "bloqueo": 1378,
+      "recuperacion": 1100
+    },
+    "skills": [
+      {
+        "name": "Cambio Táctico",
+        "effect": "Si LEV HAIBA está presente, cuando tu equipo consigue una recepción PERFECTA, el poder de su siguiente Ataque Rápido aumenta en un valor equivalente al 15% del atributo Ataque Rápido.",
+        "icon": "assets/skills/cambio_tactico.png"
+      },
+      {
+        "name": "Bloqueo Impetuoso",
+        "effect": "LEV HAIBA ejecuta un bloqueo con un poder equivalente al 135% del atributo Bloqueo.",
+        "icon": "assets/skills/bloqueo_impetuoso.png"
+      },
+      {
+        "name": "Atletismo Natural",
+        "effect": "Si LEV HAIBA ejecuta un remate rápido y el bloqueardor rival tiene una desventaja(debuff), su poder de bloqueo se reduce en un valor equivalente al 10% del atributo Bloqueo del Bloqueador.",
+        "icon": "assets/skills/atletismo_natural.png"
+      },
+      {
+        "name": "Remate Talentoso",
+        "effect": "LEV HAIBA ejecuta un Ataque Rápido con un poder equivalente al 245% del atributo Ataque Rápido.",
+        "icon": "assets/skills/remate_talentoso.png"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Ataque Veloz",
+        "icon": "assets/potentials/ataque_veloz.png"
+      },
+      {
+        "name": "Sentido Agudo",
+        "icon": "assets/potentials/sentido_agudo.png"
+      },
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png"
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png"
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Recepción / Ataque Rápido: LEV HAIBA",
+        "effect": "Si el portador está presente, aumenta el atributo Recepción de los jugadores de la fila trasera de tu equipo en un 6%. Mientras el portador está presente, cuando tu equipo consigue una recepción PERFECTA, el poder de la siguiente definitiva de Ataque Rápido del portador recibe un aumento equivalente al 12% del atributo Ataque Rápido.",
+        "icon": "assets/memories/lev_memory.png"
+      }
+    ]
+  },
+  {
+    "id": "nishinoya-sp",
+    "name": "Yu Nishinoya (Despues de la escuela)",
+    "avatar": "assets/characters/nishinoya_sp.png",
+    "school": "Karasuno",
+    "role": "Libero",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 223,
+      "atqPoderoso": 1615,
+      "colocacion": 1769,
+      "saque": 1615,
+      "recepcion": 1950,
+      "bloqueo": 1571,
+      "recuperacion": 1862
+    },
+    "tags": [
+      "Karasuno"
+    ],
+    "skills": [
+      {
+        "name": "Fuerza Instantánea de Clase Superior",
+        "icon": "",
+        "effect": "El [Reflejo] de Yu Nishinoya (Después de Clase) aumenta en (Nv1: 10%, Nv2: 13%, Nv3: 16%).\nSi un miembro rival realiza una Buena Jugada, el [Reflejo] de Nishinoya aumenta un 1.5%. Máximo 4 acumulaciones. Este efecto persiste hasta que el balón cruce la red 6 veces."
+      },
+      {
+        "name": "Pase A",
+        "icon": "",
+        "effect": "Nishinoya realiza una Colocación con un Poder de [Colocación] x(Nv1: 140%, Nv2: 160%, Nv3: 180%).\nLa [Percepción] de Nishinoya aumenta en [Reflejo] x100%. Este efecto persiste hasta que el balón cruce la red 2 veces."
+      },
+      {
+        "name": "Salvar la Crisis del Equipo",
+        "icon": "",
+        "effect": "El [Espiritu] de Nishinoya aumenta en (Nv1: 20%, Nv2: 25%, Nv3: 30%).\nSi un miembro aliado realiza una Buena Jugada, el Enfriamiento de <Recepción con el Pie> se reduce en 1 cruce de red del balón."
+      },
+      {
+        "name": "Recepción con el Pie",
+        "icon": "",
+        "effect": "Nishinoya realiza una Recepción con un Poder de [Recepción] x(Nv1: 260%, Nv2: 275%, Nv3: 290%, Nv4: 305%, Nv5: 320%).\nLa [Recepción] de Nishinoya aumenta un 20%. Este efecto persiste hasta que el balón cruce la red 2 veces."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Recepción Suprema",
+        "icon": "assets/potentials/recepcion_suprema.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Defensa: YU NISHINOYA",
+        "rarity": "SP",
+        "icon": "assets/memories/yu_sp_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Recepción] +24%. Al activar su habilidad definitiva, obtiene [Reflejos] +1.2% y [Espiritu] +2.4%. Máx. 5 acumulaciones. Si en un mismo rally activa su habilidad especial 2 o más veces, restaura 10 de Resistencia y, en la próxima activación de su habilidad especial, su [Técnica Defensiva] aumenta +16%. Dura 2 cruces de red."
+      }
+    ]
+  },
+  {
+    "id": "nishinoya-ssr",
+    "name": "Yu Nishinoya",
+    "avatar": "assets/characters/nishinoya_ssr.png",
+    "school": "Karasuno",
+    "role": "Libero",
+    "rarity": "SSR",
+    "updated": "2025-10-03 00:00:00",
+    "statsMax": {
+      "atqRapido": 232,
+      "atqPoderoso": 1131,
+      "colocacion": 1254,
+      "saque": 1131,
+      "recepcion": 1389,
+      "bloqueo": 1098,
+      "recuperacion": 1327
+    },
+    "tags": [
+      "libero",
+      "potenciador",
+      "recepción",
+      "karasuno",
+      "moral"
+    ],
+    "skills": [
+      {
+        "name": "Dios Guardián",
+        "icon": "assets/skills/yu_dios_guardian_movimiento.png",
+        "effect": "Si el resultado de una recuperación de YU NIHINOYA no es MALO, aumenta el poder de la siguiente habilidad de Remate Poderoso que usen los jugadores de tipo Poder de tu equipo en un valor equivalente al 15% de su atributo Aataque Poderoso."
+      },
+      {
+        "name": "Libero Supremo",
+        "icon": "assets/skills/yu_libero_supremo_movimiento.png",
+        "effect": "YU NISHINOYA ejecuta una recuperación con un poder equivalente al 110% del atributo Recuperación."
+      },
+      {
+        "name": "Inspiración de Moral",
+        "icon": "assets/skills/yu_inspiracion_de_moral_movimiento.png",
+        "effect": "cuando YU NISHINOYA entra a la cancha, aumenta la moral de tu equipo en 15."
+      },
+      {
+        "name": "Definitiva - Rolling Thunder",
+        "icon": "assets/skills/yu_definitiva_rolling_thunder_movimiento.png",
+        "effect": "YU NISHINOYA usa 2' de resistencia adicional para ejecutar una recepción con un poder equivalente al 205% del atributo de Recepción. Si el resultado de esta recepción no es MALO, la recarga del próximo Remate Poderoso de tu equipo se reduce en 6 cruces de red."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Recepción Suprema",
+        "icon": "assets/potentials/recepcion_suprema.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al recibir un Remate Rápido, el poder de esta recepción tiene un aumento equivalente al 30% del atributo Recepción.",
+        "notas": ""
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al lograr una recepción PERFECTA, el poder del siguiente remate de tu equipo aumenta en un 30% de los atributos Ataque Rápido/Poderoso del rematador.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Defensa: YU NISHINOYA",
+        "rarity": "SSR",
+        "icon": "assets/memories/nishinoya_ssr_memory.png",
+        "effect": "Si el portador está presente, aumenta el atributo Recuperación de los jugadores de la fila trasera de tu equipo en un 4%; si el portador usa una habilidad receptora que consume más de 8 de resistencia, su atributo Recepción aumenta en un 10% y restaura 2 de resistencia."
+      },
+      {
+        "name": "Potenciación de Defensa: YU NISHINOYA (practica)",
+        "rarity": "SR",
+        "icon": "assets/memories/nishinoya_sr_memory.png",
+        "effect": "Aumenta la Tecnica defensiva del portador en un 3.6%; cuando el resultado de la recuperación del portador no es MALO, su atributo Recuperación aumenta en un 4% en su próxima recuperación."
+      }
+    ]
+  },
+  {
+    "id": "oikawa-sp",
+    "name": "Toru Oikawa (Festival Cultural)",
+    "avatar": "assets/characters/oikawa_sp.png",
+    "school": "Aoba Jōsai",
+    "role": "Setter",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 244,
+      "atqPoderoso": 1766,
+      "colocacion": 1950,
+      "saque": 1862,
+      "recepcion": 1577,
+      "bloqueo": 1748,
+      "recuperacion": 1476
+    },
+    "tags": [
+      "Aoba Johsai"
+    ],
+    "skills": [
+      {
+        "name": "Extraer el 100% del Poder",
+        "icon": "",
+        "effect": "La [Colocación] de Toru Oikawa (Festival Cultural) aumenta un 10%. Al inicio del Rally, el miembro diagonal a Oikawa obtiene el efecto [Manifestación]. Este efecto persiste hasta que el miembro diagonal salga de la cancha.\nMientras tiene el efecto [Manifestación], la [Percepción] del miembro aumenta un 30%, el [REFLEJO] un 30%, y su Parámetro Principal un 30%; y al realizar una COLOCACIÓN, un aliado obtiene 1 acumulación de [Ritmo Ofensivo].\nPor cada acumulación de [Ritmo Ofensivo], la [Percepción] de los miembros aliados en la cancha aumenta un 1%. Máximo 10 acumulaciones.\nSi Oikawa está en la cancha, al activarse el Movimiento Definitivo de un aliado, se obtiene 1 acumulación de [Ritmo Ofensivo]."
+      },
+      {
+        "name": "Saque de Francotirador",
+        "icon": "",
+        "effect": "Oikawa realiza un Saque en Salto con un Poder de [Saque] X160%.\nSi este Saque resulta en un Ace, el Enfriamiento de <Saque de Francotirador> se restablece.\nCuando el número de acumulaciones del efecto [Liderazgo] sea 5, el Poder de este Saque aumenta en [Saque] X150%."
+      },
+      {
+        "name": "Comandante que Conduce a la Victoria",
+        "icon": "",
+        "effect": "Si Oikawa está en la cancha, durante un Remate (Poderoso\\Rápido) de un aliado, si las acumulaciones de [Ritmo Ofensivo] son 6 o más, todas se consumen, y Oikawa obtiene 1 acumulación de [Liderazgo]. Máximo 5 acumulaciones.\nPor cada acumulación de [Ritmo Ofensivo] consumida, el Poder de este Remate (Poderoso\\Rápido) aumenta en [Ataque Poderoso/Rápido] x15% del miembro que realiza el Remate.\nPor cada acumulación de [Liderazgo], la [Percepción] de los aliados aumenta (la 1ª un 40%, la 2ª un 30%, la 3ª un 20%, la 4ª un 10%), y el [Poder] de Oikawa aumenta un 15% (Máximo 60%).\nCuando el número de acumulaciones de [Liderazgo] es 5, al anotar un punto el miembro que tiene el efecto [Manifestación], los Enfriamientos de las habilidades de Oikawa se restablecen."
+      },
+      {
+        "name": "Bloqueo de Apoyo",
+        "icon": "",
+        "effect": "Oikawa realiza una Colocación con un Poder de [Colocación] x260%.\nLa [Recepción] de la Línea de Fondo rival se reduce un 20%. Este efecto persiste hasta que el balón cruce la red 2 veces.\nSi el aliado que realiza el primer Remate (Poderoso\\Rápido) después de la Colocación de Oikawa tiene el efecto [Manifestación], el [Bloqueo] de la Línea Frontal rival se reduce un 20%. Este efecto persiste hasta que el balón cruce la red 2 veces.\nAl activarse por primera vez en cada Set, los aliados obtienen 5 acumulaciones de [Ritmo Ofensivo]."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "",
+        "rarity": "",
+        "icon": "assets/memories/",
+        "effect": ""
+      }
+    ]
+  },
+  {
+    "id": "oikawa-ssr",
+    "name": "Toru Oikawa (Practica)",
+    "avatar": "assets/characters/oikawa_ssr.png",
+    "school": "Aoba Jōsai",
+    "role": "Setter",
+    "rarity": "SSR",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 257,
+      "atqPoderoso": 1251,
+      "colocacion": 1327,
+      "saque": 1391,
+      "recepcion": 1125,
+      "bloqueo": 1248,
+      "recuperacion": 1054
+    },
+    "tags": [
+      "Aoba Johsai"
+    ],
+    "skills": [
+      {
+        "name": "Poder de Observación",
+        "icon": "",
+        "effect": "La [Colocación] de Toru Oikawa (Práctica) aumenta en (Nv1: 10%, Nv2: 12%, Nv3: 14%).\nAl activarse una habilidad de Ataque Poderoso o Ataque Rápido de un aliado, se obtiene 1 acumulación del efecto [Ritmo Ofensivo].\nPor cada acumulación de [Ritmo Ofensivo], la [Percepción] de los miembros aliados en la cancha aumenta un 1%. Máximo 10 acumulaciones."
+      },
+      {
+        "name": "Atraer el Flujo",
+        "icon": "",
+        "effect": "Si Toru Oikawa (Práctica) está en la cancha, al inicio de un Rally, si el rival está liderando en puntos, el Parámetro Principal de todos los aliados aumenta en (Nv1: 6%, Nv2: 9%, Nv3: 12%). Este efecto persiste hasta que el balón cruce la red 8 veces."
+      },
+      {
+        "name": "Comandante",
+        "icon": "",
+        "effect": "Si Toru Oikawa (Práctica) está en la cancha, la [Percepción] de los miembros aliados en la cancha aumenta en (Nv1: 6%, Nv2: 9%, Nv3: 12%)."
+      },
+      {
+        "name": "Saque de Todo o Nada",
+        "icon": "",
+        "effect": "Oikawa realiza un Saque en Salto Potente con un Poder de [Saque] x(Nv1: 240%, Nv2: 255%, Nv3: 270%, Nv4: 285%, Nv5: 300%).\nEn esta jugada, la [Percepción] de Oikawa aumenta un 15%, y hay un 5% de probabilidad de que resulte en un Fallo de Saque."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque: TORU OIKAWA (practica)",
+        "rarity": "SSR",
+        "icon": "assets/memories/oikawa_ssr_memory.png",
+        "effect": "Aumenta el atributo Colocación del portador en un 20%; la primera vez en cada partido que la ventaja Ritmo de Ataque de tu equipo supere las 10 acumulaciones, el atributo Colocación del portador tiene un aumento adicional del 20% durante 1 colocación; cada una de estas acumulaciones aumenta la Percepción de los jugadores de tu equipo en un 1%, que se acumula hasta 10 veces."
+      }
+    ]
+  },
+  {
+    "id": "oikawa-ur",
+    "name": "Toru Oikawa",
+    "avatar": "assets/characters/oikawa_ur.png",
+    "school": "Aoba Johsai",
+    "role": "Setter",
+    "rarity": "UR",
+    "updated": "2025-10-03 00:00:00",
+    "statsMax": {
+      "atqRapido": 212,
+      "atqPoderoso": 1533,
+      "colocacion": 1627,
+      "saque": 1705,
+      "recepcion": 1378,
+      "bloqueo": 1530,
+      "recuperacion": 1290
+    },
+    "tags": [
+      "setter",
+      "soporte",
+      "ataque poderoso",
+      "saque",
+      "potenciador",
+      "Aoba Johsai"
+    ],
+    "skills": [
+      {
+        "name": "Colocación del Gran Rey",
+        "icon": "assets/skills/oikawa_Colocacion_del_gran_rey_movimiento.png",
+        "effect": "TORU OIKAWA realiza una colocacón con el 120% de su atributo de Colocación\". Cuando tus jugadores logran un remate crítico, obtienen 1 acumulación de Tempo de ataque. Cada acumulación aumenta la Percepción de tus jugadores en 1%, hasta 10 acumulaciones."
+      },
+      {
+        "name": "Analista de la Cancha",
+        "icon": "assets/skills/oikawa_analista_de_la_cancha_movimiento.png",
+        "effect": "TORU OIKAWA realiza un remate del colocador imbloqueable con el 115% de su atributo de Colocación. Mientras OIKAWA está en la cancha, aumenta la fuerza de los jugadores tipo Ataque Poderoso de tu equipo en 20%."
+      },
+      {
+        "name": "Lider de la Cancha",
+        "icon": "assets/skills/oikawa_lide_de_la_cancha_movimiento.png",
+        "effect": "Mientras TORU OIKAWA está en la cancha, aumenta la Percepción de tus jugadores en 10%. Cuando se lanza un Remate Poderoso, consume 6 acumulaciones de Tempo de ataque para garantizar un Remate Crítico."
+      },
+      {
+        "name": "Definitiva - Saque con Salto del Gran Rey",
+        "icon": "assets/skills/oikawa_saque_con_salto_del_gran_rey_movimiento.png",
+        "effect": "TORU OIKAWA realiza un saque con salto poderoso con el 260% de su atributo de saque. Para este saque, su percepción aumenta en 20% y su Fuerza aumenta en 20%."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "El poder de pasar aumenta en +15% adicional del atributo Pase.",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "Los saques nunca fallan y la Técnica Ofensiva aumenta en +15% al sacar.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Saque: TORU OIKAWA",
+        "rarity": "UR",
+        "icon": "assets/memories/oikawa_ur_memory.png",
+        "effect": "Aumenta el atributo Saque del portador en un 12%. Cuando el portador ejecuta un saque crítico, obtiene 2 acumulaciones de Ritmo de Ataque. Cada acumulación aumenta la Percepción de los jugadores de tu equipo en un 1%; se acumula hasta 10 veces. Si el saque marca, el portador obtiene 4 acumulaciones más de Ritmo de Ataque. Mientras el portador está en la cancha, cuando Ritmo de Ataque de tu eqipo alcanza 6 acumulaciones, los atributos Fuerza y Espiritu de tus jugadores aumentan en un 2%; se acumula hasta 3 veces."
+      }
+    ]
+  },
+  {
+    "id": "osamu-ur",
+    "name": "Osamu Miya",
+    "avatar": "assets/characters/osamu.png",
+    "school": "Inarizaki",
+    "role": "Opposite",
+    "rarity": "UR",
+    "updated": "2025-10-07",
+    "statsMax": {
+      "atqRapido": 1685,
+      "colocacion": 1427,
+      "saque": 1621,
+      "recepcion": 1459,
+      "bloqueo": 1428,
+      "recuperacion": 1373,
+      "atqPoderoso": 0
+    },
+    "tags": [
+      "debuffer",
+      "control",
+      "ataque-rápido",
+      "soporte",
+      "potenciador",
+      "inarizaki",
+      "soporte"
+    ],
+    "skills": [
+      {
+        "name": "Ataque Versátil",
+        "icon": "assets/skills/osamu_ataques_flexibles_movimiento.png",
+        "effect": "La estadistica de Ataque Rápido de OSAMU MIYA se ve incrementada en (Lv1: 10%, Lv2: 12%, Lv3: 14%). Al comienzo de la partida, la Percepción (crítico) baja a 0% y por cada 1% de disminución de esa Percepción la Tecnica Ofensiva aumenta 1%."
+      },
+      {
+        "name": "Servicio con Salto Tranquilo",
+        "icon": "assets/skills/osamu_saque_con_salto_tranquilo_movimiento.png",
+        "effect": "OSAMU MIYA hace un saque con salto con un poder de (Lv1: 120%, Lv2: 135%, Lv3: 150%) de su estadistica de Saque, además la tecnica ofensiva de OSAMU aumenta en un 10%. Este efecto dura 8 cruces de red."
+      },
+      {
+        "name": "Multi Habilidad",
+        "icon": "assets/skills/osamu_habilidades_multiples_movimiento.png",
+        "effect": "La [Técnica Ofensiva] de OSAMU MIYA aumenta (Lv1: 10%, Lv2: 13%, Lv3: 16%). El ataque rápido y/o el saque de OSAMU colocan 1 acumulación de [Supresión] de desventaja al defensor del oponente esto reduce en un 10% la [Recepción] del oponente. Este efecto dura 10 cruces de red."
+      },
+      {
+        "name": "Ataque Rápido Flexible",
+        "icon": "assets/skills/osamu_flexible_y_rapido_movimiento.png",
+        "effect": "OSAMU MIYA realiza un ataque rápido con un poder equivalente a (Lv1: 260%, Lv2: 275%, Lv3: 290%, Lv4: 305%, Lv5: 320%) de la estadistica de Ataque Rápido de OSAMU MIYA. El [Ataque rápido] de OSAMU aumenta además la [Técnica Ofensiva] en un 40%. Este efecto dura 2 cruces de red."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Ataque Veloz II",
+        "icon": "assets/potentials/ataque_veloz.png",
+        "set2": "+15% Ataque Rápido",
+        "set4": "Mejora el poder de remates rápidos al encadenar cruces",
+        "notas": null
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "Los saques nunca fallan y la Técnica Ofensiva aumenta en +15% al sacar.",
+        "notas": null
+      },
+      {
+        "name": "Sentido agudo",
+        "icon": "assets/potentials/sentido_agudo.png",
+        "set2": "Aumenta el atributo Ataque Rápido en un 15%.",
+        "set4": "Aumenta la Percepción en un 15%; cuando Remate Rápido es crítico, aumenta la Fuerza en un 10%.",
+        "notas": null
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque Rápido/Técnica Ofensiva: OSAMU MIYA",
+        "rarity": "UR",
+        "icon": "assets/memories/osamu_memory.png",
+        "effect": "El [Ataque Rápido] del portador de este recuerdo aumenta en 24%. Si la [Técnica Ofensiva] del portador supera el 40%, el [Ataque rápido] aumenta en un 48% de la estadística de Ataque Rápido del mismo."
+      }
+    ]
+  },
+  {
+    "id": "reon-ssr",
+    "name": "Reon Ōhira",
+    "avatar": "assets/characters/reon.png",
+    "school": "Shiratorizawa",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-09-11",
+    "statsMax": {
+      "atqRapido": 204,
+      "atqPoderoso": 1477,
+      "colocacion": 1188,
+      "saque": 1272,
+      "recepcion": 1399,
+      "bloqueo": 1332,
+      "recuperacion": 1197
+    },
+    "tags": [
+      "wing spiker",
+      "ataque",
+      "recepción",
+      "shiratorizawa"
+    ],
+    "skills": [
+      {
+        "name": "Defensa poderosa",
+        "icon": "assets/skills/skill_defensa_poderosa.png",
+        "effect": "Cuando Reon recibe un Remate rápido crítico, aumenta el poder de esa Recepción en un 40% de su atributo Recepción. (L1)"
+      },
+      {
+        "name": "Defensa trascendental",
+        "icon": "assets/skills/skill_defensa_trascendental.png",
+        "effect": "Reon realiza una Recepción con el 120% de su atributo Recepción. (L1)"
+      },
+      {
+        "name": "Benkei benévolo",
+        "icon": "assets/skills/skill_benkei_benevolo.png",
+        "effect": "Aumenta la Percepción de Reon en un 5% y los Reflejos en un 10%. (L1)"
+      },
+      {
+        "name": "Definitiva · Remate devastador",
+        "icon": "assets/skills/skill_remate_devastador.png",
+        "effect": "Reon realiza un Remate poderoso con el 270% de su atributo Ataque poderoso. (L1)"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Poder vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "Aumenta el atributo Ataque Poderoso en un 15%.",
+        "set4": "Aumenta la Percepción en un 15%; cuando Remate Poderoso es crítico, aumenta la Fuerza en un 10%.",
+        "notas": ""
+      },
+      {
+        "name": "Incremento de poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "Aumenta el atributo Ataque Poderoso en un 15%.",
+        "set4": "Tras usar Remate Poderoso, aumenta la Técnica Ofensiva en un 10%; si además marca punto, recupera 5 de resistencia.",
+        "notas": ""
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al lograr una recepción PERFECTA, el poder del siguiente remate de tu equipo aumenta en un 30% de los atributos Ataque Rápido/Poderoso del rematador.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Remate: REON OHIRA",
+        "rarity": "SSR",
+        "icon": "assets/memories/reon_memory.png",
+        "effect": "Cuando el portador usa una habilidad, su Percepción aumenta un 1.6% y sus Reflejos un 1.6%; se acumula hasta 5 veces."
+      }
+    ],
+    "links": [
+      "Rematador lateral de Shiratorizawa — L1: Aumenta el atributo Ataque Poderoso de los jugadores de tu equipo en un 4%.",
+      "Ushikwa y Benkei — Aumenta la Recepción de Reon en +5 y además +1% extra."
+    ],
+    "builds": [
+      "Prioriza Ataque Poderoso y Percepción; Reflejos como tercera estadística si lo usas como finisher."
+    ],
+    "teams": [
+      "Core Shiratorizawa: Ushijima (UR) — Reon (SSR) — Shirabu (SSR).",
+      "Variante vínculos: + Semi (SSR) o Kawanishi (SR)."
+    ]
+  },
+  {
+    "id": "rintaro-ssr",
+    "name": "RINTARO SUNA",
+    "avatar": "assets/characters/rintaro.png",
+    "school": "Inarizaki",
+    "role": "Middle Blocker",
+    "rarity": "SSR",
+    "updated": "2025-10-14 00:00:00",
+    "statsMax": {
+      "atqRapido": 1547,
+      "colocacion": 1186,
+      "saque": 1266,
+      "recepcion": 1258,
+      "bloqueo": 1375,
+      "recuperacion": 1318
+    },
+    "skills": [
+      {
+        "name": "Cerrar el Curso",
+        "effect": "El atributo Bloqueo de RINTARO SUNA aumenta en (Lv1: 10%, Lv2: 12%, Lv3: 14%). Si RINTARO SUNA está en la cancha y el oponente hace un remate tiene una desventaja de [Vergüenza], el poder de bloqueo del aliado que bloquea aumenta un equivalente a su atributo de Bloqueo de (Lv1: 15%, Lv2: 20%, Lv3: 25%).",
+        "icon": "assets/skills/rintaro_sella_el_curso_movimiento.png"
+      },
+      {
+        "name": "Bloqueo Experto",
+        "effect": "RINTARO SUNA bloquea con un poder equivalente a (Lv1: 120%, Lv2: 135%, Lv3: 150%) de su atributo de Bloqueo.",
+        "icon": "assets/skills/rintaro_bloqueo_experto_movimiento.png"
+      },
+      {
+        "name": "Una jugada que confunde al oponente",
+        "effect": "El atributo Ataque Rápido de KINRATO SUNA se ve incrementado en (Lv1: 10%, Lv2: 12%, Lv3: 14%). Durante el Ataque Rápido de RINTARO SUNA. Le da a la vanguardia del oponente una desventaja de [Vergüenza]. Si el oponente cuenta con 1 acumulación de [Vergüenza] su bloqueo se reduce en un 10%. Este efecto dura 8 cruces de Red.",
+        "icon": "assets/skills/rintaro_jugar_para_pillar_al_oponente_desprevenido_movimiento.png"
+      },
+      {
+        "name": "Ataque de Amplio Movimiento",
+        "effect": "RINTARO SUNA realiza un ataque rápido con un poder equivalente al (Lv1: 240%, Lv2: 255%, Lv3: 270%, Lv4: 285%, Lv5: 300%) de su atributo Ataque Rápido.",
+        "icon": "assets/skills/rintaro_picos_anchos_movimiento.png"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png"
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png"
+      },
+      {
+        "name": "Ataque Veloz",
+        "icon": "assets/potentials/ataque_veloz.png"
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque Rápido: RINTARO SUNA",
+        "effect": "Aumenta el atributo Ataque Rápido del portador en un 20%. Si el miembro bloqueador oponente tiene una desventaja cuando el portador de esta memoria ataca con un Ataque Rápido, el poder de este Ataque Rápido aumenta en un 40% del valor total de Ataque Rápido del portador de esta memoria.",
+        "icon": "assets/memories/rintaro_memory.png"
+      }
+    ]
+  },
+  {
+    "id": "sakusa-ur",
+    "name": "Kiyoomi Sakusa",
+    "avatar": "assets/characters/sakusa.png",
+    "school": "Itachiyama",
+    "role": "Wing Spiker",
+    "rarity": "UR",
+    "updated": "2025-10-17 00:00:00",
+    "statsMax": {
+      "atqRapido": 0,
+      "atqPoderoso": 2012,
+      "colocacion": 1583,
+      "saque": 1774,
+      "recepcion": 1902,
+      "bloqueo": 1680,
+      "recuperacion": 1575
+    },
+    "tags": [
+      "Wing Spiker",
+      "Itachiyama",
+      "Ataque Poderoso",
+      "Saque",
+      "Recepcion",
+      "Debuff"
+    ],
+    "skills": [
+      {
+        "name": "Ataque sostenido",
+        "icon": "assets/skills/ataque_continuo.png",
+        "effect": "Sakusa Kiyoomi: [Remate] +10% y [Recepción] +20%. Cuando Sakusa recibe, su [Remate] aumenta 6%. Máximo 3 acumulaciones. Este efecto dura hasta su próximo remate. Cuando Sakusa remata, su [Recepción] aumenta 15%. Este efecto dura hasta su próxima recepción."
+      },
+      {
+        "name": "Máxima preparación",
+        "icon": "assets/skills/todas_medidas.png",
+        "effect": "Sakusa Kiyoomi realiza una recepción con potencia [Recepción] × 150%. Cuando Sakusa recibe, si la potencia de recepción supera [Recepción] × 170%, su [Reacción] aumenta 10% y el enfriamiento de <Máxima preparación> se reduce en 2 cruces de red. Este efecto dura hasta el final del partido. Cuando Sakusa recibe, si la potencia de recepción supera [Recepción] × 200%, su [Técnica Defensiva] aumenta 15%. Este efecto dura hasta el final del partido."
+      },
+      {
+        "name": "Rematador de élite",
+        "icon": "assets/skills/Mejor_rematador.png",
+        "effect": "Si Sakusa Kiyoomi está en la cancha y un aliado realiza una buena jugada de Recepción / Cobertura / Bloqueo, Sakusa obtiene 1 acumulación del efecto [Perfeccionismo]. Por cada acumulación de [Perfeccionismo], el Poder de Recepción aumenta en [Recepción] × 6% y el Poder de Remate aumenta en [Remate] × 6%. Máximo 20 acumulaciones. Al rematar Sakusa, por cada acumulación de [Perfeccionismo], su [Concentración] aumenta en 10%. Este efecto dura hasta que el balón cruce la red dos veces. Cuando Sakusa anota con un remate, por cada acumulación de [Perfeccionismo] consumida, su [Reacción] aumenta en 2%. Máximo 20 acumulaciones. Al finalizar un rally en el que Sakusa anotó con un remate, Sakusa gana 5 acumulaciones de [Perfeccionismo]."
+      },
+      {
+        "name": "Remate con giro que altera la trayectoria",
+        "icon": "assets/skills/remates_rotacion.png",
+        "effect": "KIYOOMI SAKUSA Remata con un poder de 260% de su Ataque Poderoso. Si KIYOOMI SAKUSA está en la retaguardia, el poder de este Remate Poderoso aumentará en un 40% de su atributo de Ataque Poderoso. Si esta jugada se convierte en una buena jugada, el poder de recepción del oponente que lo recibe se reduce en un 15%  de su estadistica de Recepción."
+      }
+    ],
+    "potentialsIds": [
+      "poder-vibrante",
+      "incremento-poder"
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Remate y Tecnica Ofensiva: KIYOOMI SAKUSA",
+        "rarity": "UR",
+        "icon": "assets/memories/sakusa_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Remate] +24%. Cuando el miembro afectado realiza una recepción, su [Técnica Ofensiva] aumenta 15%. Este efecto dura hasta que el balón cruce la red dos veces. Tras la recepción del miembro afectado, su [Mental] aumenta 8%. Máximo 4 acumulaciones."
+      }
+    ]
+  },
+  {
+    "id": "sasaya-ssr",
+    "name": "Takeito Sasaya",
+    "avatar": "assets/characters/sasaya.png",
+    "school": "Date",
+    "role": "Opposite",
+    "rarity": "SSR",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 283,
+      "atqPoderoso": 1378,
+      "colocacion": 1120,
+      "saque": 1184,
+      "recepcion": 1314,
+      "bloqueo": 1255,
+      "recuperacion": 1127
+    },
+    "tags": [
+      "Date"
+    ],
+    "skills": [
+      {
+        "name": "Respuesta Serena",
+        "icon": "",
+        "effect": "La [Percepción] de Sasaya Takehito aumenta en (Nv1: 5%, Nv2: 6%, Nv3: 7%). Si Sasaya Takehito está en la cancha, el [REFLEJO] de los aliados aumenta en (Nv1: 5%, Nv2: 6%, Nv3: 7%)."
+      },
+      {
+        "name": "Defensa Impenetrable",
+        "icon": "",
+        "effect": "Sasaya Takehito realiza un Bloqueo con un Poder de [Bloqueo] $\\times$ (Nv1: 105%, Nv2: 120%, Nv3: 135%)."
+      },
+      {
+        "name": "Muro de Hierro Fortificado",
+        "icon": "",
+        "effect": "Si Sasaya Takehito está en la cancha y el rival está liderando en puntos, el Poder de las habilidades de Bloqueo de los aliados aumenta adicionalmente en [Bloqueo] $\\times$ (Nv1: 3%, Nv2: 3.5%, Nv3: 4%) del miembro correspondiente, y el [REFLEJO] del miembro que bloquea aumenta un 5%."
+      },
+      {
+        "name": "Jugada agresiva",
+        "icon": "",
+        "effect": "Sasaya Takehito realiza un Ataque Poderoso con un Poder de [Ataque Poderoso] $\\times$ (Nv1: 240%, Nv2: 255%, Nv3: 270%, Nv4: 285%, Nv5: 300%)."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Incremento de Poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Poder Vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Estadisticas Base y Ataque Poderoso: TAKEHITO SASAYA",
+        "rarity": "SSR",
+        "icon": "assets/memories/sasaya_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Ataque Poderoso] +12% y [Bloqueo] +12%. Si el marcador está con ventaja del rival, la potencia de remate del miembro afectado aumenta [Ataque Poderoso] × 28%."
+      }
+    ]
+  },
+  {
+    "id": "semi-ssr",
+    "name": "Eita Semi",
+    "avatar": "assets/characters/semi.png",
+    "school": "Shiratorizawa",
+    "role": "Setter",
+    "rarity": "SSR",
+    "updated": "2025-10-02 00:00:00",
+    "statsMax": {
+      "atqRapido": 183,
+      "atqPoderoso": 1329,
+      "colocacion": 1406,
+      "saque": 1476,
+      "recepcion": 1184,
+      "bloqueo": 1329,
+      "recuperacion": 1111
+    },
+    "tags": [
+      "saque",
+      "setter",
+      "shiratorizawa"
+    ],
+    "skills": [
+      {
+        "name": "Control del Balón",
+        "icon": "assets/skills/eita_control_del_balon_movimiento.png",
+        "effect": "Cuando EITA SEMI saca, reduce el poder de Recepción de los jugadores de la fila trasera del oponente en un 13% de su atributo Recepción, lo que dura 4 cruces de red."
+      },
+      {
+        "name": "Colocación Engañosa",
+        "icon": "assets/skills/eita_colocacion_engañosa_movimiento.png",
+        "effect": "EITA SEMI realiza una Colocación con el 120% de su atributo Colocación."
+      },
+      {
+        "name": "Rendimiento Óptimo",
+        "icon": "assets/skills/eita_rendimiento_optimo_movimiento.png",
+        "effect": "Cuando EITA SEMI saca, su Percepción aumenta en un 5% y la fuerza en un 10%."
+      },
+      {
+        "name": "Definitiva -Saque Inspirador",
+        "icon": "assets/skills/eita_definitiva_saque_inspirador_movimiento.png",
+        "effect": "EITA SEMI realiza un saque con salto con un 220% de su atributo saque. Si anota, los jugadores de tu lado obtienen un 3% de Percepción y un 6% de Reflejos."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "El poder de pasar aumenta en +15% adicional del atributo Pase.",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "Los saques nunca fallan y la Técnica Ofensiva aumenta en +15% al sacar.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación: EITA SEMI",
+        "rarity": "SSR",
+        "icon": "assets/memories/semi_memory.png",
+        "effect": "Al sacar, el jugador con este recuerdo aunmenta su conciencia en un 16%. Cuando se activa el movimiento especial de saque del miembro, su saque aumenta en un 6.4%."
+      }
+    ]
+  },
+  {
+    "id": "shirabu-ssr",
+    "name": "Kenjirō Shirabu",
+    "avatar": "assets/characters/shirabu.png",
+    "school": "Shiratorizawa",
+    "role": "Setter",
+    "rarity": "SSR",
+    "updated": "2025-09-10",
+    "statsMax": {
+      "atqRapido": 255,
+      "atqPoderoso": 1242,
+      "colocacion": 1382,
+      "saque": 1303,
+      "recepcion": 1118,
+      "bloqueo": 1239,
+      "recuperacion": 1041
+    },
+    "tags": [
+      "setter",
+      "soporte",
+      "control"
+    ],
+    "skills": [
+      {
+        "name": "INQUEBRANTABLE",
+        "icon": "assets/skills/skill_inquebrantable.png",
+        "effect": "Aumenta su atributo Pase en 10%. Cuando coloca a un rematador con el rasgo Ataque Poderoso, ese Remate gana un +8% adicional del atributo Ataque Poderoso del rematador. (L1)"
+      },
+      {
+        "name": "FINTA CALCULADA",
+        "icon": "assets/skills/skill_finta_calculada.png",
+        "effect": "Realiza una Finta de colocador imbloqueable con el 120% de su atributo Pase. (L1)"
+      },
+      {
+        "name": "ADAPTACIÓN",
+        "icon": "assets/skills/skill_adaptacion.png",
+        "effect": "Aumenta su Percepción en 9%. (L1)"
+      },
+      {
+        "name": "ULTIMATE · DESPERTAR DE LA ESTRELLA",
+        "icon": "assets/skills/skill_ultimate_despertar_de_la_estrella.png",
+        "effect": "Realiza una colocación con el 210% de su atributo Colocación; para esa colocación, su Percepción aumenta en 10%. (L1)"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "El poder de pasar aumenta en +15% adicional del atributo Pase.",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "Los saques nunca fallan y la Técnica Ofensiva aumenta en +15% al sacar.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Pase: Kenjirō Shirabu",
+        "rarity": "SSR",
+        "icon": "assets/memories/shirabu_memory.png",
+        "effect": "Aumenta Colocación en +8% (hasta 16%). En colocación crítica: Remates Poderosos de tu equipo +16% (hasta 32%) durante 1 cruce de red."
+      }
+    ],
+    "links": [
+      "Campeón absoluto y Colocador sólido (con Wakatoshi Ushijima): Lanza → Remate Poderoso de Ushijima (Lv1: 260%, Lv5: 320%). Además, +10% Poder a Ushijima.",
+      "Shiratorizawa 2º grado (con Taichi Kawanishi): +1% Pase +5 al L1 (hasta +5%+15 al L5).",
+      "Diferentes tipos de setters (con Eita Semi): +1% Pase +5 al L1 (hasta +5%+15 al L5)."
+    ],
+    "builds": [
+      "Prioriza Colocación y Percepción. Velocidad como tercera opción según composición."
+    ],
+    "teams": [
+      "Core recomendado: Shirabu (SSR) + Ushijima (UR) + Reon (SSR).",
+      "Opcional: Kawanishi (SR) o Semi (SSR) para activar vínculos."
+    ]
+  },
+  {
+    "id": "sugawara-sp",
+    "name": "Koshi Sugawara (Despues de la escuela)",
+    "avatar": "assets/characters/sugawara_sp.png",
+    "school": "Karasuno",
+    "role": "Setter",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 241,
+      "atqPoderoso": 1746,
+      "colocacion": 1950,
+      "saque": 1856,
+      "recepcion": 1580,
+      "bloqueo": 1758,
+      "recuperacion": 1487
+    },
+    "tags": [
+      "Karasuno"
+    ],
+    "skills": [
+      {
+        "name": "Soporte de Ataque",
+        "icon": "",
+        "effect": "Si Koshi Sugawara (Después de Clase) está en la cancha, al activarse un Bloqueo de un aliado de la Línea Frontal, el [Bloqueo] del miembro que bloquea aumenta en el valor total de [Bloqueo] de los otros aliados de la Línea Frontal x(Nv1: 5%, Nv2: 6.25%, Nv3: 7.5%). Máximo (Nv1: 1000%, Nv2: 1250%, Nv3: 1500%). Este efecto persiste hasta que el balón cruce la red 2 veces.\nSi Sugawara está en la cancha, durante una Recepción de un aliado de la Línea de Fondo, la [Recepción] del miembro que recibe aumenta en el valor total de [Recepción] de los otros aliados de la Línea de Fondo x(Nv1: 5%, Nv2: 6.25%, Nv3: 7.5%). Máximo (Nv1: 1000%, Nv2: 1250%, Nv3: 1500%). Este efecto persiste hasta que el balón cruce la red 2 veces."
+      },
+      {
+        "name": "Saque Habilidoso que Explota las aberturas del rival",
+        "icon": "",
+        "effect": "Sugawara realiza un Saque con un Poder de [Saque] x(Nv1: 140%, Nv2: 160%, Nv3: 180%).\nEl Parámetro Principal de los aliados aumenta en (Nv1: 12%, Nv2: 14%, Nv3: 16%). Este efecto persiste durante 1 Rally."
+      },
+      {
+        "name": "Colocacion Cuidadosa",
+        "icon": "",
+        "effect": "La [Colocación] de Sugawara aumenta en (Nv1: 13%, Nv2: 16%, Nv3: 20%).\nLa primera vez que Sugawara entra a la cancha, consume el 50% de la Resistencia actual de los aliados. Por cada 6 de Resistencia consumida, el Parámetro Principal de los aliados aumenta en (Nv1: 1%, Nv2: 1.3%, Nv3: 1.6%).\nLa primera vez que Sugawara entra a la cancha, al final de cada Rally, la Resistencia de los aliados se recupera en 15. Este efecto persiste durante 4 Rallies."
+      },
+      {
+        "name": "Jugada de Seña",
+        "icon": "",
+        "effect": "Sugawara consume 15 de Resistencia adicional, y realiza una Colocación con un Poder de [Colocación] x(Nv1: 260%, Nv2: 280%, Nv3: 300%, Nv4: 320%, Nv5: 340%).\nLa [Técnica Ofensiva] del miembro que realiza el primer Remate (Poderoso\\Rápido) después de esta jugada aumenta un 20%. Este efecto persiste hasta que el balón cruce la red 2 veces."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Estadisticas Base: KOSHI SUGAWARA",
+        "rarity": "SP",
+        "icon": "assets/memories/sugawara_sp_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene Parámetros principales +16%. Al colocar, por cada 6 puntos de Estamina actual del propio Sugawara, el compañero que realiza el remate (potente o rápido) obtiene [Ataque Poderoso/Ataque Rápido] +2% (hasta +30%). Dura 2 cruces de Red. Al activar una habilidad de Sugawara, si se consumió Resistencia adicional (consumo positivo), el aliado con menor Resistencia restaura 10 de Resistencia."
+      }
+    ]
+  },
+  {
+    "id": "sugawara-sr",
+    "name": "Koshi Sugawara",
+    "avatar": "assets/characters/sugawara_sr.png",
+    "school": "Karasuno",
+    "role": "Setter",
+    "rarity": "SR",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 225,
+      "atqPoderoso": 1094,
+      "colocacion": 1157,
+      "saque": 1217,
+      "recepcion": 981,
+      "bloqueo": 1091,
+      "recuperacion": 926
+    },
+    "tags": [
+      "Karasuno"
+    ],
+    "skills": [
+      {
+        "name": "Habilidad del senpai",
+        "icon": "",
+        "effect": "Koshi Sugawara realiza un Saque por Encima de la Cabeza con un Poder de [Saque] x(Nv1: 120%, Nv2: 135%, Nv3: 150%)."
+      },
+      {
+        "name": "Tactica Super Ofensiva",
+        "icon": "",
+        "effect": "Sugawara realiza una Colocación con un Poder de [Colocación] x(Nv1: 115%, Nv2: 130%, Nv3: 145%).\nSi Sugawara está en la cancha, el Poder de las habilidades de Ataque Poderoso de los aliados de Ataque Poderoso aumenta en [Ataque Poderoso] x5% del miembro correspondiente."
+      },
+      {
+        "name": "Poder del Ánimo",
+        "icon": "",
+        "effect": "Si Sugawara está en la cancha, el consumo de Resistencia de las habilidades de Ataque Poderoso de los aliados se reduce en (Nv1: 20%, Nv2: 30%, Nv3: 40%)."
+      },
+      {
+        "name": "Valor del Senpai",
+        "icon": "",
+        "effect": "Sugawara realiza una Colocación, y el Poder del siguiente Remate (Poderoso\\Rápido) activado aumenta en [Ataque Poderoso/Rápido] x(Nv1: 100%, Nv2: 115%, Nv3: 130%, Nv4: 145%, Nv5: 160%) del miembro correspondiente.\nSi este Remate es una habilidad de Ataque Poderoso, el Poder aumenta adicionalmente en [Ataque Poderoso] x(Nv1: 10%, Nv2: 10%, Nv3: 15%, Nv4: 15%, Nv5: 15%) del miembro correspondiente."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Reflejos: KOSHI SUGAWARA",
+        "rarity": "SR",
+        "icon": "assets/memories/sugawara_sr_memory.png",
+        "effect": "Aumenta los Reflejos del portador en un 9.6%. Cuando el portador saca, aumenta los Reflejos de los jugadores de la fila trasera de tu equipo en un 4.8% durante 3 cruces de red."
+      }
+    ]
+  },
+  {
+    "id": "tanaka-ssr",
+    "name": "Ryunosuke Tanaka",
+    "avatar": "assets/characters/tanaka.png",
+    "school": "Karasuno",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-10-14 00:00:00",
+    "statsMax": {
+      "atqRapido": 284,
+      "atqPoderoso": 1385,
+      "colocacion": 1120,
+      "saque": 1190,
+      "recepcion": 1316,
+      "bloqueo": 1248,
+      "recuperacion": 1129
+    },
+    "skills": [
+      {
+        "name": "Entrada de Estrella",
+        "effect": "Aumenta el poder del Primer Remate Poderoso de RYUNOSUKE TANAKA en cada partido en un valor equivalente al 25% del atributo Ataque Poderoso.",
+        "icon": "assets/skills/entrada_estrella.png"
+      },
+      {
+        "name": "Espiritu Tenaz",
+        "effect": "RYONOSUKE TANAKA ejecuta una recepción con un poder equivalente al 115% del atributo Recepción, para esta recepción, los reflejos de TANAKA aumenta en un 10%",
+        "icon": "assets/skills/espiritu_tenaz.png"
+      },
+      {
+        "name": "Pasión Ardiente",
+        "effect": "Aumenta el poder del Remate Poderoso de RYUNOSUKE TANAKA en un valor equivalente al 10% del atributo Ataque Poderoso. Su remate Poderoso reduce la resistencia de los jugadores receptores y bloqueadores del rivale en 5.",
+        "icon": "assets/skills/pasion_ardiente.png"
+      },
+      {
+        "name": "Remate Cruzado Extremo",
+        "effect": "RYUNOSUKE TANAKA usa 4 de resistencia adicional para ejecutar un remate diagonal corto con un poder equivalente al 250% del atributo Ataque Poderoso. Si es el primer Remate de Tanaka en el set, su poder aumenta en un 30% adicional del atributo Ataque Poderoso de TANAKA.",
+        "icon": "assets/skills/remate_cruzado_extremo.png"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Poder Vibrante",
+        "icon": "assets/potentials/poder_vibrante.png"
+      },
+      {
+        "name": "Incremento de Poder",
+        "icon": "assets/potentials/incremento_poder.png"
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque: RYUNOSUKE TANAKA",
+        "effect": "Aumenta el atributo Ataque Poderoso del portador en un 10%. Además, aumenta el poder de las priemras 2 definitivas de ataque poderoso del portador en cada partido en un valor equivalente al 18% del atributo ataque poderoso.",
+        "icon": "assets/memories/tanaka_memory.png"
+      }
+    ]
+  },
+  {
+    "id": "tendo-ssr",
+    "name": "Satori Tendo",
+    "avatar": "assets/characters/tendo.png",
+    "school": "Shiratorizawa",
+    "role": "Middle Blocker",
+    "rarity": "SSR",
+    "updated": "2025-10-03 00:00:00",
+    "statsMax": {
+      "atqRapido": 1314,
+      "atqPoderoso": 270,
+      "colocacion": 1140,
+      "saque": 1214,
+      "recepcion": 1177,
+      "bloqueo": 1387,
+      "recuperacion": 1100
+    },
+    "tags": [
+      "shiratorizawa",
+      "ataque-rápido",
+      "bloqueo",
+      "mb"
+    ],
+    "skills": [
+      {
+        "name": "Rebelde",
+        "icon": "assets/skills/satori_rebelde_movimiento.png",
+        "effect": "Aumenta los Reflejos de SATORI TENDO en un 12%"
+      },
+      {
+        "name": "Ataque Rápido Sorpresa",
+        "icon": "assets/skills/satori_ataque_rapido_sorpresa_movimiento.png",
+        "effect": "SATORI TENDO ejecuta un Remate Rápido con un poder equivalente al 120% del atributo Ataque Rápido."
+      },
+      {
+        "name": "Bloqueo Mental",
+        "icon": "assets/skills/satori_bloqueo_mental_movimiento.png",
+        "effect": "Cuando SATORI TENDO ejecuta un bloqueo crítico, la recarga de INSTINTO SALVAJE se reduce en 1 cruce de red."
+      },
+      {
+        "name": "Definitiva - Instinto Salvaje",
+        "icon": "assets/skills/satori_definitiva_instinto_salvaje_movimiento.png",
+        "effect": "SATORI TENDO ejecuta un bloqueo con un poder equivalente al 220% del atributo Bloqueo. Si bloquea un remate crítico del rival, los Reflejos de TENDO aumenta en un 15% durante ese bloqueo."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "+15% Bloqueo",
+        "set4": "Aumenta la precisión de bloqueo y reduce CD de habilidades de bloqueo",
+        "notas": ""
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "+Velocidad de Bloqueo / tiempo de respuesta",
+        "set4": "Bonos al reposicionamiento y éxito de bloqueos consecutivos",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Bloqueo: SATORI TENDO",
+        "rarity": "SSR",
+        "icon": "assets/memories/tendo_memory.png",
+        "effect": "Aumenta el atributo Bloqueo del portador en un 14%. Cuando el portador ejecuta un crítico, reduce la recarga de la definitiva de bloque en 1 cruce de red."
+      }
+    ]
+  },
+  {
+    "id": "terushima-ssr",
+    "name": "Yūji Terushima",
+    "avatar": "assets/characters/yuji.png",
+    "school": "Johzenji",
+    "role": "Wing Spiker",
+    "rarity": "SSR",
+    "updated": "2025-10-27 00:00:00",
+    "statsMax": {
+      "atqRapido": 1,
+      "atqPoderoso": 1,
+      "colocacion": 1,
+      "saque": 1,
+      "recepcion": 1,
+      "bloqueo": 1,
+      "recuperacion": 1
+    },
+    "tags": [
+      "Buff"
+    ],
+    "skills": [
+      {
+        "name": "Espiritu Libre",
+        "icon": "",
+        "effect": "Aumenta el ataque poderoso de YUJI TERUSHIMA en un 8%. \nMientras está en la cancha, siempre que el resultado de la recepción, recuperación o colocación de un compañero no sea MALA, obtiene 1 acumulación de Jugar al Máximo. \nCada acumulación aumenta su Ataque Rápido/Poderoso en un 2.5%; se acumula hasta 4 veces."
+      },
+      {
+        "name": "Salto de alegría",
+        "icon": "",
+        "effect": "YUJI ejecuta un saque con salto con un poder equivalente al 120% de su atributo Saque."
+      },
+      {
+        "name": "Guardian del Patio",
+        "icon": "",
+        "effect": "Por cada jugador con etiqueta de receptor en tu equipo, el atributo Recepción de YUJI aumenta en un 4%. Si pierde un punto al recibir, la perdida  se anula. Recarga 10 cruces de red."
+      },
+      {
+        "name": "Golpe e Impulso",
+        "icon": "",
+        "effect": "YUJI ejecuta un Remate Poderoso con un poder equivalente al 235% del atributo Ataque Poderoso. Si el remate marca un punto, los compañeros obtendran un aumento del atributo Recepción del 10% durante 3 cruces de red."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Incremento de Poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Poder Vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque Poderoso / Ataque Rápido: YUJI TERUSHIMA",
+        "rarity": "SSR",
+        "icon": "assets/memories/yuji_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Ataque Poderoso] +24%. Cuando el jugador que tiene equipada esta memoria pierde el efecto [Jugar más y más], obtiene 2 acumulaciones de [Jugar más y más] y, además, los aliados en la zaga obtienen [Recepción] +12%. Dura 1 rally. Por cada acumulación de [Jugar más y más], [Remate/Ataque Rápido] +2.5% (máx. 4 acumulaciones)."
+      }
+    ]
+  },
+  {
+    "id": "tobio-ssr",
+    "name": "Tobio Kageyama",
+    "avatar": "assets/characters/tobio_ssr.png",
+    "school": "Karasuno",
+    "role": "Setter",
+    "rarity": "SSR",
+    "updated": "2025-10-07",
+    "statsMax": {
+      "atqRapido": 1246,
+      "atqPoderoso": 256,
+      "colocacion": 1378,
+      "saque": 1314,
+      "recepcion": 1115,
+      "bloqueo": 1246,
+      "recuperacion": 1047
+    },
+    "tags": [
+      "setter",
+      "control",
+      "ataque-rápido",
+      "soporte",
+      "potenciador",
+      "karasuno",
+      "saque"
+    ],
+    "skills": [
+      {
+        "name": "Saque Engañoso",
+        "icon": "assets/skills/tobio_saque_engañoso_movimiento.png",
+        "effect": "TOBIO KAGEYAMA (práctica) ejecuta un potente Saque con Salto con un poder equivalente al 120% del atributo Saque."
+      },
+      {
+        "name": "Observación Aguda",
+        "icon": "assets/skills/tobio_observacion_aguda_movimiento.png",
+        "effect": "TOBIO KAGEYAMA (práctica) ejecuta una colocación con un poder equivalente al 115% del atributo Colocación. En esta jugada, la Fuerza de los rematadores de tu equipo aumenta en un 10%."
+      },
+      {
+        "name": "El despertar del Rey",
+        "icon": "assets/skills/tobio_el_despertar_del_rey_movimiento.png",
+        "effect": "Si TOBIO CAGEYAMA (práctica) está presente, la Percepción de los jugadores de tu equipo aumenta en un 10%, y el poder de remate del jugador aumenta en un equivalente al 6% de los atributos Ataque Rápido/Poderoso."
+      },
+      {
+        "name": "Definitiva - Finta Sorpresa",
+        "icon": "assets/skills/tobio_finta_sorpresa_movimiento.png",
+        "effect": "TOBIO KAGEYAMA (práctica) ejecuta una finta de colocador con un poder equivalente al 225% del atributo Colocación."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "El poder de pasar aumenta en +15% adicional del atributo Pase.",
+        "notas": null
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "Los saques nunca fallan y la Técnica Ofensiva aumenta en +15% al sacar.",
+        "notas": null
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Ataque: TOBIO KAGEYAMA (práctica)",
+        "rarity": "SSR",
+        "icon": "assets/memories/TOBIO_ssr_memory.png",
+        "effect": "Aumenta el atributo Saque del portador en un 10%; cuando el portador usa una definitiva de finta de colocador, aumenta su Percepción en un 10% más un 15% de su Percepción."
+      }
+    ]
+  },
+  {
+    "id": "tobio-ur",
+    "name": "Tobio Kageyama",
+    "avatar": "assets/characters/tobio_ur.png",
+    "school": "Karasuno",
+    "role": "Setter",
+    "rarity": "UR",
+    "updated": "2025-10-17",
+    "statsMax": {
+      "atqRapido": 1680,
+      "atqPoderoso": null,
+      "colocacion": 2043,
+      "saque": 1887,
+      "recepcion": 1508,
+      "bloqueo": 1682,
+      "recuperacion": 1415
+    },
+    "tags": [
+      "Setter",
+      "Karasuno",
+      "Saque",
+      "Debuff",
+      "Buff",
+      "Potenciador",
+      "Tecnica Ofensiva",
+      "Finta"
+    ],
+    "skills": [
+      {
+        "name": "Colocador Prodigio",
+        "icon": "assets/skills/kageyama_genio_setter_movimiento.png",
+        "effect": "Tobio Kageyama realiza una colocación con potencia [Colocación] × (Lv1: 120%, Lv2: 135%, Lv3: 150%). Al colocar Kageyama, el [Ataque Rápido] del compañero que vaya a rematar (remate potente o ataque rápido) aumenta en [Colocación] de Kageyama × 15%. Dura hasta que el balón cruce la red 2 veces."
+      },
+      {
+        "name": "Saque Asesino",
+        "icon": "assets/skills/kageyama_servicio_asesino_movimiento.png",
+        "effect": "Kageyama realiza un saque en suspensión potente con potencia [Servicio] × (Lv1: 130%, Lv2: 145%, Lv3: 160%). Si esta jugada resulta en buena jugada, los aliados obtienen [Técnica Ofensiva] +10%. Dura hasta que el balón cruce la red 6 veces."
+      },
+      {
+        "name": "El Rey Silencioso",
+        "icon": "assets/skills/kageyama_el_rey_silencioso_movimiento.png",
+        "effect": "La [Técnica Ofensiva] de Kageyama aumenta en (Lv1: 8%, Lv2: 10%, Lv3: 12%). Si Kageyama está en cancha y el saque / ataque de segunda / remate (potente o rápido) del rival resulta en buena jugada, Kageyama obtiene 1 acumulación del efecto [Competitivo]. Máximo 5 acumulaciones. Si Kageyama está en cancha, cuando un aliado hace saque / ataque de segunda / remate (potente o rápido), se consume 1 acumulación de [Competitivo] y la [Concentración] de ese aliado aumenta (Lv1: 20%, Lv2: 25%, Lv3: 30%). Dura hasta que el balón cruce la red 2 veces. Al iniciar cada rally, Kageyama gana 1 acumulación de [Competitivo]."
+      },
+      {
+        "name": "Dominar el Partido",
+        "icon": "assets/skills/kageyama_domina_el_juego_movimiento.png",
+        "effect": "Kageyama realiza unna finta de colocador con una potencia de (Lv1: 240%, Lv2: 255%, Lv3: 270%, Lv4: 285%, Lv5: 300%) de su estadistica de[Colocación]. La finta no puede ser bloqueada. Las habilidades de bloqueo de la línea delantera rival extienden su enfriamiento en 4 cruces de red."
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Colocación y Finta de Colocador: TOBIO KAGEYAMA",
+        "rarity": "UR",
+        "icon": "assets/memories/tobio_ur_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Colocación] +24%. Al activar una habilidad de Finta de Colocador, el [Poder] del miembro afectado aumenta [Concentración] × 40% (hasta un máximo de +100%). Al activar una habilidad de Finta de Colocador, la potencia del siguiente remate aliado (ataque poderoso o ataque rápido) aumenta en [Ataque Poderoso/Ataque Rápido] × 28% del miembro que ejecute ese remate."
+      }
+    ],
+    "potentialsIds": [
+      "saque-preciso",
+      "pase-preciso"
+    ]
+  },
+  {
+    "id": "tsukishima-sp",
+    "name": "Kei Tsukishima (Festival Fuegos Artificiales)",
+    "avatar": "assets/characters/tsukishima_sp.png",
+    "school": "Karasuno",
+    "role": "Middle Blocker",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 1948,
+      "atqPoderoso": 269,
+      "colocacion": 1579,
+      "saque": 1668,
+      "recepcion": 1661,
+      "bloqueo": 1769,
+      "recuperacion": 1753
+    },
+    "tags": [
+      "Karasuno"
+    ],
+    "skills": [
+      {
+        "name": "Cerebro Superior",
+        "icon": "",
+        "effect": "Si un miembro rival en la cancha tiene una Desventaja, la [Percepción] y el [REFLEJO] de Tsukishima aumentan un 15%, y la [Técnica Ofensiva] y [Técnica Defensiva] de los aliados aumentan un 10%. Este efecto persiste durante 1 Rally.\nAl activarse una habilidad de Bloqueo de un aliado, el [Ataque Rápido] de Tsukishima aumenta un 3%. Máximo 10 acumulaciones.\nAl activarse una habilidad de Ataque Rápido de un aliado, el [Bloqueo] de Tsukishima aumenta un 3%. Máximo 10 acumulaciones."
+      },
+      {
+        "name": "El Bloqueo Es Un Sistema",
+        "icon": "",
+        "effect": "Tsukishima realiza un Bloqueo con un Poder de [Bloqueo] x300%.\nEl [Reflejo] de la Línea de Fondo aliada aumenta un 10%, y el [ESPÍRITU] aumenta un 20%. Este efecto persiste hasta que el balón cruce la red 2 veces."
+      },
+      {
+        "name": "Observar La Situacion Del Juego con Calma",
+        "icon": "",
+        "effect": "Al inicio del partido, si la [Técnica Ofensiva] de Tsukishima es mayor o igual a su [Técnica Defensiva], Tsukishima obtiene el efecto [Ataque I].\nSi su [Técnica Defensiva] es mayor a su [Técnica Ofensiva], Tsukishima obtiene el efecto [Defensa I].\nSi tiene el efecto [Ataque I], el Enfriamiento de <\"El Bloqueo es un Sistema\"> se reduce en 4 cruces de red del balón.\nEl Poder de <\"El Bloqueo es un Sistema\"> se reduce en [Bloqueo] x100%. Su [Ataque Rápido] aumenta un 20%. Al realizar un Ataque Rápido, la [Percepción] aumenta en [Reflejo] x100% (Máximo 50%), y este efecto persiste hasta que el balón cruce la red 2 veces.\nSi tiene el efecto [Defensa I], el Enfriamiento de <Remate Usando la Altura> se reduce en 2 cruces de red del balón.\nEl Poder de <Remate Usando la Altura> se reduce en [Ataque Rápido] x100%. Su [Bloqueo] aumenta un 20%. Al realizar un Bloqueo, el [Reflejo] aumenta en [Percepción] x100% (Máximo 50%), y este efecto persiste hasta que el balón cruce la red 2 veces."
+      },
+      {
+        "name": "Remate Usando la Altura",
+        "icon": "",
+        "effect": "Tsukishima realiza un Ataque Rápido con un Poder de [Ataque Rápido] x260%.\nSi un miembro rival en la cancha tiene una Desventaja, el Poder de este Ataque Rápido aumenta en [Ataque Rápido] x60%."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque Rápido y Bloqueo: KEI TSUKISHIMA",
+        "rarity": "SP",
+        "icon": "assets/memories/kei_sp_memory.png",
+        "effect": "El miembro que tiene equipada esta Memoria obtiene [Ataque Rápido] +24%. Cuando el portador de esta memoria realiza una buena jugada, su [Bloqueo] aumenta 9%. Máximo 3 acumulaciones. Además, aplica al azar a 1 rival en cancha el debuff [Contención] (Reduce las estadisticas bases del rival en un −5%). Este efecto dura 8 cruces de red."
+      }
+    ]
+  },
+  {
+    "id": "tsukishima-ssr",
+    "name": "Kei Tsukishima",
+    "avatar": "assets/characters/tsukishima.png",
+    "school": "Karasuno",
+    "role": "Middle Blocker",
+    "rarity": "SSR",
+    "updated": "2025-09-22",
+    "statsMax": {
+      "atqRapido": 1314,
+      "atqPoderoso": 270,
+      "colocacion": 1153,
+      "saque": 1210,
+      "recepcion": 1173,
+      "bloqueo": 1389,
+      "recuperacion": 1102
+    },
+    "tags": [
+      "bloqueo",
+      "ataque-rápido",
+      "karasuno",
+      "mb"
+    ],
+    "skills": [
+      {
+        "name": "Compostura de Karasuno",
+        "icon": "assets/skills/tsukishima_compostura.png",
+        "effect": "Si Tsukishima está en cancha, aumenta en un 10% la fuerza de los jugadores de tipo Ataque Rápido. (L1)"
+      },
+      {
+        "name": "Ataque Rápido Táctico",
+        "icon": "assets/skills/tsukishima_ataque_rapido_tactico.png",
+        "effect": "Ejecuta un Remate Rápido con poder equivalente al 115% de su atributo Ataque Rápido. La próxima vez que un compañero use una habilidad de remate, su Percepción aumenta en un 5%. (L1)"
+      },
+      {
+        "name": "Alba Lunar",
+        "icon": "assets/skills/tsukishima_alba_lunar.png",
+        "effect": "Si Tsukishima está en cancha, aumenta el poder de Bloqueo de los jugadores de la fila delantera de tu equipo en un valor equivalente al 8% de su atributo Bloqueo. (L1)"
+      },
+      {
+        "name": "Definitiva · Valoración de Kei",
+        "icon": "assets/skills/tsukishima_valoracion.png",
+        "effect": "Ejecuta un Bloqueo con poder equivalente al 235% de su atributo Bloqueo. Aplica la desventaja [Enfurecer] al rematador rival (−10% a Ataque Rápido y Poderoso). (L1)"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "+15% Bloqueo",
+        "set4": "Aumenta la precisión de bloqueo y reduce CD de habilidades de bloqueo",
+        "notas": ""
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "+Velocidad de Bloqueo / tiempo de respuesta",
+        "set4": "Bonos al reposicionamiento y éxito de bloqueos consecutivos",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Bloqueo: KEI TSUKISHIMA",
+        "rarity": "SSR",
+        "icon": "assets/memories/tsukishima_memory.png",
+        "effect": "Aumenta Bloqueo +10%. Si el portador usa una Definitiva de Bloqueo y el rival tiene una desventaja, el poder del bloqueo aumenta un 16% adicional del atributo Bloqueo."
+      }
+    ],
+    "links": [
+      "“Escudo” y “Lanza”: Aumento del Bloqueo de Tsukishima y del Servicio de Yamaguchi (Lv1: +6%, hasta Lv5: +10%).",
+      "Maestro y discípulo: Aumento del Bloqueo de Tsukishima y Kuroo (Lv1: +6%, hasta Lv5: +10%)."
+    ],
+    "builds": [
+      "Opción 1: 4× Bloqueo Preciso + 2× Movimiento de Bloqueo",
+      "Opción 2: 6× Bloqueo Preciso (máxima defensa)",
+      "Runas recomendadas: Bloqueo / Reflejos / Técnica Defensiva"
+    ]
+  },
+  {
+    "id": "ushijima-ur",
+    "name": "Wakatoshi Ushijima",
+    "avatar": "assets/characters/ushijima.png",
+    "school": "Shiratorizawa",
+    "role": "Opposite",
+    "rarity": "UR",
+    "updated": "2025-09-11",
+    "statsMax": {
+      "atqRapido": 323,
+      "atqPoderoso": 1574,
+      "colocacion": 1261,
+      "saque": 1499,
+      "recepcion": 1417,
+      "bloqueo": 1345,
+      "recuperacion": 1261
+    },
+    "tags": [
+      "opposite",
+      "ataque",
+      "shiratorizawa"
+    ],
+    "skills": [
+      {
+        "name": "En Onda",
+        "icon": "assets/skills/en_onda.png",
+        "effect": "Aumenta la Percepción de Ushijima en un 8%. Mientras está en cancha, su Percepción aumenta un 3% adicional al terminar cada ronda. (L1)"
+      },
+      {
+        "name": "Saque Arrollador",
+        "icon": "assets/skills/saque_arrollador.png",
+        "effect": "Ejecuta un saque con salto con un poder equivalente al 125% de su atributo Saque. Si es crítico, los receptores rivales no pueden usar habilidades. Si anota punto, la recarga de Saque Arrollador se reduce en 4 cruces de red. (L1)"
+      },
+      {
+        "name": "Como una Estrella",
+        "icon": "assets/skills/como_una_estrella.png",
+        "effect": "Cuando tus jugadores logran remates críticos, Ushijima gana un 1.5% adicional en todos los atributos básicos. Se acumula hasta 8 veces. Al anotar punto, pierde todas las desventajas. (L1)"
+      },
+      {
+        "name": "Definitiva · Estrella Indiscutible",
+        "icon": "assets/skills/estrella_indiscutible.png",
+        "effect": "Ejecuta un Remate Poderoso con un poder equivalente al 250% de su atributo Ataque Poderoso. Si el remate es crítico, reduce la recarga de Estrella Indiscutible en 1 cruce de red. (L1)"
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Poder vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "+15% Ataque Poderoso",
+        "set4": "+15% Percepción; cuando Remate Poderoso es crítico, +10% Fuerza",
+        "notas": ""
+      },
+      {
+        "name": "Incremento de poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "+15% Ataque Poderoso",
+        "set4": "Tras usar Remate Poderoso, +10% Técnica Ofensiva; si marca punto, +5 resistencia",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "+15% Pase",
+        "set4": "Los saques nunca fallan y la Técnica Ofensiva aumenta en +15% al sacar",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Percepción: WAKATOSHI USHIJIMA",
+        "rarity": "UR",
+        "icon": "assets/memories/ushijima_memory.png",
+        "effect": "Aumenta la Percepción del portador en un 10%. Si la Percepción supera el 20%, obtiene un 0.5% de Fuerza por cada 1% que exceda, hasta un máximo de 50% de Fuerza."
+      }
+    ],
+    "links": [
+      "Ushikwa y Benkei — Aumenta el Bloqueo en +5 y +1% adicional.",
+      "Estrella Indiscutible y Estrella — +5 Ataque Poderoso y +1% adicional.",
+      "Mejores Amigos por Siempre — +3% Técnica Ofensiva.",
+      "Estrella indiscutible y Colocador Reservado — Si Kenjirō Shirabu coloca el balón, Ushijima ejecuta un Remate Poderoso con 260% del atributo Ataque Poderoso. Además, para ese remate, su Fuerza aumenta en 10%."
+    ],
+    "builds": [
+      "Prioriza Ataque Poderoso y Percepción; Fuerza como tercera si lo usas como finisher.",
+      "Variantes: 4+2 con sets ofensivos o 2+2+2 si buscas consistencia y flexibilidad."
+    ],
+    "teams": [
+      "Core Shiratorizawa: Ushijima (UR) — Shirabu (SSR) — Reon (SSR).",
+      "Variante con control: + Semi (SSR) o Kawanishi (SR) según vínculos."
+    ]
+  },
+  {
+    "id": "ushujima-sp",
+    "name": "Wakatoshi Ushijima",
+    "avatar": "assets/characters/ushijima_sp.png",
+    "school": "Shiratorizawa",
+    "role": "Opposite",
+    "rarity": "SP",
+    "updated": "2025-11-01 00:00:00",
+    "statsMax": {
+      "atqRapido": 272,
+      "atqPoderoso": 1968,
+      "colocacion": 1748,
+      "saque": 1854,
+      "recepcion": 1573,
+      "bloqueo": 1759,
+      "recuperacion": 1482
+    },
+    "tags": [
+      "OPposite"
+    ],
+    "skills": [
+      {
+        "name": "Poder del Campeón",
+        "icon": "",
+        "effect": "Cuando Wakatoshi Ushijima (Festival Cultural) obtiene una Desventaja, su [Ataque Poderoso] y [Saque] aumentan  (Nv1: 2%, Nv2: 2.5%, Nv3: 3%). Máximo 6 acumulaciones.\nSi Ushijima está en la cancha, cuando la Colocacion de un aliado resulta en una Buena Jugada, la [Percepción] de Ushijima aumenta un 8%. Máximo 99 acumulaciones."
+      },
+      {
+        "name": "Saque con Poder Destructivo",
+        "icon": "",
+        "effect": "Wakatoshi Ushijima (Festival Cultural) realiza un Saque en Salto con un Poder de [Saque] x(Nv1: 140%, Nv2: 160%, Nv3: 180%).\nEl Poder de Recepción del rival se reduce en [Recepción] x100%. Este efecto persiste hasta que el balón cruce la red 2 veces."
+      },
+      {
+        "name": "Aplastar",
+        "icon": "",
+        "effect": "La [Percepción] de Wakatoshi Ushijima (Festival Cultural) se duplica.\nSi la [Percepción] de Ushijima es 200% o Superior, el límite superior de Enfriamiento de <Fuerza de Clase Cañón> se reduce en 4 cruces de red del balón.\nSi la [Percepción] de Ushijima es 350% o Superior, el Poder de la primera <Fuerza de Clase Cañón> en cada Rally aumenta en [Ataque Poderoso] x(Nv1: 40%, Nv2: 55%, Nv3: \nSi la [Percepción] de Ushijima es 400% o Superior, cuando la [Percepción] excede el 400%, por cada 1% que exceda, el [Poder] aumenta un 0.7%. Puede aumentar un máximo del 70%."
+      },
+      {
+        "name": "Fuerza de Clase Cañón",
+        "icon": "",
+        "effect": "Wakatoshi Ushijima (Festival Cultural) realiza un Ataque Poderoso con un Poder de [Ataque Poderoso] $\\times$ 260%.\nSi el miembro rival que realiza la primera Recepción después de esta jugada no es el mismo miembro rival que realizó la primera Recepción después del Ataque Poderoso anterior de Ushijima, el Poder de Recepción de esta vez se reduce en [Recepción] x50%. Este efecto persiste hasta que el balón cruce la red 2 veces."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Incremento de Poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Poder Vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "",
+        "rarity": "",
+        "icon": "assets/memories/",
+        "effect": ""
+      }
+    ]
+  },
+  {
+    "id": "washio-ssr",
+    "name": "Tatsuki Washio",
+    "avatar": "assets/characters/washio.png",
+    "school": "Fukurodani",
+    "role": "Middle Blocker",
+    "rarity": "SSR",
+    "updated": "2025-10-06",
+    "tags": [
+      "bloqueo",
+      "mb",
+      "control",
+      "ataque-rápido"
+    ],
+    "skills": [
+      {
+        "name": "Bloqueo de Presión",
+        "icon": "assets/skills/tatsuo_bloqueos_intimidantes_movimiento.png",
+        "effect": "Aumenta el atributo Bloqueo de TATSUKI WASHIO en un 8%. Cuando ejecuta un bloqueo, la próxima recepción de tu equipo obtiene una bonificación equivalente al 20% del atributo Recepción del receptor. Si el resultado del bloqueo no es MALO, el atributo Bloqueo de WASHIO aumenta en un 20% adicional en su próximo bloqueo."
+      },
+      {
+        "name": "Golpe de Torre",
+        "icon": "assets/skills/tatsuo_ataques_de_alto_impacto_movimiento.png",
+        "effect": "TATSUKI WASHO ejecuta un Remate Rápido con un poder eqivalente al 120% de su atribuo Ataque Rápido."
+      },
+      {
+        "name": "Contraataque Silencioso",
+        "icon": "assets/skills/tatsuo_un trabajador_con_talento_oculto_movimiento.png",
+        "effect": "Cuando un rival ejecuta una jugada crítica, los atributos Bloqueo y Ataque Rápido de TATSUKI WASHIO aumentan en un 2%. Se acumula hasta 5 veces."
+      },
+      {
+        "name": "Definitiva - Bloqueo de Torre",
+        "icon": "assets/skills/tatsuo_ bloqueo_usando_su_altura_movimiento.png",
+        "effect": "TATSUKI WASHIO ejecuta un bloqueo con un poder equivalente al 220% del atributo Bloqueo."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "+15% Bloqueo",
+        "set4": "Aumenta la precisión de bloqueo y reduce CD de habilidades de bloqueo",
+        "notas": null
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "+Velocidad de Bloqueo / tiempo de respuesta",
+        "set4": "Bonos al reposicionamiento y éxito de bloqueos consecutivos",
+        "notas": null
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Bloqueo: TATSUKI WASHIO",
+        "rarity": "SSR",
+        "icon": "assets/memories/washio_memory.png",
+        "effect": "Aumenta el atributo bloqueo del portador en un 12%. Cuando el portador bloquea y el rival ejecuta un remate crítico, se garantiza que el bloqueo será crítico. Si el resultado del bloqueo no es MALO, el atributo Bloqueo del portador aumenta en un 3% y se puede acumular ahsta 3 veces."
+      }
+    ],
+    "statsMax": {
+      "atqRapido": 0,
+      "atqPoderoso": 0,
+      "colocacion": 0,
+      "saque": 0,
+      "recepcion": 0,
+      "bloqueo": 0,
+      "recuperacion": 0
+    }
+  },
+  {
+    "id": "yaku-ssr",
+    "name": "Morisuke Yaku",
+    "avatar": "assets/characters/yaku.png",
+    "school": "Nekoma",
+    "role": "Libero",
+    "rarity": "SSR",
+    "updated": "2025-10-03 00:00:00",
+    "statsMax": {
+      "atqRapido": 232,
+      "atqPoderoso": 1131,
+      "colocacion": 1253,
+      "saque": 1131,
+      "recepcion": 1391,
+      "bloqueo": 1098,
+      "recuperacion": 1323
+    },
+    "tags": [
+      "nekoma",
+      "soporte",
+      "recepción",
+      "potenciador",
+      "soporte",
+      "libero"
+    ],
+    "skills": [
+      {
+        "name": "Amo de la defensa",
+        "icon": "assets/skills/morisuke_amo_de_la_defensa_movimiento.png",
+        "effect": "Mientras MORISUKE YAKU está en la cancha, cada vez que tu lado realiza una Recepción que no sea MALA, aumenta sus atributos de Recepción y Recuperación en 3%; se acumula hasta 5 veces."
+      },
+      {
+        "name": "Escudo Confiable",
+        "icon": "assets/skills/morisuke_escudo_confiable_movimiento.png",
+        "effect": "Mientras MORISUKE YAKU está en la cancha, aumenta el poder de Remate Rápido de tus jugadores de tipo Ataque Rápido en 8% de su atributo de Ataque Rápido."
+      },
+      {
+        "name": "Libero Definitivo",
+        "icon": "assets/skills/morisuke_libero_definitivo_movimiento.png",
+        "effect": "Aumenta el atributo de Recepción de MORISUKE YAKU en 11%. Cuando su resultado de Recepción es NORMAL, se convierte a PERFECTO."
+      },
+      {
+        "name": "Definitiva - Recepción confiable",
+        "icon": "assets/skills/morisuke_recepcion_confiable_movimiento.png",
+        "effect": "MORISUKE YAKU realiza una Recepción con el 240% de su atributo de recepción."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Recepción Suprema",
+        "icon": "assets/potentials/recepcion_suprema.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al recibir un Remate Rápido, el poder de esta recepción tiene un aumento equivalente al 30% del atributo Recepción.",
+        "notas": ""
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al lograr una recepción PERFECTA, el poder del siguiente remate de tu equipo aumenta en un 30% de los atributos Ataque Rápido/Poderoso del rematador.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de Ataque Rápido/Recepción: MORISUKE YAKU",
+        "rarity": "SSR",
+        "icon": "assets/memories/yaku_memory.png",
+        "effect": "Cuando el portador recibe, aumenta el atributo Recepción en un 2%. Se puede acumular hasta 5 veces. Cuando el portador consigue una recepción PERFECTA, el poder del siguiente Remate Rápido de tu equipo recibe un aumento equivalente al 16% del atributo ataque rápido del rematador."
+      }
+    ]
+  },
+  {
+    "id": "yamagata-ssr",
+    "name": "Hayato Yamagata",
+    "avatar": "assets/characters/yamagata.png",
+    "school": "Shiratorizawa",
+    "role": "Libero",
+    "rarity": "SSR",
+    "updated": "2025-10-02 00:00:00",
+    "statsMax": {
+      "atqRapido": 232,
+      "atqPoderoso": 1131,
+      "colocacion": 1248,
+      "saque": 1131,
+      "recepcion": 1385,
+      "bloqueo": 1098,
+      "recuperacion": 1322
+    },
+    "tags": [
+      "shiratorizawa",
+      "libero",
+      "soporte"
+    ],
+    "skills": [
+      {
+        "name": "Rendimiento Estable",
+        "icon": "assets/skills/hayato_rendimiento_estable_movimiento.png",
+        "effect": "Aumenta los reflejos de YAMAGATA en un 13%"
+      },
+      {
+        "name": "Defensa Amplia",
+        "icon": "assets/skills/hayato_defensa_amplia_movimiento.png",
+        "effect": "YAMAGATA realiza una Recuperación con el 120% de su atributo Recuperación."
+      },
+      {
+        "name": "Reflejos Rápidos",
+        "icon": "assets/skills/hayato_reflejos_rapidos_movimiento.png",
+        "effect": "Cuando el oponente logra un Bloqueo PERFECTO, la Recuperación de YAMAGATA obtiene un 40% adicional basado en su atributo Recuperación."
+      },
+      {
+        "name": "Definitiva - Recepción Sólida",
+        "icon": "assets/skills/hayato_definitiva_recepcion_solida_movimiento.png",
+        "effect": "YAMAGATA realiza una Recepción con el 235% de su atributo Recepción."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Recepción Suprema",
+        "icon": "assets/potentials/recepcion_suprema.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al recibir un Remate Rápido, el poder de esta recepción tiene un aumento equivalente al 30% del atributo Recepción.",
+        "notas": ""
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "Aumenta el atributo Recepción en un 15%.",
+        "set4": "Al lograr una recepción PERFECTA, el poder del siguiente remate de tu equipo aumenta en un 30% de los atributos Ataque Rápido/Poderoso del rematador.",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciación de Recepción: HAYATO YAMAGATA",
+        "rarity": "SSR",
+        "icon": "assets/memories/yamagata_memory.png",
+        "effect": "Aumenta el atributo Recepción del portador en un 10% y aumenta los reflejos del portador en un 6% al usar la definitiva de recepción."
+      }
+    ]
+  }
+]

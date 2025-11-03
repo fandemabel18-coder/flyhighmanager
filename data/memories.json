@@ -1,0 +1,12 @@
+[
+  {
+    "id": "mem-shirabu-pase-boost",
+    "name": "Potenciador de Pase: Kenjirō Shirabu",
+    "rarity": "SSR",
+    "image": "assets/memories/shirabu_pase_boost.png",
+    "effect": "+10% precisión de pase",
+    "notes": "Sinergiza con sets de control",
+    "charId": "kenjiro_shirabu_ssr"   
+    
+  }
+]

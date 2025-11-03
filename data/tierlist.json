@@ -1,0 +1,48 @@
+{
+  "PvE": [
+    {
+      "tier": "S",
+      "characters": [
+        "Reon Ōhira"
+      ],
+      "notes": "Provisional."
+    },
+    {
+      "tier": "A",
+      "characters": [
+        "Kenjirō Shirabu"
+      ],
+      "notes": ""
+    },
+    {
+      "tier": "B",
+      "characters": [
+        "Morisuke Yaku"
+      ],
+      "notes": ""
+    }
+  ],
+  "PvP": [
+    {
+      "tier": "S",
+      "characters": [
+        "Morisuke Yaku"
+      ],
+      "notes": "Provisional."
+    },
+    {
+      "tier": "A",
+      "characters": [
+        "Kenjirō Shirabu"
+      ],
+      "notes": ""
+    },
+    {
+      "tier": "B",
+      "characters": [
+        "Reon Ōhira"
+      ],
+      "notes": ""
+    }
+  ]
+}

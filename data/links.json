@@ -1,0 +1,228 @@
+[
+  {
+    "id": "guide_protection",
+    "nombre": "Guía Educativa de 'Protección'",
+    "descripcionES": "La Recepción de Yaku Morisuke y el Ataque rápido de Haiba Lev aumentan.",
+    "conjunto": [
+      "yaku-ssr",
+      "lev-ssr"
+    ],
+    "niveles": [
+      {
+        "lvl": 1,
+        "bono": {
+          "yaku.recepcion_pct": 6,
+          "lev.ataque_rapido_pct": 6
+        }
+      },
+      {
+        "lvl": 2,
+        "bono": {
+          "yaku.recepcion_pct": 7,
+          "lev.ataque_rapido_pct": 7
+        }
+      },
+      {
+        "lvl": 3,
+        "bono": {
+          "yaku.recepcion_pct": 8,
+          "lev.ataque_rapido_pct": 8
+        }
+      },
+      {
+        "lvl": 4,
+        "bono": {
+          "yaku.recepcion_pct": 9,
+          "lev.ataque_rapido_pct": 9
+        }
+      },
+      {
+        "lvl": 5,
+        "bono": {
+          "yaku.recepcion_pct": 10,
+          "lev.ataque_rapido_pct": 10
+        }
+      }
+    ]
+  },
+  {
+    "id": "link_gemelos_fuertes",
+    "nombre": "Los gemelos más fuertes de la preparatoria",
+    "descripcionES": "Descripción genérica; la UI usará la de nivel si existe.",
+    "miembros": [
+      "atsumu-ur",
+      "osamu-ur"
+    ],
+    "conjunto": [
+      "atsumu-ur",
+      "osamu-ur"
+    ],
+    "niveles": [
+      {
+        "lvl": 1,
+        "bono": {
+          "2": "Nivel 1: Remate rápido potenciado con 265% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+        }
+      },
+      {
+        "lvl": 2,
+        "bono": {
+          "3": "Nivel 2: Remate rápido potenciado con 280% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+        }
+      },
+      {
+        "lvl": 3,
+        "bono": {
+          "4": "Nivel 3: Remate rápido potenciado con 295% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+        }
+      },
+      {
+        "lvl": 4,
+        "bono": {
+          "5": "Nivel 4: Remate rápido potenciado con 310% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+        }
+      },
+      {
+        "lvl": 5,
+        "bono": {
+          "6": "Nivel 5: Remate rápido potenciado con 325% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+        }
+      }
+    ]
+  },
+  {
+    "id": "link_cerebro_torre",
+    "nombre": "Cerebro y Torre de Control",
+    "descripcionES": null,
+    "miembros": [
+      "kenma-ssr",
+      "kuro-ur"
+    ],
+    "conjunto": [
+      "kenma-ssr",
+      "kuro-ur"
+    ],
+    "niveles": [
+      {
+        "lvl": 1,
+        "bono": {
+          "2": "Nivel 1: Remate rápido potenciado con 265% del Ataque Rápido."
+        }
+      },
+      {
+        "lvl": 2,
+        "bono": {
+          "3": "Nivel 2: Remate rápido potenciado con 280% del Ataque Rápido."
+        }
+      },
+      {
+        "lvl": 3,
+        "bono": {
+          "4": "Nivel 3: Remate rápido potenciado con 295% del Ataque Rápido."
+        }
+      },
+      {
+        "lvl": 4,
+        "bono": {
+          "5": "Nivel 4: Remate rápido potenciado con 310% del Ataque Rápido."
+        }
+      },
+      {
+        "lvl": 5,
+        "bono": {
+          "6": "Nivel 5: Remate rápido potenciado con 325% del Ataque Rápido."
+        }
+      }
+    ]
+  },
+  {
+    "id": "link_estrella_colocador",
+    "nombre": "Estrella Indiscutible y Colocador Reservado",
+    "descripcionES": null,
+    "miembros": [
+      "ushijima-ur",
+      "shirabu-ssr"
+    ],
+    "conjunto": [
+      "ushijima-ur",
+      "shirabu-ssr"
+    ],
+    "niveles": [
+      {
+        "lvl": 1,
+        "bono": {
+          "2": "Nivel 1: Remate Poderoso potenciado con 260% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+        }
+      },
+      {
+        "lvl": 2,
+        "bono": {
+          "3": "Nivel 2: Remate Poderoso potenciado con 275% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+        }
+      },
+      {
+        "lvl": 3,
+        "bono": {
+          "4": "Nivel 3: Remate Poderoso potenciado con 290% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+        }
+      },
+      {
+        "lvl": 4,
+        "bono": {
+          "5": "Nivel 4: Remate Poderoso potenciado con 305% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+        }
+      },
+      {
+        "lvl": 5,
+        "bono": {
+          "6": "Nivel 5: Remate Poderoso potenciado con 320% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+        }
+      }
+    ]
+  },
+  {
+    "id": "Amigos_secundaria_preparatoria",
+    "nombre": "Amigos de secundaria y preparatoria (Habilidad de Vínculo)",
+    "descripcionES": null,
+    "miembros": [
+      "hoshiumi-ur",
+      "hirugami-ur"
+    ],
+    "conjunto": [
+      "hoshiumi-ur",
+      "hirugami-ur"
+    ],
+    "niveles": [
+      {
+        "lvl": 1,
+        "bono": {
+          "2": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 6% y el [Bloqueo] de los aliados en la línea delantera aumenta 6%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+        }
+      },
+      {
+        "lvl": 2,
+        "bono": {
+          "3": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 7% y el [Bloqueo] de los aliados en la línea delantera aumenta 7%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+        }
+      },
+      {
+        "lvl": 3,
+        "bono": {
+          "4": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 8% y el [Bloqueo] de los aliados en la línea delantera aumenta 8%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+        }
+      },
+      {
+        "lvl": 4,
+        "bono": {
+          "5": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 9% y el [Bloqueo] de los aliados en la línea delantera aumenta 9%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+        }
+      },
+      {
+        "lvl": 5,
+        "bono": {
+          "6": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 10% y el [Bloqueo] de los aliados en la línea delantera aumenta 10%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+        }
+      }
+    ]
+  }
+]

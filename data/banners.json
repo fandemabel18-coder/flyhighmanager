@@ -1,0 +1,22 @@
+[
+  {
+    "id": "ur-sept",
+    "title": "UR — Korai Hoshiumi",
+    "type": "UR",
+    "start": "22/10/2025",
+    "end": "05-11-2025",
+    "characters": ["Korai Hoshiumi"],
+    "image": "assets/banners/banner-korai.jpg",
+    "notes": "Banner UR confirmado"
+  },
+  {
+    "id": "ssr-sept",
+    "title": "SSR — Michinari Akagi - Hitoshi Ginjima - Aran Ojiro",
+    "type": "SSR",
+    "start": "29-10-2025",
+    "end": "12-11-2025",
+    "characters": ["Michinari Akagi - Hitoshi Ginjima - Aran Ojiro"],
+    "image": "assets/banners/banner-ginjima-aran-akagi.jpg",
+    "notes": "Banner SSR confirmado"
+  }
+]

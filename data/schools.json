@@ -1,0 +1,11 @@
+[
+  {"id":"karasuno","nombre":"Karasuno","bonos":[{"stat":"ataque_rapido","tipo":"porc","valor":10},{"stat":"ataque_poderoso","tipo":"porc","valor":10}],"estado":"disponible"},
+  {"id":"nekoma","nombre":"Nekoma","bonos":[{"stat":"recepcion","tipo":"porc","valor":15}],"estado":"disponible"},
+  {"id":"date","nombre":"Date Tech","bonos":[{"stat":"bloqueo","tipo":"porc","valor":15}],"estado":"disponible"},
+  {"id":"shiratorizawa","nombre":"Shiratorizawa","bonos":[{"stat":"percepcion","tipo":"porc","valor":10},{"stat":"fuerza","tipo":"porc","valor":10}],"estado":"disponible"},
+  {"id":"fukurodani","nombre":"Fukurodani","bonos":[{"stat":"moral","tipo":"flat","valor":20}],"estado":"disponible"},
+  {"id":"aoba_johsai","nombre":"Aoba Johsai","bonos":[{"stat":"ataque_poderoso","tipo":"porc","valor":15}],"estado":"disponible"},
+  {"id":"itachiyama","nombre":"Academia Itachiyama","bonos":[],"estado":"no_disponible_global"},
+  {"id":"kamomedai","nombre":"Preparatoria Kamomedai","bonos":[],"estado":"no_disponible_global"},
+  {"id":"inarizaki","nombre":"Escuela Secundaria Inarizaki","bonos":[{"stat":"tecnica_ofensiva","tipo":"porc","valor":5},{"stat":"tecnica_defensiva","tipo":"porc","valor":5}],"estado":"disponible"}
+]

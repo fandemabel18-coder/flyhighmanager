@@ -1,0 +1,19 @@
+{
+  "period": "2025-10",
+  "video_top": [
+    {
+      "guide_id": "hinata-guia-basica",
+      "views": 5300
+    },
+    {
+      "guide_id": "kageyama-trucos-servicio",
+      "views": 4700
+    }
+  ],
+  "written_top": [
+    {
+      "guide_id": "ushijima-tacticas-defensivas",
+      "views": 2100
+    }
+  ]
+}

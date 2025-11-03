@@ -1,0 +1,23 @@
+[
+  {
+    "id": "fandemabel",
+    "name": "FanDeMabel",
+    "avatar": "/assets/creators/fandemabel.png",
+    "verified": true,
+    "channels": {
+      "youtube": "https://youtube.com/@FanDeMabel",
+      "x": "https://x.com/FanDeMabel"
+    },
+    "bio": "Creador de FlyHighManager y guías de Haikyu FlyHigh."
+  },
+  {
+    "id": "kazuplayer",
+    "name": "KazuPlayer",
+    "avatar": "/assets/creators/kazuplayer.png",
+    "verified": false,
+    "channels": {
+      "youtube": "https://youtube.com/@KazuPlayer"
+    },
+    "bio": "Guías defensivas y análisis de meta."
+  }
+]
