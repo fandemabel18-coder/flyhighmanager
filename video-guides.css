@@ -1,0 +1,453 @@
+
+.video-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+@media (max-width:1280px){.video-grid{grid-template-columns:repeat(8,1fr)}}
+@media (max-width:960px){.video-grid{grid-template-columns:repeat(6,1fr);gap:12px}}
+@media (max-width:640px){.video-grid{grid-template-columns:repeat(4,1fr);gap:10px}}
+.video-grid .card{grid-column:span 3;display:flex;flex-direction:column;border-radius:12px;border:1px solid rgba(0,0,0,0.08);overflow:hidden;background:rgba(255,255,255,0.96);box-shadow:0 1px 2px rgba(0,0,0,0.04);transition:transform .15s ease,box-shadow .15s ease}
+@media (max-width:1280px){.video-grid .card{grid-column:span 4}}
+@media (max-width:960px){.video-grid .card{grid-column:span 3}}
+@media (max-width:640px){.video-grid .card{grid-column:span 4}}
+.video-grid .card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+.tile-thumb{position:relative;width:100%;aspect-ratio:16/9;background:#f2f2f2;overflow:hidden}
+.tile-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.tile-body{padding:12px 12px 14px;display:flex;flex-direction:column;gap:6px}
+.tile-name{font-size:1rem;font-weight:800;line-height:1.25;max-height:calc(1.25em * 2);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.tile-meta{font-size:.85rem;opacity:.85;display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-block;padding:2px 8px;font-size:.75rem;border-radius:999px;background:rgba(0,0,0,0.06);margin-right:6px}
+.btn{display:inline-block;padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:800;font-size:.9rem;border:1px solid rgba(0,0,0,0.12);background:#fff}
+.btn:hover{filter:brightness(.96)}
+#tab-video-guides h2{text-align:center;margin-bottom:6px}
+#tab-video-guides .banner-meta{text-align:center;max-width:900px;margin:0 auto 18px auto}
+.video-card .video-embed img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.video-card .video-meta{padding:8px 0}
+
+/* Cabecera de panel (si no tienes estilos globales) */
+.panel-head .panel-title { font-weight: 800; }
+.panel-head .panel-meta { color: inherit; }
+
+/* CTA creadores */
+.cta-creators { margin: 22px 0; }
+.cta-creators__inner {
+  text-align: center;
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px dashed rgba(255,122,0,.45);
+  background: linear-gradient(90deg, rgba(255,122,0,.12), rgba(255,200,0,.10));
+}
+.cta-creators__inner h3 { margin: 0 0 6px 0; }
+.cta-creators__inner p { margin: 0 0 12px 0; opacity: .9; }
+.btn--primary {
+  background: #ff7a00;
+  border: 1px solid #d76500;
+  color: #111;
+  font-weight: 800;
+}
+.btn--primary:hover { filter: brightness(.96); }
+/* --- Videos Destacados (Inicio) a pantalla completa --- */
+#recommended-videos{
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  width: 100%;
+  align-items: stretch;
+}
+
+/* Card más grande y centrada visualmente */
+#recommended-videos .video-card{
+  background: rgba(255,255,255,0.96); /* ajusta al tema que uses */
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+#recommended-videos .video-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Miniatura full-width y 16:9 */
+#recommended-videos .video-embed{
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #0f1117; /* o tu color de panel */
+}
+#recommended-videos .video-embed img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Texto más legible */
+#recommended-videos .video-meta{
+  padding: 10px 12px 12px;
+  font-size: 0.95rem;
+}
+#recommended-videos .video-meta b{ font-weight: 800; }
+#recommended-videos .btn{
+  display: inline-block;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #fff;
+}
+/* --- Videos Destacados: 3 columnas desktop, 2 tablet, 1 móvil --- */
+#recommended-videos{
+  display: grid !important;
+  gap: 16px;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+}
+
+/* <= 1200px: 2 columnas */
+@media (max-width: 1200px){
+  #recommended-videos{
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
+/* <= 700px: 1 columna */
+@media (max-width: 700px){
+  #recommended-videos{
+    grid-template-columns: 1fr;
+  }
+}
+/* --- Fix: tarjetas de Destacados no se cortan --- */
+#recommended-videos .video-card{
+  display: flex;                /* miniatura arriba + meta abajo */
+  flex-direction: column;
+  height: auto !important;      /* sin alturas forzadas */
+  min-height: 0;
+  overflow: visible;            /* evita que se recorte el footer de la tarjeta */
+  border-radius: 12px;
+}
+
+/* Mueve el "recorte" solo a la miniatura para mantener bordes redondeados */
+#recommended-videos .video-embed{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;             /* solo la imagen recorta, no toda la card */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: #0f1117;          /* tu color de panel */
+}
+#recommended-videos .video-embed img{
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+/* Cuerpo de la tarjeta con espacio suficiente */
+#recommended-videos .video-meta{
+  padding: 12px 12px 14px;
+  display: flex; flex-direction: column; gap: 6px;
+  border-bottom-left-radius: 12px; 
+  border-bottom-right-radius: 12px;
+}
+
+/* Por si alguna regla global daba ancho/alto fijo a .card */
+#recommended-videos .card{
+  height: auto !important;
+  min-height: 0;
+}
+
+/* === VIDEOS DESTACADOS (limpio, consistente) ======================= */
+#recommended-videos{
+  display: grid !important;
+  gap: 16px;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(320px, 1fr)); /* 3 col desktop */
+}
+
+/* <= 1200px: 2 columnas */
+@media (max-width: 1200px){
+  #recommended-videos{
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+
+/* <= 700px: 1 columna */
+@media (max-width: 700px){
+  #recommended-videos{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* La CARD recorta todo y controla el borde redondeado */
+#recommended-videos .video-card,
+#recommended-videos .card{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 0;
+  border-radius: 12px;
+  overflow: hidden; /* recorte parejo */
+  background: rgba(255,255,255,0.96); /* ajusta a tu tema si es oscuro */
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+#recommended-videos .video-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* Miniatura 16:9, sin radios (los aporta la card) */
+#recommended-videos .video-embed{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0f1117; /* o tu color de panel */
+  border-radius: 0;
+}
+#recommended-videos .video-embed img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Cuerpo de la tarjeta, sin radios (los aporta la card) */
+#recommended-videos .video-meta{
+  padding: 12px 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-radius: 0; /* importante */
+}
+
+/* Botón y tipografía */
+#recommended-videos .video-meta b{ font-weight: 800; }
+#recommended-videos .btn{
+  display: inline-block;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  background: #fff;
+}
+
+/* Limita títulos muy largos a 2 líneas para evitar empujes raros */
+#recommended-videos .video-meta .title,
+#recommended-videos .video-meta .tile-name{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Ayuda a que los hijos no fuercen anchos extra */
+#recommended-videos > * { min-width: 0; }
+
+
+/* === Video Guides layout === */
+.guides-hero{max-width:1200px;margin:0 auto 14px;padding:0 16px}
+.guides-hero h2{font-size:clamp(28px,4vw,44px);margin:0 0 6px;text-align:center}
+.guides-lead,.guides-meta{text-align:center;opacity:.9}
+.guides-wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+
+.featured-grid{display:grid;gap:18px;grid-template-columns:repeat(3,minmax(0,1fr));margin:10px 0 18px}
+@media (max-width:1024px){.featured-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.featured-grid{grid-template-columns:1fr}}
+
+.free-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.video-card.small .video-title{font-size:.95rem}
+
+
+/* === Home / Videos Destacados — tema oscuro (override) === */
+#recommended-videos .card,
+#recommended-videos .video-card,
+#recommended-videos .tile {
+  background: #0f172a !important;
+  color: #e5e7eb !important;
+  border: 1px solid #1f2a40 !important;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+}
+#recommended-videos .tile-meta,
+#recommended-videos .banner-meta { color: #9fb0c3 !important; }
+#recommended-videos b { color: #ffffff !important; }
+#recommended-videos .video-embed { background: #0b1020; }
+#recommended-videos iframe { border: 0; }
+
+
+/* ====== PREMIUM (Home Destacados) — Borde de rareza + badge + shimmer ====== */
+#recommended-videos .video-card{
+  position: relative;
+  isolation: isolate; /* keeps effects contained */
+}
+
+/* Gradient border via ::before and CSS mask, animated slowly */
+#recommended-videos .video-card::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius: 14px;
+  background: linear-gradient(60deg, rgba(255,215,128,.8), rgba(255,245,200,.2), rgba(255,215,128,.8)) 0% 50% / 200% 200%;
+  /* default (UR-ish); will override per [data-rare] below */
+  -webkit-mask: 
+     linear-gradient(#000 0 0) content-box, 
+     linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  padding: 1px; /* border thickness */
+  opacity: .45;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  animation: rareBorderPan 10s linear infinite;
+}
+#recommended-videos .video-card:hover::before{ opacity: .75; }
+
+/* Halo muy suave al hover */
+#recommended-videos .video-card:hover{
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+
+/* Variantes por rareza */
+#recommended-videos .video-card[data-rare="SP"]::before{
+  background: linear-gradient(60deg, #FFD700, #FFE9A3, #FFC107, #FFF1BF) 0% 50% / 200% 200%;
+}
+#recommended-videos .video-card[data-rare="UR"]::before{
+  background: linear-gradient(60deg, #22D3EE, #A5F3FC, #06B6D4, #CFFAFE) 0% 50% / 200% 200%;
+}
+
+/* Shimmer diagonal sutil en hover */
+#recommended-videos .video-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:12px;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.06) 15%, transparent 30%) 0 0 / 200% 100% no-repeat;
+  opacity: 0;
+  transition: opacity .2s ease;
+  z-index: 0;
+}
+#recommended-videos .video-card:hover::after{
+  opacity: .9;
+  animation: rareShimmer 1.8s ease-out;
+}
+
+/* Badge de rareza (pill) arriba-izquierda */
+#recommended-videos .rare-badge{
+  position:absolute;
+  top:10px; left:10px;
+  z-index:1;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.25);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+#recommended-videos .rare-badge.sp{
+  color:#2a1b00;
+  background: linear-gradient(180deg, #FFE79A, #FFD34D);
+  border-color:#E0B100;
+}
+#recommended-videos .rare-badge.ur{
+  color:#032028;
+  background: linear-gradient(180deg, #9CECFB, #65C7F7);
+  border-color:#3BB4E7;
+}
+
+/* Reduce motion respects */
+@media (prefers-reduced-motion: reduce){
+  #recommended-videos .video-card::before{ animation: none; }
+  #recommended-videos .video-card:hover::after{ animation: none; }
+}
+
+/* Keyframes */
+@keyframes rareBorderPan{
+  0% { background-position: 0% 50%; }
+  100%{ background-position: 200% 50%; }
+}
+@keyframes rareShimmer{
+  0%{ background-position: -200% 0; }
+  100%{ background-position: 200% 0; }
+}
+
+
+/* === Guías en Video — Featured (premium) igual a Home ====================== */
+#video-guides-featured{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:18px;
+  margin:10px 0 18px;
+}
+@media (max-width:1024px){ #video-guides-featured{ grid-template-columns:repeat(2,1fr);} }
+@media (max-width:640px){  #video-guides-featured{ grid-template-columns:1fr; } }
+
+#video-guides-featured .video-card{
+  position: relative;
+  background: #0f172a;
+  color: #e5e7eb;
+  border: 1px solid #1f2a40;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  isolation: isolate;
+}
+#video-guides-featured .video-card::before{
+  content:""; position:absolute; inset:-1px; border-radius:15px; padding:1px;
+  background: linear-gradient(60deg, #22D3EE, #A5F3FC, #06B6D4, #CFFAFE) 0% 50% / 200% 200%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity:.45; pointer-events:none; transition: opacity .2s ease;
+  animation: rareBorderPan 10s linear infinite;
+}
+#video-guides-featured .video-card[data-rare="SP"]::before{
+  background: linear-gradient(60deg, #FFD700, #FFE9A3, #FFC107, #FFF1BF) 0% 50% / 200% 200%;
+}
+#video-guides-featured .video-card:hover::before{ opacity:.75; }
+#video-guides-featured .video-card::after{
+  content:""; position:absolute; inset:0; border-radius:12px;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.06) 15%, transparent 30%) 0 0 / 200% 100% no-repeat;
+  opacity:0; transition: opacity .2s ease;
+}
+#video-guides-featured .video-card:hover::after{ opacity:.9; animation: rareShimmer 1.8s ease-out; }
+
+#video-guides-featured .rare-badge{
+  position:absolute; top:10px; left:10px; z-index:1;
+  font-size:12px; font-weight:800; letter-spacing:.3px;
+  padding:4px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.25);
+  backdrop-filter: blur(2px); box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+#video-guides-featured .rare-badge.sp{ color:#2a1b00; background:linear-gradient(180deg,#FFE79A,#FFD34D); border-color:#E0B100; }
+#video-guides-featured .rare-badge.ur{ color:#032028; background:linear-gradient(180deg,#9CECFB,#65C7F7); border-color:#3BB4E7; }
+
+/* === Guías en Video — Free (grid de 5 por fila) =========================== */
+#video-guides-free{
+  display:grid;
+  grid-template-columns: repeat(5, minmax(0,1fr));
+  gap:16px;
+  margin:16px 0 28px;
+}
+@media (max-width:1200px){ #video-guides-free{ grid-template-columns:repeat(4,1fr);} }
+@media (max-width:900px){  #video-guides-free{ grid-template-columns:repeat(3,1fr);} }
+@media (max-width:640px){  #video-guides-free{ grid-template-columns:repeat(2,1fr);} }
+
+#video-guides-free .video-card{
+  background:#0f172a; color:#e5e7eb;
+  border:1px solid #1f2a40; border-radius:12px; overflow:hidden;
+}
+
+/* CTA separador */
+.cta-creators{ margin:18px 0 12px; }
+.cta-creators__inner{
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px dashed rgba(255,255,255,.15);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  color: #dbe9f5;
+}
+.cta-creators a{ color:#9ae6ff; text-decoration: underline; }
+.cta-creators .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }

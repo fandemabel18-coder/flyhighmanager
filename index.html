@@ -12,12 +12,14 @@
 <meta name="keywords" content="Haikyu FlyHigh,banners,calendario,personajes,comparador,team builder,calculadora,UR,SSR,guías,estrategias">
   <link rel="stylesheet" href="sinergias.css">
   <link rel="stylesheet" href="/video-guides.css">
+  <link rel="stylesheet" href="/games/flyquiz15.css">
 </head>
 <body>
   <header class="app-header">
     <h1>FlyHigh Manager - Mini App</h1>
     <nav class="tabs">
       <button class="tab-btn active" data-tab="home">Inicio</button>
+      <button class="tab-btn" data-tab="games">Juegos</button>
       <button class="tab-btn" data-tab="characters">Personajes</button>
       <button class="tab-btn" data-tab="video-guides">Guías en Video</button>
       <button class="tab-btn" data-tab="written-guides">Guías Escritas</button>
@@ -88,7 +90,18 @@
     </div>
         </div>
       </div>
+    
+    <!-- GAMES -->
+    <section id="tab-games" class="tab">
+      <div class="card" style="max-width:980px">
+        <h2>Juegos</h2>
+        <div class="fhm-greeting"><p data-nick-greet data-section="Juegos — FlyQuiz"></p></div>
+        <p class="banner-meta">Modo 15×FlyQuiz (MVP). 15 preguntas, 20s c/u, 1 fallo = fin. Tu puntaje se envía al ranking global.</p>
+        <section id="games-flyquiz15"></section>
+      </div>
     </section>
+
+</section>
 
     <!-- CHARACTERS -->
     <!-- CHARACTERS -->
@@ -532,5 +545,10 @@ Basada en la versión Global de Haikyu FlyHigh. ¡Saca cuentas y asegura tu pity
     overwriteExisting: true
   });
 </script>
+
+  <!-- Social SDK + Juego FlyQuiz -->
+  <script type="module" src="/src/modules/social/social-sdk.js"></script>
+  <script type="module" src="/games/flyquiz15.js"></script>
+
 </body>
 </html>
