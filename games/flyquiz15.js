@@ -183,25 +183,49 @@ function setActiveStep(i) {
 }
 
 // ---- Banco de preguntas ----
+
 async function loadQuestions() {
+  async function fetchJson(url) {
+    const res = await fetch(url, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  }
   try {
-    const res = await fetch('/games/flyquiz15.questions.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('NO_JSON');
-    const data = await res.json();
-    if (!data || !Array.isArray(data.questions) || data.questions.length === 0) throw new Error('BAD_JSON');
-    state.questionsAll = data.questions.map((q, i) => ({
-      id: q.id ?? (i+1),
-      q: q.q ?? q.question ?? '',
-      options: q.options ?? [q.option_1, q.option_2, q.option_3, q.option_4].filter(Boolean),
-      a: typeof q.a === 'number' ? q.a : (typeof q.correct_index === 'number' ? q.correct_index : 0),
-      time_sec: typeof q.time_sec === 'number' ? q.time_sec : 20,
-      category: q.category ?? '',
-      difficulty: normalizeDiff(q.difficulty ?? 'Fácil')
-    })).filter(x => x.q && Array.isArray(x.options) && x.options.length === 4);
+    let data;
+    try {
+      data = await fetchJson('/games/flyquiz_questions.json');
+    } catch {
+      data = await fetchJson('/games/flyquiz15.questions.json');
+    }
+    const arr = Array.isArray(data) ? data : (Array.isArray(data?.questions) ? data.questions : []);
+    if (!arr.length) throw new Error('BAD_JSON');
+
+    state.questionsAll = arr.map((q, i) => {
+      const questionText = q.q ?? q.question ?? '';
+      const options = q.options ?? [q.option_1, q.option_2, q.option_3, q.option_4].filter(Boolean);
+      const correct =
+        (typeof q.a === 'number' ? q.a :
+        (typeof q.correct_index === 'number' ? q.correct_index :
+        (typeof q.correctIndex === 'number' ? q.correctIndex : 0)));
+      const timeSec =
+        (typeof q.time_sec === 'number' ? q.time_sec :
+        (typeof q.timeSec === 'number' ? q.timeSec : 20));
+
+      return {
+        id: q.id ?? (i + 1),
+        q: questionText,
+        options,
+        a: correct,
+        time_sec: timeSec,
+        category: q.category ?? '',
+        difficulty: normalizeDiff(q.difficulty ?? 'Fácil'),
+        hint: q.hint ?? '' // pista opcional desde el JSON
+      };
+    }).filter(x => x.q && Array.isArray(x.options) && x.options.length === 4);
   } catch (e) {
-    // fallback
     state.questionsAll = FALLBACK_QUESTIONS.map(q => ({...q, difficulty: normalizeDiff(q.difficulty || 'Fácil')}));
   }
+}
 }
 
 function normalizeDiff(d) {
@@ -414,14 +438,26 @@ function useGoogle(btn) {
   pauseForSeconds(30, `Tiempo para buscar (30 s). ${anchor}`);
 }
 
+
 function useHint(btn) {
-  markLLUsed(btn);
   const q = state.questions[state.idx];
-  const ansTxt = q.options[q.a];
-  const first = ansTxt ? ansTxt[0] : '';
-  const pista = q.category ? `Categoría: <b>${escapeHtml(q.category)}</b>`
-    : `La respuesta empieza con <b>${escapeHtml(first)}</b>.`;
+  const diff = normalizeDiff(q.difficulty || 'medio');
+  const step = state.idx + 1;
+  // Restringir: sólo #1–#10 y no difícil
+  if (diff === 'dificil' || step > 10) {
+    flashAside('“Ayúdame FanDeMabel” no está disponible en preguntas difíciles (#11–#15).', 5000);
+    return;
+  }
+  markLLUsed(btn);
+  const pista = q.hint ? escapeHtml(q.hint)
+    : (q.category ? `Categoría: <b>${escapeHtml(q.category)}</b>`
+      : (() => {
+          const ansTxt = q.options[q.a] || '';
+          const first = ansTxt ? ansTxt[0] : '';
+          return `La respuesta empieza con <b>${escapeHtml(first)}</b>.`;
+        })());
   flashAside(`Pista: ${pista}`, 8000);
+}
 }
 
 function useSwap(btn) {
