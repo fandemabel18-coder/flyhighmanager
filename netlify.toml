@@ -1,37 +1,10 @@
-# Netlify configuration for FlyHighManager (static SPA + serverless functions)
 [build]
-  command = ""
   publish = "."
 
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+  external_node_modules = ["pg"]
 
-# Single Page App fallback (all routes -> index.html)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Basic security headers (tweak as needed)
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "SAMEORIGIN"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
-
-# Prevent aggressive caching of JSON data used by the app
-[[headers]]
-  for = "/data/*"
-  [headers.values]
-    Cache-Control = "no-store"
-
-# CORS for Netlify Functions (leaderboards, etc.)
-[[headers]]
-  for = "/.netlify/functions/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Headers = "Content-Type"
-    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+[functions."*"]
+  node_bundler = "esbuild"
