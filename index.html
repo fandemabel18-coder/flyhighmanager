@@ -1,0 +1,536 @@
+<!-- FHM Greeting: If section ids differ, please add data-nick-greet where needed. -->
+<!DOCTYPE html>
+<html lang="es">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8276400064251270"
+     crossorigin="anonymous"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haikyu FlyHigh — Mini App (MVP)</title>
+  <link rel="stylesheet" href="styles.css" />
+<meta name="description" content="FlyHighManager: portal y herramientas para Haikyu FlyHigh. Banners activos, calendario, personajes, comparador, Team Builder y calculadora de recursos.">
+<meta name="keywords" content="Haikyu FlyHigh,banners,calendario,personajes,comparador,team builder,calculadora,UR,SSR,guías,estrategias">
+  <link rel="stylesheet" href="sinergias.css">
+  <link rel="stylesheet" href="/video-guides.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>FlyHigh Manager - Mini App</h1>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="home">Inicio</button>
+      <button class="tab-btn" data-tab="characters">Personajes</button>
+      <button class="tab-btn" data-tab="video-guides">Guías en Video</button>
+      <button class="tab-btn" data-tab="written-guides">Guías Escritas</button>
+      <button class="tab-btn" data-tab="team">Team Builder</button>
+      <button class="tab-btn" data-tab="tier">Tier List</button>
+      <button class="tab-btn" data-tab="calendar">Calendario</button>
+      <button class="tab-btn" data-tab="calc">Calculadora</button>
+      <button class="tab-btn" data-tab="about">Acerca de</button>
+      <a class="tab-btn" href="/contacto/">Contacto</a>
+      <button class="tab-btn" data-tab="legal">Legal</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="tab-home" class="tab active">
+      <div id="home-intro" class="card welcome">
+        <h2>🏐 Bienvenido a <span class="brand">FlyHighManager</span>🏐</h2>
+        <p>Tu herramienta como mánager de tus equipos en Haikyu FlyHigh.<br>
+        Aquí podrás organizar, planificar y optimizar tu plantel.</p>
+
+        <p>Infórmate sobre los banners actuales y futuros, administra tus personajes, usa la calculadora y revisa el meta global para sacar el máximo provecho de tus recursos.</p>
+
+        <p>Conviértete en un verdadero estratega y ¡lleva a tu equipo a la cima!</p>
+      </div>
+<section id="explora" class="card two-column">
+  <div class="left-column">
+    <h2>Explora FlyHighManager</h2>
+    <ul>
+      <li>🏐 <strong>Team Builder</strong> — crea equipos y visualiza sinergias y vínculos.</li>
+      <li>📘 <strong>Personajes</strong> — estadísticas, habilidades y recuerdos recomendados.</li>
+      <li>🧮 <strong>Calculadora</strong> — planifica recursos y pity (ajustada a UR/SSR).</li>
+      <li>📅 <strong>Calendario</strong> — consulta banners pasados, activos y futuros.</li>
+      <li>📊 <strong>Tier List</strong> — arma y comparte tus listas personalizadas.</li>
+    </ul>
+  </div>
+
+  <div class="right-column">
+    <h3>Sobre FlyHighManager</h3>
+    <p>
+      FlyHighManager es un proyecto fan hecho por y para la comunidad de <strong>Haikyuu FlyHigh</strong>.
+      Nuestro objetivo es centralizar información útil, estrategias y herramientas para ayudar a los jugadores a optimizar sus equipos y recursos.
+    </p>
+    <p>
+      Esta página no tiene relación oficial con los desarrolladores de Haikyuu FlyHigh. 
+      Todos los derechos y materiales pertenecen a sus respectivos creadores.
+    </p>
+    <p><em>Creado con cariño por <strong>FanDeMabel</strong> 🧡</em></p>
+  </div>
+</section>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Próximos SSR/UR</h3>
+<ul id="home-banners"></ul>
+<p class="banner-meta">
+  Aquí verás siempre los <b>banners activos</b> de Haikyu FlyHigh. Para consultar <b>banners pasados y futuros</b>,
+  ve a la pestaña <a href="#" class="tab-link" data-tab="calendar">Calendario</a>.
+</p>
+<small>Fuente: notas oficiales del juego</small>
+        </div>
+        <h3>Guías destacadas (Rarezas SP / UR)</h3>
+<p class="banner-meta">
+  Últimas <b>reviews</b>, <b>guías</b> y <b>comparativas</b> de la comunidad para mejorar tus equipos.
+</p>
+        <div id="recommended-videos" class="video-grid">
+      <!-- Renderizado por FHMGuides (featured:true) -->
+    </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHARACTERS -->
+    <!-- CHARACTERS -->
+<section id="tab-characters" class="tab">
+  <div class="characters-layout">
+    <!-- Columna izquierda: lista de personajes -->
+    <div class="characters-list characters-grid">
+      <div class="filters">
+        <input type="search" id="search" placeholder="Buscar por nombre..." />
+        <select id="filter-rarity">
+          <option value="">Rareza (todas)</option>
+          <option value="UR">UR</option>
+          <option value="SSR">SSR</option>
+          <option value="SR">SR</option>
+          <option value="R">R</option>
+        </select>
+        <select id="filter-role">
+          <option value="">Rol (todos)</option>
+          <option>Setter</option>
+          <option>Wing Spiker</option>
+          <option>Middle Blocker</option>
+          <option>Libero</option>
+          <option>Opposite</option>
+        </select>
+        <select id="filter-school">
+          <option value="">Escuela (todas)</option>
+          <option>Aoba Johsai</option>
+          <option>Shiratorizawa</option>
+          <option>Nekoma</option>
+          <option>Karasuno</option>
+        </select>
+      </div>
+
+      <div id="characters-list" class="cards-list"></div>
+      <dialog id="character-modal">
+        <article id="character-detail"></article>
+        <form method="dialog">
+          <button>Cerrar</button>
+        </form>
+      </dialog>
+    </div>
+
+    <!-- Columna derecha: comparador -->
+    <aside id="comparePanel" class="compare-panel">
+      <h2>Comparador</h2>
+      <div class="compare-selectors">
+        <div class="compare-slot" id="compare-slot-a">
+          <div class="compare-placeholder">Selecciona Personaje A</div>
+        </div>
+        <div class="compare-slot" id="compare-slot-b">
+          <div class="compare-placeholder">Selecciona Personaje B</div>
+        </div>
+      </div>
+
+      <div class="compare-table">
+        <h3>Stats Base</h3>
+        <table>
+          <thead>
+            <tr><th>Atributo</th><th>A</th><th>B</th><th>Dif</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ataque rápido</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>Ataque poderoso</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>Bloqueo</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>Recepción</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>Percepción</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="compare-actions">
+        <button id="compare-clear">Limpiar</button>
+        <button id="compare-swap">↔ Intercambiar</button>
+        <button id="compare-export">Exportar Imagen</button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+    
+    <!-- VIDEO GUIDES -->
+    <section id="tab-video-guides" class="tab">
+<div class="guides-hero">
+  <h2>Guías en Video</h2>
+<div class="fhm-greeting"><p data-nick-greet data-section="Guías en video"></p></div>
+
+  <p class="guides-lead">
+    📈 Sube de nivel en <b>Haikyu FlyHigh</b>: aprende composiciones, rotaciones y builds con videos de la comunidad.
+    Explora por 🧑‍🎓 personaje, 🏫 escuela o 🕹️ estilo de juego y encuentra tu próxima mejora.
+  </p>
+  <p class="guides-meta">🧠 Técnica · 🧩 Composiciones · 🎯 Rotaciones · 💠 Potentials · 🎰 Banners · ⚡ Tips rápidos</p>
+</div>
+
+<section class="guides-wrap">
+  <h3 class="block-title">Guías Destacadas</h3>
+  <div id="video-guides-featured" class="featured-grid"></div>
+
+  <!-- CTA entre secciones -->
+  <section class="cta-creators" aria-label="Convocatoria a creadores">
+    <div class="cta-creators__inner">
+      <h3>¿Quieres que tu guía aparezca aquí?</h3>
+      <p>Escríbeme por correo o Discord y la reviso. Si cumple los criterios editoriales, la publicamos.</p>
+      <p>
+        ✉️ <a href="mailto:fandemabel18@gmail.com">fandemabel18@gmail.com</a>
+        &nbsp;·&nbsp;
+        💬 Discord: <span class="mono">FanDeMabel#4438</span>
+      </p>
+    </div>
+  </section>
+
+  <h3 class="block-title">Otras guías que podrían interesarte</h3>
+  <div id="video-guides-free" class="free-grid"></div>
+</section>
+
+
+</section>
+
+      </div>
+    </section>
+
+    <!-- WRITTEN GUIDES -->
+    <section id="tab-written-guides" class="tab">
+      <div class="card">
+        <h2>Guías Escritas</h2>
+        <p class="banner-meta">Guías escritas, infografías y material visual.</p>
+        <div id="written-guides-grid" class="cards-list"></div>
+      </div>
+    </section>
+
+
+    <!-- TEAM BUILDER -->
+    <section id="tab-team" class="tab">
+      <div class="tb-screen">
+        <div class="tb-header">
+          <h1>Constructor de Equipos Haikyu Fly High</h1>
+          <div class="tb-actions">
+            <button id="tb-undo" class="tb-btn">Deshacer</button>
+            <button id="tb-clear" class="tb-btn">Limpiar</button>
+            <button id="tb-rotate" class="tb-btn tb-primary">Rotar formación</button>
+            <button id="tb-export" class="tb-btn">Exportar imagen</button>
+          </div>
+        </div>
+
+        <div class="tb-layout">
+          <!-- Panel de vínculos -->
+          <aside class="tb-side" id="tb-links-panel">
+            <div class="tb-card small">
+              <h3 style="margin-top:0">Vínculos</h3>
+              <div id="tb-links-summary">Próximamente</div>
+            </div>
+            <div class="tb-card small">
+              <h3 style="margin-top:0">Vínculo por Escuela</h3>
+              <div id="tb-school-links">Cálculo automático</div>
+            </div>
+          </aside>
+
+          <!-- Cancha + Banca -->
+          <div class="tb-field-wrap">
+            <div id="tb-field" class="tb-field">
+              <!-- Slots titulares (7) renderizados por JS -->
+            </div>
+
+            <div class="tb-bench-wrap">
+              <div class="tb-bench-header">
+                <h3 style="margin:0">Banca (máx. 6)</h3>
+                <span id="tb-bench-count">0/6</span>
+              </div>
+              <div id="tb-bench" class="tb-bench droptarget" data-pos="BENCH"></div>
+            </div>
+          </div>
+
+          <!-- Lista / Filtros -->
+          <aside class="tb-right">
+            <div class="tb-filters tb-card">
+              <input id="tb-search" type="text" placeholder="Buscar personajes… (ES / JP / EN)" />
+              <div class="tb-filter-row" style="display:flex;gap:8px;margin-top:8px">
+                <select id="tb-filter-escuela" style="flex:1">
+                  <option value="">Escuela (todas)</option>
+                </select>
+                <select id="tb-filter-rareza">
+                  <option value="">Rareza (todas)</option>
+                  <option>SP</option><option>UR</option><option>SSR</option>
+                  <option>SR</option><option>R</option><option>N</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="tb-list" class="tb-list">
+              <!-- Secciones por posición → cartas por rareza -->
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIER LIST -->
+   <section id="tab-tier" class="tab">
+  <h2 style="margin-bottom:12px">Tier List Jugadores Haikyu Fly High</h2>
+<div class="fhm-greeting"><p data-nick-greet data-section="Tier List"></p></div>
+
+
+  <!-- Topbar de controles -->
+  <div class="tl-topbar">
+    <div class="left">
+      <button id="tl-reset" class="btn">Reset</button>
+      <button id="tl-add-row" class="btn">Agregar fila</button>
+      <button id="tl-export-img" class="btn">Exportar imagen</button>
+      <button id="tl-export-json" class="btn">Exportar JSON</button>
+      <button id="tl-import-json" class="btn">Importar JSON</button>
+    </div>
+    <div class="right">
+      
+    </div>
+  </div>
+
+  <!-- Contenedor de 2 columnas -->
+  <div class="tl-wrap">
+    <!-- Columna izquierda: Pool de personajes -->
+    <aside class="tl-left" id="tl-pool">
+      <div class="tl-acc">
+        <div class="tl-acc-hd">Opuesto (OP) <span class="chev">▶</span></div>
+        <div class="tl-acc-body">
+          <div class="tl-subacc">
+            <div class="tl-subacc-hd">SP</div>
+            <div class="tl-grid" data-pos="OP" data-rarity="SP"></div>
+          </div>
+          <div class="tl-subacc">
+            <div class="tl-subacc-hd">UR</div>
+            <div class="tl-grid" data-pos="OP" data-rarity="UR"></div>
+          </div>
+          <div class="tl-subacc">
+            <div class="tl-subacc-hd">SSR</div>
+            <div class="tl-grid" data-pos="OP" data-rarity="SSR"></div>
+          </div>
+          <div class="tl-subacc">
+            <div class="tl-subacc-hd">SR</div>
+            <div class="tl-grid" data-pos="OP" data-rarity="SR"></div>
+          </div>
+          <div class="tl-subacc">
+            <div class="tl-subacc-hd">R</div>
+            <div class="tl-grid" data-pos="OP" data-rarity="R"></div>
+          </div>
+          <div class="tl-subacc">
+            <div class="tl-subacc-hd">N</div>
+            <div class="tl-grid" data-pos="OP" data-rarity="N"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-acc">
+        <div class="tl-acc-hd">Wing Spiker (WS) <span class="chev">▶</span></div>
+        <div class="tl-acc-body">
+          <div class="tl-subacc"><div class="tl-subacc-hd">SP</div><div class="tl-grid" data-pos="WS" data-rarity="SP"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">UR</div><div class="tl-grid" data-pos="WS" data-rarity="UR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">SSR</div><div class="tl-grid" data-pos="WS" data-rarity="SSR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">SR</div><div class="tl-grid" data-pos="WS" data-rarity="SR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">R</div><div class="tl-grid" data-pos="WS" data-rarity="R"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">N</div><div class="tl-grid" data-pos="WS" data-rarity="N"></div></div>
+        </div>
+      </div>
+
+      <div class="tl-acc">
+        <div class="tl-acc-hd">Middle Blocker (MB) <span class="chev">▶</span></div>
+        <div class="tl-acc-body">
+          <div class="tl-subacc"><div class="tl-subacc-hd">SP</div><div class="tl-grid" data-pos="MB" data-rarity="SP"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">UR</div><div class="tl-grid" data-pos="MB" data-rarity="UR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">SSR</div><div class="tl-grid" data-pos="MB" data-rarity="SSR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">SR</div><div class="tl-grid" data-pos="MB" data-rarity="SR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">R</div><div class="tl-grid" data-pos="MB" data-rarity="R"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">N</div><div class="tl-grid" data-pos="MB" data-rarity="N"></div></div>
+        </div>
+      </div>
+
+      <div class="tl-acc">
+        <div class="tl-acc-hd">Setter (S) <span class="chev">▶</span></div>
+        <div class="tl-acc-body">
+          <div class="tl-subacc"><div class="tl-subacc-hd">SP</div><div class="tl-grid" data-pos="S" data-rarity="SP"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">UR</div><div class="tl-grid" data-pos="S" data-rarity="UR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">SSR</div><div class="tl-grid" data-pos="S" data-rarity="SSR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">SR</div><div class="tl-grid" data-pos="S" data-rarity="SR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">R</div><div class="tl-grid" data-pos="S" data-rarity="R"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">N</div><div class="tl-grid" data-pos="S" data-rarity="N"></div></div>
+        </div>
+      </div>
+
+      <div class="tl-acc">
+        <div class="tl-acc-hd">Líbero (L) <span class="chev">▶</span></div>
+        <div class="tl-acc-body">
+          <div class="tl-subacc"><div class="tl-subacc-hd">SP</div><div class="tl-grid" data-pos="L" data-rarity="SP"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">UR</div><div class="tl-grid" data-pos="L" data-rarity="UR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">SSR</div><div class="tl-grid" data-pos="L" data-rarity="SSR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">SR</div><div class="tl-grid" data-pos="L" data-rarity="SR"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">R</div><div class="tl-grid" data-pos="L" data-rarity="R"></div></div>
+          <div class="tl-subacc"><div class="tl-subacc-hd">N</div><div class="tl-grid" data-pos="L" data-rarity="N"></div></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Columna derecha: Filas editables -->
+    <main class="tl-right">
+      <div id="tl-rows">
+        <!-- filas generadas por JS -->
+      </div>
+    </main>
+  </div>
+</section>
+
+    <!-- CALENDAR -->
+    <section id="tab-calendar" class="tab">
+<div class="card">
+        <h2>Calendario de Banners</h2>
+        <div id="cal-carousel" class="cal-box">
+          <button class="cal-nav cal-prev" aria-label="Mes anterior">‹</button>
+          <figure class="cal-figure">
+            <img id="cal-image" src="" alt="" loading="lazy" decoding="async">
+            <figcaption id="cal-title" class="cal-caption"></figcaption>
+          </figure>
+          <button class="cal-nav cal-next" aria-label="Mes siguiente">›</button>
+        </div>
+        <div id="cal-thumbs" class="cal-thumbs"></div>
+      </div>
+</section>
+
+    <!-- CALCULATOR -->
+    <section id="tab-calc" class="tab">
+      <div class="card" style="max-width:980px">
+        <h2>Calculadora de tiradas</h2>
+<div class="fhm-greeting"><p data-nick-greet data-section="Calculadora"></p></div>
+
+        <p class="banner-meta">Planifica como un verdadero mánager 🔥
+Basada en la versión Global de Haikyu FlyHigh. ¡Saca cuentas y asegura tu pity! <code></code>.</p>
+
+        <div class="calc-grid">
+          <div class="calc-col">
+            <label>Tipo de banner
+              <select id="calc-banner">
+                <option value="UR" selected>UR</option>
+                <option value="SSR">SSR</option>
+              </select>
+            </label>
+
+            <div class="calc-row-2">
+              <label>Diamantes actuales
+                <input id="calc-diamonds" type="number" inputmode="numeric" min="0" value="0">
+              </label>
+              <label>Tickets actuales
+                <input id="calc-tickets" type="number" inputmode="numeric" min="0" value="0">
+              </label>
+            </div>
+
+            <label>Días hasta el banner
+              <input id="calc-days" type="number" inputmode="numeric" min="0" value="0">
+            </label>
+
+            <fieldset class="calc-fieldset">
+              <legend>Bonos</legend>
+              <label class="chk"><input type="checkbox" id="calc-pass-normal"> Pass mensual (Normal) +90/día</label>
+              <label class="chk"><input type="checkbox" id="calc-pass-elite"> Pass mensual (Élite) +100/día</label>
+            </fieldset>
+
+            <div class="calc-row-3">
+              <button id="calc-preset-f2p"    type="button">Preset: F2P</button>
+              <button id="calc-preset-normal" type="button">Preset: Pass normal</button>
+              <button id="calc-preset-elite"  type="button">Preset: Pass élite</button>
+            </div>
+          </div>
+
+          <div class="calc-col">
+            <div class="calc-results card">
+              <h3>Resultados</h3>
+              <div id="calc-out"></div>
+              <div id="calc-note" class="banner-meta" style="margin-top:8px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="tab-about" class="tab">
+      <div class="card" style="max-width:900px">
+        <h2>Quiénes somos</h2>
+        <p><b>FlyHighManager</b> es una mini-app y guía de la comunidad para <i>Haikyu FlyHigh</i>. Nuestro objetivo es ofrecer información <b>clara y verificada</b> sobre banners, personajes, builds, potenciales y meta del juego. Todo el contenido se basa en <b>notas oficiales del juego</b> y pruebas propias. Cuando algo no ha sido confirmado aún, lo marcamos como tal.</p>
+        <ul>
+          <li><b>Independencia:</b> no estamos afiliados a Garena ni a los propietarios de Haikyu.</li>
+          <li><b>Créditos y marcas:</b> “Haikyu”, “Haikyu FlyHigh” y logotipos son marcas de sus dueños; su uso aquí es referencial.</li>
+          <li><b>Uso responsable:</b> si ves un dato desactualizado o erróneo, escríbenos y lo corregimos.</li>
+          <li><b>Monetización:</b> este sitio puede mostrar anuncios para sostener el proyecto; no vendemos datos personales.</li>
+        </ul>
+        <p class="banner-meta">Última actualización del sitio: 2025-09-22</p>
+      </div>
+    </section>
+<!-- LEGAL -->
+    <section id="tab-legal" class="tab">
+      <div class="card" style="max-width:900px">
+        <h2>Política de Privacidad</h2>
+        <p>Este sitio usa cookies y tecnologías similares para mejorar la experiencia del usuario y analizar el uso del sitio. Si eres usuario del Espacio Económico Europeo, Reino Unido o Suiza, verás un mensaje de consentimiento (CMP) proporcionado por Google o un tercero. Al continuar navegando, aceptas estas condiciones.</p>
+        <ul>
+          <li><b>Datos que tratamos:</b> métricas anónimas de uso y, si envías el formulario de contacto, tu nombre, email y mensaje.</li>
+          <li><b>Finalidad:</b> responder consultas, mejorar el sitio y mostrar anuncios.</li>
+          <li><b>Base legal:</b> tu consentimiento y nuestro interés legítimo en operar el sitio.</li>
+          <li><b>Conservación:</b> solo el tiempo necesario para atender tu solicitud o cumplir obligaciones legales.</li>
+          <li><b>Terceros:</b> Google AdSense/CMP puede tratar datos según sus propias políticas.</li>
+          <li><b>Derechos:</b> puedes solicitar acceso o eliminación de tus datos escribiendo a <a href="mailto:fandemabel18@gmail.com">fandemabel18@gmail.com</a>.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="max-width:900px">
+        <h2>Descargo de responsabilidad</h2>
+        <p><i>FlyHighManager</i> es un proyecto de fans. No estamos afiliados, asociados ni respaldados por Garena, ni por los titulares de derechos de “Haikyu” o “Haikyu FlyHigh”. Todas las marcas y logotipos mencionados pertenecen a sus respectivos dueños y se usan con fines informativos.</p>
+        <p>Nos esforzamos por ofrecer información precisa y actualizada. Aun así, el contenido puede contener errores o quedar desactualizado debido a cambios del juego o fuentes externas. Si encuentras un error, avísanos para corregirlo.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>© 2025 — FanDeMabel · <a href="#" class="tab-link" data-tab="legal">Legal</a> · <a href="/contacto/" class="footer-link">Contacto</a></small>
+  </footer>
+
+<link rel="stylesheet" href="/sinergias.css?v=3">
+
+<script defer src="/team-builder.js?v=3"
+        onload="console.log('team-builder OK')"
+        onerror="console.error('team-builder 404')"></script>
+
+<script defer src="/sinergias.view.js?v=3"
+        onload="console.log('sinergias.view OK')"
+        onerror="console.error('sinergias.view 404')"></script>
+
+<script src="/app.js?v=backup"></script>
+
+  <script src="/fhm-guides.module.js"></script>
+  <script>
+  window.FHMGuides && FHMGuides.init({
+    selectors: {
+      homeFeatured: '#recommended-videos',
+      gridVideo: '#video-guides-grid',
+      gridWritten: '#written-guides-grid'
+    },
+    useAutoYouTubeThumb: true,
+    overwriteExisting: true
+  });
+</script>
+</body>
+</html>
