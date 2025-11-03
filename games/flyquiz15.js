@@ -16,7 +16,15 @@ const $ = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 const setHtml = (sel, html) => { const el = $(sel); if (el) el.innerHTML = html; };
 
-function escapeHtml(s){return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&gt;','>':'&gt;','"':'&quot;',\"'\":'&#39;'}[c]));}
+function escapeHtml (s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&' : '&amp;',
+    '<' : '&lt;',
+    '>' : '&gt;',
+    '"' : '&quot;',
+    "'" : '&#39;'
+  })[c]);
+}
 function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
 function normalizeDiff(d){ const x=String(d||'').toLowerCase(); if(x.startsWith('f')) return 'Fácil'; if(x.startsWith('m')) return 'Medio'; if(x.startsWith('d')) return 'Difícil'; return 'Medio'; }
 
@@ -226,7 +234,7 @@ function endGame(){
   setHtml('#fq-body', `<div class="center"><h3>¡Fin de la partida!</h3><p>Puntaje final: <b>${state.score}</b> / ${TOTAL}</p></div>`);
   $('#fq-retry').style.display='inline-block';
   try{
-    if(state.match){ social.finishMatch({ matchId: state.match.matchId, nonce: state.match.nonce, score: state.score }); }
+    if(state.match){ social.finishMatch({ matchId: state.match?.matchId, nonce: state.match?.nonce, score: state.score }); }
     updateLeaderboard();
   }catch{}
 }
