@@ -1,36 +1,54 @@
 
-/* /games/flyquiz15.css — progreso, layout 2 columnas, comodines */
-.flyquiz.card{background:#0b1220;border:1px solid #1e2a44;border-radius:16px;padding:16px;margin:16px 0;color:#dbe5ff}
-.flyquiz__head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:12px;flex-wrap:wrap}
-.flyquiz__meta{display:flex;gap:12px;flex-wrap:wrap;font-size:.9rem;opacity:.9}
-.flyquiz__progress{flex:1;min-width:280px}
+/* /games/flyquiz15.css — Landing → Prestart → Juego (ancho y responsive) */
+
+.flyquiz-wrap{ width:min(1200px, 96vw); margin: 24px auto; }
+
+.card{background:#0b1220;border:1px solid #1e2a44;border-radius:16px;padding:16px;color:#dbe5ff;}
+
+.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;gap:12px}
+.hero__title{font-size:2.2rem;letter-spacing:.5px}
+.hero__desc{opacity:.9;max-width:720px}
+.hero__cta{margin-top:8px;min-width:220px}
+
+.flyquiz.card{padding:20px}
+.flyquiz__head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.flyquiz__meta{display:flex;gap:12px;flex-wrap:wrap;font-size:.95rem;opacity:.9}
+
+.flyquiz__progress{flex:1;min-width:320px}
 .flyquiz__progress .segments{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:6px}
 .flyquiz__progress .seg{position:relative;background:linear-gradient(90deg,#16213b,#1e2a44);border:1px solid #2d3a5c;border-radius:10px;padding:6px 8px;text-align:center;font-size:.85rem;opacity:.9}
 .flyquiz__progress .bullets{display:grid;grid-template-columns:repeat(15,1fr);gap:6px}
-.flyquiz__progress .step{background:#16213b;border:1px solid #2d3a5c;border-radius:999px;display:flex;align-items:center;justify-content:center;height:28px;font-weight:600;opacity:.9}
+.flyquiz__progress .step{background:#16213b;border:1px solid #2d3a5c;border-radius:999px;display:flex;align-items:center;justify-content:center;height:30px;font-weight:600;opacity:.95}
 .flyquiz__progress .step.active{outline:2px solid #7c3aed}
 .flyquiz__progress .step.done{background:#113a2a;border-color:#1b6f4a}
 .flyquiz__progress .step.fail{background:#3a1111;border-color:#7f1d1d}
-.flyquiz__grid{display:grid;grid-template-columns:1fr 320px;gap:16px}
+
+.flyquiz__grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
 @media (max-width: 980px){ .flyquiz__grid{grid-template-columns:1fr} .flyquiz__aside{order:2} }
+
 .flyquiz__main{min-width:0}
-.flyquiz__body{margin-top:6px}
 .flyquiz__actions{margin-top:12px;display:flex;gap:8px}
+
 .flyquiz__aside .aside__card{background:#0e1629;border:1px solid #203057;border-radius:12px;padding:12px;font-size:.95rem}
 .aside__timer{margin-top:8px;border-top:1px dashed #334;padding-top:8px}
 .aside__timer .count{font-size:1.2rem;font-weight:700}
+.aside__flash{margin-top:8px;background:#122042;border:1px dashed #2c3d6e;border-radius:8px;padding:8px}
+
 .flyquiz__lifelines{margin-top:12px}
 .lifelines__row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 @media (min-width: 780px){ .lifelines__row{grid-template-columns:repeat(3,1fr)} }
-.btn{padding:10px 12px;border-radius:10px;border:1px solid #2d3a5c;background:#16213b;color:#dbe5ff;cursor:pointer}
+
+.btn{padding:12px 14px;border-radius:10px;border:1px solid #2d3a5c;background:#16213b;color:#dbe5ff;cursor:pointer}
 .btn.primary{background:linear-gradient(90deg,#4f46e5,#7c3aed);border-color:#4f46e5}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .btn.ll small{display:block;opacity:.7;font-size:.8rem}
 .btn.ll.used{opacity:.6;}
-.q__n{opacity:.8;margin-bottom:6px}
-.q__t{font-size:1.15rem;margin-bottom:10px}
+
+.q__n{opacity:.85;margin-bottom:6px}
+.q__t{font-size:1.2rem;margin-bottom:10px}
 .q__opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .opt--hidden{visibility:hidden}
 .opt--disabled{opacity:.6}
+
 .center{text-align:center}
 .muted{opacity:.7}
