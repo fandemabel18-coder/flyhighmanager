@@ -2254,7 +2254,8 @@ buildMemoriesIndex();
   await loadCalendar();
   await initCalc();
 
-  // Guides & Creators//////const activeTab = $('.tab.active');
+    // Guides & Creators
+  const activeTab = document.querySelector('.tab.active');
   if(activeTab && activeTab.id === 'tab-team' && typeof TB !== 'undefined' && TB.initOnce){
     TB.initOnce();
   }
