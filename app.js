@@ -21,7 +21,20 @@ function normalizeStr(s=''){
     return String(s).toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g,'');
-  } catch {
+  }
+
+/* ==== FHM: Lazy loader para 15×FlyQuiz === */
+let _flyquizLoaded = false;
+function loadFlyQuizOnce(){
+  if(_flyquizLoaded) return;
+  _flyquizLoaded = true;
+  const s = document.createElement('script');
+  s.src = '/games/flyquiz15.js?v=' + Date.now(); // cache-bust
+  s.onload = () => console.log('[FlyQuiz] cargado OK');
+  s.onerror = () => { console.error('[FlyQuiz] error cargando script'); _flyquizLoaded = false; };
+  document.head.appendChild(s);
+}
+ catch {
     return String(s).toLowerCase();
   }
 }
@@ -2242,6 +2255,7 @@ function renderGuidesList(){};
 
 (async function init(){
 initTabs();
+  try { const gbtn = document.querySelector('.tab-btn[data-tab="games"]'); if (gbtn && gbtn.classList.contains('active')) loadFlyQuizOnce(); } catch(e){}
   renderHomeBanners();
   await loadPotentialsOnce();
   await initVideos();
