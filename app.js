@@ -2431,18 +2431,26 @@ const NICK = (() => {
 document.addEventListener('DOMContentLoaded', ()=> { try{ NICK.paint(); }catch{} });
 
 
-;(() => {
+;
+(() => {
   const isGamesPage = () => !!document.getElementById('games-root');
-  function ensureFlyQuizLoaded() {
-    if (window._flyquizLoaded) return Promise.resolve();
-    return new Promise((resolve, reject) => {
-      const s = document.createElement('script');
-      s.src = '/games/flyquiz15.js?v=' + Date.now();
-      s.onload = () => { window._flyquizLoaded = true; resolve(); };
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
+
+  async function ensureFlyQuizLoaded() {
+    if (window._flyquizLoaded && typeof window.mountFlyQuiz === 'function') return;
+    try {
+      const mod = await import(`/games/flyquiz15.js?ts=${Date.now()}`);
+      if (mod && typeof mod.mountFlyQuiz === 'function') {
+        window.mountFlyQuiz = mod.mountFlyQuiz;
+        window._flyquizLoaded = true;
+      } else {
+        console.warn('[FlyQuiz] El módulo no exporta mountFlyQuiz');
+      }
+    } catch (e) {
+      console.error('[FlyQuiz] Error importando módulo:', e);
+      throw e;
+    }
   }
+
   document.addEventListener('click', async (ev) => {
     const btn = ev.target.closest('[data-play="flyquiz"]');
     if (!btn) return;
