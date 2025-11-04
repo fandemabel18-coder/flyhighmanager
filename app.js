@@ -16,33 +16,17 @@ async function loadJSON(path){
   return JSON.parse(cleaned);
 }
 
-function normalizeStr(s=''){
+function normalizeStr(s='') {
   try {
-    return String(s).toLowerCase()
+    return String(s)
+      .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g,'');
-  } catch {
+      .replace(/[\u0300-\u036f]/g, '');
+  } catch (e) {
     return String(s).toLowerCase();
   }
 }
 
-
-
-
-let _flyquizLoaded = false;
-function loadFlyQuizOnce(){
-  if(_flyquizLoaded) return;
-  _flyquizLoaded = true;
-  const s = document.createElement('script');
-  s.src = '/games/flyquiz15.js?v=' + Date.now(); // cache-bust
-  s.onload = () => console.log('[FlyQuiz] cargado OK');
-  s.onerror = () => { console.error('[FlyQuiz] error cargando script'); _flyquizLoaded = false; };
-  document.head.appendChild(s);
-}
- catch {
-    return String(s).toLowerCase();
-  }
-}
 /* ===========================
    Potentials (global lookup)
    =========================== */
@@ -2447,11 +2431,8 @@ const NICK = (() => {
 document.addEventListener('DOMContentLoaded', ()=> { try{ NICK.paint(); }catch{} });
 
 
-// === FlyQuiz: loader seguro (aislado) ===
-(function () {
-  function isGamesPage() {
-    return !!document.getElementById('games-root');
-  }
+;(() => {
+  const isGamesPage = () => !!document.getElementById('games-root');
   function ensureFlyQuizLoaded() {
     if (window._flyquizLoaded) return Promise.resolve();
     return new Promise((resolve, reject) => {
@@ -2459,24 +2440,23 @@ document.addEventListener('DOMContentLoaded', ()=> { try{ NICK.paint(); }catch{}
       s.src = '/games/flyquiz15.js?v=' + Date.now();
       s.onload = () => { window._flyquizLoaded = true; resolve(); };
       s.onerror = reject;
-      document.body.appendChild(s);
+      document.head.appendChild(s);
     });
   }
-  document.addEventListener('click', async (e) => {
-    const btn = e.target.closest('[data-play="flyquiz"]');
+  document.addEventListener('click', async (ev) => {
+    const btn = ev.target.closest('[data-play="flyquiz"]');
     if (!btn) return;
     if (!isGamesPage()) return;
-    e.preventDefault();
+    ev.preventDefault();
     try {
       await ensureFlyQuizLoaded();
       if (typeof window.mountFlyQuiz === 'function') {
         window.mountFlyQuiz('#games-root');
       } else {
-        console.warn('mountFlyQuiz no está disponible.');
+        console.warn('[FlyQuiz] mountFlyQuiz no está disponible');
       }
-    } catch (err) {
-      console.error('Error cargando FlyQuiz:', err);
+    } catch (e) {
+      console.error('[FlyQuiz] Error cargando:', e);
     }
   });
 })();
-
