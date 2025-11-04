@@ -98,7 +98,17 @@
         <h2>Juegos</h2>
         <div class="fhm-greeting"><p data-nick-greet data-section="Juegos — FlyQuiz"></p></div>
         <p class="banner-meta">Modo 15×FlyQuiz (MVP). 15 preguntas, 20s c/u, 1 fallo = fin. Tu puntaje se envía al ranking global.</p>
-        <section id="games-flyquiz15"></section>
+        <!-- CTA: tarjeta para confirmar que quiere jugar -->
+<div id="flyquiz-cta" class="card" style="margin-top:12px;text-align:center">
+  <h3 style="margin:0 0 8px">15× FlyQuiz</h3>
+  <p class="banner-meta" style="margin:0 0 16px">
+    Responde 15 preguntas de opción múltiple. ¡Un solo fallo y se acaba la partida!
+  </p>
+  <button class="btn" data-play="flyquiz">Jugar ahora</button>
+</div>
+
+<!-- Contenedor donde el JS monta el juego al pulsar "Jugar ahora" -->
+<section id="games-root" hidden></section>
       </div>
     </section>
 
