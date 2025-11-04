@@ -21,9 +21,14 @@ function normalizeStr(s=''){
     return String(s).toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g,'');
+  } catch {
+    return String(s).toLowerCase();
   }
+}
 
-/* ==== FHM: Lazy loader para 15×FlyQuiz === */
+
+
+
 let _flyquizLoaded = false;
 function loadFlyQuizOnce(){
   if(_flyquizLoaded) return;
@@ -2440,4 +2445,38 @@ const NICK = (() => {
 })();
 
 document.addEventListener('DOMContentLoaded', ()=> { try{ NICK.paint(); }catch{} });
+
+
+// === FlyQuiz: loader seguro (aislado) ===
+(function () {
+  function isGamesPage() {
+    return !!document.getElementById('games-root');
+  }
+  function ensureFlyQuizLoaded() {
+    if (window._flyquizLoaded) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = '/games/flyquiz15.js?v=' + Date.now();
+      s.onload = () => { window._flyquizLoaded = true; resolve(); };
+      s.onerror = reject;
+      document.body.appendChild(s);
+    });
+  }
+  document.addEventListener('click', async (e) => {
+    const btn = e.target.closest('[data-play="flyquiz"]');
+    if (!btn) return;
+    if (!isGamesPage()) return;
+    e.preventDefault();
+    try {
+      await ensureFlyQuizLoaded();
+      if (typeof window.mountFlyQuiz === 'function') {
+        window.mountFlyQuiz('#games-root');
+      } else {
+        console.warn('mountFlyQuiz no está disponible.');
+      }
+    } catch (err) {
+      console.error('Error cargando FlyQuiz:', err);
+    }
+  });
+})();
 
