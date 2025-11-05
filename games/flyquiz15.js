@@ -183,26 +183,46 @@ function setActiveStep(i) {
 }
 
 // ---- Banco de preguntas ----
+
 async function loadQuestions() {
   try {
-    const res = await fetch('/games/flyquiz15.questions.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('NO_JSON');
+    const QUESTIONS_URL = '/games/flyquiz15.questions.json';
+    const res = await fetch(QUESTIONS_URL, { cache: 'no-store' });
+    if (!res.ok) throw new Error('NO_JSON ' + res.status);
     const data = await res.json();
-    if (!data || !Array.isArray(data.questions) || data.questions.length === 0) throw new Error('BAD_JSON');
-    state.questionsAll = data.questions.map((q, i) => ({
-      id: q.id ?? (i+1),
+
+    // Aceptar tanto array plano como objeto { questions: [...] }
+    const arr = Array.isArray(data) ? data
+             : (Array.isArray(data?.questions) ? data.questions : []);
+
+    console.info('[FlyQuiz] Cargadas', arr.length, 'preguntas desde', QUESTIONS_URL);
+
+    const mapped = arr.map((q, i) => ({
+      id: q.id ?? (i + 1),
       q: q.q ?? q.question ?? '',
       options: q.options ?? [q.option_1, q.option_2, q.option_3, q.option_4].filter(Boolean),
-      a: typeof q.a === 'number' ? q.a : (typeof q.correct_index === 'number' ? q.correct_index : 0),
-      time_sec: typeof q.time_sec === 'number' ? q.time_sec : 20,
+      a: (typeof q.a === 'number') ? q.a
+        : (typeof q.correct_index === 'number' ? q.correct_index
+        : (typeof q.correctIndex === 'number' ? q.correctIndex : 0)),
+      time_sec: (typeof q.time_sec === 'number') ? q.time_sec
+              : (typeof q.timeSec === 'number' ? q.timeSec : 20),
       category: q.category ?? '',
       difficulty: normalizeDiff(q.difficulty ?? 'Fácil')
     })).filter(x => x.q && Array.isArray(x.options) && x.options.length === 4);
+
+    if (!mapped.length) {
+      console.warn('[FlyQuiz] JSON cargado pero sin preguntas válidas (4 opciones). Se usará fallback DEMO.');
+      state.questionsAll = FALLBACK_QUESTIONS.map(q => ({ ...q, difficulty: normalizeDiff(q.difficulty || 'Fácil') }));
+    } else {
+      state.questionsAll = mapped;
+    }
   } catch (e) {
-    // fallback
-    state.questionsAll = FALLBACK_QUESTIONS.map(q => ({...q, difficulty: normalizeDiff(q.difficulty || 'Fácil')}));
+    console.warn('[FlyQuiz] Error cargando preguntas; se usará fallback DEMO. Detalle:', e);
+    state.questionsAll = FALLBACK_QUESTIONS.map(q => ({ ...q, difficulty: normalizeDiff(q.difficulty || 'Fácil') }));
   }
 }
+
+
 
 function normalizeDiff(d) {
   const s = String(d || '').toLowerCase();
