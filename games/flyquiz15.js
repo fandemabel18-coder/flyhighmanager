@@ -123,9 +123,8 @@ function renderGameShell(root){
               <div class="lifelines__note muted">No válido el “Líbero” en la #15.</div>
             </div>
             <div class="flyquiz__actions">
-  <button id="fq-retry" class="btn" style="display:none">Reintentar</button>
-  <button id="fq-menu" class="btn" style="display:none">Volver al menú</button>
-</div>
+              <button id="fq-retry" class="btn" style="display:none">Reintentar</button>
+            </div>
           </div>
 
           <aside class="flyquiz__aside">
@@ -254,7 +253,6 @@ async function startGame() {
   state.score = 0;
   state.usedIds = new Set();
   state.lifelines = { fifty:false, chat:false, google:false, hint:false, swap:false, libero:false };
-    resetLifelineButtons();
   state.liberoArmed = false;
   $('#fq-lifelines').style.display = 'none';
   setText('#fq-score', '0');
