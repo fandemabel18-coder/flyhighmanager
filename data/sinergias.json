@@ -3,17 +3,264 @@
   "synergies": [
     {
       "id": "kamomedai_duo_hoshiumi_hirugami",
-      "name": { "es": "Dúo Kamomedai: Hoshiumi & Hirugami" },
+      "name": {
+        "es": "Dúo Kamomedai: Hoshiumi & Hirugami"
+      },
       "members": [
-        { "characterId": "hoshiumi-ur" },
-        { "characterId": "hirugami-ur" }
+        {
+          "characterId": "hoshiumi-ur"
+        },
+        {
+          "characterId": "hirugami-ur"
+        }
       ],
       "levels": [
-        { "lvl": 1, "bono": { "atq_rapido_pct": 2, "recepcion_pct": 2 }, "text": { "es": "+2% Ataque rápido y +2% Recepción" } },
-        { "lvl": 2, "bono": { "atq_rapido_pct": 4, "recepcion_pct": 4 }, "text": { "es": "+4% / +4%" } },
-        { "lvl": 3, "bono": { "atq_rapido_pct": 6, "recepcion_pct": 6 }, "text": { "es": "+6% / +6%" } },
-        { "lvl": 4, "bono": { "atq_rapido_pct": 8, "recepcion_pct": 8 }, "text": { "es": "+8% / +8%" } },
-        { "lvl": 5, "bono": { "atq_rapido_pct": 10, "recepcion_pct": 10 }, "text": { "es": "+10% / +10%" } }
+        {
+          "lvl": 1,
+          "bono": {
+            "est_base_pct": 6,
+            "bloqueo_pct": 6
+          },
+          "text": {
+            "es": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 6% y el [Bloqueo] de los aliados en la línea delantera aumenta 6%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "est_base_pct": 7,
+            "bloqueo_pct": 7
+          },
+          "text": {
+            "es": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 7% y el [Bloqueo] de los aliados en la línea delantera aumenta 7%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "est_base_pct": 8,
+            "bloqueo_pct": 8
+          },
+          "text": {
+            "es": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 8% y el [Bloqueo] de los aliados en la línea delantera aumenta 8%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "est_base_pct": 9,
+            "bloqueo_pct": 9
+          },
+          "text": {
+            "es": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 9% y el [Bloqueo] de los aliados en la línea delantera aumenta 9%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "est_base_pct": 10,
+            "bloqueo_pct": 10
+          },
+          "text": {
+            "es": "Las estadisticas básicas de Hoshiumi Kōrai aumentan 10% y el [Bloqueo] de los aliados en la línea delantera aumenta 10%. Al inicio del partido, Hoshiumi Kōrai obtiene 1 acumulación del efecto [Todoterreno], y Hirugami Sachirō obtiene 1 acumulación del efecto [Bloqueo Sólido]."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "link_estrella_colocador",
+      "name": {
+        "es": "Estrella Indiscutible y Colocador Reservado: ushijima & shirabu"
+      },
+      "members": [
+        {
+          "characterId": "ushijima-ur"
+        },
+        {
+          "characterId": "shirabu-ssr"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "atq_poderoso_pct": 260,
+            "fuerza_pct": 10
+          },
+          "text": {
+            "es": "Remate Poderoso potenciado con 260% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "atq_poderoso_pct": 275,
+            "fuerza_pct": 10
+          },
+          "text": {
+            "es": "Remate Poderoso potenciado con 275% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "atq_poderoso_pct": 290,
+            "fuerza_pct": 10
+          },
+          "text": {
+            "es": "Remate Poderoso potenciado con 290% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "atq_poderoso_pct": 305,
+            "fuerza_pct": 10
+          },
+          "text": {
+            "es": "Remate Poderoso potenciado con 305% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "atq_poderoso_pct": 320,
+            "fuerza_pct": 10
+          },
+          "text": {
+            "es": "Remate Poderoso potenciado con 320% del Ataque Poderoso de USHIJIMA y adicional aumenta la fuerza de USHIJIMA en 10%; sólo durante este remate."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "link_cerebro_torre",
+      "name": {
+        "es": "Cerebro y Torre de Control: Kenma & Kuroo"
+      },
+      "members": [
+        {
+          "characterId": "kenma-ssr"
+        },
+        {
+          "characterId": "kuroo-ur"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "atq_rapido_pct": 265
+          },
+          "text": {
+            "es": "Remate rápido potenciado con 265% del Ataque Rápido."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "atq_rapido_pct": 280
+          },
+          "text": {
+            "es": "Remate rápido potenciado con 280% del Ataque Rápido."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "atq_rapido_pct": 295
+          },
+          "text": {
+            "es": "Remate rápido potenciado con 295% del Ataque Rápido."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "atq_rapido_pct": 310
+          },
+          "text": {
+            "es": "Remate rápido potenciado con 310% del Ataque Rápido."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "atq_rapido_pct": 325
+          },
+          "text": {
+            "es": "Remate rápido potenciado con 325% del Ataque Rápido."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "link_gemelos_fuertes",
+      "name": {
+        "es": "Los gemelos más fuertes de la preparatoria: Atsumu & Osamu"
+      },
+      "members": [
+        {
+          "characterId": "atsumu-ur"
+        },
+        {
+          "characterId": "osamu-ur"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "atq_rapido_pct": 265,
+            "tec_ofensiva_pct": 15
+          },
+          "text": {
+            "es": "Nivel 1: Remate rápido potenciado con 265% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "atq_rapido_pct": 280,
+            "tec_ofensiva_pct": 15
+          },
+          "text": {
+            "es": "Nivel 2: Remate rápido potenciado con 280% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "atq_rapido_pct": 295,
+            "tec_ofensiva_pct": 15
+          },
+          "text": {
+            "es": "Nivel 3: Remate rápido potenciado con 295% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "atq_rapido_pct": 310,
+            "tec_ofensiva_pct": 15
+          },
+          "text": {
+            "es": "Nivel 4: Remate rápido potenciado con 310% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "atq_rapido_pct": 325,
+            "tec_ofensiva_pct": 15
+          },
+          "text": {
+            "es": "Nivel 5: Remate rápido potenciado con 325% del Ataque Rápido adicional ambos ganan bono de Técnica Ofensiva +15%."
+          }
+        }
       ],
       "priority": 90
     }
