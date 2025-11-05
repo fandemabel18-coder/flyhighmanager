@@ -16,17 +16,15 @@ async function loadJSON(path){
   return JSON.parse(cleaned);
 }
 
-function normalizeStr(s='') {
+function normalizeStr(s=''){
   try {
-    return String(s)
-      .toLowerCase()
+    return String(s).toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
-  } catch (e) {
+      .replace(/[\u0300-\u036f]/g,'');
+  } catch {
     return String(s).toLowerCase();
   }
 }
-
 /* ===========================
    Potentials (global lookup)
    =========================== */
@@ -2244,7 +2242,6 @@ function renderGuidesList(){};
 
 (async function init(){
 initTabs();
-  try { const gbtn = document.querySelector('.tab-btn[data-tab="games"]'); if (gbtn && gbtn.classList.contains('active')) loadFlyQuizOnce(); } catch(e){}
   renderHomeBanners();
   await loadPotentialsOnce();
   await initVideos();
@@ -2430,41 +2427,3 @@ const NICK = (() => {
 
 document.addEventListener('DOMContentLoaded', ()=> { try{ NICK.paint(); }catch{} });
 
-
-;
-(() => {
-  const isGamesPage = () => !!document.getElementById('games-root');
-
-  async function ensureFlyQuizLoaded() {
-    if (window._flyquizLoaded && typeof window.mountFlyQuiz === 'function') return;
-    try {
-      const mod = await import(`/games/flyquiz15.js?ts=${Date.now()}`);
-      if (mod && typeof mod.mountFlyQuiz === 'function') {
-        window.mountFlyQuiz = mod.mountFlyQuiz;
-        window._flyquizLoaded = true;
-      } else {
-        console.warn('[FlyQuiz] El módulo no exporta mountFlyQuiz');
-      }
-    } catch (e) {
-      console.error('[FlyQuiz] Error importando módulo:', e);
-      throw e;
-    }
-  }
-
-  document.addEventListener('click', async (ev) => {
-    const btn = ev.target.closest('[data-play="flyquiz"]');
-    if (!btn) return;
-    if (!isGamesPage()) return;
-    ev.preventDefault();
-    try {
-      await ensureFlyQuizLoaded();
-      if (typeof window.mountFlyQuiz === 'function') {
-        window.mountFlyQuiz('#games-root');
-      } else {
-        console.warn('[FlyQuiz] mountFlyQuiz no está disponible');
-      }
-    } catch (e) {
-      console.error('[FlyQuiz] Error cargando:', e);
-    }
-  });
-})();
