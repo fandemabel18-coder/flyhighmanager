@@ -2904,7 +2904,7 @@
       {
         "name": "Ataque sostenido",
         "icon": "assets/skills/ataque_continuo.png",
-        "effect": "Sakusa Kiyoomi: [Remate] +10% y [Recepción] +20%. Cuando Sakusa recibe, su [Remate] aumenta 6%. Máximo 3 acumulaciones. Este efecto dura hasta su próximo remate. Cuando Sakusa remata, su [Recepción] aumenta 15%. Este efecto dura hasta su próxima recepción."
+        "effect": "Sakusa Kiyoomi: [Ataque Poderoso] +10% y [Recepción] +20%. Cuando Sakusa recibe, su [Ataque Poderoso] aumenta 6%. Máximo 3 acumulaciones. Este efecto dura hasta su próximo remate. Cuando Sakusa remata, su [Recepción] aumenta 15%. Este efecto dura hasta su próxima recepción."
       },
       {
         "name": "Máxima preparación",
@@ -2928,10 +2928,10 @@
     ],
     "recuerdos": [
       {
-        "name": "Potenciador de Remate y Tecnica Ofensiva: KIYOOMI SAKUSA",
+        "name": "Potenciador de Ataque Poderoso y Tecnica Ofensiva: KIYOOMI SAKUSA",
         "rarity": "UR",
         "icon": "assets/memories/sakusa_memory.png",
-        "effect": "El miembro que tiene equipada esta Memoria obtiene [Remate] +24%. Cuando el miembro afectado realiza una recepción, su [Técnica Ofensiva] aumenta 15%. Este efecto dura hasta que el balón cruce la red dos veces. Tras la recepción del miembro afectado, su [Mental] aumenta 8%. Máximo 4 acumulaciones."
+        "effect": "El personaje que tiene equipado este Recuerdo incrementa su [Ataque Poderoso] en 24%. Cuando el usuario de esta memoria realiza una recepción, su [Técnica Ofensiva] aumenta 15%. Este efecto dura 2 cruces de Red. Tras la recepción del portador de este Recuerdo, su estadistica [Reflejos] aumenta 8%. Máximo 4 acumulaciones."
       }
     ]
   },
