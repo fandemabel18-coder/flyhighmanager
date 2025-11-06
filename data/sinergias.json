@@ -263,6 +263,163 @@
         }
       ],
       "priority": 90
+    },
+    {
+      "id": "rematador_elite_libero_elite",
+      "name": {
+        "es": "El Mejor Rematador y Libero de Nivel Superior: Sakusa & Kiyomi"
+      },
+      "members": [
+        {
+          "characterId": "sakusa-ur"
+        },
+        {
+          "characterId": "komori-ur"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "atq_poderoso_pct": 10,
+            "recepcion_pct": 10,
+            "recepcion_global_pct": 20
+          },
+          "text": {
+            "es": "Ataque Poderoso de Sakusa + 10%; Recepción de Komori +10%. Adicionalmente la Recepción de todos los aliados aumenta en 20% de la estadistica Recepción de ellos mismos (incremento individual, no se acumula por personaje)."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "atq_poderoso_pct": 12.5,
+            "recepcion_pct": 12.5,
+            "recepcion_global_pct": 20
+          },
+          "text": {
+            "es": "Ataque Poderoso de Sakusa + 12.5%; Recepción de Komori +12.5%. Adicionalmente la Recepción de todos los aliados aumenta en 20% de la estadistica Recepción de ellos mismos (incremento individual, no se acumula por personaje)."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "atq_poderoso_pct": 15,
+            "recepcion_pct": 15,
+            "recepcion_global_pct": 20
+          },
+          "text": {
+            "es": "Ataque Poderoso de Sakusa + 15%; Recepción de Komori +15%. Adicionalmente la Recepción de todos los aliados aumenta en 20% de la estadistica Recepción de ellos mismos (incremento individual, no se acumula por personaje)."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "atq_poderoso_pct": 17.5,
+            "recepcion_pct": 17.5,
+            "recepcion_global_pct": 20
+          },
+          "text": {
+            "es": "Ataque Poderoso de Sakusa + 17.5%; Recepción de Komori +17.5%. Adicionalmente la Recepción de todos los aliados aumenta en 20% de la estadistica Recepción de ellos mismos (incremento individual, no se acumula por personaje)."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "atq_poderoso_pct": 20,
+            "recepcion_pct": 20,
+            "recepcion_global_pct": 20
+          },
+          "text": {
+            "es": "Ataque Poderoso de Sakusa + 20%; Recepción de Komori +20%. Adicionalmente la Recepción de todos los aliados aumenta en 20% de la estadistica Recepción de ellos mismos (incremento individual, no se acumula por personaje)."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "capitan_gemelos",
+      "name": {
+        "es": "El Capitán y los Gemelos: Atsumu, Osamu & Kita"
+      },
+      "members": [
+        {
+          "characterId": "atsumu-ur"
+        },
+        {
+          "characterId": "osamu-ur"
+        },
+        {
+          "characterId": "kita-ssr"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "tec_ofensiva_pct": 3,
+            "colocacion_pct": 2,
+            "est_base_pct": 3,
+            "recepcion_pct": 2,
+            "atq_rapido_pct": 12
+          },
+          "text": {
+            "es": "Aumenta la Técnica Ofensiva de OSAMU en 3% y los atributos base de KITA en un 3%. Al Inicio del partido ATSUMU obtiene 3 acumulaciones de [Presición] y cada acumulación aumenta su atributo Colocación en un 2% hasta un máximo de 10 acumulaciones. Al inicio del partido KITA obtiene 1 acumulacion de [Acción Confiable] y cada acumulación aumenta su atributo Recepción en un 2%, hasta un máximo de 3 acumulaciones. El primer remate de OSAMU en cada partido recibe una bonificación de Poder equivalente al 12% de su atributo [Ataque Rápido]."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "tec_ofensiva_pct": 3.5,
+            "colocacion_pct": 2,
+            "est_base_pct": 3.5,
+            "recepcion_pct": 2,
+            "atq_rapido_pct": 15
+          },
+          "text": {
+            "es": "Aumenta la Técnica Ofensiva de OSAMU en 3.5% y los atributos base de KITA en un 3.5%. Al Inicio del partido ATSUMU obtiene 3 acumulaciones de [Presición] y cada acumulación aumenta su atributo Colocación en un 2% hasta un máximo de 10 acumulaciones. Al inicio del partido KITA obtiene 1 acumulacion de [Acción Confiable] y cada acumulación aumenta su atributo Recepción en un 2%, hasta un máximo de 3 acumulaciones. El primer remate de OSAMU en cada partido recibe una bonificación de Poder equivalente al 15% de su atributo [Ataque Rápido]."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "tec_ofensiva_pct": 4,
+            "colocacion_pct": 2,
+            "est_base_pct": 4,
+            "recepcion_pct": 2,
+            "atq_rapido_pct": 18
+          },
+          "text": {
+            "es": "Aumenta la Técnica Ofensiva de OSAMU en 4% y los atributos base de KITA en un 4%. Al Inicio del partido ATSUMU obtiene 3 acumulaciones de [Presición] y cada acumulación aumenta su atributo Colocación en un 2% hasta un máximo de 10 acumulaciones. Al inicio del partido KITA obtiene 1 acumulacion de [Acción Confiable] y cada acumulación aumenta su atributo Recepción en un 2%, hasta un máximo de 3 acumulaciones. El primer remate de OSAMU en cada partido recibe una bonificación de Poder equivalente al 18% de su atributo [Ataque Rápido]."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "tec_ofensiva_pct": 4.5,
+            "colocacion_pct": 2,
+            "est_base_pct": 4.5,
+            "recepcion_pct": 2,
+            "atq_rapido_pct": 21
+          },
+          "text": {
+            "es": "Aumenta la Técnica Ofensiva de OSAMU en 4.5% y los atributos base de KITA en un 4.5%. Al Inicio del partido ATSUMU obtiene 3 acumulaciones de [Presición] y cada acumulación aumenta su atributo Colocación en un 2% hasta un máximo de 10 acumulaciones. Al inicio del partido KITA obtiene 1 acumulacion de [Acción Confiable] y cada acumulación aumenta su atributo Recepción en un 2%, hasta un máximo de 3 acumulaciones. El primer remate de OSAMU en cada partido recibe una bonificación de Poder equivalente al 21% de su atributo [Ataque Rápido]."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "tec_ofensiva_pct": 5,
+            "colocacion_pct": 2,
+            "est_base_pct": 5,
+            "recepcion_pct": 2,
+            "atq_rapido_pct": 24
+          },
+          "text": {
+            "es": "Aumenta la Técnica Ofensiva de OSAMU en 5% y los atributos base de KITA en un 5%. Al Inicio del partido ATSUMU obtiene 3 acumulaciones de [Presición] y cada acumulación aumenta su atributo Colocación en un 2% hasta un máximo de 10 acumulaciones. Al inicio del partido KITA obtiene 1 acumulacion de [Acción Confiable] y cada acumulación aumenta su atributo Recepción en un 2%, hasta un máximo de 3 acumulaciones. El primer remate de OSAMU en cada partido recibe una bonificación de Poder equivalente al 24% de su atributo [Ataque Rápido]."
+          }
+        }
+      ],
+      "priority": 90
     }
   ]
 }
