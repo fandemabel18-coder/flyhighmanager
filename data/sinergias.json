@@ -420,6 +420,664 @@
         }
       ],
       "priority": 90
+    },
+    {
+      "id": "duo_excentrico_ssr",
+      "name": {
+        "es": "Dúo Excentrico 1: Kageyama, Hinata"
+      },
+      "members": [
+        {
+          "characterId": "tobio-ur"
+        },
+        {
+          "characterId": "hinata-ssr"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "percepcion_pct": 30,
+            "fuerza_pct": 30,
+            "atq_rapido_pct": 280
+          },
+          "text": {
+            "es": "Kageyama realiza una colocación para Shoyo y Hinata ejecuta un Ataque Rápido excéntrico con potencia una potencia de 280% de su estadistica de [Ataque Rápido]. En esta jugada la [Percepción] de Hinata aumenta en +30%, y su [Fuerza] aumenta en base un 30% (Máximo 60%) de su estadistica de [Percepción]. Esta jugada no puede ser bloqueada. Cuando cualquier jugador de tu equipo anota, se reinicia el enfriamiento de <Dúo excéntrico>. Si al activar <Dúo excéntrico> se consumió una acumulación de [Competitivo], Kageyama gana 1 acumulación de [Competitivo]."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "percepcion_pct": 30,
+            "fuerza_pct": 35,
+            "atq_rapido_pct": 280
+          },
+          "text": {
+            "es": "Kageyama realiza una colocación para Shoyo y Hinata ejecuta un Ataque Rápido excéntrico con potencia una potencia de 280% de su estadistica de [Ataque Rápido]. En esta jugada la [Percepción] de Hinata aumenta en +30%, y su [Fuerza] aumenta en base un 35% (Máximo 70%) de su estadistica de [Percepción]. Esta jugada no puede ser bloqueada. Cuando cualquier jugador de tu equipo anota, se reinicia el enfriamiento de <Dúo excéntrico>. Si al activar <Dúo excéntrico> se consumió una acumulación de [Competitivo], Kageyama gana 1 acumulación de [Competitivo]."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "percepcion_pct": 30,
+            "fuerza_pct": 40,
+            "atq_rapido_pct": 280
+          },
+          "text": {
+            "es": "Kageyama realiza una colocación para Shoyo y Hinata ejecuta un Ataque Rápido excéntrico con potencia una potencia de 280% de su estadistica de [Ataque Rápido]. En esta jugada la [Percepción] de Hinata aumenta en +30%, y su [Fuerza] aumenta en base un 40% (Máximo 80%) de su estadistica de [Percepción]. Esta jugada no puede ser bloqueada. Cuando cualquier jugador de tu equipo anota, se reinicia el enfriamiento de <Dúo excéntrico>. Si al activar <Dúo excéntrico> se consumió una acumulación de [Competitivo], Kageyama gana 1 acumulación de [Competitivo]."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "percepcion_pct": 30,
+            "fuerza_pct": 45,
+            "atq_rapido_pct": 280
+          },
+          "text": {
+            "es": "Kageyama realiza una colocación para Shoyo y Hinata ejecuta un Ataque Rápido excéntrico con potencia una potencia de 280% de su estadistica de [Ataque Rápido]. En esta jugada la [Percepción] de Hinata aumenta en +30%, y su [Fuerza] aumenta en base un 45% (Máximo 90%) de su estadistica de [Percepción]. Esta jugada no puede ser bloqueada. Cuando cualquier jugador de tu equipo anota, se reinicia el enfriamiento de <Dúo excéntrico>. Si al activar <Dúo excéntrico> se consumió una acumulación de [Competitivo], Kageyama gana 1 acumulación de [Competitivo]."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "percepcion_pct": 30,
+            "fuerza_pct": 50,
+            "atq_rapido_pct": 280
+          },
+          "text": {
+            "es": "Kageyama realiza una colocación para Shoyo y Hinata ejecuta un Ataque Rápido excéntrico con potencia una potencia de 340% de su estadistica de [Ataque Rápido]. En esta jugada la [Percepción] de Hinata aumenta en +30%, y su [Fuerza] aumenta en base un 50% (Máximo 100%) de su estadistica de [Percepción]. Esta jugada no puede ser bloqueada. Cuando cualquier jugador de tu equipo anota, se reinicia el enfriamiento de <Dúo excéntrico>. Si al activar <Dúo excéntrico> se consumió una acumulación de [Competitivo], Kageyama gana 1 acumulación de [Competitivo]."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "duo_excentrico_sp",
+      "name": {
+        "es": "Dúo Excentrico 2: Kageyama, Hinata"
+      },
+      "members": [
+        {
+          "characterId": "hinata-sp"
+        },
+        {
+          "characterId": "tobio-ur"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "reflejos_pct": 6,
+            "reflejo_hinata_pct": 9
+          },
+          "text": {
+            "es": "Cuando un miembro aliado activa una habilidad de recepción, se consume 1 acumulación del efecto Espíritu Competitivo y los Reflejos del miembro que recibe aumentan un 6%. Cuando se activa la habilidad de recepción de Hinata Shoyo (Festival de las Flores) y se consume un efecto de Espíritu Competitivo, los Reflejos de Hinata Shoyo (Festival de las Flores) aumentan un 9% adicional, y Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Cuando se activa el movimiento especial de Hinata Shoyo (Festival de las Flores), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "reflejos_pct": 6,
+            "reflejo_hinata_pct": 9
+          },
+          "text": {
+            "es": "Cuando un miembro aliado activa una habilidad de recepción, se consume 1 acumulación del efecto Espíritu Competitivo y los Reflejos del miembro que recibe aumentan un 6%. Cuando se activa la habilidad de recepción de Hinata Shoyo (Festival de las Flores) y se consume un efecto de Espíritu Competitivo, los Reflejos de Hinata Shoyo (Festival de las Flores) aumentan un 9% adicional, y Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Cuando se activa el movimiento especial de Hinata Shoyo (Festival de las Flores), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "reflejos_pct": 6,
+            "reflejo_hinata_pct": 9
+          },
+          "text": {
+            "es": "Cuando un miembro aliado activa una habilidad de recepción, se consume 1 acumulación del efecto Espíritu Competitivo y los Reflejos del miembro que recibe aumentan un 6%. Cuando se activa la habilidad de recepción de Hinata Shoyo (Festival de las Flores) y se consume un efecto de Espíritu Competitivo, los Reflejos de Hinata Shoyo (Festival de las Flores) aumentan un 9% adicional, y Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Cuando se activa el movimiento especial de Hinata Shoyo (Festival de las Flores), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "reflejos_pct": 6,
+            "reflejo_hinata_pct": 9
+          },
+          "text": {
+            "es": "Cuando un miembro aliado activa una habilidad de recepción, se consume 1 acumulación del efecto Espíritu Competitivo y los Reflejos del miembro que recibe aumentan un 6%. Cuando se activa la habilidad de recepción de Hinata Shoyo (Festival de las Flores) y se consume un efecto de Espíritu Competitivo, los Reflejos de Hinata Shoyo (Festival de las Flores) aumentan un 9% adicional, y Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Cuando se activa el movimiento especial de Hinata Shoyo (Festival de las Flores), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "reflejos_pct": 6,
+            "reflejo_hinata_pct": 9
+          },
+          "text": {
+            "es": "Cuando un miembro aliado activa una habilidad de recepción, se consume 1 acumulación del efecto Espíritu Competitivo y los Reflejos del miembro que recibe aumentan un 6%. Cuando se activa la habilidad de recepción de Hinata Shoyo (Festival de las Flores) y se consume un efecto de Espíritu Competitivo, los Reflejos de Hinata Shoyo (Festival de las Flores) aumentan un 9% adicional, y Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Cuando se activa el movimiento especial de Hinata Shoyo (Festival de las Flores), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "genios_karasuno",
+      "name": {
+        "es": "Los Genios del Karasuno: Nishinoya, Kageyama"
+      },
+      "members": [
+        {
+          "characterId": "tobio-ur"
+        },
+        {
+          "characterId": "nishinoya-sp"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "atq_poderoso_pct": 20,
+            "atq_rapido_pct": 20,
+            "recepcion_nishinoya_pct": 5,
+            "reflejos_nishinoya_pct": 5
+          },
+          "text": {
+            "es": "La Recepcion de Nishinoya Yu (Después de clases) aumenta en 5%, y sus Reflejos aumentan un 5%. Cuando se activa el movimiento especial de Nishinoya Yu (Después de clases), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Si este movimiento especial se convierte en una buena jugada, la potencia del primer remate aliado (ataque poderoso/ataque rápido) después de que ocurra esta jugada aumenta en Ataque poderoso/Ataque rapido x 20% del miembro que remata."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "atq_poderoso_pct": 20,
+            "atq_rapido_pct": 20,
+            "recepcion_nishinoya_pct": 7,
+            "reflejos_nishinoya_pct": 5
+          },
+          "text": {
+            "es": "La Recepcion de Nishinoya Yu (Después de clases) aumenta en 7%, y sus Reflejos aumentan un 5%. Cuando se activa el movimiento especial de Nishinoya Yu (Después de clases), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Si este movimiento especial se convierte en una buena jugada, la potencia del primer remate aliado (ataque poderoso/ataque rápido) después de que ocurra esta jugada aumenta en Ataque poderoso/Ataque rapido x 20% del miembro que remata."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "atq_poderoso_pct": 20,
+            "atq_rapido_pct": 20,
+            "recepcion_nishinoya_pct": 9,
+            "reflejos_nishinoya_pct": 5
+          },
+          "text": {
+            "es": "La Recepcion de Nishinoya Yu (Después de clases) aumenta en 9%, y sus Reflejos aumentan un 5%. Cuando se activa el movimiento especial de Nishinoya Yu (Después de clases), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Si este movimiento especial se convierte en una buena jugada, la potencia del primer remate aliado (ataque poderoso/ataque rápido) después de que ocurra esta jugada aumenta en Ataque poderoso/Ataque rapido x 20% del miembro que remata."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "atq_poderoso_pct": 20,
+            "atq_rapido_pct": 20,
+            "recepcion_nishinoya_pct": 11,
+            "reflejos_nishinoya_pct": 5
+          },
+          "text": {
+            "es": "La Recepcion de Nishinoya Yu (Después de clases) aumenta en 11%, y sus Reflejos aumentan un 5%. Cuando se activa el movimiento especial de Nishinoya Yu (Después de clases), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Si este movimiento especial se convierte en una buena jugada, la potencia del primer remate aliado (ataque poderoso/ataque rápido) después de que ocurra esta jugada aumenta en Ataque poderoso/Ataque rapido x 20% del miembro que remata."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "atq_poderoso_pct": 20,
+            "atq_rapido_pct": 20,
+            "recepcion_nishinoya_pct": 13,
+            "reflejos_nishinoya_pct": 5
+          },
+          "text": {
+            "es": "La Recepcion de Nishinoya Yu (Después de clases) aumenta en 13%, y sus Reflejos aumentan un 5%. Cuando se activa el movimiento especial de Nishinoya Yu (Después de clases), Kageyama Tobio obtiene 1 acumulación del efecto Espíritu Competitivo. Si este movimiento especial se convierte en una buena jugada, la potencia del primer remate aliado (ataque poderoso/ataque rápido) después de que ocurra esta jugada aumenta en Ataque poderoso/Ataque rapido x 20% del miembro que remata."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "los_genios_karasuno",
+      "name": {
+        "es": "Genios del Karasuno: Nishinoya, Sugawara"
+      },
+      "members": [
+        {
+          "characterId": "nishinoya-sp"
+        },
+        {
+          "characterId": "sugawara-sp"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "reflejos_nishinoya_pct": 5,
+            "reflejos_nishinoya2_pct": 5
+          },
+          "text": {
+            "es": "Los Reflejos de Nishinoya Yu (Después de clases) aumentan en 5%. Si Sugawara Koshi (Después de clases) está en la cancha y la resistencia de Nishinoya Yu (Después de clases) es inferior a 80, los Reflejos de Nishinoya Yu (Después de clases) aumentan adicionalmente en 5%."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "reflejos_nishinoya_pct": 7.5,
+            "reflejos_nishinoya2_pct": 5
+          },
+          "text": {
+            "es": "Los Reflejos de Nishinoya Yu (Después de clases) aumentan en 7.5%. Si Sugawara Koshi (Después de clases) está en la cancha y la resistencia de Nishinoya Yu (Después de clases) es inferior a 80, los Reflejos de Nishinoya Yu (Después de clases) aumentan adicionalmente en 5%."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "reflejos_nishinoya_pct": 7.5,
+            "reflejos_nishinoya2_pct": 7.5
+          },
+          "text": {
+            "es": "Los Reflejos de Nishinoya Yu (Después de clases) aumentan en 7.5%. Si Sugawara Koshi (Después de clases) está en la cancha y la resistencia de Nishinoya Yu (Después de clases) es inferior a 80, los Reflejos de Nishinoya Yu (Después de clases) aumentan adicionalmente en 7.5%."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "reflejos_nishinoya_pct": 7.5,
+            "reflejos_nishinoya2_pct": 10
+          },
+          "text": {
+            "es": "Los Reflejos de Nishinoya Yu (Después de clases) aumentan en 7.5%. Si Sugawara Koshi (Después de clases) está en la cancha y la resistencia de Nishinoya Yu (Después de clases) es inferior a 80, los Reflejos de Nishinoya Yu (Después de clases) aumentan adicionalmente en 10%."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "reflejos_nishinoya_pct": 10,
+            "reflejos_nishinoya2_pct": 10
+          },
+          "text": {
+            "es": "Los Reflejos de Nishinoya Yu (Después de clases) aumentan en 10%. Si Sugawara Koshi (Después de clases) está en la cancha y la resistencia de Nishinoya Yu (Después de clases) es inferior a 80, los Reflejos de Nishinoya Yu (Después de clases) aumentan adicionalmente en 10%."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "festival_flores",
+      "name": {
+        "es": "Festival de las Flores: Hinata, Kenma"
+      },
+      "members": [
+        {
+          "characterId": "hinata-sp"
+        },
+        {
+          "characterId": "kenma-sp"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "percepcion_kenma_pct": 0.8,
+            "atq_rapido_pct": 1
+          },
+          "text": {
+            "es": "Al comienzo del partido, Kozume Kenma (Festival de las Flores) obtiene 3 acumulaciones del efecto Defensa sin fisuras, y el número máximo de acumulaciones del efecto Defensa sin fisuras aumenta a 13. Por cada acumulación del efecto Defensa sin fisuras, la Percepcion de Kozume Kenma (Festival de las Flores) aumenta en 0.8%, y si la jugada de Hinata Shoyo (Festival de las Flores) es una buena jugada, su Ataque rapido aumenta en 1%."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "percepcion_kenma_pct": 1,
+            "atq_rapido_pct": 1.25
+          },
+          "text": {
+            "es": "Al comienzo del partido, Kozume Kenma (Festival de las Flores) obtiene 3 acumulaciones del efecto Defensa sin fisuras, y el número máximo de acumulaciones del efecto Defensa sin fisuras aumenta a 13. Por cada acumulación del efecto Defensa sin fisuras, la Percepcion de Kozume Kenma (Festival de las Flores) aumenta en 1%, y si la jugada de Hinata Shoyo (Festival de las Flores) es una buena jugada, su Ataque rapido aumenta en 1.25%."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "percepcion_kenma_pct": 1,
+            "atq_rapido_pct": 1.25
+          },
+          "text": {
+            "es": "Al comienzo del partido, Kozume Kenma (Festival de las Flores) obtiene 3 acumulaciones del efecto Defensa sin fisuras, y el número máximo de acumulaciones del efecto Defensa sin fisuras aumenta a 14. Por cada acumulación del efecto Defensa sin fisuras, la Percepcion de Kozume Kenma (Festival de las Flores) aumenta en 1%, y si la jugada de Hinata Shoyo (Festival de las Flores) es una buena jugada, su Ataque rapido aumenta en 1.25%."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "percepcion_kenma_pct": 1,
+            "atq_rapido_pct": 1.5
+          },
+          "text": {
+            "es": "Al comienzo del partido, Kozume Kenma (Festival de las Flores) obtiene 3 acumulaciones del efecto Defensa sin fisuras, y el número máximo de acumulaciones del efecto Defensa sin fisuras aumenta a 14. Por cada acumulación del efecto Defensa sin fisuras, la Percepcion de Kozume Kenma (Festival de las Flores) aumenta en 1%, y si la jugada de Hinata Shoyo (Festival de las Flores) es una buena jugada, su Ataque rapido aumenta en 1.5%."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "percepcion_kenma_pct": 1.2,
+            "atq_rapido_pct": 1.5
+          },
+          "text": {
+            "es": "Al comienzo del partido, Kozume Kenma (Festival de las Flores) obtiene 3 acumulaciones del efecto Defensa sin fisuras, y el número máximo de acumulaciones del efecto Defensa sin fisuras aumenta a 15. Por cada acumulación del efecto Defensa sin fisuras, la Percepcion de Kozume Kenma (Festival de las Flores) aumenta en 1.2%, y si la jugada de Hinata Shoyo (Festival de las Flores) es una buena jugada, su Ataque rapido aumenta en 1.5%."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "sol_luna",
+      "name": {
+        "es": "El Sol y La Luna: Hinata, Tsukishima"
+      },
+      "members": [
+        {
+          "characterId": "hinata-sp"
+        },
+        {
+          "characterId": "tsukishima-sp"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "percepcion_colocador_pct": 10,
+            "percepcion_tsukishima_pct": 50
+          },
+          "text": {
+            "es": "Cuando un miembro aliado coloca, su Percepcion aumenta en 10%. Este efecto dura hasta que el balón cruza la red dos veces. Si el ataque rápido de Hinata Shoyo (Festival de las Flores) se convierte en una buena jugada, el enfriamiento de se reduce en 2 cruces de red, y la Percepcion de Tsukishima Kei (Festival de Fuegos Artificiales) aumenta un 50% de la Percepcion de Hinata Shoyo (Festival de las Flores), hasta un máximo del 50%. Este efecto dura hasta que el balón cruza la red 4 veces."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "percepcion_colocador_pct": 15,
+            "percepcion_tsukishima_pct": 50
+          },
+          "text": {
+            "es": "Cuando un miembro aliado coloca, su Percepcion aumenta en 15%. Este efecto dura hasta que el balón cruza la red dos veces. Si el ataque rápido de Hinata Shoyo (Festival de las Flores) se convierte en una buena jugada, el enfriamiento de se reduce en 2 cruces de red, y la Percepcion de Tsukishima Kei (Festival de Fuegos Artificiales) aumenta un 50% de la Percepcion de Hinata Shoyo (Festival de las Flores), hasta un máximo del 50%. Este efecto dura hasta que el balón cruza la red 4 veces."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "percepcion_colocador_pct": 20,
+            "percepcion_tsukishima_pct": 50
+          },
+          "text": {
+            "es": "Cuando un miembro aliado coloca, su Percepcion aumenta en 20%. Este efecto dura hasta que el balón cruza la red dos veces. Si el ataque rápido de Hinata Shoyo (Festival de las Flores) se convierte en una buena jugada, el enfriamiento de se reduce en 2 cruces de red, y la Percepcion de Tsukishima Kei (Festival de Fuegos Artificiales) aumenta un 50% de la Percepcion de Hinata Shoyo (Festival de las Flores), hasta un máximo del 50%. Este efecto dura hasta que el balón cruza la red 4 veces."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "percepcion_colocador_pct": 25,
+            "percepcion_tsukishima_pct": 50
+          },
+          "text": {
+            "es": "Cuando un miembro aliado coloca, su Percepcion aumenta en 25%. Este efecto dura hasta que el balón cruza la red dos veces. Si el ataque rápido de Hinata Shoyo (Festival de las Flores) se convierte en una buena jugada, el enfriamiento de se reduce en 2 cruces de red, y la Percepcion de Tsukishima Kei (Festival de Fuegos Artificiales) aumenta un 50% de la Percepcion de Hinata Shoyo (Festival de las Flores), hasta un máximo del 50%. Este efecto dura hasta que el balón cruza la red 4 veces."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "percepcion_colocador_pct": 30,
+            "percepcion_tsukishima_pct": 50
+          },
+          "text": {
+            "es": "Cuando un miembro aliado coloca, su Percepcion aumenta en 30%. Este efecto dura hasta que el balón cruza la red dos veces. Si el ataque rápido de Hinata Shoyo (Festival de las Flores) se convierte en una buena jugada, el enfriamiento de se reduce en 2 cruces de red, y la Percepcion de Tsukishima Kei (Festival de Fuegos Artificiales) aumenta un 50% de la Percepcion de Hinata Shoyo (Festival de las Flores), hasta un máximo del 50%. Este efecto dura hasta que el balón cruza la red 4 veces."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "cerebro_torre_control_sp",
+      "name": {
+        "es": "Cerebro y Torre de Control SP: Kuroo, Kenma"
+      },
+      "members": [
+        {
+          "characterId": "kuroo-sp"
+        },
+        {
+          "characterId": "kenma-sp"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "remate_rapido_pct": 280,
+            "tec_ofensiva_pct": 10
+          },
+          "text": {
+            "es": "KENMA KOZUME (Festival de las Flores) coloca el balón y TETSURO KUROO (Festival de Fuegos Artificiales) ejecuta un ataque rápido con una potencia de 280%. Esta jugada siempre será una jugada destacada. Los miembros aliados obtienen un aumento del 10% en Técnica Ofensiva durante 1 set."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "remate_rapido_pct": 300,
+            "tec_ofensiva_pct": 10
+          },
+          "text": {
+            "es": "KENMA KOZUME (Festival de las Flores) coloca el balón y TETSURO KUROO (Festival de Fuegos Artificiales) ejecuta un ataque rápido con una potencia de 300%. Esta jugada siempre será una jugada destacada. Los miembros aliados obtienen un aumento del 10% en Técnica Ofensiva durante 1 set."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "remate_rapido_pct": 320,
+            "tec_ofensiva_pct": 10
+          },
+          "text": {
+            "es": "KENMA KOZUME (Festival de las Flores) coloca el balón y TETSURO KUROO (Festival de Fuegos Artificiales) ejecuta un ataque rápido con una potencia de 320%. Esta jugada siempre será una jugada destacada. Los miembros aliados obtienen un aumento del 10% en Técnica Ofensiva durante 1 set."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "remate_rapido_pct": 340,
+            "tec_ofensiva_pct": 10
+          },
+          "text": {
+            "es": "KENMA KOZUME (Festival de las Flores) coloca el balón y TETSURO KUROO (Festival de Fuegos Artificiales) ejecuta un ataque rápido con una potencia de 340%. Esta jugada siempre será una jugada destacada. Los miembros aliados obtienen un aumento del 10% en Técnica Ofensiva durante 1 set."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "remate_rapido_pct": 360,
+            "tec_ofensiva_pct": 10
+          },
+          "text": {
+            "es": "KENMA KOZUME (Festival de las Flores) coloca el balón y TETSURO KUROO (Festival de Fuegos Artificiales) ejecuta un ataque rápido con una potencia de 360%. Esta jugada siempre será una jugada destacada. Los miembros aliados obtienen un aumento del 10% en Técnica Ofensiva durante 1 set."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "dia_de_playa",
+      "name": {
+        "es": "Dia en la Playa: Akaashi, Bokuto, Aone"
+      },
+      "members": [
+        {
+          "characterId": "akaashi-sp"
+        },
+        {
+          "characterId": "bokuto-sp"
+        },
+        {
+          "characterId": "aone-sp"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {
+            "reflejos_bloqueadores_pct": 6,
+            "moral_pct": 20
+          },
+          "text": {
+            "es": "Mientras el [Potenciador de moral del equipo] está activo, al darse un bloqueo de 2 o 3 personas, los Reflejos de los miembros que participan en el bloqueo aumentan en 6%. Este efecto dura hasta que el balón cruza la red dos veces. Al comienzo de un rally, la moral de tu equipo aumenta en 20."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {
+            "reflejos_bloqueadores_pct": 7,
+            "moral_pct": 20
+          },
+          "text": {
+            "es": "Mientras el [Potenciador de moral del equipo] está activo, al darse un bloqueo de 2 o 3 personas, los Reflejos de los miembros que participan en el bloqueo aumentan en 7%. Este efecto dura hasta que el balón cruza la red dos veces. Al comienzo de un rally, la moral de tu equipo aumenta en 20."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {
+            "reflejos_bloqueadores_pct": 8,
+            "moral_pct": 20
+          },
+          "text": {
+            "es": "Mientras el [Potenciador de moral del equipo] está activo, al darse un bloqueo de 2 o 3 personas, los Reflejos de los miembros que participan en el bloqueo aumentan en 8%. Este efecto dura hasta que el balón cruza la red dos veces. Al comienzo de un rally, la moral de tu equipo aumenta en 20."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {
+            "reflejos_bloqueadores_pct": 9,
+            "moral_pct": 20
+          },
+          "text": {
+            "es": "Mientras el [Potenciador de moral del equipo] está activo, al darse un bloqueo de 2 o 3 personas, los Reflejos de los miembros que participan en el bloqueo aumentan en 9%. Este efecto dura hasta que el balón cruza la red dos veces. Al comienzo de un rally, la moral de tu equipo aumenta en 20."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {
+            "reflejos_bloqueadores_pct": 10,
+            "moral_pct": 20
+          },
+          "text": {
+            "es": "Mientras el [Potenciador de moral del equipo] está activo, al darse un bloqueo de 2 o 3 personas, los Reflejos de los miembros que participan en el bloqueo aumentan en 10%. Este efecto dura hasta que el balón cruza la red dos veces. Al comienzo de un rally, la moral de tu equipo aumenta en 20."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "milagroso_benevolente",
+      "name": {
+        "es": "Rematador Milagroso y Colocador Benevolente: Bokuto, Akaashi"
+      },
+      "members": [
+        {
+          "characterId": "bokuto-sp"
+        },
+        {
+          "characterId": "akaashi-sp"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {},
+          "text": {
+            "es": "El atributo [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta en 6%. Mientras el [Potenciador de moral del equipo] está activo, el [Ataque poderoso] de Bokuto Koutarou (Dia de Playa) aumenta un 18%, y la [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta un 5% adicional."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {},
+          "text": {
+            "es": "El atributo [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta en 7%. Mientras el [Potenciador de moral del equipo] está activo, el [Ataque poderoso] de Bokuto Koutarou (Dia de Playa) aumenta un 18%, y la [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta un 5% adicional."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {},
+          "text": {
+            "es": "El atributo [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta en 8%. Mientras el [Potenciador de moral del equipo] está activo, el [Ataque poderoso] de Bokuto Koutarou (Dia de Playa) aumenta un 18%, y la [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta un 5% adicional."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {},
+          "text": {
+            "es": "El atributo [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta en 9%. Mientras el [Potenciador de moral del equipo] está activo, el [Ataque poderoso] de Bokuto Koutarou (Dia de Playa) aumenta un 18%, y la [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta un 5% adicional."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {},
+          "text": {
+            "es": "El atributo [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta en 10%. Mientras el [Potenciador de moral del equipo] está activo, el [Ataque poderoso] de Bokuto Koutarou (Dia de Playa) aumenta un 18%, y la [Colocacion] de Akaashi Keiji (Dia de Playa) aumenta un 5% adicional."
+          }
+        }
+      ],
+      "priority": 90
+    },
+    {
+      "id": "festival_fuegos_artificiales",
+      "name": {
+        "es": "Festival de Fuegos Artificiales: Kuroo, Tsukishima"
+      },
+      "members": [
+        {
+          "characterId": "kuroo-sp"
+        },
+        {
+          "characterId": "tsukishima-sp"
+        }
+      ],
+      "levels": [
+        {
+          "lvl": 1,
+          "bono": {},
+          "text": {
+            "es": "Aumenta las estadisticas básicas de los miembros de tu equipo en un 6%. Al final de cada rally, aplica el efecto negativo [Ira] al delantero rival (Ataque Poderoso/Ataque rápido) se reduce en un 10%. Este efecto dura 8 cruces de red. Si un oponente ya tiene el efecto negativo [Ira] y se vuelve a aplicar, en su lugar se aplica el efecto negativo [Distraído] y su (Remate/Remate rápido) se reduce en un 20%. Este efecto dura 8 cruces de Red. El efecto Distraído no se puede eliminar por el resto de la partida."
+          }
+        },
+        {
+          "lvl": 2,
+          "bono": {},
+          "text": {
+            "es": "Aumenta las estadisticas básicas de los miembros de tu equipo en un 7%. Al final de cada rally, aplica el efecto negativo [Ira] al delantero rival (Ataque Poderoso/Ataque rápido) se reduce en un 10%. Este efecto dura 8 cruces de red. Si un oponente ya tiene el efecto negativo [Ira] y se vuelve a aplicar, en su lugar se aplica el efecto negativo [Distraído] y su (Remate/Remate rápido) se reduce en un 20%. Este efecto dura 8 cruces de Red. El efecto Distraído no se puede eliminar por el resto de la partida."
+          }
+        },
+        {
+          "lvl": 3,
+          "bono": {},
+          "text": {
+            "es": "Aumenta las estadisticas básicas de los miembros de tu equipo en un 8%. Al final de cada rally, aplica el efecto negativo [Ira] al delantero rival (Ataque Poderoso/Ataque rápido) se reduce en un 10%. Este efecto dura 8 cruces de red. Si un oponente ya tiene el efecto negativo [Ira] y se vuelve a aplicar, en su lugar se aplica el efecto negativo [Distraído] y su (Remate/Remate rápido) se reduce en un 20%. Este efecto dura 8 cruces de Red. El efecto Distraído no se puede eliminar por el resto de la partida."
+          }
+        },
+        {
+          "lvl": 4,
+          "bono": {},
+          "text": {
+            "es": "Aumenta las estadisticas básicas de los miembros de tu equipo en un 9%. Al final de cada rally, aplica el efecto negativo [Ira] al delantero rival (Ataque Poderoso/Ataque rápido) se reduce en un 10%. Este efecto dura 8 cruces de red. Si un oponente ya tiene el efecto negativo [Ira] y se vuelve a aplicar, en su lugar se aplica el efecto negativo [Distraído] y su (Remate/Remate rápido) se reduce en un 20%. Este efecto dura 8 cruces de Red. El efecto Distraído no se puede eliminar por el resto de la partida."
+          }
+        },
+        {
+          "lvl": 5,
+          "bono": {},
+          "text": {
+            "es": "Aumenta las estadisticas básicas de los miembros de tu equipo en un 10%. Al final de cada rally, aplica el efecto negativo [Ira] al delantero rival (Ataque Poderoso/Ataque rápido) se reduce en un 10%. Este efecto dura 8 cruces de red. Si un oponente ya tiene el efecto negativo [Ira] y se vuelve a aplicar, en su lugar se aplica el efecto negativo [Distraído] y su (Remate/Remate rápido) se reduce en un 20%. Este efecto dura 8 cruces de Red. El efecto Distraído no se puede eliminar por el resto de la partida."
+          }
+        }
+      ],
+      "priority": 90
     }
   ]
 }
