@@ -73,16 +73,6 @@
       </div>
     </div>`;
   }
-      <div>
-        <div class="sinergia-title">${x.title}</div>
-        <div class="sinergia-effect">${detail}</div>
-        <div class="sinergia-chiplist">${chips}</div>
-      </div>
-      <div class="sinergia-actions">
-        ${lvlSel}
-        ${badge}
-      </div>
-    </div>`;
   }
 
   function scheduleRender(){
