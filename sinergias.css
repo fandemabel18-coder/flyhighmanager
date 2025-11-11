@@ -28,16 +28,3 @@
   background: #0f1720; color: #e6edf7; border: 1px solid rgba(255,255,255,.12);
   border-radius: 8px; padding: 2px 6px; font-size: 12px;
 }
-
-
-/* --- Collapsible behavior for individual sinergias --- */
-.sinergia-header{
-  display:grid; grid-template-columns:36px 1fr 16px; gap:10px; align-items:center;
-  width:100%; background:transparent; border:0; color:inherit; text-align:left; padding:0; cursor:pointer;
-}
-.sinergia-head-text{ display:flex; flex-direction:column; gap:6px; }
-.sinergia-head-meta{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-.sinergia-chev{ transition: transform .18s ease; display:inline-block; }
-.sinergia-row:not(.is-collapsed) .sinergia-chev{ transform: rotate(90deg); }
-.sinergia-body{ margin-left:46px; margin-top:6px; }
-.sinergia-row.is-collapsed .sinergia-body{ display:none; }
