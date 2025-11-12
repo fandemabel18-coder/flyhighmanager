@@ -30,14 +30,12 @@
 }
 
 
-/* --- Collapsible behavior for individual sinergias (V2) --- */
-.sinergia-header{
-  display:grid; grid-template-columns:36px 1fr 16px; gap:10px; align-items:center;
-  width:100%; background:transparent; border:0; color:inherit; text-align:left; padding:0; cursor:pointer;
-}
-.sinergia-head-text{ display:flex; flex-direction:column; gap:6px; }
-.sinergia-head-meta{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-.sinergia-chev{ transition: transform .18s ease; display:inline-block; }
-.sinergia-row:not(.is-collapsed) .sinergia-chev{ transform: rotate(90deg); }
-.sinergia-body{ margin-left:46px; margin-top:6px; }
-.sinergia-row.is-collapsed .sinergia-body{ display:none; }
+/* --- Compact bar style to mimic school links --- */
+.sinergia-row{ border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:6px; background:rgba(0,0,0,.15); }
+.sinergia-header{ display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; background:transparent; border:0; padding:8px 10px; cursor:pointer; }
+.sinergia-title{ font-weight:600; flex:1; text-align:left; }
+.sinergia-head-right{ display:flex; align-items:center; gap:8px; }
+.sinergia-ava-group{ display:flex; gap:4px; }
+.sinergia-ava{ width:24px; height:24px; border-radius:6px; object-fit:cover; display:block; }
+.sinergia-ava.is-fallback{ display:flex; align-items:center; justify-content:center; font-size:14px; background:rgba(255,255,255,.06); }
+.sinergia-body{ margin-top:8px; padding:8px; border-top:1px dashed rgba(255,255,255,.08); }
