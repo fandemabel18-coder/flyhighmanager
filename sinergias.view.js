@@ -30,35 +30,17 @@
   }
 
   function row(x, dict){
-    const avatars = x.allIds.map(id => {
-      const ch = dict.get(id);
-      const src = ch?.avatar;
-      const alt = ch?.name || id;
-      return src ? `<img class=\"sinergia-ava\" src=\"${src}\" alt=\"${alt}\">` : `<span class=\"sinergia-ava is-fallback\">🏐</span>`;
-    }).join('');
+    const first = dict.get(x.allIds[0]);
+    const thumb = first?.avatar
+      ? `<div class="sinergia-thumb"><img src="${first.avatar}" alt="${first.name||''}"></div>`
+      : `<div class="sinergia-thumb">🏐</div>`;
     const chips = x.allIds.map(id => chip(id, dict.get(id), !x.missing.includes(id))).join('');
-    const badge = x.active ? `<span class=\"badge ok\">Activo</span>` : `<span class=\"badge miss\">Falta</span>`;
+    const badge = x.active ? `<span class="badge ok">Activo</span>` : `<span class="badge miss">Falta</span>`;
     const detail = levelText(x);
     const lvlSel = levelSelector(x);
-    const collapsed = isCollapsed(x.id);
-    const aria = collapsed ? 'false' : 'true';
 
-    return `<div class=\"sinergia-row ${x.active?'is-active':'is-missing'} ${collapsed?'is-collapsed':''}\" data-synergy=\"${x.id}\">
-      <button class=\"sinergia-header\" aria-expanded=\"${aria}\" aria-controls=\"sy-body-${x.id}\" data-toggle=\"${x.id}\">
-        <div class=\"sinergia-ava-group\">${avatars}</div>
-        <div class=\"sinergia-title\">${x.title}</div>
-        <div class=\"sinergia-head-right\">
-          ${badge}
-          ${lvlSel}
-          <span class=\"sinergia-chev\" aria-hidden=\"true\">▶</span>
-        </div>
-      </button>
-      <div id=\"sy-body-${x.id}\" class=\"sinergia-body\">
-        <div class=\"sinergia-effect\">${detail}</div>
-        <div class=\"sinergia-chiplist\">${chips}</div>
-      </div>
-    </div>`;
-  }
+    return `<div class="sinergia-row ${x.active?'is-active':'is-missing'}">
+      ${thumb}
       <div>
         <div class="sinergia-title">${x.title}</div>
         <div class="sinergia-effect">${detail}</div>
@@ -77,6 +59,7 @@
   }
 
   function render(){
+    try {
     const panel = document.querySelector(MOUNT);
     if (!panel || !window.FHM_TB) return;
     const list = FHM_TB.getSynergies();
