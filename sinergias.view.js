@@ -71,8 +71,19 @@
     raf = 0;
     const mount = document.querySelector(MOUNT);
     if(!mount) return;
-    const list = window.FHM_TB?.getSynergies?.() || [];
-    const dict = new Map((window.FHM_TB?.state?.chars||[]).map(ch => [ch.id, ch]));
+    const rawList = window.FHM_TB?.getSynergies?.();
+    const list = Array.isArray(rawList) ? rawList : (rawList && rawList.list ? rawList.list : []);
+    const rawChars = window.FHM_TB?.state?.chars;
+    let dict;
+    if (rawChars instanceof Map) {
+      dict = rawChars;
+    } else if (Array.isArray(rawChars)) {
+      dict = new Map(rawChars.map(ch => [ch.id, ch]));
+    } else if (rawChars && typeof rawChars === 'object') {
+      dict = new Map(Object.values(rawChars).map(ch => [ch.id, ch]));
+    } else {
+      dict = new Map();
+    }
     const html = list.map(x => row(x, dict)).join('') || `<div class="empty">Ningún vínculo aplicable con la alineación actual.</div>`;
     // mount inner
     let panel = mount.querySelector('.sinergias-panel');
