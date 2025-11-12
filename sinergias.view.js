@@ -59,11 +59,42 @@
   }
 
   function render(){
-    try {
-    const panel = document.querySelector(MOUNT);
-    if (!panel || !window.FHM_TB) return;
-    const list = FHM_TB.getSynergies();
-    if (!list.length) { panel.innerHTML = ''; return; }
+  try {
+    cancelAnimationFrame(raf); raf = 0;
+
+    const mount = document.querySelector(MOUNT);
+    if(!mount || !window.FHM_TB) return;
+
+    // Puede devolver [] o { list: [] }
+    const rawList = window.FHM_TB?.getSynergies?.();
+    const list = Array.isArray(rawList) ? rawList : (rawList && rawList.list ? rawList.list : []);
+
+    // chars puede ser Map / Array / Object
+    const rawChars = window.FHM_TB?.state?.chars;
+    const dict = (rawChars instanceof Map) ? rawChars
+               : (Array.isArray(rawChars)) ? new Map(rawChars.map(ch=>[ch.id, ch]))
+               : (rawChars && typeof rawChars==='object') ? new Map(Object.values(rawChars).map(ch=>[ch.id, ch]))
+               : new Map();
+
+    // panel/lista
+    let panel = mount.querySelector('.sinergias-panel');
+    if(!panel){
+      mount.insertAdjacentHTML('beforeend', '<div class="sinergias-panel"><div class="sinergias-list"></div></div>');
+      panel = mount.querySelector('.sinergias-panel');
+    }
+
+    const listEl = panel.querySelector('.sinergias-list');
+    const html = list.map(x => row(x, dict)).join('') || '<div class="empty">Ningún vínculo aplicable con la alineación actual.</div>';
+    if(listEl) listEl.innerHTML = html;
+
+    // aplicar estado colapsado inmediatamente
+    for (const el of panel.querySelectorAll('.sinergia-row.is-collapsed .sinergia-body')) {
+      el.style.display = 'none';
+    }
+  } catch (e) {
+    console.error('[sinergias.view] render error:', e);
+  }
+}
     panel.innerHTML = `<div class="sinergias-panel"><div class="sinergias-group">${
       list.map(x => row(x, FHM_TB.state.chars)).join('')
     }</div></div>`;
