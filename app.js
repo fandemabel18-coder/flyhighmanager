@@ -66,16 +66,246 @@ function getCharacterPotentials(c){
 
 
 
+/* ===== Cuenta local FHM (nickname + contraseña, solo en este navegador) ===== */
+const ACCOUNT = (() => {
+  const KEY = 'fhm.account';
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(KEY);
+      if(!raw) return null;
+      const obj = JSON.parse(raw);
+      if(!obj || typeof obj !== 'object') return null;
+      if(!obj.nick || !obj.pass) return null;
+      return obj;
+    }catch(e){
+      console.warn('[ACCOUNT] no se pudo leer cuenta', e);
+      return null;
+    }
+  }
+
+  function save(acc){
+    try{
+      localStorage.setItem(KEY, JSON.stringify(acc));
+    }catch(e){
+      console.warn('[ACCOUNT] no se pudo guardar cuenta', e);
+    }
+    try{
+      if (window.NICK && typeof NICK.set === 'function') {
+        NICK.set(acc.nick);
+      }
+    }catch(e){}
+    try{
+      document.dispatchEvent(new CustomEvent('fhm:account:changed', { detail:{ account: acc }}));
+    }catch(e){}
+  }
+
+  function isLogged(){
+    return !!load();
+  }
+
+  function logout(){
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    try{
+      document.dispatchEvent(new CustomEvent('fhm:account:changed', { detail:{ account: null }}));
+    }catch(e){}
+  }
+
+  let modalOpen = false;
+
+  function ensure(){
+    if (isLogged()) return true;
+    openModal(load() ? 'login' : 'create');
+    return false;
+  }
+
+  function openModal(mode){
+    if (modalOpen) return;
+    modalOpen = true;
+    const existing = load();
+    const isLogin = mode === 'login' || (!!existing);
+
+    const backdrop = document.createElement('div');
+    backdrop.id = 'fhm-account-backdrop';
+    Object.assign(backdrop.style, {
+      position:'fixed',
+      inset:'0',
+      background:'rgba(15,23,42,0.80)',
+      zIndex:'9999',
+      display:'flex',
+      alignItems:'center',
+      justifyContent:'center'
+    });
+
+    const card = document.createElement('div');
+    card.id = 'fhm-account-modal';
+    Object.assign(card.style, {
+      position:'relative',
+      maxWidth:'420px',
+      width:'90%',
+      background:'#020617',
+      color:'#e5e7eb',
+      borderRadius:'12px',
+      padding:'20px 20px 16px',
+      boxShadow:'0 24px 60px rgba(0,0,0,0.65)',
+      fontFamily:'system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif',
+      border:'1px solid rgba(148,163,184,0.35)'
+    });
+
+    card.innerHTML = `
+      <button type="button" data-role="close"
+        style="position:absolute;top:8px;right:10px;border:none;background:transparent;color:#94a3b8;font-size:20px;cursor:pointer;">×</button>
+      <h2 style="margin:4px 0 6px;font-size:18px;font-weight:600;">
+        ${isLogin ? 'Inicia sesión en tu cuenta local' : 'Crea tu cuenta local FHM'}
+      </h2>
+      <p style="margin:0 0 10px;font-size:13px;line-height:1.5;color:#cbd5f5;">
+        Tu cuenta sirve para guardar <b>puntos de misiones y gacha</b> en <b>este navegador</b>.
+        No pedimos correo ni datos personales.
+      </p>
+      <p style="margin:0 0 10px;font-size:11px;color:#9ca3af;">
+        ⚠️ Si borras cookies/datos del sitio o usas otro dispositivo, esta cuenta se perderá.
+      </p>
+      <label style="display:block;font-size:13px;margin-bottom:8px;">
+        Nickname
+        <input type="text" data-field="nick" maxlength="20"
+          style="margin-top:4px;width:100%;padding:6px 8px;border-radius:8px;border:1px solid #334155;background:#020817;color:#e5e7eb;">
+      </label>
+      <label style="display:block;font-size:13px;margin-bottom:4px;">
+        Contraseña
+        <input type="password" data-field="pass" minlength="4"
+          style="margin-top:4px;width:100%;padding:6px 8px;border-radius:8px;border:1px solid #334155;background:#020817;color:#e5e7eb;">
+      </label>
+      <p style="margin:0 0 8px;font-size:11px;color:#9ca3af;">
+        Usa una contraseña que recuerdes. No podemos recuperarla por ti.
+      </p>
+      <div data-role="error" style="display:none;margin-bottom:8px;font-size:12px;color:#fecaca;"></div>
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:4px;">
+        <button type="button" data-role="cancel"
+          style="background:transparent;border:none;color:#9ca3af;font-size:13px;cursor:pointer;">Cancelar</button>
+        <button type="button" data-role="submit"
+          style="background:#22c55e;border:none;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:#022c22;cursor:pointer;">
+          ${isLogin ? 'Entrar y continuar' : 'Guardar y continuar'}
+        </button>
+      </div>
+    `;
+
+    backdrop.appendChild(card);
+    document.body.appendChild(backdrop);
+
+    const inputNick = card.querySelector('[data-field="nick"]');
+    const inputPass = card.querySelector('[data-field="pass"]');
+    const errorBox  = card.querySelector('[data-role="error"]');
+
+    if (existing && existing.nick) {
+      inputNick.value = existing.nick;
+    } else if (window.NICK && typeof NICK.get === 'function') {
+      try{ inputNick.value = NICK.get() || ''; }catch(e){}
+    }
+    inputNick.focus();
+
+    function showError(msg){
+      if (!errorBox) return;
+      errorBox.textContent = msg || '';
+      errorBox.style.display = msg ? 'block' : 'none';
+    }
+
+    function close(){
+      if (!modalOpen) return;
+      modalOpen = false;
+      backdrop.remove();
+    }
+
+    function handleSubmit(){
+      const nick = (inputNick.value || '').trim();
+      const pass = (inputPass.value || '').trim();
+
+      if (!nick){
+        showError('Escribe un nickname.');
+        inputNick.focus();
+        return;
+      }
+      if (pass.length < 4){
+        showError('La contraseña debe tener al menos 4 caracteres.');
+        inputPass.focus();
+        return;
+      }
+
+      const stored = load();
+      if (stored){
+        // validar login
+        if (stored.nick !== nick){
+          showError(`En este navegador ya está guardado el nickname "${stored.nick}".`);
+          return;
+        }
+        if (stored.pass !== pass){
+          showError('Contraseña incorrecta para este nickname.');
+          inputPass.focus();
+          inputPass.select();
+          return;
+        }
+        save(stored);
+        close();
+        return;
+      }
+
+      const acc = {
+        nick,
+        pass, // se guarda tal cual; no usar para nada sensible
+        createdAt: new Date().toISOString()
+      };
+      save(acc);
+      close();
+    }
+
+    backdrop.addEventListener('click', (ev)=>{
+      if (ev.target === backdrop) {
+        close();
+      }
+    });
+    card.querySelector('[data-role="close"]')?.addEventListener('click', close);
+    card.querySelector('[data-role="cancel"]')?.addEventListener('click', close);
+    card.querySelector('[data-role="submit"]')?.addEventListener('click', handleSubmit);
+    card.addEventListener('keydown', (ev)=>{
+      if (ev.key === 'Enter'){
+        ev.preventDefault();
+        handleSubmit();
+      } else if (ev.key === 'Escape'){
+        ev.preventDefault();
+        close();
+      }
+    });
+  }
+
+  // Permite abrir manualmente desde botones con data-action="open-account"
+  document.addEventListener('click', (ev)=>{
+    const btn = ev.target.closest('[data-action="open-account"]');
+    if (!btn) return;
+    ev.preventDefault();
+    openModal(load() ? 'login' : 'create');
+  });
+
+  return { ensure, isLogged, logout, get: load, openModal };
+})();
+
 /* ===========================
    Tabs
    =========================== */
 function initTabs(){
   $$('.tab-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
+      const name = btn.dataset.tab;
+
+      // Algunas pestañas requieren tener cuenta local creada
+      if (name === 'games' && typeof ACCOUNT !== 'undefined') {
+        if (!ACCOUNT.ensure()) {
+          // No cambiamos de pestaña si el usuario todavía no crea / inicia sesión
+          return;
+        }
+      }
+
       $$('.tab-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
 
-      const name = btn.dataset.tab;
       $$('.tab').forEach(t => t.classList.remove('active'));
       const target = $('#tab-'+name);
       if(target) target.classList.add('active');
@@ -101,6 +331,7 @@ function initTabs(){
     const btn = $(`.tab-btn[data-tab="${tab}"]`);
     if(btn) btn.click();
   });
+}
 }
 
 /* ===========================
