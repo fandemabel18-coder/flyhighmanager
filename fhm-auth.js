@@ -429,23 +429,27 @@ function updateAccountLabel(nickname) {
 }
   }
 
-  var ACCOUNT = {
-    isLoggedIn: isLoggedIn,
-    getNickname: getNickname,
-    openModal: openModal,
-    logout: function () {
-      saveAccount(null);
-      try {
-        if (window.NICK && typeof NICK.set === 'function') {
-          NICK.set('');
-        }
-      } catch (e) {}
-      try {
-        document.dispatchEvent(new CustomEvent('fhm:account:logout'));
-      } catch (e) {}
-      updateAccountButtonLabel();
-    }
-  };
+ var ACCOUNT = {
+  isLoggedIn: isLoggedIn,
+  getNickname: getNickname,
+  openModal: openModal,
+  logout: function () {
+    saveAccount(null);
+
+    // 👉 Al cerrar sesión, volvemos a "Invitado"
+    updateAccountLabel(null);
+
+    try {
+      if (window.NICK && typeof NICK.set === 'function') {
+        NICK.set('');
+      }
+    } catch (e) {}
+    try {
+      document.dispatchEvent(new CustomEvent('fhm:account:logout'));
+    } catch (e) {}
+    updateAccountButtonLabel();
+  }
+};
 
   window.ACCOUNT = ACCOUNT;
 
