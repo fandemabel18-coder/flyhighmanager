@@ -201,6 +201,7 @@ function updateAccountLabel(nickname) {
   function afterAuthSuccess(acc, message) {
     closeModal();
     saveAccount(acc);
+    updateAccountLabel(acc.nickname);
     try {
       if (window.NICK && typeof NICK.set === 'function') {
         NICK.set(acc.nickname);
