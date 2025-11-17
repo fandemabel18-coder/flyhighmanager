@@ -1,10 +1,9 @@
-
-// netlify/functions/lib/db.js
 const { Pool } = require('pg');
 
-const connectionString = process.env.DB_URL || process.env.DATABASE_URL || process.env.NETLIFY_DB_URL;
+const connectionString = process.env.DATABASE_URL || process.env.DB_URL;
+
 if (!connectionString) {
-  console.warn("[DB] Missing DB_URL env var. Set it to your Postgres connection string.");
+  console.warn('[FHM AUTH] DATABASE_URL/DB_URL no está configurada.');
 }
 
 const pool = new Pool({
