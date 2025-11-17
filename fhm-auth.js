@@ -406,19 +406,27 @@ function updateAccountLabel(nickname) {
   }
 
   function hydrateFromExistingAccount() {
-    var acc = readAccount();
-    if (acc && acc.nickname) {
-      try {
-        if (window.NICK && typeof NICK.set === 'function') {
-          NICK.set(acc.nickname);
-        }
-      } catch (e) {}
-      try {
-        var detail = sanitizeAccountForEvent(acc);
-        document.dispatchEvent(new CustomEvent('fhm:account:login', { detail: detail }));
-      } catch (e) {}
-    }
-    updateAccountButtonLabel();
+  var acc = readAccount();
+
+  if (acc && acc.nickname) {
+    // Ya había sesión guardada
+    updateAccountLabel(acc.nickname);
+    try {
+      if (window.NICK && typeof NICK.set === 'function') {
+        NICK.set(acc.nickname);
+      }
+    } catch (e) {}
+    try {
+      var detail = sanitizeAccountForEvent(acc);
+      document.dispatchEvent(new CustomEvent('fhm:account:login', { detail: detail }));
+    } catch (e) {}
+  } else {
+    // No hay sesión -> Invitado
+    updateAccountLabel(null);
+  }
+
+  updateAccountButtonLabel();
+}
   }
 
   var ACCOUNT = {
