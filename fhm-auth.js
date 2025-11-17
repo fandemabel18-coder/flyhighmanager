@@ -4,19 +4,6 @@
   var STORAGE_KEY = 'fhm.account.v2';
   var ACCOUNT_BUTTON_SELECTOR = '[data-action="open-auth"]';
   var API_BASE = '/.netlify/functions';
-  
-// Actualiza el texto "Usted está como ..."
-function updateAccountLabel(nickname) {
-  var label = (nickname && nickname.trim()) ? nickname.trim() : 'Invitado';
-
-  try {
-    document.querySelectorAll('[data-nick-target]').forEach(function (el) {
-      el.textContent = label;
-    });
-  } catch (e) {
-    // ignore
-  }
-}
 
   function readAccount() {
     try {
@@ -72,6 +59,21 @@ function updateAccountLabel(nickname) {
       for (var i = 0; i < btns.length; i++) {
         btns[i].textContent = logged ? 'Cerrar sesión' : 'Cuenta / Login';
       }
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  // Actualiza el texto "Usted está como ..."
+  function updateAccountLabel(nickname) {
+    var label = (nickname && String(nickname).trim())
+      ? String(nickname).trim()
+      : 'Invitado';
+
+    try {
+      document.querySelectorAll('[data-nick-target]').forEach(function (el) {
+        el.textContent = label;
+      });
     } catch (e) {
       // ignore
     }
@@ -406,50 +408,42 @@ function updateAccountLabel(nickname) {
   }
 
   function hydrateFromExistingAccount() {
-  var acc = readAccount();
-
-  if (acc && acc.nickname) {
-    // Ya había sesión guardada
-    updateAccountLabel(acc.nickname);
-    try {
-      if (window.NICK && typeof NICK.set === 'function') {
-        NICK.set(acc.nickname);
-      }
-    } catch (e) {}
-    try {
-      var detail = sanitizeAccountForEvent(acc);
-      document.dispatchEvent(new CustomEvent('fhm:account:login', { detail: detail }));
-    } catch (e) {}
-  } else {
-    // No hay sesión -> Invitado
-    updateAccountLabel(null);
-  }
-
-  updateAccountButtonLabel();
-}
-  }
-
- var ACCOUNT = {
-  isLoggedIn: isLoggedIn,
-  getNickname: getNickname,
-  openModal: openModal,
-  logout: function () {
-    saveAccount(null);
-
-    // 👉 Al cerrar sesión, volvemos a "Invitado"
-    updateAccountLabel(null);
-
-    try {
-      if (window.NICK && typeof NICK.set === 'function') {
-        NICK.set('');
-      }
-    } catch (e) {}
-    try {
-      document.dispatchEvent(new CustomEvent('fhm:account:logout'));
-    } catch (e) {}
+    var acc = readAccount();
+    if (acc && acc.nickname) {
+      updateAccountLabel(acc.nickname);
+      try {
+        if (window.NICK && typeof NICK.set === 'function') {
+          NICK.set(acc.nickname);
+        }
+      } catch (e) {}
+      try {
+        var detail = sanitizeAccountForEvent(acc);
+        document.dispatchEvent(new CustomEvent('fhm:account:login', { detail: detail }));
+      } catch (e) {}
+    } else {
+      updateAccountLabel(null);
+    }
     updateAccountButtonLabel();
   }
-};
+
+  var ACCOUNT = {
+    isLoggedIn: isLoggedIn,
+    getNickname: getNickname,
+    openModal: openModal,
+    logout: function () {
+      saveAccount(null);
+      updateAccountLabel(null);
+      try {
+        if (window.NICK && typeof NICK.set === 'function') {
+          NICK.set('');
+        }
+      } catch (e) {}
+      try {
+        document.dispatchEvent(new CustomEvent('fhm:account:logout'));
+      } catch (e) {}
+      updateAccountButtonLabel();
+    }
+  };
 
   window.ACCOUNT = ACCOUNT;
 
