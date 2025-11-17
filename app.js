@@ -2404,13 +2404,13 @@ const NICK = (() => {
     const n = get() || ensure();
     return n ? `Hola ${n}, bienvenido a la sección ${sectionName}.` : '';
   }
+  // Pinta sólo los saludos contextuales. El estado de la cuenta
+  // (span[data-nick-target] en la cabecera) ahora lo controla fhm-auth.js
+  // para que al cerrar sesión vuelva a mostrarse "Invitado".
   function paint(){
     document.querySelectorAll('[data-nick-greet]').forEach(el=>{
       const sec = el.getAttribute('data-section') || '';
       el.textContent = greet(sec);
-    });
-    document.querySelectorAll('[data-nick-target]').forEach(el=>{
-      el.textContent = get() || '';
     });
   }
 
