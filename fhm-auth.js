@@ -2,6 +2,7 @@
   'use strict';
 
   var STORAGE_KEY = 'fhm.account.v1';
+  var ACCOUNT_BUTTON_SELECTOR = '[data-action="open-auth"]';
 
   function readAccount() {
     try {
@@ -22,7 +23,7 @@
       if (!acc) {
         localStorage.removeItem(STORAGE_KEY);
       } else {
-        local toStore = {
+        var toStore = {
           nickname: String(acc.nickname || '').trim(),
           pass: String(acc.pass || ''),
           createdAt: acc.createdAt || new Date().toISOString()
@@ -50,6 +51,18 @@
   function getNickname() {
     var acc = readAccount();
     return acc && acc.nickname ? acc.nickname : '';
+  }
+
+  function updateAccountButtonLabel() {
+    try {
+      var logged = isLoggedIn();
+      var btns = document.querySelectorAll(ACCOUNT_BUTTON_SELECTOR);
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].textContent = logged ? 'Cerrar sesión' : 'Cuenta / Login';
+      }
+    } catch (e) {
+      // ignore
+    }
   }
 
   var STYLE_ID = 'fhm-auth-style';
@@ -158,6 +171,7 @@
 
   function afterAuthSuccess(acc, message) {
     closeModal();
+    saveAccount(acc);
     try {
       if (window.NICK && typeof NICK.set === 'function') {
         NICK.set(acc.nickname);
@@ -171,6 +185,7 @@
     } catch (e) {
       // ignore
     }
+    updateAccountButtonLabel();
     if (message) {
       console.log('[FHM AUTH]', message);
     }
@@ -220,7 +235,6 @@
         pass: pass,
         createdAt: createdAt
       };
-      saveAccount(acc);
       afterAuthSuccess(acc, 'Cuenta creada.');
       return;
     }
@@ -343,11 +357,12 @@
       }
     }
 
-    if (fields.nickInput) {
-      if (prefillNick && !fields.nickInput.value) {
-        fields.nickInput.value = prefillNick;
+    var fields2 = getFields();
+    if (fields2.nickInput) {
+      if (prefillNick && !fields2.nickInput.value) {
+        fields2.nickInput.value = prefillNick;
       }
-      fields.nickInput.focus();
+      fields2.nickInput.focus();
     }
 
     clearError();
@@ -363,10 +378,16 @@
         }
         return;
       }
-      var openBtn = e.target.closest('[data-action="open-auth"]');
+      var openBtn = e.target.closest(ACCOUNT_BUTTON_SELECTOR);
       if (openBtn) {
         e.preventDefault();
-        openModal('manual');
+        if (isLoggedIn()) {
+          var ok = window.confirm('¿Cerrar sesión? Tendrás que iniciar sesión nuevamente para jugar.');
+          if (!ok) return;
+          ACCOUNT.logout();
+        } else {
+          openModal('manual');
+        }
       }
     });
   }
@@ -381,7 +402,14 @@
       } catch (e) {
         // ignore
       }
+      try {
+        var detail = sanitizeAccountForEvent(acc);
+        document.dispatchEvent(new CustomEvent('fhm:account:login', { detail: detail }));
+      } catch (e) {
+        // ignore
+      }
     }
+    updateAccountButtonLabel();
   }
 
   var ACCOUNT = {
@@ -402,6 +430,7 @@
       } catch (e) {
         // ignore
       }
+      updateAccountButtonLabel();
     }
   };
 
@@ -412,6 +441,7 @@
     buildModal();
     attachGlobalListeners();
     hydrateFromExistingAccount();
+    updateAccountButtonLabel();
   }
 
   if (document.readyState === 'loading') {

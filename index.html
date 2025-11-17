@@ -30,11 +30,15 @@
       <button class="tab-btn" data-tab="about">Acerca de</button>
       <a class="tab-btn" href="/contacto/">Contacto</a>
       <button class="tab-btn" data-tab="legal">Legal</button>
+    
+      <div class="account-box" style="margin-left:auto;margin-right:16px;display:flex;align-items:center;gap:10px;font-size:0.9rem;color:#e5e7eb;">
+        <div class="account-status" style="white-space:nowrap;">
+          <span class="account-status-label" style="opacity:0.9;">Usted está como </span>
+          <span class="account-status-nick" data-nick-target style="font-weight:600;">Invitado</span>
+        </div>
+        <button class="tab-btn" type="button" data-action="open-auth" style="padding-inline:14px;font-size:0.85rem;">Cuenta / Login</button>
+      </div>
     </nav>
-    <div class="account-box" style="margin-left:auto;text-align:right;font-size:0.85rem;">
-      <div class="account-status">Usted está como <span data-nick-target>Invitado</span></div>
-      <button class="tab-btn" type="button" data-action="open-auth" style="margin-top:4px;">Cuenta / Login</button>
-    </div>
   </header>
 
   <main>
