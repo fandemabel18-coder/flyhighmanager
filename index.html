@@ -31,6 +31,10 @@
       <a class="tab-btn" href="/contacto/">Contacto</a>
       <button class="tab-btn" data-tab="legal">Legal</button>
     </nav>
+    <div class="account-box" style="margin-left:auto;text-align:right;font-size:0.85rem;">
+      <div class="account-status">Usted está como <span data-nick-target>Invitado</span></div>
+      <button class="tab-btn" type="button" data-action="open-auth" style="margin-top:4px;">Cuenta / Login</button>
+    </div>
   </header>
 
   <main>
@@ -98,7 +102,7 @@
         <h2>Juegos</h2>
         <div class="fhm-greeting"><p data-nick-greet data-section="Juegos — FlyQuiz"></p></div>
         <p class="banner-meta">Modo 15×FlyQuiz (MVP). 15 preguntas, 20s c/u, 1 fallo = fin. Tu puntaje se envía al ranking global.</p>
-        <section id="games-flyquiz15"></section>
+        <section id="games-flyquiz15" data-requires-auth="true"></section>
       </div>
     </section>
 
@@ -531,6 +535,7 @@ Basada en la versión Global de Haikyu FlyHigh. ¡Saca cuentas y asegura tu pity
         onerror="console.error('sinergias.view 404')"></script>
 
 <script src="/app.js?v=backup"></script>
+<script src="/fhm-auth.js"></script>
 
   <script src="/fhm-guides.module.js"></script>
   <script>
