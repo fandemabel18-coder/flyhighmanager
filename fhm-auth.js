@@ -4,6 +4,19 @@
   var STORAGE_KEY = 'fhm.account.v2';
   var ACCOUNT_BUTTON_SELECTOR = '[data-action="open-auth"]';
   var API_BASE = '/.netlify/functions';
+  
+// Actualiza el texto "Usted está como ..."
+function updateAccountLabel(nickname) {
+  var label = (nickname && nickname.trim()) ? nickname.trim() : 'Invitado';
+
+  try {
+    document.querySelectorAll('[data-nick-target]').forEach(function (el) {
+      el.textContent = label;
+    });
+  } catch (e) {
+    // ignore
+  }
+}
 
   function readAccount() {
     try {
