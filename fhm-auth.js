@@ -1,17 +1,16 @@
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'fhm.account.v1';
+  var STORAGE_KEY = 'fhm.account.v2';
   var ACCOUNT_BUTTON_SELECTOR = '[data-action="open-auth"]';
+  var API_BASE = '/.netlify/functions';
 
   function readAccount() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       var acc = JSON.parse(raw);
-      if (!acc || typeof acc.nickname !== 'string' || typeof acc.pass !== 'string') {
-        return null;
-      }
+      if (!acc || typeof acc.nickname !== 'string' || typeof acc.token !== 'string') return null;
       return acc;
     } catch (e) {
       return null;
@@ -25,7 +24,7 @@
       } else {
         var toStore = {
           nickname: String(acc.nickname || '').trim(),
-          pass: String(acc.pass || ''),
+          token: String(acc.token || ''),
           createdAt: acc.createdAt || new Date().toISOString()
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(toStore));
@@ -45,7 +44,7 @@
 
   function isLoggedIn() {
     var acc = readAccount();
-    return !!(acc && acc.nickname && acc.pass);
+    return !!(acc && acc.nickname && acc.token);
   }
 
   function getNickname() {
@@ -116,7 +115,7 @@
         '';
       document.head.appendChild(style);
     } catch (e) {
-      // ignore style errors
+      // ignore
     }
   }
 
@@ -145,18 +144,18 @@
   }
 
   function clearError() {
-    var fields = getFields();
-    if (fields.errorBox) {
-      fields.errorBox.textContent = '';
-      fields.errorBox.style.display = 'none';
+    var f = getFields();
+    if (f.errorBox) {
+      f.errorBox.textContent = '';
+      f.errorBox.style.display = 'none';
     }
   }
 
   function showError(msg) {
-    var fields = getFields();
-    if (fields.errorBox) {
-      fields.errorBox.textContent = msg || '';
-      fields.errorBox.style.display = msg ? 'block' : 'none';
+    var f = getFields();
+    if (f.errorBox) {
+      f.errorBox.textContent = msg || '';
+      f.errorBox.style.display = msg ? 'block' : 'none';
     } else if (msg) {
       console.warn('[FHM AUTH]', msg);
     }
@@ -169,6 +168,23 @@
     }
   }
 
+  function apiRequest(path, payload) {
+    var url = API_BASE + path;
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload || {})
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (data) {
+        if (!res.ok || !data) {
+          var msg = (data && data.error) || ('Error de red (' + res.status + ')');
+          throw new Error(msg);
+        }
+        return data;
+      });
+    });
+  }
+
   function afterAuthSuccess(acc, message) {
     closeModal();
     saveAccount(acc);
@@ -176,26 +192,29 @@
       if (window.NICK && typeof NICK.set === 'function') {
         NICK.set(acc.nickname);
       }
-    } catch (e) {
-      // ignore
-    }
+    } catch (e) {}
     try {
       var detail = sanitizeAccountForEvent(acc);
       document.dispatchEvent(new CustomEvent('fhm:account:login', { detail: detail }));
-    } catch (e) {
-      // ignore
-    }
+    } catch (e) {}
     updateAccountButtonLabel();
-    if (message) {
-      console.log('[FHM AUTH]', message);
+    if (message) console.log('[FHM AUTH]', message);
+  }
+
+  function setButtonsDisabled(disabled) {
+    var modal = getModal();
+    if (!modal) return;
+    var btns = modal.querySelectorAll('.fhm-auth-modal__actions button');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].disabled = disabled;
     }
   }
 
   function handleAuthClick(mode) {
     clearError();
-    var fields = getFields();
-    var nickInput = fields.nickInput;
-    var passInput = fields.passInput;
+    var f = getFields();
+    var nickInput = f.nickInput;
+    var passInput = f.passInput;
     if (!nickInput || !passInput) return;
 
     var nickname = String(nickInput.value || '').trim();
@@ -222,37 +241,27 @@
       return;
     }
 
-    var existing = readAccount();
+    setButtonsDisabled(true);
+    var endpoint = mode === 'register' ? '/auth-register' : '/auth-login';
 
-    if (mode === 'register') {
-      if (existing && existing.nickname && existing.nickname !== nickname) {
-        var ok = window.confirm('Ya existe una cuenta local con el nickname "' + existing.nickname + '". Si continúas, se reemplazará por "' + nickname + '". ¿Continuar?');
-        if (!ok) return;
-      }
-      var createdAt = existing && existing.nickname === nickname && existing.createdAt ? existing.createdAt : new Date().toISOString();
-      var acc = {
-        nickname: nickname,
-        pass: pass,
-        createdAt: createdAt
-      };
-      afterAuthSuccess(acc, 'Cuenta creada.');
-      return;
-    }
-
-    // login
-    if (!existing || !existing.nickname) {
-      showError('No hay ninguna cuenta guardada en este navegador. Crea una cuenta nueva.');
-      return;
-    }
-    if (existing.nickname !== nickname) {
-      showError('El nickname no coincide con la cuenta guardada en este navegador.');
-      return;
-    }
-    if (existing.pass !== pass) {
-      showError('Contraseña incorrecta.');
-      return;
-    }
-    afterAuthSuccess(existing, 'Sesión iniciada.');
+    apiRequest(endpoint, { nickname: nickname, password: pass })
+      .then(function (data) {
+        if (!data || !data.ok || !data.user || !data.token) {
+          throw new Error(data && data.error ? data.error : 'Respuesta inválida del servidor.');
+        }
+        var acc = {
+          nickname: data.user.nickname,
+          token: data.token,
+          createdAt: data.user.createdAt || new Date().toISOString()
+        };
+        afterAuthSuccess(acc, mode === 'register' ? 'Cuenta creada.' : 'Sesión iniciada.');
+      })
+      .catch(function (err) {
+        showError(err && err.message ? err.message : 'Error al comunicarse con el servidor.');
+      })
+      .finally(function () {
+        setButtonsDisabled(false);
+      });
   }
 
   function buildModal() {
@@ -267,14 +276,14 @@
       '<div class="fhm-auth-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="fhm-auth-title">' +
       '<button class="fhm-auth-modal__close" type="button" data-role="close" aria-label="Cerrar">×</button>' +
       '<h2 id="fhm-auth-title" class="fhm-auth-modal__title">Cuenta de FlyHighManager</h2>' +
-      '<p class="fhm-auth-modal__subtitle" data-role="reason">Inicia sesión o crea tu cuenta local para jugar y guardar tu progreso.</p>' +
+      '<p class="fhm-auth-modal__subtitle" data-role="reason">Inicia sesión o crea tu cuenta para jugar y guardar tu progreso.</p>' +
       '<label>Nickname' +
       '<input id="fhm-auth-nick" type="text" autocomplete="username" maxlength="20" />' +
       '</label>' +
       '<label>Contraseña' +
       '<input id="fhm-auth-pass" type="password" autocomplete="current-password" />' +
       '</label>' +
-      '<p class="fhm-auth-modal__hint">Esta cuenta es solo local (en este navegador). No se asocia a ningún correo. Si olvidas la contraseña, no se puede recuperar.</p>' +
+      '<p class="fhm-auth-modal__hint">Esta cuenta se valida en el servidor de FlyHighManager. No se asocia a ningún correo. Si olvidas la contraseña, no se puede recuperar.</p>' +
       '<div class="fhm-auth-modal__actions">' +
       '<button type="button" data-role="login">Iniciar sesión</button>' +
       '<button type="button" data-role="register">Crear cuenta nueva</button>' +
@@ -289,30 +298,22 @@
     var loginBtn = modal.querySelector('[data-role="login"]');
     var registerBtn = modal.querySelector('[data-role="register"]');
 
-    if (backdrop) {
-      backdrop.addEventListener('click', function (e) {
-        e.preventDefault();
-        closeModal();
-      });
-    }
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        closeModal();
-      });
-    }
-    if (loginBtn) {
-      loginBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        handleAuthClick('login');
-      });
-    }
-    if (registerBtn) {
-      registerBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        handleAuthClick('register');
-      });
-    }
+    if (backdrop) backdrop.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeModal();
+    });
+    if (closeBtn) closeBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeModal();
+    });
+    if (loginBtn) loginBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      handleAuthClick('login');
+    });
+    if (registerBtn) registerBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      handleAuthClick('register');
+    });
 
     modal.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') {
@@ -332,15 +333,15 @@
 
   function openModal(reason) {
     var modal = buildModal();
-    var fields = getFields();
-    if (reason && fields.reasonSpan) {
+    var f = getFields();
+    if (reason && f.reasonSpan) {
       var text = '';
       if (reason === 'play') {
-        text = 'Crea tu cuenta local para poder jugar y guardar tu progreso.';
+        text = 'Crea tu cuenta para poder jugar y guardar tu progreso en el servidor.';
       } else {
-        text = 'Inicia sesión o crea tu cuenta local.';
+        text = 'Inicia sesión o crea tu cuenta.';
       }
-      fields.reasonSpan.textContent = text;
+      f.reasonSpan.textContent = text;
     }
     modal.classList.add('fhm-auth-modal--visible');
     modal.setAttribute('aria-hidden', 'false');
@@ -352,17 +353,15 @@
       try {
         var legacyNick = localStorage.getItem('fhm.nick') || '';
         if (legacyNick) prefillNick = legacyNick;
-      } catch (e) {
-        // ignore
-      }
+      } catch (e) {}
     }
 
-    var fields2 = getFields();
-    if (fields2.nickInput) {
-      if (prefillNick && !fields2.nickInput.value) {
-        fields2.nickInput.value = prefillNick;
+    var f2 = getFields();
+    if (f2.nickInput) {
+      if (prefillNick && !f2.nickInput.value) {
+        f2.nickInput.value = prefillNick;
       }
-      fields2.nickInput.focus();
+      f2.nickInput.focus();
     }
 
     clearError();
@@ -399,15 +398,11 @@
         if (window.NICK && typeof NICK.set === 'function') {
           NICK.set(acc.nickname);
         }
-      } catch (e) {
-        // ignore
-      }
+      } catch (e) {}
       try {
         var detail = sanitizeAccountForEvent(acc);
         document.dispatchEvent(new CustomEvent('fhm:account:login', { detail: detail }));
-      } catch (e) {
-        // ignore
-      }
+      } catch (e) {}
     }
     updateAccountButtonLabel();
   }
@@ -422,14 +417,10 @@
         if (window.NICK && typeof NICK.set === 'function') {
           NICK.set('');
         }
-      } catch (e) {
-        // ignore
-      }
+      } catch (e) {}
       try {
         document.dispatchEvent(new CustomEvent('fhm:account:logout'));
-      } catch (e) {
-        // ignore
-      }
+      } catch (e) {}
       updateAccountButtonLabel();
     }
   };
