@@ -412,24 +412,27 @@ function setCompareSlot(slot, id) {
   if (COMPARE.A === id && slot === 'B') COMPARE.A = null;
   if (COMPARE.B === id && slot === 'A') COMPARE.B = null;
   COMPARE[slot] = id;
-renderComparePanel();
-renderCompareStatsTable();
-compareSave();
+  renderComparePanel();
+  renderCompareStatsTable();
+  renderCompareSkills();
+  compareSave();
 }
 
 function clearCompare() {
   COMPARE = { A: null, B: null };
-renderComparePanel();
-renderCompareStatsTable();
-compareSave();
+  renderComparePanel();
+  renderCompareStatsTable();
+  renderCompareSkills();
+  compareSave();
 }
 function swapCompare() {
  const tmp = COMPARE.A;
 COMPARE.A = COMPARE.B;
 COMPARE.B = tmp;
-renderComparePanel();
-renderCompareStatsTable();
-compareSave();
+  renderComparePanel();
+  renderCompareStatsTable();
+  renderCompareSkills();
+  compareSave();
 
 }
 
@@ -739,6 +742,7 @@ function compareBootOnce() {
   compareLoad();
   renderComparePanel();
   renderCompareStatsTable();
+  renderCompareSkills();
 
   // Permitir abrir el selector haciendo click en los slots completos
   const aBox = document.getElementById('compare-slot-a');
@@ -830,6 +834,47 @@ function renderCompareStatsTable(){
 
   tBody.innerHTML = html;
 
+}
+
+function renderCompareSkills(){
+  const colA = document.getElementById('compare-skills-a');
+  const colB = document.getElementById('compare-skills-b');
+  if (!colA || !colB) return;
+
+  const renderFor = (id, slotLabel) => {
+    if (!id) {
+      return `<p class="banner-meta">Selecciona un personaje para ver sus habilidades.</p>`;
+    }
+    const ch = CHAR_BY_ID.get(String(id));
+    if (!ch) {
+      return `<p class="banner-meta">No encontré datos para este personaje.</p>`;
+    }
+
+    const skills = Array.isArray(ch.skills) ? ch.skills : [];
+    if (!skills.length) {
+      return `<p class="banner-meta">Sin datos de habilidades.</p>`;
+    }
+
+    const items = skills.map((s, i) => {
+      if (typeof s === 'string') {
+        return `<li><div class="cmp-skill-name">${s}</div></li>`;
+      }
+      const name = s.name || `Habilidad ${i+1}`;
+      const effect = s.effect || '';
+      return `
+        <li class="cmp-skill-item">
+          <div class="cmp-skill-name">${name}</div>
+          ${effect ? `<div class="cmp-skill-text">${effect}</div>` : ''}
+        </li>`;
+    }).join('');
+
+    return `
+      <div class="cmp-slot-title">Slot ${slotLabel}</div>
+      <ul class="cmp-skill-list">${items}</ul>`;
+  };
+
+  colA.innerHTML = renderFor(COMPARE.A, 'A');
+  colB.innerHTML = renderFor(COMPARE.B, 'B');
 }
 
 // ====== Overlay anclado a la card: "Ver ficha" o "Comparar" ======

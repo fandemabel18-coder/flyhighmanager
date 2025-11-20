@@ -1120,3 +1120,90 @@ input, select {
   width: 100%;
   max-width: 1100px;
 }
+
+
+/* === Comparador: área desplazable para stats + habilidades === */
+#tab-characters .compare-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+#compare-scroll.compare-scroll {
+  margin-top: 0.75rem;
+  padding-right: 4px;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+#compare-scroll.compare-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+#compare-scroll.compare-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+#compare-scroll.compare-scroll::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 999px;
+}
+
+/* Bloque Habilidades en comparador */
+.compare-block.compare-abilities {
+  margin-top: 1rem;
+}
+
+.compare-abilities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.cmp-abilities-col {
+  background: #0f172a;
+  border: 1px solid #1f2937;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.cmp-slot-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: #e5e7eb;
+}
+
+.cmp-skill-list {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cmp-skill-item {
+  border-bottom: 1px solid #1f2937;
+  padding-bottom: 0.25rem;
+}
+
+.cmp-skill-item:last-child {
+  border-bottom: none;
+}
+
+.cmp-skill-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.cmp-skill-text {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  margin-top: 0.15rem;
+}
+
+/* En móviles, que el comparador pueda crecer normal */
+@media (max-width: 900px) {
+  #compare-scroll.compare-scroll {
+    max-height: none;
+  }
+}
