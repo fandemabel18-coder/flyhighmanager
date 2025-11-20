@@ -1102,3 +1102,21 @@ input, select {
 #ann-modal .ann-ft{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px dashed #203045;padding:12px 16px 16px}
 #ann-modal .ann-actions .ann-ok{background:#2563eb;border:1px solid #1d4ed8;color:#fff;border-radius:10px;padding:8px 14px;cursor:pointer}
 #ann-modal .ann-chk{color:#cbd5e1;display:flex;align-items:center;gap:8px}
+
+/* === Phase 1: layout Personajes (comparador centrado, sin tocar lógica JS) === */
+#tab-characters .characters-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+/* El comparador se centra y deja de ser sticky en este modo */
+#tab-characters .compare-panel {
+  position: relative;
+  top: auto;
+  max-height: none;
+  margin: 0 auto 1.5rem;
+  width: 100%;
+  max-width: 1100px;
+}
