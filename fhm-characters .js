@@ -1,0 +1,906 @@
+/* ========================================================
+   FHM Characters module (grid, modal, comparator)
+   Extraído desde app.js para separar la sección Personajes.
+   NOTA: Asegúrate de cargar este archivo ANTES de app.js.
+   ======================================================== */
+
+/* ===========================
+   Characters (grid simple + modal)
+   =========================== */
+let CHARACTERS = [];
+let _charsLoaded = false;
+
+function ensureModalStyles(){
+  if($('#char-modal-styles')) return;
+  const style = document.createElement('style');
+  style.id = 'char-modal-styles';
+  style.textContent = `
+  #char-modal-backdrop{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px;overscroll-behavior:contain}
+  #char-modal{width:min(940px,96vw);background:#0b1220;border:1px solid #1e293b;border-radius:14px;box-shadow:0 20px 60px #000b;color:#e5e7eb;max-height:92vh;display:flex;flex-direction:column}
+  #char-modal header{display:flex;gap:12px;padding:16px 16px 0;align-items:center}
+  #char-modal .meta{color:#9ca3af}
+  #char-modal .tabs{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px}
+  #char-modal .tabs button{background:#0f172a;border:1px solid #1f2a40;padding:6px 10px;border-radius:8px;color:#cbd5e1;cursor:pointer}
+  #char-modal .tabs button.active{background:#1f2937;border-color:#334155;color:#fff}
+  #char-modal .content{padding:12px 16px 16px;flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  #char-modal .panel{background:#0f172a;border:1px solid #1f2a40;border-radius:10px;padding:12px;min-height:180px}
+  #char-modal .close{margin:12px 16px 16px auto;display:block;background:#1f2937;border:1px solid #334155;color:#fff;border-radius:10px;padding:8px 14px;cursor:pointer}
+  .char-badge{padding:2px 8px;border-radius:8px;font-size:12px;border:1px solid #475569}
+  .char-badge.ur{background:#3b0764;color:#f0abfc;border-color:#9333ea}
+  .char-badge.ssr{background:#0f766e;color:#99f6e4;border-color:#14b8a6}
+  .char-badge.sr{background:#1e3a8a;color:#93c5fd;border-color:#3b82f6}
+  `;
+  document.head.appendChild(style);
+}
+
+function openCharacterModal(c){
+  ensureModalStyles();
+  const prev = $('#char-modal-backdrop');
+  if(prev) prev.remove();
+
+  const backdrop = document.createElement('div');
+  backdrop.id = 'char-modal-backdrop';
+
+  const modal = document.createElement('div');
+  modal.id = 'char-modal';
+
+  const rarityCls = String(c.rarity||'').toLowerCase();
+  const TABS = [
+    { k:'summary',   label:'Resumen' },
+    { k:'skills',    label:'Habilidades' },
+    { k:'links',     label:'Vínculos' },
+    { k:'builds',    label:'Builds' },
+    { k:'potential', label:'Potencial' },
+    { k:'memories',  label:'Recuerdos' },
+    { k:'teams',     label:'Equipos' },
+    { k:'notes',     label:'Notas' }
+  ];
+
+  modal.innerHTML = `
+    <header>
+      <img src="${c.avatar || 'assets/placeholder.png'}" alt="" width="56" height="56"
+           style="border-radius:12px;border:1px solid #334155;object-fit:cover;">
+      <div style="flex:1 1 auto">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <h2 style="margin:0">${c.name||'Sin nombre'}</h2>
+          ${c.rarity ? `<span class="char-badge ${rarityCls}">${c.rarity}</span>`:''}
+        </div>
+        <div class="meta">
+          ${(c.tags||[]).map(t=>`<span class="chip">#${t}</span>`).join(' ')}
+        </div>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Pestañas de personaje">
+      ${TABS.map((t,i)=> `<button class="${i===0?'active':''}" data-key="${t.k}">${t.label}</button>`).join('')}
+    </nav>
+
+    <section class="content">
+      <div class="panel" id="char-panel"></div>
+    </section>
+
+    <button class="close" type="button" aria-label="Cerrar">Cerrar</button>
+  `;
+
+  backdrop.appendChild(modal);
+  document.body.appendChild(backdrop);
+  document.body.style.overflow = 'hidden';
+
+  const close = ()=>{ backdrop.remove(); document.body.style.overflow=''; };
+  backdrop.addEventListener('click', (e)=>{ if(e.target===backdrop) close(); });
+  modal.querySelector('.close').addEventListener('click', close);
+  document.addEventListener('keydown', function onEsc(ev){
+    if(ev.key==='Escape'){ document.removeEventListener('keydown', onEsc); close(); }
+  });
+
+  const panel = $('#char-panel', modal);
+
+  async function renderTab(key){
+    const fmt = (v)=> v ?? '';
+    const p = (html)=> panel.innerHTML = html;
+
+    if (key === 'summary' || key === 'resumen') {
+  const s = c.statsMax || {};
+  const rows = [
+    ['atqRapido',   'Ataque Rápido'],
+    ['atqPoderoso', 'Ataque Poderoso'],
+    ['colocacion',  'Colocación'],
+    ['saque',       'Saque'],
+    ['recepcion',   'Recepción'],
+    ['bloqueo',     'Bloqueo'],
+    ['recuperacion','Recuperación'],
+  ];
+
+  // Tabla (máx)
+  const statRows = rows.map(([k,label])=>{
+    const vRaw = s[k];
+    const v = (typeof vRaw === 'number') ? vRaw : (vRaw ?? '—');
+    return `<tr><td>${label}</td><td class="num">${v}</td></tr>`;
+  }).join('');
+
+  // 1) calcular el máximo del propio personaje para escalar barras
+  const vals = rows.map(([k]) => (typeof s[k] === 'number' ? s[k] : 0));
+  const maxV = Math.max(...vals, 1);
+
+  // Barras
+  const barsHtml = rows.map(([k,label])=>{
+    const val = (typeof s[k] === 'number') ? s[k] : 0;
+    const pct = Math.max(0, Math.min(100, Math.round((val / maxV) * 100)));
+    const valTxt = (typeof s[k] === 'number') ? s[k] : '—';
+    return `
+      <div class="char-stat-row">
+        <div class="label">${label}</div>
+        <div class="val">${valTxt}</div>
+        <div class="bar"><i style="width:${pct}%"></i></div>
+      </div>
+    `;
+  }).join('');
+
+  // Meta + tabla + barras (todo en un solo innerHTML)
+  p(`
+    <div style="display:grid;grid-template-columns:130px 1fr;gap:8px 16px;margin-bottom:12px">
+      <div class="meta">Escuela</div><div>${(c.school ?? '') || '—'}</div>
+      <div class="meta">Rol</div><div>${(c.role ?? '') || '—'}</div>
+      <div class="meta">Rareza</div><div>${(c.rarity ?? '') || '—'}</div>
+      <div class="meta">Tags</div><div>${(c.tags||[]).map(t=>`<span class="chip">#${t}</span>`).join(' ')||'—'}</div>
+      <div class="meta">Actualizado</div><div>${(c.updated ?? '') || '—'}</div>
+    </div>
+
+    <table class="char-stats-table">
+      <thead><tr><th>Atributo</th><th>Valor (máx)</th></tr></thead>
+      <tbody>${statRows}</tbody>
+    </table>
+
+    <div class="char-stats-bars" style="margin-top:10px">
+      ${barsHtml}
+    </div>
+  `);
+  return;
+}
+
+    if(key==='skills'){
+      const skills = c.skills || [];
+      const html = skills.map(s=>{
+        if(typeof s === 'string') return `<li>${s}</li>`;
+        const icon = s.icon || 'assets/placeholder.png';
+        const name = s.name || 'Habilidad';
+        const eff  = s.effect || '';
+        return `
+          <li style="display:flex;gap:10px;align-items:flex-start;margin:8px 0">
+            <img src="${icon}" alt="${name}" width="36" height="36"
+                 onerror="this.onerror=null;this.src='assets/placeholder.png';"
+                 style="border-radius:8px;border:1px solid #1f2a40;object-fit:cover">
+            <div>
+              <div style="font-weight:600">${name}</div>
+              ${eff ? `<div class="banner-meta">${eff}</div>`:''}
+            </div>
+          </li>`;
+      }).join('');
+      p(skills.length ? `<ul style="margin:0;padding-left:0;list-style:none">${html}</ul>` : `<p class="meta">Sin datos de habilidades.</p>`);
+      return;
+    }
+
+    if(key==='links'){
+      const links = c.links || [];
+      p(links.length ? `<ul style="margin:0;padding-left:18px">${links.map(s=>`<li>${s}</li>`).join('')}</ul>`
+                     : `<p class="meta">Sin datos de vínculos.</p>`);
+      return;
+    }
+
+    if(key==='builds'){
+      const builds = c.builds || [];
+      p(builds.length ? `<ul style="margin:0;padding-left:18px">${builds.map(s=>`<li>${s}</li>`).join('')}</ul>`
+                      : `<p class="meta">Sin recomendaciones de build.</p>`);
+      return;
+    }
+
+    
+if(key==='potential'){
+  // Ensure potentials loaded once before rendering
+  if (typeof loadPotentialsOnce === 'function') { try { await loadPotentialsOnce(); } catch(e){} }
+
+  const list = (typeof getCharacterPotentials === 'function')
+    ? getCharacterPotentials(c)
+    : (Array.isArray(c.potencial) ? c.potencial : []);
+
+  if(Array.isArray(list) && list.length){
+    p(`
+      <div style="display:flex;flex-direction:column;gap:10px">
+        ${list.map(item=>`
+          <div style="display:grid;grid-template-columns:42px 1fr;gap:10px;background:#0f172a;border:1px solid #1f2a40;border-radius:10px;padding:10px">
+            <img src="${item.icon || item.image || item.img || 'assets/placeholder.png'}" alt="${item.name||'Set'}" width="42" height="42"
+                 onerror="this.onerror=null;this.src='assets/placeholder.png';"
+                 style="border-radius:8px;border:1px solid #1f2a40;object-fit:cover">
+            <div>
+              <div style="font-weight:700;margin-bottom:4px">${item.name || 'Set'}</div>
+              <div class="banner-meta"><b>2 piezas:</b> ${item.set2 || '—'}</div>
+              <div class="banner-meta"><b>4 piezas:</b> ${item.set4 || '—'}</div>
+              ${item.notas ? `<div class="banner-meta" style="margin-top:6px">${item.notas}</div>` : ''}
+            </div>
+          </div>
+        `).join('')}
+        <div class="banner-meta" style="margin-top:4px">Puedes combinar 2+2+2, 4+2 o 6 piezas según convenga al equipo.</div>
+      </div>
+    `);
+  } else {
+    p(`<p class="meta">Sin datos de potencial.</p>`);
+  }
+  return;
+}
+
+
+   if(key==='memories'){
+  // unir recuerdos embebidos + globales por índice
+  const fromChar = (c.recuerdos || c.memories || []);
+  const fromGlobal = MEMORIES_BY_CHAR.get(String(c.id)) || [];
+
+  // Normaliza ambos a objetos (si vienen strings)
+  const normalizeMem = (r)=> {
+    if(typeof r === 'string'){
+      return { name: r, image: '', rarity: '', effect: '' };
+    }
+    return r || {};
+  };
+
+  const recs = [...fromChar.map(normalizeMem), ...fromGlobal.map(normalizeMem)];
+
+  if(!recs.length){ p('<p class="meta">Sin recuerdos sugeridos.</p>'); return; }
+
+  const html = recs.map(r=>{
+    const img = r.image || r.icon || ''; // si tu JSON ya trae ruta completa, úsala
+    const name = r.name || 'Recuerdo';
+    const rarity = r.rarity ? ` <span class="chip">${r.rarity}</span>` : '';
+    const effect = r.effect || '';
+    // fallback visual si no hay imagen
+    const src = img && typeof img === 'string' ? img : 'assets/memories/placeholder.png';
+    return `
+      <li style="display:flex;gap:10px;align-items:flex-start;margin:8px 0">
+        <img src="${src}" alt="${name}" width="56" height="56"
+             onerror="this.onerror=null;this.src='assets/memories/placeholder.png';"
+             style="border-radius:10px;border:1px solid #1f2a40;object-fit:cover">
+        <div>
+          <div style="font-weight:600">${name}${rarity}</div>
+          ${effect ? `<div class="banner-meta">${effect}</div>`:''}
+          ${r.notes ? `<div class="banner-meta"><em>${r.notes}</em></div>`:''}
+        </div>
+      </li>`;
+  }).join('');
+
+  p(`<ul style="margin:0;padding-left:0;list-style:none">${html}</ul>`);
+  return;
+}
+
+    if(key==='teams'){
+      const teams = c.teams || [];
+      p(teams.length ? `<ul style="margin:0;padding-left:18px">${teams.map(s=>`<li>${s}</li>`).join('')}</ul>`
+                     : `<p class="meta">Sin propuestas de equipos.</p>`);
+      return;
+    }
+
+    if(key==='notes'){
+      const txt = c.notes || '';
+      p(txt ? `<p>${txt}</p>` : `<p class="meta">Sin notas adicionales.</p>`);
+      return;
+    }
+
+    p('<p class="meta">Pestaña no disponible.</p>');
+  }
+
+  $$('.tabs button', modal).forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      $$('.tabs button', modal).forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTab(btn.dataset.key);
+    });
+  });
+
+  renderTab('summary');
+}
+
+async function loadCharacters(){
+  // Carga ligera de personajes: solo JSON y caché en memoria.
+  if (_charsLoaded && Array.isArray(CHARACTERS) && CHARACTERS.length) return;
+  try{
+    CHARACTERS = await loadJSON('data/characters.json');
+  }catch(e){
+    console.warn('characters.json', e);
+    CHARACTERS = [];
+  }
+  _charsLoaded = true;
+  // Construimos índice por id para el comparador
+  if (typeof buildCharIndex === 'function') {
+    buildCharIndex();
+  }
+}
+
+
+// ===== Recuerdos: carga global + índice por personaje =====
+let MEMORIES = [];
+let MEMORIES_BY_CHAR = new Map(); // charId(string) -> array de recuerdos
+
+function _slug(s=''){
+  try {
+    return String(s).toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'') // sin acentos
+      .replace(/[^a-z0-9]+/g,' ')                      // no alfanum
+      .trim().replace(/\s+/g,' ');
+  } catch { return String(s).toLowerCase(); }
+}
+
+let _memoriesLoaded = false;
+async function loadMemoriesOnce(){
+  if(_memoriesLoaded) return;
+  try{
+    const res = await fetch('data/memories.json', { cache: 'no-store' });
+    if(!res.ok) throw new Error('fetch memories failed');
+    MEMORIES = await res.json(); // se espera un array
+  }catch(e){
+    console.warn('[memories] No pude leer data/memories.json', e);
+    MEMORIES = [];
+  }
+  _memoriesLoaded = true;
+}
+
+// Construye índice charId -> recuerdos
+// Reglas:
+// 1) Si el recuerdo trae m.charId => asignar directo.
+// 2) Si trae m.bind (array de ids/variantes) => asignar a esos ids.
+// 3) Si no trae nada, fallback: coincidir por nombre (contiene nombre del personaje).
+function buildMemoriesIndex(){
+  MEMORIES_BY_CHAR = new Map();
+  if(!Array.isArray(CHARACTERS) || !Array.isArray(MEMORIES)) return;
+
+  const charById = new Map(CHARACTERS.map(c => [String(c.id), c]));
+  const nameToId = new Map(
+    CHARACTERS.map(c=>{
+      const nm = _slug(c.name || c.nombre || '');
+      return [nm, String(c.id)];
+    })
+  );
+
+  for(const m of MEMORIES){
+    let boundIds = [];
+
+    if(m.charId){
+      boundIds = [String(m.charId)];
+    } else if (Array.isArray(m.bind) && m.bind.length){
+      boundIds = m.bind.map(x => String(x));
+    } else {
+      // Fallback por nombre
+      const nm = _slug(m.name || '');
+      for(const [charName, cid] of nameToId){
+        if(nm.includes(charName)) boundIds.push(cid);
+      }
+    }
+
+    for(const cid of boundIds){
+      if(!charById.has(cid)) continue;
+      const arr = MEMORIES_BY_CHAR.get(cid) || [];
+      arr.push(m);
+      MEMORIES_BY_CHAR.set(cid, arr);
+    }
+  }
+}
+
+
+// ====== COMPARADOR: estado + utilidades ======
+const COMPARE_LS_KEY = 'compare_state_v1';
+let CHAR_BY_ID = new Map(); // se llena con CHARACTERS
+let COMPARE = { A: null, B: null };
+
+function buildCharIndex() {
+  if (Array.isArray(CHARACTERS)) {
+    CHAR_BY_ID = new Map(CHARACTERS.map(c => [String(c.id), c]));
+  }
+}
+
+function compareSave() {
+  try { localStorage.setItem(COMPARE_LS_KEY, JSON.stringify(COMPARE)); } catch {}
+}
+function compareLoad() {
+  try {
+    const raw = localStorage.getItem(COMPARE_LS_KEY);
+    if(!raw) return;
+    const st = JSON.parse(raw);
+    if (st && ('A' in st) && ('B' in st)) COMPARE = st;
+  } catch {}
+}
+
+function setCompareSlot(slot, id) {
+  if (!CHAR_BY_ID.has(String(id))) return;
+  if (slot !== 'A' && slot !== 'B') return;
+  if (COMPARE.A === id && slot === 'B') COMPARE.A = null;
+  if (COMPARE.B === id && slot === 'A') COMPARE.B = null;
+  COMPARE[slot] = id;
+renderComparePanel();
+renderCompareStatsTable();
+compareSave();
+}
+
+function clearCompare() {
+  COMPARE = { A: null, B: null };
+renderComparePanel();
+renderCompareStatsTable();
+compareSave();
+}
+function swapCompare() {
+ const tmp = COMPARE.A;
+COMPARE.A = COMPARE.B;
+COMPARE.B = tmp;
+renderComparePanel();
+renderCompareStatsTable();
+compareSave();
+
+}
+
+async function openCharacterSelector(slot){
+  slot = (slot === 'B') ? 'B' : 'A';
+
+  // Aseguramos que la data esté cargada
+  try{
+    if(!_charsLoaded || !Array.isArray(CHARACTERS) || !CHARACTERS.length){
+      await loadCharacters();
+    }
+  }catch(e){
+    console.warn('[compare] No pude cargar personajes para el selector', e);
+  }
+  if (!Array.isArray(CHARACTERS) || !CHARACTERS.length) return;
+  if (typeof buildCharIndex === 'function' && (!CHAR_BY_ID || !CHAR_BY_ID.size)) {
+    buildCharIndex();
+  }
+
+  // Cerrar selector previo si existe
+  const prev = document.getElementById('char-select-backdrop');
+  if (prev) prev.remove();
+
+  const backdrop = document.createElement('div');
+  backdrop.id = 'char-select-backdrop';
+  Object.assign(backdrop.style, {
+    position:'fixed',
+    inset:'0',
+    background:'rgba(15,23,42,0.85)',
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    zIndex:'9998',
+    padding:'16px'
+  });
+
+  const modal = document.createElement('div');
+  modal.id = 'char-select';
+  Object.assign(modal.style, {
+    width:'min(980px, 96vw)',
+    maxHeight:'92vh',
+    background:'#020617',
+    border:'1px solid #1e293b',
+    borderRadius:'14px',
+    boxShadow:'0 20px 60px rgba(0,0,0,0.75)',
+    color:'#e5e7eb',
+    display:'flex',
+    flexDirection:'column'
+  });
+
+  modal.innerHTML = `
+    <header style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid #1f2937">
+      <div>
+        <div style="font-size:14px;color:#9ca3af">Comparador de personajes</div>
+        <h2 style="margin:2px 0 0;font-size:18px">Elegir personaje para slot ${slot}</h2>
+      </div>
+      <button type="button" class="char-select-close" aria-label="Cerrar"
+        style="background:#111827;border:1px solid #374151;border-radius:999px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#e5e7eb;cursor:pointer">
+        ×
+      </button>
+    </header>
+    <section style="padding:10px 16px;border-bottom:1px solid #111827;display:flex;flex-wrap:wrap;gap:8px">
+      <input id="char-select-search" type="search" placeholder="Buscar por nombre..."
+        style="flex:1 1 180px;min-width:160px;padding:6px 8px;border-radius:8px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:14px">
+      <select id="char-select-rarity" style="flex:0 0 120px;padding:6px 8px;border-radius:8px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:14px">
+        <option value="">Rareza</option>
+      </select>
+      <select id="char-select-role" style="flex:0 0 140px;padding:6px 8px;border-radius:8px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:14px">
+        <option value="">Rol</option>
+      </select>
+      <select id="char-select-school" style="flex:0 0 180px;padding:6px 8px;border-radius:8px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:14px">
+        <option value="">Escuela</option>
+      </select>
+    </section>
+    <section id="char-select-results" style="padding:10px 16px 14px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1 1 auto">
+      <div style="color:#9ca3af;font-size:14px">Escribe para buscar o filtra por rareza, rol o escuela.</div>
+    </section>
+  `;
+
+  backdrop.appendChild(modal);
+  document.body.appendChild(backdrop);
+  const prevOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+
+  function close(){
+    backdrop.remove();
+    document.body.style.overflow = prevOverflow;
+  }
+
+  backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) close(); });
+  modal.querySelector('.char-select-close')?.addEventListener('click', close);
+  document.addEventListener('keydown', function onEsc(ev){
+    if(ev.key === 'Escape'){ document.removeEventListener('keydown', onEsc); close(); }
+  });
+
+  const inputSearch = modal.querySelector('#char-select-search');
+  const selRarity   = modal.querySelector('#char-select-rarity');
+  const selRole     = modal.querySelector('#char-select-role');
+  const selSchool   = modal.querySelector('#char-select-school');
+  const resultsBox  = modal.querySelector('#char-select-results');
+
+  // Poblar selects con datos reales
+  const rarSet = new Set();
+  const roleSet = new Set();
+  const schoolSet = new Set();
+  CHARACTERS.forEach(c=>{
+    if(c.rarity || c.rareza) rarSet.add((c.rarity || c.rareza).toUpperCase());
+    if(c.role || c.posicion) roleSet.add(c.role || c.posicion);
+    if(c.school || c.escuela) schoolSet.add(c.school || c.escuela);
+  });
+
+  Array.from(rarSet).sort().forEach(r=>{
+    const opt = document.createElement('option');
+    opt.value = r;
+    opt.textContent = r;
+    selRarity.appendChild(opt);
+  });
+  Array.from(roleSet).sort().forEach(r=>{
+    const opt = document.createElement('option');
+    opt.value = r;
+    opt.textContent = r;
+    selRole.appendChild(opt);
+  });
+  Array.from(schoolSet).sort().forEach(s=>{
+    const opt = document.createElement('option');
+    opt.value = s;
+    opt.textContent = s;
+    selSchool.appendChild(opt);
+  });
+
+  function renderList(){
+    const q   = normalizeStr(inputSearch.value || '');
+    const rar = selRarity.value || '';
+    const rol = selRole.value || '';
+    const sch = selSchool.value || '';
+
+    const currentIds = new Set();
+    if (COMPARE.A) currentIds.add(String(COMPARE.A));
+    if (COMPARE.B) currentIds.add(String(COMPARE.B));
+
+    const filtered = CHARACTERS
+      .filter(c => !q || normalizeStr(c.name || c.nombre || '').includes(q))
+      .filter(c => !rar || (c.rarity || c.rareza || '').toUpperCase() === rar)
+      .filter(c => !rol || (c.role || c.posicion || '') === rol)
+      .filter(c => !sch || (c.school || c.escuela || '') === sch);
+
+    if (!filtered.length){
+      resultsBox.innerHTML = '<div style="color:#9ca3af;font-size:14px">No se encontraron personajes con esos filtros.</div>';
+      return;
+    }
+
+    resultsBox.innerHTML = filtered.map(c=>{
+      const id       = c.id != null ? c.id : (c.varianteId || c.baseId || '');
+      const rare     = (c.rarity || c.rareza || '').toUpperCase();
+      const roleTxt  = c.role || c.posicion || '';
+      const school   = c.school || c.escuela || '';
+      const avatar   = c.avatar || c.avatarPath || 'assets/placeholder.png';
+      const disabled = id && currentIds.has(String(id));
+      const inSlot   = (COMPARE.A && String(COMPARE.A) === String(id)) ? 'A'
+                      : (COMPARE.B && String(COMPARE.B) === String(id)) ? 'B'
+                      : '';
+
+      return `
+        <article class="char-select-item" data-id="${id}" ${disabled ? 'data-current="1"' : ''} style="display:flex;align-items:center;gap:10px;padding:6px 4px;border-bottom:1px solid #020617;cursor:pointer">
+          <img src="${avatar}" alt="${c.name || c.nombre || ''}" width="42" height="56"
+               loading="lazy" decoding="async"
+               style="border-radius:8px;border:1px solid #1f2937;object-fit:cover"
+               onerror="this.onerror=null;this.src='assets/placeholder.png';">
+          <div style="flex:1 1 auto;min-width:0">
+            <div style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+              ${c.name || c.nombre || ''}
+            </div>
+            <div style="font-size:12px;color:#9ca3af;display:flex;flex-wrap:wrap;gap:6px;margin-top:2px">
+              ${rare ? `<span>${rare}</span>` : ''}
+              ${roleTxt ? `<span>${roleTxt}</span>` : ''}
+              ${school ? `<span>${school}</span>` : ''}
+            </div>
+          </div>
+          ${inSlot ? `<span style="font-size:11px;color:#22c55e;border:1px solid #16a34a;border-radius:999px;padding:2px 6px">En slot ${inSlot}</span>` : ''}
+        </article>
+      `;
+    }).join('');
+  }
+
+  inputSearch.addEventListener('input', renderList);
+  selRarity.addEventListener('change', renderList);
+  selRole.addEventListener('change', renderList);
+  selSchool.addEventListener('change', renderList);
+
+  resultsBox.addEventListener('click', (ev)=>{
+    const card = ev.target.closest('.char-select-item');
+    if (!card) return;
+    const id = card.getAttribute('data-id');
+    if (!id) return;
+    setCompareSlot(slot, id);
+    close();
+  });
+
+  renderList();
+}
+
+function renderComparePanel() {
+  const aBox = document.getElementById('compare-slot-a');
+  const bBox = document.getElementById('compare-slot-b');
+  if (!aBox || !bBox) return;
+
+  function renderSlot(slotKey, id) {
+    if (!id) {
+      return `
+        <div class="compare-placeholder">
+          <p>Selecciona un personaje para el slot ${slotKey}.</p>
+          <button type="button" class="cmp-select-btn" data-slot="${slotKey}">Elegir personaje</button>
+        </div>`;
+    }
+    const c = CHAR_BY_ID.get(String(id));
+    if (!c) {
+      return `
+        <div class="compare-placeholder">
+          <p>Selecciona un personaje para el slot ${slotKey}.</p>
+          <button type="button" class="cmp-select-btn" data-slot="${slotKey}">Elegir personaje</button>
+        </div>`;
+    }
+
+    const rare   = (c.rarity || c.rareza || '').toUpperCase();
+    const role   = c.role || c.posicion || '';
+    const school = c.school || c.escuela || '';
+    const avatar = c.avatar || c.avatarPath || 'assets/placeholder.png';
+    const playStyle = c.playStyle || c.estilo || '';
+
+    const skills = Array.isArray(c.skills) ? c.skills : [];
+    const skillsPreview = skills
+      .map(s => typeof s === 'string' ? s : (s && s.name) ? s.name : '')
+      .filter(Boolean)
+      .slice(0, 3);
+
+    return `
+      <div class="cmp-card" data-slot="${slotKey}" data-id="${c.id || ''}">
+        <div class="cmp-card-top">
+          <img class="cmp-avatar" src="${avatar}" alt="${c.name || c.nombre || ''}"
+               loading="lazy" decoding="async" width="88" height="118"
+               onerror="this.onerror=null;this.src='assets/placeholder.png';">
+          <div class="cmp-meta">
+            <div class="cmp-name">${c.name || c.nombre || ''}</div>
+            <div class="cmp-tags">
+              ${rare ? `<span class="tag">${rare}</span>` : ''}
+              ${role ? `<span class="tag">${role}</span>` : ''}
+              ${school ? `<span class="tag">${school}</span>` : ''}
+            </div>
+            ${playStyle ? `<div class="cmp-style">Estilo: ${playStyle}</div>` : ''}
+          </div>
+        </div>
+        ${skillsPreview.length ? `
+          <div class="cmp-skills">
+            ${skillsPreview.map(n => `<span class="chip">${n}</span>`).join('')}
+          </div>` : ''}
+        <div class="cmp-actions">
+          <button type="button" class="cmp-action-btn" data-act="change" data-slot="${slotKey}">Cambiar personaje</button>
+          <button type="button" class="cmp-action-btn" data-act="view" data-slot="${slotKey}">Ver ficha</button>
+        </div>
+      </div>`;
+  }
+
+  aBox.innerHTML = renderSlot('A', COMPARE.A);
+  bBox.innerHTML = renderSlot('B', COMPARE.B);
+
+  // Botones globales de limpiar / intercambiar
+  const clr = document.getElementById('compare-clear');
+  const swp = document.getElementById('compare-swap');
+  if (clr && !clr._bound){ clr._bound = true; clr.addEventListener('click', clearCompare); }
+  if (swp && !swp._bound){ swp._bound = true; swp.addEventListener('click', swapCompare); }
+
+  // Botones de selección para slots vacíos
+  document.querySelectorAll('.cmp-select-btn').forEach(btn => {
+    if (btn._bound) return;
+    btn._bound = true;
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const slot = btn.getAttribute('data-slot') || 'A';
+      openCharacterSelector(slot);
+    });
+  });
+
+  // Acciones "Cambiar" / "Ver ficha" en cada card
+  document.querySelectorAll('.cmp-action-btn').forEach(btn => {
+    if (btn._bound) return;
+    btn._bound = true;
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const act  = btn.getAttribute('data-act');
+      const slot = btn.getAttribute('data-slot') || 'A';
+      const card = btn.closest('.cmp-card');
+      const id   = card ? card.getAttribute('data-id') : null;
+      const charObj = id ? CHAR_BY_ID.get(String(id)) : null;
+
+      if (act === 'change') {
+        openCharacterSelector(slot);
+      } else if (act === 'view' && charObj) {
+        openCharacterModal(charObj);
+      }
+    });
+  });
+}
+
+
+function compareBootOnce() {
+  buildCharIndex();
+  compareLoad();
+  renderComparePanel();
+  renderCompareStatsTable();
+
+  // Permitir abrir el selector haciendo click en los slots completos
+  const aBox = document.getElementById('compare-slot-a');
+  const bBox = document.getElementById('compare-slot-b');
+
+  if (aBox && !aBox._selectBound) {
+    aBox._selectBound = true;
+    aBox.addEventListener('click', (ev) => {
+      // Evitamos clicks en botones internos (limpiar, swap ya tienen sus listeners)
+      if (ev.target.closest('button')) return;
+      openCharacterSelector('A');
+    });
+  }
+  if (bBox && !bBox._selectBound) {
+    bBox._selectBound = true;
+    bBox.addEventListener('click', (ev) => {
+      if (ev.target.closest('button')) return;
+      openCharacterSelector('B');
+    });
+  }
+}
+
+function renderCompareStatsTable(){
+  const tBody = document.querySelector('.compare-table tbody');
+  if(!tBody) return;
+
+  const getStats = (id)=>{
+    if(!id) return {};
+    const ch = CHAR_BY_ID.get(String(id));
+    if(!ch) return {};
+    return ch.statsMax || {};
+  };
+
+  const sA = getStats(COMPARE.A);
+  const sB = getStats(COMPARE.B);
+
+  const rows = [
+    ['atqRapido',   'Ataque Rápido'],
+    ['atqPoderoso', 'Ataque Poderoso'],
+    ['colocacion',  'Colocación'],
+    ['saque',       'Saque'],
+    ['recepcion',   'Recepción'],
+    ['bloqueo',     'Bloqueo'],
+    ['recuperacion','Recuperación'],
+  ];
+
+  const fmt = (v)=>{
+    if(v === null || v === undefined || v === '') return '—';
+    if(typeof v === 'number') return v;
+    const n = Number(v); return Number.isFinite(n) ? n : '—';
+  };
+
+    const html = rows.map(([k,label])=>{
+    const aVal = fmt(sA[k]);
+    const bVal = fmt(sB[k]);
+
+    let diff = '—';
+    let diffCls  = 'tie';
+    let aCls = 'tie';
+    let bCls = 'tie';
+
+    if (typeof aVal === 'number' && typeof bVal === 'number') {
+      const d = aVal - bVal;
+      if (d === 0) {
+        diff = '0';
+        diffCls = 'tie';
+        aCls = bCls = 'tie';
+      } else if (d > 0) {
+        diff = `▲ ${d}`;
+        diffCls = 'win';
+        aCls = 'win';
+        bCls = 'lose';
+      } else {
+        diff = `▼ ${Math.abs(d)}`;
+        diffCls = 'lose';
+        aCls = 'lose';
+        bCls = 'win';
+      }
+    }
+
+    return `
+      <tr>
+        <td>${label}</td>
+        <td class="num ${aCls}">${aVal}</td>
+        <td class="num ${bCls}">${bVal}</td>
+        <td class="num ${diffCls}">${diff}</td>
+      </tr>`;
+  }).join('');
+
+  tBody.innerHTML = html;
+
+}
+
+// ====== Overlay anclado a la card: "Ver ficha" o "Comparar" ======
+// Cierra cualquier overlay abierto en cualquier card
+function closeActionOverlay() {
+  document.querySelectorAll('.card-action-pop').forEach(el => el.remove());
+}
+
+function openCharacterActionPrompt(char, ev) {
+  // cierra overlays previos
+  closeActionOverlay();
+
+  // card clickada (article.char-tile)
+  const cardEl = ev?.currentTarget?.closest('.char-tile') || ev?.target?.closest('.char-tile');
+  if (!cardEl) return;
+
+  // crea overlay dentro de la card
+  const pop = document.createElement('div');
+  pop.className = 'card-action-pop';
+  pop.innerHTML = `
+    <button class="cap-close" aria-label="Cerrar">X</button>
+    <div class="cap-content">
+      <button class="cap-btn cap-primary" data-act="view">VER FICHA</button>
+      <button class="cap-btn" data-act="compare">COMPARAR</button>
+    </div>
+  `;
+  cardEl.appendChild(pop);
+
+  // Evitar que el click dentro del overlay vuelva a disparar el click de la card
+  pop.addEventListener('click', (e)=> e.stopPropagation());
+
+  // Cerrar con X
+  pop.querySelector('.cap-close')?.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    pop.remove();
+  });
+
+  // Acciones
+  pop.querySelector('[data-act="view"]')?.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    pop.remove();
+    openCharacterModal(char); // tu modal existente
+  });
+
+  pop.querySelector('[data-act="compare"]')?.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    pop.remove();
+    if (!COMPARE.A) { setCompareSlot('A', char.id); return; }
+    if (!COMPARE.B) { setCompareSlot('B', char.id); return; }
+    const choice = window.confirm('A y B ya están ocupados.\n\nAceptar = Reemplazar A\nCancelar = Reemplazar B');
+    setCompareSlot(choice ? 'A' : 'B', char.id);
+  });
+
+  // Cerrar con ESC
+  function onEsc(evt){
+    if (evt.key === 'Escape') {
+      closeActionOverlay();
+      document.removeEventListener('keydown', onEsc);
+    }
+  }
+  document.addEventListener('keydown', onEsc, { once: true });
+}
+
+
+
+/* ===========================
+   Filters (characters)
+   =========================== */
+['#search','#filter-rarity','#filter-role','#filter-school'].forEach(sel=>{
+  document.addEventListener('input', ev=>{
+    if(ev.target.matches(sel)) loadCharacters();
+  });
+});
+
