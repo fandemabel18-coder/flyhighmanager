@@ -621,11 +621,9 @@ input, select {
 
 /* ====== Comparador de Personajes ====== */
 .characters-layout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* izquierda 50%, derecha 50% */
   gap: 1rem;
-  padding: 0.5rem 0 1.5rem;
 }
 
 .characters-list {
@@ -638,71 +636,12 @@ input, select {
   border-radius: 8px;
   padding: 1rem;
   color: #f8fafc;
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  height: min(720px, calc(100vh - 140px));
-}
-
-
-.compare-scroll {
-  margin-top: 0.75rem;
+  position: sticky;
+  top: 1rem; /* para que quede fijo al hacer scroll */
+  max-height: calc(100vh - 2rem);
   overflow-y: auto;
-  padding-right: 4px;
 }
 
-.compare-abilities {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-.cmp-skill-list {
-  list-style: none;
-  margin: 0;
-  padding-left: 0;
-}
-
-.cmp-skill-item {
-  margin-bottom: 0.5rem;
-}
-
-.cmp-skill-name {
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-
-.cmp-skill-text {
-  font-size: 0.8rem;
-  color: #cbd5f5;
-}
-
-
-.cmp-abilities-col {
-  font-size: 0.85rem;
-  line-height: 1.4;
-}
-
-.compare-choose {
-  margin-top: 0.5rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid #3b82f6;
-  background: #1d4ed8;
-  color: #f9fafb;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-}
-
-.compare-choose:hover {
-  background: #2563eb;
-}
-
-.compare-choose:active {
-  transform: scale(0.97);
-}
 .compare-panel h2 {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;

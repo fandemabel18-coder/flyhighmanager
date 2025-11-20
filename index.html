@@ -114,7 +114,9 @@
     <!-- CHARACTERS -->
 <section id="tab-characters" class="tab">
   <div class="characters-layout">
-    <div class="filters">
+    <!-- Columna izquierda: lista de personajes -->
+    <div class="characters-list characters-grid">
+      <div class="filters">
         <input type="search" id="search" placeholder="Buscar por nombre..." />
         <select id="filter-rarity">
           <option value="">Rareza (todas)</option>
@@ -139,63 +141,52 @@
           <option>Karasuno</option>
         </select>
       </div>
-    <div id="comparePanel" class="compare-panel">
-      <h2>Comparador</h2>
 
-      <div id="compare-top" class="compare-selectors">
+      <div id="characters-list" class="cards-list"></div>
+      <dialog id="character-modal">
+        <article id="character-detail"></article>
+        <form method="dialog">
+          <button>Cerrar</button>
+        </form>
+      </dialog>
+    </div>
+
+    <!-- Columna derecha: comparador -->
+    <aside id="comparePanel" class="compare-panel">
+      <h2>Comparador</h2>
+      <div class="compare-selectors">
         <div class="compare-slot" id="compare-slot-a">
-          <div class="compare-placeholder">
-            <p>Selecciona un personaje para el slot A.</p>
-            <button type="button" class="compare-choose" data-slot="A">Elegir personaje</button>
-          </div>
+          <div class="compare-placeholder">Selecciona Personaje A</div>
         </div>
         <div class="compare-slot" id="compare-slot-b">
-          <div class="compare-placeholder">
-            <p>Selecciona un personaje para el slot B.</p>
-            <button type="button" class="compare-choose" data-slot="B">Elegir personaje</button>
-          </div>
+          <div class="compare-placeholder">Selecciona Personaje B</div>
         </div>
       </div>
 
-      <div id="compare-scroll" class="compare-scroll">
-        <div class="compare-table">
-          <h3>Stats Base</h3>
-          <table>
-            <thead>
-              <tr><th>Atributo</th><th>A</th><th>B</th><th>Dif</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Ataque rápido</td><td>—</td><td>—</td><td>—</td></tr>
-              <tr><td>Ataque poderoso</td><td>—</td><td>—</td><td>—</td></tr>
-              <tr><td>Bloqueo</td><td>—</td><td>—</td><td>—</td></tr>
-              <tr><td>Recepción</td><td>—</td><td>—</td><td>—</td></tr>
-              <tr><td>Percepción</td><td>—</td><td>—</td><td>—</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <section class="compare-block">
-          <h3>Habilidades</h3>
-          <div class="compare-abilities">
-            <div class="cmp-abilities-col" id="compare-skills-a">
-              <p class="meta">Selecciona un personaje para ver sus habilidades.</p>
-            </div>
-            <div class="cmp-abilities-col" id="compare-skills-b">
-              <p class="meta">Selecciona un personaje para ver sus habilidades.</p>
-            </div>
-          </div>
-        </section>
-
-        <div class="compare-actions">
-          <button id="compare-clear">Limpiar</button>
-          <button id="compare-swap">↔ Intercambiar</button>
-          <button id="compare-export">Exportar Imagen</button>
-        </div>
+      <div class="compare-table">
+        <h3>Stats Base</h3>
+        <table>
+          <thead>
+            <tr><th>Atributo</th><th>A</th><th>B</th><th>Dif</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ataque rápido</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>Ataque poderoso</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>Bloqueo</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>Recepción</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>Percepción</td><td>—</td><td>—</td><td>—</td></tr>
+          </tbody>
+        </table>
       </div>
-    </div>
+
+      <div class="compare-actions">
+        <button id="compare-clear">Limpiar</button>
+        <button id="compare-swap">↔ Intercambiar</button>
+        <button id="compare-export">Exportar Imagen</button>
+      </div>
+    </aside>
   </div>
 </section>
-
 
     
     <!-- VIDEO GUIDES -->
