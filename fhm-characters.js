@@ -8,7 +8,6 @@
    Characters (grid simple + modal)
    =========================== */
 let CHARACTERS = [];
-let _charsLoaded = false;
 
 function ensureModalStyles(){
   if($('#char-modal-styles')) return;
@@ -298,21 +297,67 @@ if(key==='potential'){
 }
 
 async function loadCharacters(){
-  // Carga ligera de personajes: solo JSON y caché en memoria.
-  if (_charsLoaded && Array.isArray(CHARACTERS) && CHARACTERS.length) return;
-  try{
-    CHARACTERS = await loadJSON('data/characters.json');
-  }catch(e){
-    console.warn('characters.json', e);
-    CHARACTERS = [];
-  }
-  _charsLoaded = true;
-  // Construimos índice por id para el comparador
-  if (typeof buildCharIndex === 'function') {
-    buildCharIndex();
-  }
-}
+  try{ CHARACTERS = await loadJSON('data/characters.json'); }
+  catch(e){ console.warn('characters.json', e); CHARACTERS=[]; }
 
+  const container = $('#characters-list');
+  if(!container) return;
+
+  container.classList.add('char-grid');
+
+  const q = normalizeStr($('#search')?.value || '');
+  const rarity = $('#filter-rarity')?.value || '';
+  const role   = $('#filter-role')?.value || '';
+  const school = $('#filter-school')?.value || '';
+
+  const list = CHARACTERS
+    .filter(c => !q || normalizeStr(c.name).includes(q))
+    .filter(c => !rarity || c.rarity === rarity)
+    .filter(c => !role   || c.role   === role)
+    .filter(c => !school || c.school === school);
+
+  container.innerHTML = list.map(c=>{
+    const rarityCls = String(c.rarity||'').toLowerCase();
+    return `
+      <article class="char-tile" role="button" tabindex="0" aria-label="${c.name}">
+        <div class="tile-thumb">
+          <img src="${c.avatar || 'assets/placeholder.png'}"
+               alt="${c.name}" onerror="this.onerror=null;this.src='assets/placeholder.png';">
+          <span class="char-badge ${rarityCls}">${c.rarity||''}</span>
+        </div>
+        <div class="tile-body">
+          <h4 class="tile-name">${c.name}</h4>
+          <div class="tile-meta">
+            <span>${c.school||''}</span> · <span>${c.role||''}</span>
+          </div>
+        </div>
+      </article>
+    `;
+return `
+  <article class="char-tile character-card" data-id="${c.id || ''}" role="button" tabindex="0" aria-label="${c.name}">
+    <div class="tile-thumb">
+      <img src="${c.avatar || 'assets/placeholder.png'}"
+           alt="${c.name}" onerror="this.onerror=null;this.src='assets/placeholder.png';">
+      <span class="char-badge ${rarityCls}">${c.rarity||''}</span>
+    </div>
+    <div class="tile-body">
+      <h4 class="tile-name">${c.name}</h4>
+      <div class="tile-meta">
+        <span>${c.school||''}</span> · <span>${c.role||''}</span>
+      </div>
+    </div>
+  </article>
+`;
+  }).join('');
+
+  $$('.char-tile', container).forEach((el, i)=>{
+  const c = list[i];
+  el.addEventListener('click', (ev)=> openCharacterActionPrompt(c, ev));
+  el.addEventListener('keydown', (ev)=>{
+    if(ev.key==='Enter' || ev.key===' '){ openCharacterActionPrompt(c, ev); }
+  });
+});
+}
 
 // ===== Recuerdos: carga global + índice por personaje =====
 let MEMORIES = [];
@@ -412,223 +457,27 @@ function setCompareSlot(slot, id) {
   if (COMPARE.A === id && slot === 'B') COMPARE.A = null;
   if (COMPARE.B === id && slot === 'A') COMPARE.B = null;
   COMPARE[slot] = id;
-renderComparePanel();
-renderCompareStatsTable();
-compareSave();
+  renderComparePanel();
+  renderCompareStatsTable();
+  renderCompareSkills();
+  compareSave();
 }
 
 function clearCompare() {
   COMPARE = { A: null, B: null };
-renderComparePanel();
-renderCompareStatsTable();
-compareSave();
+  renderComparePanel();
+  renderCompareStatsTable();
+  renderCompareSkills();
+  compareSave();
 }
 function swapCompare() {
- const tmp = COMPARE.A;
-COMPARE.A = COMPARE.B;
-COMPARE.B = tmp;
-renderComparePanel();
-renderCompareStatsTable();
-compareSave();
-
-}
-
-async function openCharacterSelector(slot){
-  slot = (slot === 'B') ? 'B' : 'A';
-
-  // Aseguramos que la data esté cargada
-  try{
-    if(!_charsLoaded || !Array.isArray(CHARACTERS) || !CHARACTERS.length){
-      await loadCharacters();
-    }
-  }catch(e){
-    console.warn('[compare] No pude cargar personajes para el selector', e);
-  }
-  if (!Array.isArray(CHARACTERS) || !CHARACTERS.length) return;
-  if (typeof buildCharIndex === 'function' && (!CHAR_BY_ID || !CHAR_BY_ID.size)) {
-    buildCharIndex();
-  }
-
-  // Cerrar selector previo si existe
-  const prev = document.getElementById('char-select-backdrop');
-  if (prev) prev.remove();
-
-  const backdrop = document.createElement('div');
-  backdrop.id = 'char-select-backdrop';
-  Object.assign(backdrop.style, {
-    position:'fixed',
-    inset:'0',
-    background:'rgba(15,23,42,0.85)',
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center',
-    zIndex:'9998',
-    padding:'16px'
-  });
-
-  const modal = document.createElement('div');
-  modal.id = 'char-select';
-  Object.assign(modal.style, {
-    width:'min(980px, 96vw)',
-    maxHeight:'92vh',
-    background:'#020617',
-    border:'1px solid #1e293b',
-    borderRadius:'14px',
-    boxShadow:'0 20px 60px rgba(0,0,0,0.75)',
-    color:'#e5e7eb',
-    display:'flex',
-    flexDirection:'column'
-  });
-
-  modal.innerHTML = `
-    <header style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid #1f2937">
-      <div>
-        <div style="font-size:14px;color:#9ca3af">Comparador de personajes</div>
-        <h2 style="margin:2px 0 0;font-size:18px">Elegir personaje para slot ${slot}</h2>
-      </div>
-      <button type="button" class="char-select-close" aria-label="Cerrar"
-        style="background:#111827;border:1px solid #374151;border-radius:999px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;color:#e5e7eb;cursor:pointer">
-        ×
-      </button>
-    </header>
-    <section style="padding:10px 16px;border-bottom:1px solid #111827;display:flex;flex-wrap:wrap;gap:8px">
-      <input id="char-select-search" type="search" placeholder="Buscar por nombre..."
-        style="flex:1 1 180px;min-width:160px;padding:6px 8px;border-radius:8px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:14px">
-      <select id="char-select-rarity" style="flex:0 0 120px;padding:6px 8px;border-radius:8px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:14px">
-        <option value="">Rareza</option>
-      </select>
-      <select id="char-select-role" style="flex:0 0 140px;padding:6px 8px;border-radius:8px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:14px">
-        <option value="">Rol</option>
-      </select>
-      <select id="char-select-school" style="flex:0 0 180px;padding:6px 8px;border-radius:8px;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:14px">
-        <option value="">Escuela</option>
-      </select>
-    </section>
-    <section id="char-select-results" style="padding:10px 16px 14px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1 1 auto">
-      <div style="color:#9ca3af;font-size:14px">Escribe para buscar o filtra por rareza, rol o escuela.</div>
-    </section>
-  `;
-
-  backdrop.appendChild(modal);
-  document.body.appendChild(backdrop);
-  const prevOverflow = document.body.style.overflow;
-  document.body.style.overflow = 'hidden';
-
-  function close(){
-    backdrop.remove();
-    document.body.style.overflow = prevOverflow;
-  }
-
-  backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) close(); });
-  modal.querySelector('.char-select-close')?.addEventListener('click', close);
-  document.addEventListener('keydown', function onEsc(ev){
-    if(ev.key === 'Escape'){ document.removeEventListener('keydown', onEsc); close(); }
-  });
-
-  const inputSearch = modal.querySelector('#char-select-search');
-  const selRarity   = modal.querySelector('#char-select-rarity');
-  const selRole     = modal.querySelector('#char-select-role');
-  const selSchool   = modal.querySelector('#char-select-school');
-  const resultsBox  = modal.querySelector('#char-select-results');
-
-  // Poblar selects con datos reales
-  const rarSet = new Set();
-  const roleSet = new Set();
-  const schoolSet = new Set();
-  CHARACTERS.forEach(c=>{
-    if(c.rarity || c.rareza) rarSet.add((c.rarity || c.rareza).toUpperCase());
-    if(c.role || c.posicion) roleSet.add(c.role || c.posicion);
-    if(c.school || c.escuela) schoolSet.add(c.school || c.escuela);
-  });
-
-  Array.from(rarSet).sort().forEach(r=>{
-    const opt = document.createElement('option');
-    opt.value = r;
-    opt.textContent = r;
-    selRarity.appendChild(opt);
-  });
-  Array.from(roleSet).sort().forEach(r=>{
-    const opt = document.createElement('option');
-    opt.value = r;
-    opt.textContent = r;
-    selRole.appendChild(opt);
-  });
-  Array.from(schoolSet).sort().forEach(s=>{
-    const opt = document.createElement('option');
-    opt.value = s;
-    opt.textContent = s;
-    selSchool.appendChild(opt);
-  });
-
-  function renderList(){
-    const q   = normalizeStr(inputSearch.value || '');
-    const rar = selRarity.value || '';
-    const rol = selRole.value || '';
-    const sch = selSchool.value || '';
-
-    const currentIds = new Set();
-    if (COMPARE.A) currentIds.add(String(COMPARE.A));
-    if (COMPARE.B) currentIds.add(String(COMPARE.B));
-
-    const filtered = CHARACTERS
-      .filter(c => !q || normalizeStr(c.name || c.nombre || '').includes(q))
-      .filter(c => !rar || (c.rarity || c.rareza || '').toUpperCase() === rar)
-      .filter(c => !rol || (c.role || c.posicion || '') === rol)
-      .filter(c => !sch || (c.school || c.escuela || '') === sch);
-
-    if (!filtered.length){
-      resultsBox.innerHTML = '<div style="color:#9ca3af;font-size:14px">No se encontraron personajes con esos filtros.</div>';
-      return;
-    }
-
-    resultsBox.innerHTML = filtered.map(c=>{
-      const id       = c.id != null ? c.id : (c.varianteId || c.baseId || '');
-      const rare     = (c.rarity || c.rareza || '').toUpperCase();
-      const roleTxt  = c.role || c.posicion || '';
-      const school   = c.school || c.escuela || '';
-      const avatar   = c.avatar || c.avatarPath || 'assets/placeholder.png';
-      const disabled = id && currentIds.has(String(id));
-      const inSlot   = (COMPARE.A && String(COMPARE.A) === String(id)) ? 'A'
-                      : (COMPARE.B && String(COMPARE.B) === String(id)) ? 'B'
-                      : '';
-
-      return `
-        <article class="char-select-item" data-id="${id}" ${disabled ? 'data-current="1"' : ''} style="display:flex;align-items:center;gap:10px;padding:6px 4px;border-bottom:1px solid #020617;cursor:pointer">
-          <img src="${avatar}" alt="${c.name || c.nombre || ''}" width="42" height="56"
-               loading="lazy" decoding="async"
-               style="border-radius:8px;border:1px solid #1f2937;object-fit:cover"
-               onerror="this.onerror=null;this.src='assets/placeholder.png';">
-          <div style="flex:1 1 auto;min-width:0">
-            <div style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
-              ${c.name || c.nombre || ''}
-            </div>
-            <div style="font-size:12px;color:#9ca3af;display:flex;flex-wrap:wrap;gap:6px;margin-top:2px">
-              ${rare ? `<span>${rare}</span>` : ''}
-              ${roleTxt ? `<span>${roleTxt}</span>` : ''}
-              ${school ? `<span>${school}</span>` : ''}
-            </div>
-          </div>
-          ${inSlot ? `<span style="font-size:11px;color:#22c55e;border:1px solid #16a34a;border-radius:999px;padding:2px 6px">En slot ${inSlot}</span>` : ''}
-        </article>
-      `;
-    }).join('');
-  }
-
-  inputSearch.addEventListener('input', renderList);
-  selRarity.addEventListener('change', renderList);
-  selRole.addEventListener('change', renderList);
-  selSchool.addEventListener('change', renderList);
-
-  resultsBox.addEventListener('click', (ev)=>{
-    const card = ev.target.closest('.char-select-item');
-    if (!card) return;
-    const id = card.getAttribute('data-id');
-    if (!id) return;
-    setCompareSlot(slot, id);
-    close();
-  });
-
-  renderList();
+  const tmp = COMPARE.A;
+  COMPARE.A = COMPARE.B;
+  COMPARE.B = tmp;
+  renderComparePanel();
+  renderCompareStatsTable();
+  renderCompareSkills();
+  compareSave();
 }
 
 function renderComparePanel() {
@@ -636,131 +485,43 @@ function renderComparePanel() {
   const bBox = document.getElementById('compare-slot-b');
   if (!aBox || !bBox) return;
 
-  function renderSlot(slotKey, id) {
-    if (!id) {
-      return `
-        <div class="compare-placeholder">
-          <p>Selecciona un personaje para el slot ${slotKey}.</p>
-          <button type="button" class="cmp-select-btn" data-slot="${slotKey}">Elegir personaje</button>
-        </div>`;
-    }
+  function slotHTML(id) {
+    if (!id) return `<div class="compare-placeholder">Selecciona Personaje</div>`;
     const c = CHAR_BY_ID.get(String(id));
-    if (!c) {
-      return `
-        <div class="compare-placeholder">
-          <p>Selecciona un personaje para el slot ${slotKey}.</p>
-          <button type="button" class="cmp-select-btn" data-slot="${slotKey}">Elegir personaje</button>
-        </div>`;
-    }
-
+    if (!c)   return `<div class="compare-placeholder">Selecciona Personaje</div>`;
     const rare   = (c.rarity || c.rareza || '').toUpperCase();
     const role   = c.role || c.posicion || '';
     const school = c.school || c.escuela || '';
     const avatar = c.avatar || c.avatarPath || 'assets/placeholder.png';
-    const playStyle = c.playStyle || c.estilo || '';
-
-    const skills = Array.isArray(c.skills) ? c.skills : [];
-    const skillsPreview = skills
-      .map(s => typeof s === 'string' ? s : (s && s.name) ? s.name : '')
-      .filter(Boolean)
-      .slice(0, 3);
-
     return `
-      <div class="cmp-card" data-slot="${slotKey}" data-id="${c.id || ''}">
-        <div class="cmp-card-top">
-          <img class="cmp-avatar" src="${avatar}" alt="${c.name || c.nombre || ''}"
-               loading="lazy" decoding="async" width="88" height="118"
-               onerror="this.onerror=null;this.src='assets/placeholder.png';">
-          <div class="cmp-meta">
-            <div class="cmp-name">${c.name || c.nombre || ''}</div>
-            <div class="cmp-tags">
-              ${rare ? `<span class="tag">${rare}</span>` : ''}
-              ${role ? `<span class="tag">${role}</span>` : ''}
-              ${school ? `<span class="tag">${school}</span>` : ''}
-            </div>
-            ${playStyle ? `<div class="cmp-style">Estilo: ${playStyle}</div>` : ''}
+      <div class="cmp-card">
+        <img class="cmp-avatar" src="${avatar}" alt="${c.name || c.nombre}" loading="lazy" decoding="async" width="88" height="118">\n        <div class="cmp-meta">
+          <div class="cmp-name">${c.name || c.nombre}</div>
+          <div class="cmp-tags">
+            <span class="tag">${rare}</span>
+            <span class="tag">${role}</span>
+            <span class="tag">${school}</span>
           </div>
-        </div>
-        ${skillsPreview.length ? `
-          <div class="cmp-skills">
-            ${skillsPreview.map(n => `<span class="chip">${n}</span>`).join('')}
-          </div>` : ''}
-        <div class="cmp-actions">
-          <button type="button" class="cmp-action-btn" data-act="change" data-slot="${slotKey}">Cambiar personaje</button>
-          <button type="button" class="cmp-action-btn" data-act="view" data-slot="${slotKey}">Ver ficha</button>
         </div>
       </div>`;
   }
 
-  aBox.innerHTML = renderSlot('A', COMPARE.A);
-  bBox.innerHTML = renderSlot('B', COMPARE.B);
+  aBox.innerHTML = slotHTML(COMPARE.A);
+  bBox.innerHTML = slotHTML(COMPARE.B);
 
-  // Botones globales de limpiar / intercambiar
   const clr = document.getElementById('compare-clear');
   const swp = document.getElementById('compare-swap');
   if (clr && !clr._bound){ clr._bound = true; clr.addEventListener('click', clearCompare); }
   if (swp && !swp._bound){ swp._bound = true; swp.addEventListener('click', swapCompare); }
-
-  // Botones de selección para slots vacíos
-  document.querySelectorAll('.cmp-select-btn').forEach(btn => {
-    if (btn._bound) return;
-    btn._bound = true;
-    btn.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      const slot = btn.getAttribute('data-slot') || 'A';
-      openCharacterSelector(slot);
-    });
-  });
-
-  // Acciones "Cambiar" / "Ver ficha" en cada card
-  document.querySelectorAll('.cmp-action-btn').forEach(btn => {
-    if (btn._bound) return;
-    btn._bound = true;
-    btn.addEventListener('click', (ev) => {
-      ev.stopPropagation();
-      const act  = btn.getAttribute('data-act');
-      const slot = btn.getAttribute('data-slot') || 'A';
-      const card = btn.closest('.cmp-card');
-      const id   = card ? card.getAttribute('data-id') : null;
-      const charObj = id ? CHAR_BY_ID.get(String(id)) : null;
-
-      if (act === 'change') {
-        openCharacterSelector(slot);
-      } else if (act === 'view' && charObj) {
-        openCharacterModal(charObj);
-      }
-    });
-  });
 }
-
 
 function compareBootOnce() {
   buildCharIndex();
   compareLoad();
   renderComparePanel();
   renderCompareStatsTable();
-
-  // Permitir abrir el selector haciendo click en los slots completos
-  const aBox = document.getElementById('compare-slot-a');
-  const bBox = document.getElementById('compare-slot-b');
-
-  if (aBox && !aBox._selectBound) {
-    aBox._selectBound = true;
-    aBox.addEventListener('click', (ev) => {
-      // Evitamos clicks en botones internos (limpiar, swap ya tienen sus listeners)
-      if (ev.target.closest('button')) return;
-      openCharacterSelector('A');
-    });
-  }
-  if (bBox && !bBox._selectBound) {
-    bBox._selectBound = true;
-    bBox.addEventListener('click', (ev) => {
-      if (ev.target.closest('button')) return;
-      openCharacterSelector('B');
-    });
-  }
+  renderCompareSkills();
 }
-
 function renderCompareStatsTable(){
   const tBody = document.querySelector('.compare-table tbody');
   if(!tBody) return;
@@ -830,6 +591,47 @@ function renderCompareStatsTable(){
 
   tBody.innerHTML = html;
 
+}
+
+function renderCompareSkills(){
+  const colA = document.getElementById('compare-skills-a');
+  const colB = document.getElementById('compare-skills-b');
+  if (!colA || !colB) return;
+
+  const renderFor = (id, slotLabel) => {
+    if (!id) {
+      return `<p class="banner-meta">Selecciona un personaje para ver sus habilidades.</p>`;
+    }
+    const ch = CHAR_BY_ID.get(String(id));
+    if (!ch) {
+      return `<p class="banner-meta">No encontré datos para este personaje.</p>`;
+    }
+
+    const skills = Array.isArray(ch.skills) ? ch.skills : [];
+    if (!skills.length) {
+      return `<p class="banner-meta">Sin datos de habilidades.</p>`;
+    }
+
+    const items = skills.map((s, i) => {
+      if (typeof s === 'string') {
+        return `<li><div class="cmp-skill-name">${s}</div></li>`;
+      }
+      const name = s.name || `Habilidad ${i+1}`;
+      const effect = s.effect || '';
+      return `
+        <li class="cmp-skill-item">
+          <div class="cmp-skill-name">${name}</div>
+          ${effect ? `<div class=\"cmp-skill-text\">${effect}</div>` : ''}
+        </li>`;
+    }).join('');
+
+    return `
+      <div class="cmp-slot-title">Slot ${slotLabel}</div>
+      <ul class="cmp-skill-list">${items}</ul>`;
+  };
+
+  colA.innerHTML = renderFor(COMPARE.A, 'A');
+  colB.innerHTML = renderFor(COMPARE.B, 'B');
 }
 
 // ====== Overlay anclado a la card: "Ver ficha" o "Comparar" ======
