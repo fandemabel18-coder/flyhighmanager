@@ -293,27 +293,41 @@
               <div id="tb-bench" class="tb-bench droptarget" data-pos="BENCH"></div>
             </div>
           </div>
-
-          <!-- Lista / Filtros -->
-          <aside class="tb-right">
-            <div class="tb-filters tb-card">
-              <input id="tb-search" type="text" placeholder="Buscar personajes… (ES / JP / EN)" />
-              <div class="tb-filter-row" style="display:flex;gap:8px;margin-top:8px">
-                <select id="tb-filter-escuela" style="flex:1">
-                  <option value="">Escuela (todas)</option>
-                </select>
-                <select id="tb-filter-rareza">
-                  <option value="">Rareza (todas)</option>
-                  <option>SP</option><option>UR</option><option>SSR</option>
-                  <option>SR</option><option>R</option><option>N</option>
-                </select>
-              </div>
+        <!-- Selector de personaje (Fase 2) -->
+        <div id="tb-picker-backdrop" class="tb-picker-backdrop" hidden>
+          <div class="tb-picker-modal" role="dialog" aria-modal="true" aria-labelledby="tb-picker-title">
+            <header class="tb-picker-header">
+              <h2 id="tb-picker-title">Elegir personaje</h2>
+              <button type="button" class="tb-picker-close" aria-label="Cerrar selector">×</button>
+            </header>
+            <div class="tb-picker-filters">
+              <input id="tbp-search" type="search" placeholder="Buscar por nombre… (ES / JP / EN)" />
+              <select id="tbp-role">
+                <option value="">Rol (todos)</option>
+                <option value="OP">Opuesto</option>
+                <option value="WS">Wing Spiker</option>
+                <option value="MB">Middle Blocker</option>
+                <option value="S">Setter</option>
+                <option value="L">Líbero</option>
+              </select>
+              <select id="tbp-rareza">
+                <option value="">Rareza (todas)</option>
+                <option value="SP">SP</option>
+                <option value="UR">UR</option>
+                <option value="SSR">SSR</option>
+                <option value="SR">SR</option>
+                <option value="R">R</option>
+                <option value="N">N</option>
+              </select>
+              <select id="tbp-school">
+                <option value="">Escuela (todas)</option>
+              </select>
             </div>
-
-            <div id="tb-list" class="tb-list">
-              <!-- Secciones por posición → cartas por rareza -->
+            <div id="tb-picker-list" class="tb-picker-list">
+              <!-- Personajes filtrados para el selector -->
             </div>
-          </aside>
+          </div>
+        </div>
         </div>
       </div>
     </section>

@@ -724,11 +724,13 @@ function saveAccordion(){
     return String(s||'').replace(/_/g,' ').replace(/\b\w/g,m=>m.toUpperCase());
   }
 
+
   function renderField(){
     const field = $('#tb-field'); if(!field) return;
     field.innerHTML = '';
     const layout = SLOT_LAYOUTS[state.layoutIdx];
 
+    // Crear grilla básica 3x3
     for(let i=0;i<9;i++){
       const slotEl = document.createElement('div');
       slotEl.className = 'tb-slot';
@@ -746,11 +748,35 @@ function saveAccordion(){
       lab.textContent = conf.pos;
       host.appendChild(lab);
 
+      const inner = document.createElement('div');
+      inner.className = 'tb-slot-inner';
+      host.appendChild(inner);
+
       const varId = state.slots[logicalIdx];
       if(varId){
         const card = makeCard(varId);
-        host.appendChild(card);
+        inner.appendChild(card);
         host.classList.add('filled');
+
+        const p = state.byVar.get(varId);
+        const meta = document.createElement('div');
+        meta.className = 'tb-slot-meta';
+        meta.innerHTML = `
+          <div class="tb-slot-name">${p ? (p.nombreES || '') : ''}</div>
+          <div class="tb-slot-role">${p ? `${p.posicion || ''} · ${p.rareza || ''}` : ''}</div>
+          <div class="tb-slot-actions">
+            <button type="button" class="tb-slot-choose" data-slot-index="${logicalIdx}">Cambiar personaje</button>
+            <button type="button" class="tb-slot-clear" data-slot-index="${logicalIdx}">Quitar</button>
+          </div>
+        `;
+        inner.appendChild(meta);
+      } else {
+        inner.innerHTML = `
+          <div class="tb-slot-empty">
+            <p class="banner-meta" style="margin-bottom:6px">Sin jugador</p>
+            <button type="button" class="tb-slot-choose" data-slot-index="${logicalIdx}">Elegir personaje</button>
+          </div>
+        `;
       }
     });
 
@@ -762,6 +788,7 @@ function saveAccordion(){
 
     bindDnD(field);
   }
+
 
   function renderBench(){
     const el = $('#tb-bench'); if(!el) return;
@@ -820,6 +847,123 @@ function saveAccordion(){
     bindDnD(root);
   }
 
+
+  // === Fase 2: selector por casilla ===
+  let pickerSlotIndex = null;
+
+  function openPicker(slotIdx){
+    pickerSlotIndex = slotIdx;
+    const backdrop = $('#tb-picker-backdrop');
+    if(!backdrop) return;
+    backdrop.hidden = false;
+    document.body.style.overflow = 'hidden';
+
+    const layout = SLOT_LAYOUTS[state.layoutIdx] || [];
+    const conf = layout[slotIdx] || null;
+    const titleEl = $('#tb-picker-title');
+    if(titleEl){
+      const posLabel = conf ? conf.pos : '';
+      titleEl.textContent = posLabel ? `Elegir personaje para ${posLabel}` : 'Elegir personaje';
+    }
+
+    renderPickerList();
+  }
+
+  function closePicker(){
+    const backdrop = $('#tb-picker-backdrop');
+    if(!backdrop) return;
+    backdrop.hidden = true;
+    document.body.style.overflow = '';
+    pickerSlotIndex = null;
+  }
+
+  function renderPickerList(){
+    const listEl = $('#tb-picker-list'); if(!listEl) return;
+    if(pickerSlotIndex == null){
+      listEl.innerHTML = '<p class="banner-meta">Selecciona primero una casilla.</p>';
+      return;
+    }
+
+    const layout = SLOT_LAYOUTS[state.layoutIdx] || [];
+    const conf = layout[pickerSlotIndex] || null;
+    const needPos = conf ? conf.pos : null;
+
+    const qInput = $('#tbp-search');
+    const roleSel = $('#tbp-role');
+    const rarSel = $('#tbp-rareza');
+    const schoolSel = $('#tbp-school');
+
+    const q = normalizeStr(qInput && qInput.value || '');
+    const role = roleSel && roleSel.value || '';
+    const rar = rarSel && rarSel.value || '';
+    const sch = schoolSel && schoolSel.value || '';
+
+    // Rellenar escuelas si hace falta
+    if(schoolSel && schoolSel.childElementCount<=1 && state.characters.length){
+      const set = new Set(state.characters.map(p=>p.escuelaId).filter(Boolean));
+      Array.from(set).sort().forEach(id=>{
+        const opt = document.createElement('option');
+        opt.value = id;
+        opt.textContent = fmtTitle(id);
+        schoolSel.appendChild(opt);
+      });
+    }
+
+    let list = state.characters.slice();
+
+    // Restricción de líbero en casilla de L
+    if(needPos === 'L'){
+      list = list.filter(p=>p.posicion === 'L');
+    }
+
+    if(role){
+      list = list.filter(p=>p.posicion === role);
+    }
+    if(rar){
+      list = list.filter(p=>p.rareza === rar);
+    }
+    if(sch){
+      list = list.filter(p=>p.escuelaId === sch);
+    }
+    if(q){
+      list = list.filter(p=>{
+        const items = [p.nombreES, p.nombreEN, p.nombreJP, p.baseId, ...(p.alias||[])].filter(Boolean);
+        return items.some(txt => normalizeStr(txt).includes(q));
+      });
+    }
+
+    if(!list.length){
+      listEl.innerHTML = '<p class="banner-meta">No hay personajes que cumplan los filtros seleccionados.</p>';
+      return;
+    }
+
+    list.sort((a,b)=> (RAREZA_ORDER[b.rareza]-RAREZA_ORDER[a.rareza]) || a.nombreES.localeCompare(b.nombreES));
+
+    listEl.innerHTML = list.map(p=>`
+      <article class="tb-picker-item" data-varid="${p.varianteId}">
+        <img loading="lazy" src="${p.avatarPath}" alt="${p.nombreES}"
+             onerror="this.onerror=null;this.src='assets/placeholder.png'">
+        <div class="tb-picker-meta">
+          <div class="tb-picker-name">${p.nombreES}</div>
+          <div class="tb-picker-tags">
+            <span class="chip">${p.posicion}</span>
+            <span class="chip">${p.rareza}</span>
+            ${p.escuelaId ? `<span class="chip">${fmtTitle(p.escuelaId)}</span>` : ''}
+          </div>
+          <button type="button" class="tb-picker-select" data-varid="${p.varianteId}">Elegir</button>
+        </div>
+      </article>
+    `).join('');
+
+    $$('.tb-picker-select', listEl).forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const varId = btn.getAttribute('data-varid');
+        if(!varId || pickerSlotIndex==null) return;
+        handleDropSlot(varId, pickerSlotIndex);
+        closePicker();
+      });
+    });
+  }
   function makeCard(varId){
     const p = state.byVar.get(varId);
     const el = document.createElement('div');
@@ -839,9 +983,32 @@ function saveAccordion(){
   }
 
   function quickPlace(p){
-    const idx = state.slots.findIndex((v, i) => !v && SLOT_LAYOUTS[state.layoutIdx][i].pos === p.posicion);
-    if(idx>=0){ tryPlaceInSlot(p.varianteId, idx); return; }
-    if(p.posicion==='L'){ toast('No se permiten Líberos en la banca.'); return; }
+    const layout = SLOT_LAYOUTS[state.layoutIdx];
+    const liberoIdx = layout.findIndex(conf => conf.pos === 'L');
+    const isLibero = p.posicion === 'L';
+
+    let targetIdx = -1;
+
+    if (isLibero) {
+      // 1) Intentar primero la casilla de Líbero
+      if (liberoIdx >= 0 && !state.slots[liberoIdx]) {
+        targetIdx = liberoIdx;
+      } else {
+        // 2) Cualquier otra casilla titular libre (no-L)
+        targetIdx = state.slots.findIndex((v, i) => !v && layout[i].pos !== 'L');
+      }
+    } else {
+      // No-Líbero: cualquier casilla titular libre que no sea la de Líbero
+      targetIdx = state.slots.findIndex((v, i) => !v && layout[i].pos !== 'L');
+    }
+
+    if (targetIdx >= 0) {
+      tryPlaceInSlot(p.varianteId, targetIdx);
+      return;
+    }
+
+    // Si no hay espacio en titulares, aplican reglas de banca actuales
+    if(isLibero){ toast('No se permiten Líberos en la banca.'); return; }
     if(state.bench.length>=6){ toast('Banca llena (máximo 6).'); return; }
     if(isDuplicate(p.varianteId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
     pushUndo();
@@ -876,7 +1043,11 @@ function saveAccordion(){
         }else{
           const logicalIdx = Number(target.dataset.slotIndex);
           const needPos = SLOT_LAYOUTS[state.layoutIdx][logicalIdx].pos;
-          ok = (p.posicion === needPos) && !isDuplicate(draggingVarId);
+          if (needPos === 'L' && p.posicion !== 'L') {
+            ok = false;
+          } else {
+            ok = !isDuplicate(draggingVarId);
+          }
         }
         target.classList.add(ok ? 'drop-valid' : 'drop-invalid');
       });
@@ -901,8 +1072,17 @@ function saveAccordion(){
     const p = state.byVar.get(varId);
     if(!p) return;
     const needPos = SLOT_LAYOUTS[state.layoutIdx][logicalIdx].pos;
-    if(p.posicion !== needPos){ toast('Posición incorrecta del jugador.'); return; }
-    if(isDuplicate(varId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
+
+    // Única restricción de posición: la casilla de Líbero solo acepta Líberos
+    if(needPos === 'L' && p.posicion !== 'L'){
+      toast('Solo Líberos pueden ocupar esta casilla.');
+      return;
+    }
+
+    if(isDuplicate(varId)){
+      toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).');
+      return;
+    }
 
     pushUndo();
     const iBench = state.bench.indexOf(varId);
@@ -935,8 +1115,18 @@ function saveAccordion(){
   function tryPlaceInSlot(varId, logicalIdx){
     const p = state.byVar.get(varId); if(!p) return;
     const needPos = SLOT_LAYOUTS[state.layoutIdx][logicalIdx].pos;
-    if(p.posicion !== needPos){ toast('Posición incorrecta del jugador.'); return; }
-    if(isDuplicate(varId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
+
+    // Única restricción: esta casilla es de Líbero y el personaje no lo es
+    if(needPos === 'L' && p.posicion !== 'L'){
+      toast('Solo Líberos pueden ocupar esta casilla.');
+      return;
+    }
+
+    if(isDuplicate(varId)){
+      toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).');
+      return;
+    }
+
     pushUndo();
     state.slots[logicalIdx] = varId;
     renderAll(); saveState();
@@ -1239,6 +1429,54 @@ if (!host._accBound) {
       const fr= $('#tb-filter-rareza'); if(fr) fr.addEventListener('change', renderList);
       const fe= $('#tb-filter-escuela'); if(fe) fe.addEventListener('change', renderList);
 
+
+      // Fase 2: delegar clicks en casillas (Elegir/Cambiar/Quitar)
+      const fieldWrap = $('#tb-field');
+      if(fieldWrap){
+        fieldWrap.addEventListener('click', ev=>{
+          const chooseBtn = ev.target.closest && ev.target.closest('.tb-slot-choose');
+          if(chooseBtn){
+            const idx = Number(chooseBtn.dataset.slotIndex||'-1');
+            if(idx>=0) openPicker(idx);
+            return;
+          }
+          const clearBtn = ev.target.closest && ev.target.closest('.tb-slot-clear');
+          if(clearBtn){
+            const idx = Number(clearBtn.dataset.slotIndex||'-1');
+            if(idx>=0 && state.slots[idx]){
+              pushUndo();
+              state.slots[idx] = null;
+              renderAll();
+              saveState();
+            }
+          }
+        });
+      }
+
+      // Fase 2: eventos del selector modal
+      const pickerBackdrop = $('#tb-picker-backdrop');
+      if(pickerBackdrop){
+        const closeBtn = pickerBackdrop.querySelector('.tb-picker-close');
+        if(closeBtn) closeBtn.addEventListener('click', closePicker);
+        pickerBackdrop.addEventListener('click', ev=>{
+          if(ev.target === pickerBackdrop) closePicker();
+        });
+      }
+      const ps = $('#tbp-search');
+      const pr = $('#tbp-role');
+      const pz = $('#tbp-rareza');
+      const pe = $('#tbp-school');
+      if(ps) ps.addEventListener('input', renderPickerList);
+      if(pr) pr.addEventListener('change', renderPickerList);
+      if(pz) pz.addEventListener('change', renderPickerList);
+      if(pe) pe.addEventListener('change', renderPickerList);
+
+      document.addEventListener('keydown', ev=>{
+        if(ev.key === 'Escape'){
+          const backdrop = $('#tb-picker-backdrop');
+          if(backdrop && !backdrop.hidden) closePicker();
+        }
+      });
       state._inited = true;
     }
 
