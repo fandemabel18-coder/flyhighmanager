@@ -839,9 +839,32 @@ function saveAccordion(){
   }
 
   function quickPlace(p){
-    const idx = state.slots.findIndex((v, i) => !v && SLOT_LAYOUTS[state.layoutIdx][i].pos === p.posicion);
-    if(idx>=0){ tryPlaceInSlot(p.varianteId, idx); return; }
-    if(p.posicion==='L'){ toast('No se permiten Líberos en la banca.'); return; }
+    const layout = SLOT_LAYOUTS[state.layoutIdx];
+    const liberoIdx = layout.findIndex(conf => conf.pos === 'L');
+    const isLibero = p.posicion === 'L';
+
+    let targetIdx = -1;
+
+    if (isLibero) {
+      // 1) Intentar primero la casilla de Líbero
+      if (liberoIdx >= 0 && !state.slots[liberoIdx]) {
+        targetIdx = liberoIdx;
+      } else {
+        // 2) Cualquier otra casilla titular libre (no-L)
+        targetIdx = state.slots.findIndex((v, i) => !v && layout[i].pos !== 'L');
+      }
+    } else {
+      // No-Líbero: cualquier casilla titular libre que no sea la de Líbero
+      targetIdx = state.slots.findIndex((v, i) => !v && layout[i].pos !== 'L');
+    }
+
+    if (targetIdx >= 0) {
+      tryPlaceInSlot(p.varianteId, targetIdx);
+      return;
+    }
+
+    // Si no hay espacio en titulares, aplican reglas de banca actuales
+    if(isLibero){ toast('No se permiten Líberos en la banca.'); return; }
     if(state.bench.length>=6){ toast('Banca llena (máximo 6).'); return; }
     if(isDuplicate(p.varianteId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
     pushUndo();
@@ -876,7 +899,11 @@ function saveAccordion(){
         }else{
           const logicalIdx = Number(target.dataset.slotIndex);
           const needPos = SLOT_LAYOUTS[state.layoutIdx][logicalIdx].pos;
-          ok = (p.posicion === needPos) && !isDuplicate(draggingVarId);
+          if (needPos === 'L' && p.posicion !== 'L') {
+            ok = false;
+          } else {
+            ok = !isDuplicate(draggingVarId);
+          }
         }
         target.classList.add(ok ? 'drop-valid' : 'drop-invalid');
       });
@@ -901,8 +928,17 @@ function saveAccordion(){
     const p = state.byVar.get(varId);
     if(!p) return;
     const needPos = SLOT_LAYOUTS[state.layoutIdx][logicalIdx].pos;
-    if(p.posicion !== needPos){ toast('Posición incorrecta del jugador.'); return; }
-    if(isDuplicate(varId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
+
+    // Única restricción de posición: la casilla de Líbero solo acepta Líberos
+    if(needPos === 'L' && p.posicion !== 'L'){
+      toast('Solo Líberos pueden ocupar esta casilla.');
+      return;
+    }
+
+    if(isDuplicate(varId)){
+      toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).');
+      return;
+    }
 
     pushUndo();
     const iBench = state.bench.indexOf(varId);
@@ -935,8 +971,18 @@ function saveAccordion(){
   function tryPlaceInSlot(varId, logicalIdx){
     const p = state.byVar.get(varId); if(!p) return;
     const needPos = SLOT_LAYOUTS[state.layoutIdx][logicalIdx].pos;
-    if(p.posicion !== needPos){ toast('Posición incorrecta del jugador.'); return; }
-    if(isDuplicate(varId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
+
+    // Única restricción: esta casilla es de Líbero y el personaje no lo es
+    if(needPos === 'L' && p.posicion !== 'L'){
+      toast('Solo Líberos pueden ocupar esta casilla.');
+      return;
+    }
+
+    if(isDuplicate(varId)){
+      toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).');
+      return;
+    }
+
     pushUndo();
     state.slots[logicalIdx] = varId;
     renderAll(); saveState();
