@@ -513,8 +513,10 @@ input, select {
 .tb-btn{background:#1f3c52;border:1px solid #2c4e69;color:#cfe9f8;padding:8px 12px;border-radius:10px;cursor:pointer}
 .tb-btn:disabled{opacity:.6;cursor:not-allowed}
 .tb-primary{background:#31c48d;border-color:#27a276;color:#052014}
-.tb-layout{display:grid;grid-template-columns:280px 1fr 360px;gap:12px}
-.tb-side,.tb-right{display:flex;flex-direction:column;gap:12px}
+.tb-layout{display:grid;grid-template-columns:320px minmax(0,1fr);gap:12px}
+.tb-side{display:flex;flex-direction:column;gap:12px}
+.tb-right{display:none}
+
 .tb-card{background:#0f2a3a;border:1px solid #1f3c52;border-radius:12px;padding:12px;color:#dbeafe}
 .tb-card.small{font-size:.92rem}
 .tb-field-wrap{display:flex;flex-direction:column;gap:12px}
