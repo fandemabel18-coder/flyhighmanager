@@ -323,7 +323,8 @@
   position:absolute;
   inset:0;
   border-radius:12px;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.06) 15%, transparent 30%) 0 0 / 200% 100% no-repeat;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.14) 15%, transparent 30%) 0 0 / 200% 100% no-repeat;
   opacity: 0;
   transition: opacity .2s ease;
   z-index: 0;
@@ -409,7 +410,8 @@
 #video-guides-featured .video-card:hover::before{ opacity:.75; }
 #video-guides-featured .video-card::after{
   content:""; position:absolute; inset:0; border-radius:12px;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.06) 15%, transparent 30%) 0 0 / 200% 100% no-repeat;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.14) 15%, transparent 30%) 0 0 / 200% 100% no-repeat;
   opacity:0; transition: opacity .2s ease;
 }
 #video-guides-featured .video-card:hover::after{ opacity:.9; animation: rareShimmer 1.8s ease-out; }
