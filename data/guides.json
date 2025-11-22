@@ -1,36 +1,36 @@
 [
   {
-    "id": "banner-oikawa-bokuto",
+    "id": "actualizacion-comparador",
     "type": "video",
-    "slug": "banner-oikawa-bokuto",
-    "title": "👉 ¡CAMBIO INESPERADO en Haikyuu Fly High! 😱 Oikawa llega antes que Bokuto 🔥",
+    "slug": "actualizacion-comparador",
+    "title": "👉 ¡ACTUALICÉ FlyHighManager y ahora el comparador de personajes está de locos!!!😱🔥",
     "character_ids": [
       "oikawa-ur"
     ],
     "school": "Aoba Johsai",
     "creator_id": "fandemabel",
     "thumbnail": "",
-    "source_url": "https://www.youtube.com/watch?v=MZnsvRfRwkk",
-    "published_at": "2025-10-10",
+    "source_url": "https://www.youtube.com/watch?v=DkGpZ-3pPcU",
+    "published_at": "2025-11-22",
     "featured": true,
     "tags": [
       "principiantes",
-      "ofensiva"
+      "estrategia"
     ]
   },
   {
-    "id": "reviews-oikawa",
+    "id": "actualizacion-comparador",
     "type": "video",
-    "slug": "reviews-oikawa",
-    "title": "🔥 REVIEW de Tōru Oikawa en Haikyu Fly High | Habilidades y Vínculos EXPLICADOS",
+    "slug": "actualizacion-comparador",
+    "title": "👉 ¡ACTUALICÉ FlyHighManager y ahora el comparador de personajes está de locos!!!😱🔥",
     "character_ids": [
       "oikawa-ur"
     ],
     "school": "Aoba Johsai",
     "creator_id": "fandemabel",
     "thumbnail": "",
-    "source_url": "https://www.youtube.com/watch?v=exhCAx3VFdo",
-    "published_at": "2025-10-12",
+    "source_url": "https://www.youtube.com/watch?v=DkGpZ-3pPcU",
+    "published_at": "2025-11-22",
     "featured": true,
     "tags": [
       "servicio",
