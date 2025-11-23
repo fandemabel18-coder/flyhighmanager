@@ -597,10 +597,6 @@ const SLOT_LAYOUTS = [
     undoStack: [],
     linksLevels: {},
     accordion: { schools: {}, links: {} },
-    bonusTags: [],
-    specialtyBonuses: [],
-    positionBonuses: [],
-    bonusTagIndex: {},
   };
 
   // Para feedback de drop
@@ -683,12 +679,6 @@ function saveAccordion(){
       const varianteId = makeVarId(baseId, rareza, c.varianteId);
       const escuelaId = (c.schoolId || c.escuelaId || toBaseId(c.school || c.escuela || '')).replace(/_high_school|_hs/g,'');
       const alias = [c.nameEN,c.nameJP,c.nombreJP,c.nombreEN].filter(Boolean);
-      const rawTags = Array.isArray(c.tags) ? c.tags
-        : Array.isArray(c.etiquetas) ? c.etiquetas
-        : (typeof c.tags === 'string' ? c.tags.split(',') : []);
-      const tags = rawTags
-        .map(t => String(t).trim())
-        .filter(Boolean);
       return {
         baseId, varianteId,
         nombreES: c.nombre || c.name || baseId,
@@ -696,9 +686,9 @@ function saveAccordion(){
         nombreEN: c.nombreEN || c.nameEN || '',
         escuelaId, posicion, rareza,
         avatarPath: c.avatar || c.avatarPath || `assets/characters/${varianteId}.png`,
-        alias,
-        tags
-      };    });
+        alias
+      };
+    });
     state.characters = normalized;
     state.byVar = new Map(normalized.map(p => [p.varianteId, p]));
     state.byBase = new Map();
@@ -714,55 +704,6 @@ function saveAccordion(){
     try{ state.links = await loadJSON('data/links.json'); }
     catch(e){ console.warn('No se pudo cargar data/links.json', e); state.links = []; }
   }
-
-  async function loadBonuses(){
-    try{
-      const cfgTags = await loadJSON('data/tb-bonos-tags.json');
-      state.bonusTags = Array.isArray(cfgTags.tags) ? cfgTags.tags : [];
-    }catch(e){
-      console.warn('No se pudo cargar data/tb-bonos-tags.json', e);
-      state.bonusTags = [];
-    }
-
-    try{
-      const cfgEsp = await loadJSON('data/tb-bonos-especialidad.json');
-      state.specialtyBonuses = Array.isArray(cfgEsp.specialtyBonuses) ? cfgEsp.specialtyBonuses : [];
-    }catch(e){
-      console.warn('No se pudo cargar data/tb-bonos-especialidad.json', e);
-      state.specialtyBonuses = [];
-    }
-
-    try{
-      const cfgPos = await loadJSON('data/tb-bonos-posicion.json');
-      state.positionBonuses = Array.isArray(cfgPos.positionBonuses) ? cfgPos.positionBonuses : [];
-    }catch(e){
-      console.warn('No se pudo cargar data/tb-bonos-posicion.json', e);
-      state.positionBonuses = [];
-    }
-
-    buildBonusTagIndex();
-  }
-
-  function buildBonusTagIndex(){
-    const idx = {};
-    const list = Array.isArray(state.bonusTags) ? state.bonusTags : [];
-    list.forEach(tag=>{
-      if(!tag || !tag.key) return;
-      const key = tag.key;
-      const add = (txt)=>{
-        if(!txt) return;
-        const norm = normalizeStr(txt);
-        if(!norm) return;
-        idx[norm] = key;
-      };
-      add(tag.name || tag.nombre || '');
-      if(Array.isArray(tag.synonyms)){
-        tag.synonyms.forEach(add);
-      }
-    });
-    state.bonusTagIndex = idx;
-  }
-
 
   function isDuplicate(varId){
     const base = state.byVar.get(varId)?.baseId;
@@ -784,35 +725,12 @@ function saveAccordion(){
   }
 
 
-  function getPlayerBonusTags(p){
-    if(!p || !Array.isArray(p.tags) || !state.bonusTagIndex) return [];
-    const seen = new Set();
-    const out = [];
-    p.tags.forEach(raw=>{
-      const norm = normalizeStr(raw);
-      const key = state.bonusTagIndex[norm];
-      if(key && !seen.has(key)){
-        seen.add(key);
-        out.push(key);
-      }
-    });
-    return out;
-  }
-
-  function getBonusTagLabel(key){
-    const list = Array.isArray(state.bonusTags) ? state.bonusTags : [];
-    const found = list.find(t=>t && t.key === key);
-    if(found){
-      return found.name || found.nombre || key;
-    }
-    return key;
-  }
-
-  function renderField()ld(){
+  function renderField(){
     const field = $('#tb-field'); if(!field) return;
     field.innerHTML = '';
     const layout = SLOT_LAYOUTS[state.layoutIdx];
 
+    // Crear grilla básica 3x3
     for(let i=0;i<9;i++){
       const slotEl = document.createElement('div');
       slotEl.className = 'tb-slot';
@@ -830,11 +748,35 @@ function saveAccordion(){
       lab.textContent = conf.pos;
       host.appendChild(lab);
 
+      const inner = document.createElement('div');
+      inner.className = 'tb-slot-inner';
+      host.appendChild(inner);
+
       const varId = state.slots[logicalIdx];
       if(varId){
         const card = makeCard(varId);
-        host.appendChild(card);
+        inner.appendChild(card);
         host.classList.add('filled');
+
+        const p = state.byVar.get(varId);
+        const meta = document.createElement('div');
+        meta.className = 'tb-slot-meta';
+        meta.innerHTML = `
+          <div class="tb-slot-name">${p ? (p.nombreES || '') : ''}</div>
+          <div class="tb-slot-role">${p ? `${p.posicion || ''} · ${p.rareza || ''}` : ''}</div>
+          <div class="tb-slot-actions">
+            <button type="button" class="tb-slot-choose" data-slot-index="${logicalIdx}">Cambiar personaje</button>
+            <button type="button" class="tb-slot-clear" data-slot-index="${logicalIdx}">Quitar</button>
+          </div>
+        `;
+        inner.appendChild(meta);
+      } else {
+        inner.innerHTML = `
+          <div class="tb-slot-empty">
+            <p class="banner-meta" style="margin-bottom:6px">Sin jugador</p>
+            <button type="button" class="tb-slot-choose" data-slot-index="${logicalIdx}">Elegir personaje</button>
+          </div>
+        `;
       }
     });
 
@@ -846,6 +788,7 @@ function saveAccordion(){
 
     bindDnD(field);
   }
+
 
   function renderBench(){
     const el = $('#tb-bench'); if(!el) return;
@@ -904,6 +847,123 @@ function saveAccordion(){
     bindDnD(root);
   }
 
+
+  // === Fase 2: selector por casilla ===
+  let pickerSlotIndex = null;
+
+  function openPicker(slotIdx){
+    pickerSlotIndex = slotIdx;
+    const backdrop = $('#tb-picker-backdrop');
+    if(!backdrop) return;
+    backdrop.hidden = false;
+    document.body.style.overflow = 'hidden';
+
+    const layout = SLOT_LAYOUTS[state.layoutIdx] || [];
+    const conf = layout[slotIdx] || null;
+    const titleEl = $('#tb-picker-title');
+    if(titleEl){
+      const posLabel = conf ? conf.pos : '';
+      titleEl.textContent = posLabel ? `Elegir personaje para ${posLabel}` : 'Elegir personaje';
+    }
+
+    renderPickerList();
+  }
+
+  function closePicker(){
+    const backdrop = $('#tb-picker-backdrop');
+    if(!backdrop) return;
+    backdrop.hidden = true;
+    document.body.style.overflow = '';
+    pickerSlotIndex = null;
+  }
+
+  function renderPickerList(){
+    const listEl = $('#tb-picker-list'); if(!listEl) return;
+    if(pickerSlotIndex == null){
+      listEl.innerHTML = '<p class="banner-meta">Selecciona primero una casilla.</p>';
+      return;
+    }
+
+    const layout = SLOT_LAYOUTS[state.layoutIdx] || [];
+    const conf = layout[pickerSlotIndex] || null;
+    const needPos = conf ? conf.pos : null;
+
+    const qInput = $('#tbp-search');
+    const roleSel = $('#tbp-role');
+    const rarSel = $('#tbp-rareza');
+    const schoolSel = $('#tbp-school');
+
+    const q = normalizeStr(qInput && qInput.value || '');
+    const role = roleSel && roleSel.value || '';
+    const rar = rarSel && rarSel.value || '';
+    const sch = schoolSel && schoolSel.value || '';
+
+    // Rellenar escuelas si hace falta
+    if(schoolSel && schoolSel.childElementCount<=1 && state.characters.length){
+      const set = new Set(state.characters.map(p=>p.escuelaId).filter(Boolean));
+      Array.from(set).sort().forEach(id=>{
+        const opt = document.createElement('option');
+        opt.value = id;
+        opt.textContent = fmtTitle(id);
+        schoolSel.appendChild(opt);
+      });
+    }
+
+    let list = state.characters.slice();
+
+    // Restricción de líbero en casilla de L
+    if(needPos === 'L'){
+      list = list.filter(p=>p.posicion === 'L');
+    }
+
+    if(role){
+      list = list.filter(p=>p.posicion === role);
+    }
+    if(rar){
+      list = list.filter(p=>p.rareza === rar);
+    }
+    if(sch){
+      list = list.filter(p=>p.escuelaId === sch);
+    }
+    if(q){
+      list = list.filter(p=>{
+        const items = [p.nombreES, p.nombreEN, p.nombreJP, p.baseId, ...(p.alias||[])].filter(Boolean);
+        return items.some(txt => normalizeStr(txt).includes(q));
+      });
+    }
+
+    if(!list.length){
+      listEl.innerHTML = '<p class="banner-meta">No hay personajes que cumplan los filtros seleccionados.</p>';
+      return;
+    }
+
+    list.sort((a,b)=> (RAREZA_ORDER[b.rareza]-RAREZA_ORDER[a.rareza]) || a.nombreES.localeCompare(b.nombreES));
+
+    listEl.innerHTML = list.map(p=>`
+      <article class="tb-picker-item" data-varid="${p.varianteId}">
+        <img loading="lazy" src="${p.avatarPath}" alt="${p.nombreES}"
+             onerror="this.onerror=null;this.src='assets/placeholder.png'">
+        <div class="tb-picker-meta">
+          <div class="tb-picker-name">${p.nombreES}</div>
+          <div class="tb-picker-tags">
+            <span class="chip">${p.posicion}</span>
+            <span class="chip">${p.rareza}</span>
+            ${p.escuelaId ? `<span class="chip">${fmtTitle(p.escuelaId)}</span>` : ''}
+          </div>
+          <button type="button" class="tb-picker-select" data-varid="${p.varianteId}">Elegir</button>
+        </div>
+      </article>
+    `).join('');
+
+    $$('.tb-picker-select', listEl).forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const varId = btn.getAttribute('data-varid');
+        if(!varId || pickerSlotIndex==null) return;
+        handleDropSlot(varId, pickerSlotIndex);
+        closePicker();
+      });
+    });
+  }
   function makeCard(varId){
     const p = state.byVar.get(varId);
     const el = document.createElement('div');
@@ -1122,7 +1182,6 @@ function saveAccordion(){
     renderBench();
     renderList();
     renderLinks();
-    renderBonuses();
   }
 
   /* ---------- Vínculos ---------- */
@@ -1130,155 +1189,7 @@ function saveAccordion(){
     return state.slots.map(v=> v ? state.byVar.get(v) : null).filter(Boolean);
   }
 
-
-  function renderBonuses(){
-    renderSpecialtyBonuses();
-    renderPositionBonuses();
-  }
-
-  function renderSpecialtyBonuses(){
-    const host = $('#tb-bonus-specialty'); if(!host) return;
-    const titulares = getTitulares();
-    if(!titulares.length || !Array.isArray(state.specialtyBonuses) || !state.specialtyBonuses.length){
-      host.innerHTML = '<div class="banner-meta">Coloca titulares para ver bonificaciones de especialidad.</div>';
-      return;
-    }
-
-    const counts = {};
-    titulares.forEach(p=>{
-      const tags = getPlayerBonusTags(p);
-      tags.forEach(key=>{
-        counts[key] = (counts[key]||0)+1;
-      });
-    });
-
-    const groups = {};
-    state.specialtyBonuses.forEach(b=>{
-      if(!b || !b.tagKey) return;
-      if(!groups[b.tagKey]) groups[b.tagKey] = [];
-      groups[b.tagKey].push(b);
-    });
-
-    const rows = Object.keys(groups).map(tagKey=>{
-      const tiers = groups[tagKey].slice().sort((a,b)=>(Number(a.minPlayers||0)-Number(b.minPlayers||0)));
-      const totalMax = tiers.length ? (tiers[tiers.length-1].maxPlayers || tiers[tiers.length-1].minPlayers) : 0;
-      const count = counts[tagKey] || 0;
-
-      let active = null;
-      let next = null;
-      tiers.forEach(tier=>{
-        const min = Number(tier.minPlayers||0);
-        const max = tier.maxPlayers ? Number(tier.maxPlayers) : Infinity;
-        if(count >= min && count <= max){
-          if(!active || min > Number(active.minPlayers||0)) active = tier;
-        }else if(count < min && !next){
-          next = tier;
-        }
-      });
-
-      const label = getBonusTagLabel(tagKey);
-      const prog = totalMax ? (count + ' / ' + totalMax) : String(count);
-      const desc = (active || tiers[0] || {}).description || '';
-
-      let statusHtml = '';
-      if(active){
-        const val = active.value;
-        const stat = active.stat || '';
-        const type = (active.type || '').toLowerCase();
-        const suffix = type === 'porcentaje' ? '%' : '';
-        statusHtml = `<div class="tb-bonus-status active">Activo: ${stat ? (stat+': ') : ''}<b>+${val}${suffix}</b></div>`;
-      }else if(next){
-        const need = Number(next.minPlayers||0) - count;
-        const stat = next.stat || '';
-        const type = (next.type || '').toLowerCase();
-        const suffix = type === 'porcentaje' ? '%' : '';
-        statusHtml = `<div class="tb-bonus-status pending">Te faltan <b>${need}</b> titulares con <b>${label}</b> para activar: ${stat ? (stat+': ') : ''}+${next.value}${suffix}</div>`;
-      }else{
-        statusHtml = '<div class="tb-bonus-status pending">No hay niveles configurados para este bono.</div>';
-      }
-
-      return `
-      <article class="tb-bonus-line ${active ? 'is-active' : ''}">
-        <header>
-          <div class="tb-bonus-title">${label}</div>
-          <div class="tb-bonus-count">${prog}</div>
-        </header>
-        <div class="tb-bonus-body">
-          ${desc ? `<p class="tb-bonus-desc">${desc}</p>` : ''}
-          ${statusHtml}
-        </div>
-      </article>
-    `;
-    }).join('');
-
-    host.innerHTML = rows || '<div class="banner-meta">No hay bonificaciones configuradas.</div>';
-  }
-
-  function renderPositionBonuses(){
-    const host = $('#tb-bonus-position'); if(!host) return;
-    if(!Array.isArray(state.positionBonuses) || !state.positionBonuses.length){
-      host.innerHTML = '<div class="banner-meta">No hay bonificaciones de posición configuradas.</div>';
-      return;
-    }
-    const titulares = getTitulares();
-    if(!titulares.length){
-      host.innerHTML = '<div class="banner-meta">Coloca titulares para ver bonificaciones de posición.</div>';
-      return;
-    }
-
-    const counts = {};
-    titulares.forEach(p=>{
-      const pos = p && p.posicion;
-      if(!pos) return;
-      counts[pos] = (counts[pos]||0)+1;
-    });
-
-    const rows = state.positionBonuses.map(b=>{
-      if(!b || !b.position) return '';
-      const pos = b.position;
-      const count = counts[pos] || 0;
-      const min = Number(b.minPlayers||0);
-      const max = b.maxPlayers ? Number(b.maxPlayers) : Infinity;
-      const active = count >= min && count <= max;
-
-      const maxDisplay = isFinite(max) ? max : min;
-      const prog = maxDisplay ? (count + ' / ' + maxDisplay) : String(count);
-      const desc = b.description || '';
-      const label = `${pos} · Tramo ${b.tier || ''}`;
-
-      let statusHtml = '';
-      if(active){
-        const val = b.value;
-        const stat = b.stat || '';
-        const type = (b.type || '').toLowerCase();
-        const suffix = type === 'porcentaje' ? '%' : '';
-        statusHtml = `<div class="tb-bonus-status active">Activo: ${stat ? (stat+': ') : ''}<b>+${val}${suffix}</b></div>`;
-      }else if(count < min){
-        const need = min - count;
-        statusHtml = `<div class="tb-bonus-status pending">Te faltan <b>${need}</b> titulares en <b>${pos}</b> para este tramo.</div>`;
-      }else{
-        statusHtml = '<div class="tb-bonus-status pending">Esta condición no se cumple con la alineación actual.</div>';
-      }
-
-      return `
-      <article class="tb-bonus-line ${active ? 'is-active' : ''}">
-        <header>
-          <div class="tb-bonus-title">${label}</div>
-          <div class="tb-bonus-count">${prog}</div>
-        </header>
-        <div class="tb-bonus-body">
-          ${desc ? `<p class="tb-bonus-desc">${desc}</p>` : ''}
-          ${statusHtml}
-        </div>
-      </article>
-    `;
-    }).filter(Boolean).join('');
-
-    host.innerHTML = rows || '<div class="banner-meta">No hay bonificaciones configuradas.</div>';
-  }
-
-
-  function renderLinks()ks(){
+  function renderLinks(){
     renderSchoolLink();
     renderSpecificLinks();
   }
@@ -1505,7 +1416,6 @@ if (!host._accBound) {
     if(!state._inited){
       ensureTBStyles();
       await loadData();
-      await loadBonuses();
       loadState();
       loadLinksLevels();
       loadAccordion();  // <- NUEVO
@@ -1519,6 +1429,54 @@ if (!host._accBound) {
       const fr= $('#tb-filter-rareza'); if(fr) fr.addEventListener('change', renderList);
       const fe= $('#tb-filter-escuela'); if(fe) fe.addEventListener('change', renderList);
 
+
+      // Fase 2: delegar clicks en casillas (Elegir/Cambiar/Quitar)
+      const fieldWrap = $('#tb-field');
+      if(fieldWrap){
+        fieldWrap.addEventListener('click', ev=>{
+          const chooseBtn = ev.target.closest && ev.target.closest('.tb-slot-choose');
+          if(chooseBtn){
+            const idx = Number(chooseBtn.dataset.slotIndex||'-1');
+            if(idx>=0) openPicker(idx);
+            return;
+          }
+          const clearBtn = ev.target.closest && ev.target.closest('.tb-slot-clear');
+          if(clearBtn){
+            const idx = Number(clearBtn.dataset.slotIndex||'-1');
+            if(idx>=0 && state.slots[idx]){
+              pushUndo();
+              state.slots[idx] = null;
+              renderAll();
+              saveState();
+            }
+          }
+        });
+      }
+
+      // Fase 2: eventos del selector modal
+      const pickerBackdrop = $('#tb-picker-backdrop');
+      if(pickerBackdrop){
+        const closeBtn = pickerBackdrop.querySelector('.tb-picker-close');
+        if(closeBtn) closeBtn.addEventListener('click', closePicker);
+        pickerBackdrop.addEventListener('click', ev=>{
+          if(ev.target === pickerBackdrop) closePicker();
+        });
+      }
+      const ps = $('#tbp-search');
+      const pr = $('#tbp-role');
+      const pz = $('#tbp-rareza');
+      const pe = $('#tbp-school');
+      if(ps) ps.addEventListener('input', renderPickerList);
+      if(pr) pr.addEventListener('change', renderPickerList);
+      if(pz) pz.addEventListener('change', renderPickerList);
+      if(pe) pe.addEventListener('change', renderPickerList);
+
+      document.addEventListener('keydown', ev=>{
+        if(ev.key === 'Escape'){
+          const backdrop = $('#tb-picker-backdrop');
+          if(backdrop && !backdrop.hidden) closePicker();
+        }
+      });
       state._inited = true;
     }
 

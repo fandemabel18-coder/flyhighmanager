@@ -513,7 +513,7 @@ input, select {
 .tb-btn{background:#1f3c52;border:1px solid #2c4e69;color:#cfe9f8;padding:8px 12px;border-radius:10px;cursor:pointer}
 .tb-btn:disabled{opacity:.6;cursor:not-allowed}
 .tb-primary{background:#31c48d;border-color:#27a276;color:#052014}
-.tb-layout{display:grid;grid-template-columns:350px minmax(0,1fr) 350px;gap:12px}
+.tb-layout{display:grid;grid-template-columns:400px minmax(0,1fr);gap:12px}
 .tb-side{display:flex;flex-direction:column;gap:12px}
 
 .tb-card{background:#0f2a3a;border:1px solid #1f3c52;border-radius:12px;padding:12px;color:#dbeafe}
@@ -1368,79 +1368,4 @@ input, select {
   margin-top:4px;
   font-size:.78rem;
   padding:4px 10px;
-}
-
-/* ====== Team Builder – Bonos de alineación ====== */
-.tb-bonus-side{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.tb-bonus-list{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin-top:8px;
-}
-
-.tb-bonus-line{
-  border:1px solid #1f3c52;
-  border-radius:10px;
-  padding:8px 10px;
-  background:#071725;
-  font-size:.8rem;
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-
-.tb-bonus-line header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  font-weight:600;
-}
-
-.tb-bonus-title{
-  font-size:.8rem;
-}
-
-.tb-bonus-count{
-  font-size:.76rem;
-  opacity:.85;
-}
-
-.tb-bonus-body{
-  font-size:.78rem;
-}
-
-.tb-bonus-desc{
-  margin:2px 0 4px;
-  color:var(--muted);
-}
-
-.tb-bonus-status{
-  padding:4px 6px;
-  border-radius:6px;
-  border:1px dashed #1f3c52;
-}
-
-.tb-bonus-status.active{
-  border-style:solid;
-  border-color:#22c55e;
-  background:rgba(34,197,94,.08);
-  color:#bbf7d0;
-}
-
-.tb-bonus-status.pending{
-  border-style:dashed;
-  border-color:#334155;
-  background:rgba(15,23,42,.8);
-}
-
-.tb-bonus-line.is-active{
-  border-color:#22c55e;
-  box-shadow:0 0 0 1px rgba(34,197,94,.25);
 }
