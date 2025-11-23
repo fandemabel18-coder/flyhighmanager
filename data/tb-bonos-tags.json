@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0.0",
+  "tags": [
+    {
+      "key": "ataque_poderoso",
+      "name": "Ataque Poderoso",
+      "category": "Ataque",
+      "synonyms": [
+        "atq poderoso",
+        "atk poderoso",
+        "poder",
+        "ataque poderoso"
+      ]
+    },
+    {
+      "key": "ataque_rapido",
+      "name": "Ataque Rápido",
+      "category": "Ataque",
+      "synonyms": [
+        "atq rápido",
+        "atk rápido",
+        "atq rapido",
+        "atk rapido",
+        "ataque rapido",
+        "ataque rápido"
+      ]
+    },
+    {
+      "key": "recepcion",
+      "name": "Recepción",
+      "category": "Defensa",
+      "synonyms": [
+        "recepción",
+        "Recepción",
+        "recepcion",
+        "Recepcion"
+      ]
+    },
+    {
+      "key": "bloqueo",
+      "name": "Bloqueo",
+      "category": "Defensa",
+      "synonyms": [
+        "Bloqueo",
+        "bloqueo"
+      ]
+    }
+  ]
+}
