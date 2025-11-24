@@ -1511,14 +1511,28 @@ function recomputeBonusStatus(){
           </div>`;
       }else{
         const tierLabel = (tier)=>{
-          if(!tier) return '';
-          const lbl = tier.label || tier.nameES || tier.name || tier.description || tier.text || tier.bonusText;
-          const thr = tier._threshold || getThreshold(tier);
-          if(lbl && thr) return `${lbl} (≥${thr} jugadores)`;
-          if(lbl) return lbl;
-          if(thr) return `Tramo de ${thr} jugadores`;
-          return '';
-        };
+  if(!tier) return '';
+  const thr = tier._thresholdPlayers || getThresholdPlayers(tier);
+  const stat = tier.stat || '';
+  const value = tier.value;
+  const type = tier.type;
+
+  let valText = '';
+  if(value !== undefined && value !== null && value !== ''){
+    valText = (type === 'porcentaje')
+      ? `+${value}%`
+      : `+${value}`;
+  }
+
+  const core = (stat ? `${stat} ${valText}` : valText).trim();
+
+  if(thr){
+    return core
+      ? `${core} (con ${thr} jugadores)`
+      : `Con ${thr} jugadores`;
+  }
+  return core || '';
+};
 
         const html = keys.sort().map(posKey=>{
           const st = status[posKey];
