@@ -597,11 +597,13 @@ const SLOT_LAYOUTS = [
     undoStack: [],
     linksLevels: {},
     accordion: { schools: {}, links: {} },
-    // Datos para sistema de bonos (Fase 1)
+    // Sistema de bonificaciones (Team Builder)
     bonusTags: [],
     bonusTagIndex: {},
     specialtyBonuses: [],
     positionBonuses: [],
+    currentSpecialtyCounts: {},
+    currentPositionCounts: {},
   };
 
   // Para feedback de drop
@@ -684,6 +686,7 @@ function saveAccordion(){
       const varianteId = makeVarId(baseId, rareza, c.varianteId);
       const escuelaId = (c.schoolId || c.escuelaId || toBaseId(c.school || c.escuela || '')).replace(/_high_school|_hs/g,'');
       const alias = [c.nameEN,c.nameJP,c.nombreJP,c.nombreEN].filter(Boolean);
+      const tagsRaw = Array.isArray(c.tags) ? c.tags.filter(Boolean) : [];
       return {
         baseId, varianteId,
         nombreES: c.nombre || c.name || baseId,
@@ -692,9 +695,7 @@ function saveAccordion(){
         escuelaId, posicion, rareza,
         avatarPath: c.avatar || c.avatarPath || `assets/characters/${varianteId}.png`,
         alias,
-        // Tags crudos desde characters.json (Fase 2)
-        tagsRaw: Array.isArray(c.tags) ? c.tags.filter(Boolean) : [],
-        // Tags de especialidad canónicos (se recalculan luego con los JSON de bonos)
+        tagsRaw,
         specialtyTags: []
       };
     });
@@ -710,35 +711,29 @@ function saveAccordion(){
     try{ state.schools = await loadJSON('data/schools.json'); }
     catch(e){ console.warn('No se pudo cargar data/schools.json', e); state.schools = []; }
 
-    try{ state.links = await loadJSON('data/links.json'); }
-    catch(e){ console.warn('No se pudo cargar data/links.json', e); state.links = []; }
-
-  }
-
-  // ================================
-  // Carga de datos de Bonos (Fase 1)
-  // ================================
+    try{ state.links = await load
+  // ============================
+  // Carga de bonificaciones TB
+  // ============================
   async function loadBonusTags(){
     try{
       const data = await loadJSON('data/tb-bonos-tags.json');
-      const tags = Array.isArray(data.tags) ? data.tags : [];
-      state.bonusTags = tags;
-
-      const index = {};
-      tags.forEach(tag=>{
-        if(!tag) return;
+      const list = Array.isArray(data && data.tags) ? data.tags : [];
+      state.bonusTags = list;
+      const idx = {};
+      list.forEach(tag=>{
         const key = tag.key;
         if(!key) return;
-        const synonyms = Array.isArray(tag.synonyms) ? tag.synonyms : [];
-        const baseNames = [tag.name, key];
-        [...synonyms, ...baseNames].forEach(raw=>{
-          if(!raw) return;
-          const norm = normalizeStr(String(raw));
-          if(!norm) return;
-          index[norm] = key;
+        const texts = [];
+        if(tag.name) texts.push(tag.name);
+        if(tag.key) texts.push(tag.key);
+        if(Array.isArray(tag.synonyms)) texts.push(...tag.synonyms);
+        texts.forEach(txt=>{
+          const norm = normalizeStr(txt);
+          if(norm && !idx[norm]) idx[norm] = key;
         });
       });
-      state.bonusTagIndex = index;
+      state.bonusTagIndex = idx;
     }catch(e){
       console.warn('No se pudo cargar data/tb-bonos-tags.json', e);
       state.bonusTags = [];
@@ -749,8 +744,7 @@ function saveAccordion(){
   async function loadSpecialtyBonuses(){
     try{
       const data = await loadJSON('data/tb-bonos-especialidad.json');
-      const arr = Array.isArray(data.specialtyBonuses) ? data.specialtyBonuses : [];
-      state.specialtyBonuses = arr;
+      state.specialtyBonuses = Array.isArray(data && data.specialtyBonuses) ? data.specialtyBonuses : [];
     }catch(e){
       console.warn('No se pudo cargar data/tb-bonos-especialidad.json', e);
       state.specialtyBonuses = [];
@@ -760,8 +754,7 @@ function saveAccordion(){
   async function loadPositionBonuses(){
     try{
       const data = await loadJSON('data/tb-bonos-posicion.json');
-      const arr = Array.isArray(data.positionBonuses) ? data.positionBonuses : [];
-      state.positionBonuses = arr;
+      state.positionBonuses = Array.isArray(data && data.positionBonuses) ? data.positionBonuses : [];
     }catch(e){
       console.warn('No se pudo cargar data/tb-bonos-posicion.json', e);
       state.positionBonuses = [];
@@ -776,9 +769,7 @@ function saveAccordion(){
     ]);
   }
 
-  // ==============================================
-  // Normalización de tags de especialidad (Fase 2)
-  // ==============================================
+  // Recalcular tags de especialidad canónicos para todos los personajes
   function recomputeSpecialtyTagsForAll(){
     const index = state.bonusTagIndex || {};
     if(!Array.isArray(state.characters)) return;
@@ -787,7 +778,6 @@ function saveAccordion(){
       const raw = Array.isArray(ch.tagsRaw) ? ch.tagsRaw : [];
       const seen = new Set();
       const canonical = [];
-
       raw.forEach(tag=>{
         const norm = normalizeStr(tag);
         const key = index[norm];
@@ -796,9 +786,35 @@ function saveAccordion(){
           canonical.push(key);
         }
       });
-
       ch.specialtyTags = canonical;
     });
+  }
+
+  // Contadores actuales de especialidades y posiciones (Fase 3)
+  function recomputeBonusCounts(){
+    const titulares = getTitulares ? getTitulares() : [];
+    const specCounts = {};
+    const posCounts = {};
+
+    titulares.forEach(ch=>{
+      if(!ch) return;
+      if(Array.isArray(ch.specialtyTags)){
+        ch.specialtyTags.forEach(key=>{
+          if(!key) return;
+          specCounts[key] = (specCounts[key] || 0) + 1;
+        });
+      }
+      const pos = ch.posicion;
+      if(pos){
+        posCounts[pos] = (posCounts[pos] || 0) + 1;
+      }
+    });
+
+    state.currentSpecialtyCounts = specCounts;
+    state.currentPositionCounts = posCounts;
+  }
+JSON('data/links.json'); }
+    catch(e){ console.warn('No se pudo cargar data/links.json', e); state.links = []; }
   }
 
   function isDuplicate(varId){
@@ -1274,6 +1290,8 @@ function saveAccordion(){
   }
 
   function renderAll(){
+    // Recalcular contadores de bonificaciones (especialidad / posición)
+    recomputeBonusCounts();
     renderField();
     renderBench();
     renderList();
