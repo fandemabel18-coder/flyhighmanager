@@ -597,13 +597,15 @@ const SLOT_LAYOUTS = [
     undoStack: [],
     linksLevels: {},
     accordion: { schools: {}, links: {} },
-    // Datos para sistema de bonificaciones del Team Builder
+        // Datos para sistema de bonificaciones del Team Builder
     bonusTags: [],
     bonusTagIndex: {},
     specialtyBonuses: [],
     positionBonuses: [],
     currentSpecialtyCounts: {},
     currentPositionCounts: {},
+    currentSpecialtyStatus: {},
+    currentPositionStatus: {},
   };
 
   // Para feedback de drop
@@ -1296,13 +1298,108 @@ function saveAccordion(){
     state.currentSpecialtyCounts = specCounts;
     state.currentPositionCounts = posCounts;
   }
+  function recomputeBonusStatus(){
+    const specCounts = state.currentSpecialtyCounts || {};
+    const posCounts  = state.currentPositionCounts || {};
 
-  function renderAll(){
+    // -------- Especialidades --------
+    const specList = Array.isArray(state.specialtyBonuses) ? state.specialtyBonuses : [];
+    const specByKey = {};
+    specList.forEach(cfg=>{
+      const key = cfg.key || cfg.tagKey || cfg.id;
+      if(key) specByKey[key] = cfg;
+    });
+
+    const specStatus = {};
+    Object.entries(specCounts).forEach(([tagKey, count])=>{
+      const cfg = specByKey[tagKey];
+      if(!cfg) return;
+
+      const levels = Array.isArray(cfg.levels) ? cfg.levels.slice() : [];
+      levels.sort((a,b)=>{
+        const ta = getThreshold(a);
+        const tb = getThreshold(b);
+        return ta - tb;
+      });
+
+      let activeTier = null;
+      let nextTier = null;
+
+      levels.forEach(lvl=>{
+        const thr = getThreshold(lvl);
+        if(count >= thr){
+          activeTier = { ...lvl, _threshold: thr };
+        }else if(!nextTier){
+          nextTier = { ...lvl, _threshold: thr };
+        }
+      });
+
+      const missing = nextTier ? Math.max(0, (nextTier._threshold || 0) - count) : 0;
+
+      specStatus[tagKey] = { key: tagKey, cfg, count, activeTier, nextTier, missing };
+    });
+
+    // -------- Posiciones --------
+    const posList = Array.isArray(state.positionBonuses) ? state.positionBonuses : [];
+    const posByKey = {};
+    posList.forEach(cfg=>{
+      const key = cfg.position || cfg.key || cfg.id;
+      if(key) posByKey[key] = cfg;
+    });
+
+    const posStatus = {};
+    Object.entries(posCounts).forEach(([posKey, count])=>{
+      const cfg = posByKey[posKey];
+      if(!cfg) return;
+
+      const levels = Array.isArray(cfg.levels) ? cfg.levels.slice() : [];
+      levels.sort((a,b)=>{
+        const ta = getThreshold(a);
+        const tb = getThreshold(b);
+        return ta - tb;
+      });
+
+      let activeTier = null;
+      let nextTier = null;
+
+      levels.forEach(lvl=>{
+        const thr = getThreshold(lvl);
+        if(count >= thr){
+          activeTier = { ...lvl, _threshold: thr };
+        }else if(!nextTier){
+          nextTier = { ...lvl, _threshold: thr };
+        }
+      });
+
+      const missing = nextTier ? Math.max(0, (nextTier._threshold || 0) - count) : 0;
+
+      posStatus[posKey] = { key: posKey, cfg, count, activeTier, nextTier, missing };
+    });
+
+    state.currentSpecialtyStatus = specStatus;
+    state.currentPositionStatus  = posStatus;
+  }
+
+  function getThreshold(tier){
+    if(!tier || typeof tier !== 'object') return 0;
+    if(typeof tier.minCount === 'number') return tier.minCount;
+    if(typeof tier.requiredCount === 'number') return tier.requiredCount;
+    if(typeof tier.count === 'number') return tier.count;
+    if(typeof tier.min === 'number') return tier.min;
+
+    const s = tier.minCount || tier.requiredCount || tier.count || tier.min || 0;
+    const n = parseInt(s, 10);
+    return isNaN(n) ? 0 : n;
+  }
+
+    function renderAll(){
     recomputeBonusCounts();
+    recomputeBonusStatus();
     renderField();
     renderBench();
     renderList();
     renderLinks();
+    renderBonuses();
   }
 
   /* ---------- Vínculos ---------- */
@@ -1313,6 +1410,144 @@ function saveAccordion(){
   function renderLinks(){
     renderSchoolLink();
     renderSpecificLinks();
+  }
+  function renderBonuses(){
+    const specHost = $('#tb-bonus-specialty');
+    const posHost  = $('#tb-bonus-position');
+    const titulares = getTitulares();
+
+    // Si no están los contenedores en el HTML, no hacemos nada
+    if(!specHost && !posHost) return;
+
+    // -------- Especialidades --------
+    if(specHost){
+      const status = state.currentSpecialtyStatus || {};
+      const keys = Object.keys(status);
+
+      if(!titulares.length){
+        specHost.innerHTML = `
+          <div class="banner-meta">
+            Coloca titulares para ver bonificaciones de especialidad.
+          </div>`;
+      }else if(!keys.length){
+        specHost.innerHTML = `
+          <div class="banner-meta">
+            No hay bonificaciones de especialidad configuradas.
+          </div>`;
+      }else{
+        const tagsMeta = Array.isArray(state.bonusTags) ? state.bonusTags : [];
+        const getName = (key)=>{
+          const m = tagsMeta.find(t =>
+            t.key === key || t.tagKey === key || t.id === key
+          );
+          return (m && (m.nameES || m.name || m.label)) || fmtTitle(key);
+        };
+        const tierLabel = (tier)=>{
+          if(!tier) return '';
+          const lbl = tier.label || tier.nameES || tier.name || tier.description || tier.text || tier.bonusText;
+          const thr = tier._threshold || getThreshold(tier);
+          if(lbl && thr) return `${lbl} (≥${thr} jugadores)`;
+          if(lbl) return lbl;
+          if(thr) return `Tramo de ${thr} jugadores`;
+          return '';
+        };
+
+        const html = keys.sort().map(key=>{
+          const st = status[key];
+          const name = getName(key);
+          const total = st.count || 0;
+
+          const activeText = st.activeTier ? `Activo: ${tierLabel(st.activeTier)}` : '';
+          let nextText = '';
+          if(st.nextTier){
+            nextText = st.activeTier
+              ? `Siguiente: ${tierLabel(st.nextTier)}`
+              : `Próximo: ${tierLabel(st.nextTier)}`;
+          }
+
+          const estado =
+            st.activeTier
+              ? `Estado: ACTIVO`
+              : (st.nextTier
+                  ? `Te falta ${st.missing || 0} jugador(es) para el próximo tramo`
+                  : `Sin tramo configurado`);
+
+          return `
+            <div class="banner-meta">
+              <b>${name}</b> — Jugadores: <b>${total}</b><br>
+              ${estado}${activeText ? `<br>${activeText}` : ''}${nextText ? `<br>${nextText}` : ''}
+            </div>
+          `;
+        }).join('');
+
+        specHost.innerHTML = html;
+      }
+    }
+
+    // -------- Posiciones --------
+    if(posHost){
+      const status = state.currentPositionStatus || {};
+      const keys = Object.keys(status);
+      const POS_LABELS = {
+        WS: 'Wing Spiker (WS)',
+        MB: 'Middle Blocker (MB)',
+        OP: 'Opuesto (OP)',
+        S:  'Setter (S)',
+        L:  'Líbero (L)',
+      };
+
+      if(!titulares.length){
+        posHost.innerHTML = `
+          <div class="banner-meta">
+            Coloca titulares para ver bonificaciones de posición.
+          </div>`;
+      }else if(!keys.length){
+        posHost.innerHTML = `
+          <div class="banner-meta">
+            No hay bonificaciones de posición configuradas.
+          </div>`;
+      }else{
+        const tierLabel = (tier)=>{
+          if(!tier) return '';
+          const lbl = tier.label || tier.nameES || tier.name || tier.description || tier.text || tier.bonusText;
+          const thr = tier._threshold || getThreshold(tier);
+          if(lbl && thr) return `${lbl} (≥${thr} jugadores)`;
+          if(lbl) return lbl;
+          if(thr) return `Tramo de ${thr} jugadores`;
+          return '';
+        };
+
+        const html = keys.sort().map(posKey=>{
+          const st = status[posKey];
+          const name = POS_LABELS[posKey] || posKey;
+          const total = st.count || 0;
+
+          const activeText = st.activeTier ? `Activo: ${tierLabel(st.activeTier)}` : '';
+          let nextText = '';
+          if(st.nextTier){
+            nextText = st.activeTier
+              ? `Siguiente: ${tierLabel(st.nextTier)}`
+              : `Próximo: ${tierLabel(st.nextTier)}`;
+          }
+
+          const estado =
+            st.activeTier
+              ? `Estado: ACTIVO`
+              : (st.nextTier
+                  ? `Te falta ${st.missing || 0} jugador(es) para el próximo tramo`
+                  : `Sin tramo configurado`);
+
+          return `
+            <div class="banner-meta">
+              <b>${name}</b> — Jugadores: <b>${total}</b><br>
+              ${estado}${activeText ? `<br>${activeText}` : ''}${nextText ? `<br>${nextText}` : ''}
+            </div>
+          `;
+        }).join('');
+
+        posHost.innerHTML = html;
+      }
+    }
   }
 
   function renderSchoolLink(){
