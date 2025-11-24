@@ -597,11 +597,13 @@ const SLOT_LAYOUTS = [
     undoStack: [],
     linksLevels: {},
     accordion: { schools: {}, links: {} },
-    // Datos para sistema de bonos (Fase 1)
+    // Datos para sistema de bonificaciones del Team Builder
     bonusTags: [],
     bonusTagIndex: {},
     specialtyBonuses: [],
     positionBonuses: [],
+    currentSpecialtyCounts: {},
+    currentPositionCounts: {},
   };
 
   // Para feedback de drop
@@ -692,9 +694,9 @@ function saveAccordion(){
         escuelaId, posicion, rareza,
         avatarPath: c.avatar || c.avatarPath || `assets/characters/${varianteId}.png`,
         alias,
-        // Tags crudos desde characters.json (Fase 2)
+        // Tags crudos tal como vienen de characters.json
         tagsRaw: Array.isArray(c.tags) ? c.tags.filter(Boolean) : [],
-        // Tags de especialidad canónicos (se recalculan luego con los JSON de bonos)
+        // Tags de especialidad canónicos (se recalculan tras cargar bonos)
         specialtyTags: []
       };
     });
@@ -712,31 +714,28 @@ function saveAccordion(){
 
     try{ state.links = await loadJSON('data/links.json'); }
     catch(e){ console.warn('No se pudo cargar data/links.json', e); state.links = []; }
-
   }
-
-  // ================================
-  // Carga de datos de Bonos (Fase 1)
-  // ================================
   async function loadBonusTags(){
     try{
       const data = await loadJSON('data/tb-bonos-tags.json');
-      const tags = Array.isArray(data.tags) ? data.tags : [];
+      const tags = Array.isArray(data && data.tags) ? data.tags : (Array.isArray(data) ? data : []);
       state.bonusTags = tags;
-
       const index = {};
-      tags.forEach(tag=>{
-        if(!tag) return;
-        const key = tag.key;
+      tags.forEach(t=>{
+        const key = t.key || t.tagKey;
         if(!key) return;
-        const synonyms = Array.isArray(tag.synonyms) ? tag.synonyms : [];
-        const baseNames = [tag.name, key];
-        [...synonyms, ...baseNames].forEach(raw=>{
-          if(!raw) return;
-          const norm = normalizeStr(String(raw));
-          if(!norm) return;
-          index[norm] = key;
-        });
+        const normKey = normalizeStr(key);
+        if(normKey) index[normKey] = key;
+        if(t.name){
+          const normName = normalizeStr(t.name);
+          if(normName) index[normName] = key;
+        }
+        if(Array.isArray(t.synonyms)){
+          t.synonyms.forEach(s=>{
+            const norm = normalizeStr(s);
+            if(norm) index[norm] = key;
+          });
+        }
       });
       state.bonusTagIndex = index;
     }catch(e){
@@ -749,8 +748,8 @@ function saveAccordion(){
   async function loadSpecialtyBonuses(){
     try{
       const data = await loadJSON('data/tb-bonos-especialidad.json');
-      const arr = Array.isArray(data.specialtyBonuses) ? data.specialtyBonuses : [];
-      state.specialtyBonuses = arr;
+      const list = Array.isArray(data && data.specialtyBonuses) ? data.specialtyBonuses : (Array.isArray(data) ? data : []);
+      state.specialtyBonuses = list;
     }catch(e){
       console.warn('No se pudo cargar data/tb-bonos-especialidad.json', e);
       state.specialtyBonuses = [];
@@ -760,8 +759,8 @@ function saveAccordion(){
   async function loadPositionBonuses(){
     try{
       const data = await loadJSON('data/tb-bonos-posicion.json');
-      const arr = Array.isArray(data.positionBonuses) ? data.positionBonuses : [];
-      state.positionBonuses = arr;
+      const list = Array.isArray(data && data.positionBonuses) ? data.positionBonuses : (Array.isArray(data) ? data : []);
+      state.positionBonuses = list;
     }catch(e){
       console.warn('No se pudo cargar data/tb-bonos-posicion.json', e);
       state.positionBonuses = [];
@@ -769,25 +768,26 @@ function saveAccordion(){
   }
 
   async function loadBonuses(){
-    await Promise.all([
-      loadBonusTags(),
-      loadSpecialtyBonuses(),
-      loadPositionBonuses()
-    ]);
+    try{
+      await Promise.all([
+        loadBonusTags(),
+        loadSpecialtyBonuses(),
+        loadPositionBonuses(),
+      ]);
+    }catch(e){
+      console.warn('Error al cargar bonificaciones del Team Builder', e);
+    }
+    // Una vez cargados los datos de bonus, recalculamos tags canónicos
+    recomputeSpecialtyTagsForAll();
   }
 
-  // ==============================================
-  // Normalización de tags de especialidad (Fase 2)
-  // ==============================================
   function recomputeSpecialtyTagsForAll(){
     const index = state.bonusTagIndex || {};
     if(!Array.isArray(state.characters)) return;
-
     state.characters.forEach(ch=>{
       const raw = Array.isArray(ch.tagsRaw) ? ch.tagsRaw : [];
       const seen = new Set();
       const canonical = [];
-
       raw.forEach(tag=>{
         const norm = normalizeStr(tag);
         const key = index[norm];
@@ -796,10 +796,11 @@ function saveAccordion(){
           canonical.push(key);
         }
       });
-
       ch.specialtyTags = canonical;
     });
   }
+
+
 
   function isDuplicate(varId){
     const base = state.byVar.get(varId)?.baseId;
@@ -1273,7 +1274,31 @@ function saveAccordion(){
     renderAll(); saveState();
   }
 
+    function recomputeBonusCounts(){
+    const titulares = getTitulares();
+    const specCounts = {};
+    const posCounts = {};
+
+    titulares.forEach(ch=>{
+      if(!ch) return;
+      if(Array.isArray(ch.specialtyTags)){
+        ch.specialtyTags.forEach(key=>{
+          if(!key) return;
+          specCounts[key] = (specCounts[key] || 0) + 1;
+        });
+      }
+      const pos = ch.posicion;
+      if(pos){
+        posCounts[pos] = (posCounts[pos] || 0) + 1;
+      }
+    });
+
+    state.currentSpecialtyCounts = specCounts;
+    state.currentPositionCounts = posCounts;
+  }
+
   function renderAll(){
+    recomputeBonusCounts();
     renderField();
     renderBench();
     renderList();
@@ -1513,7 +1538,6 @@ if (!host._accBound) {
       ensureTBStyles();
       await loadData();
       await loadBonuses();
-      recomputeSpecialtyTagsForAll();
       loadState();
       loadLinksLevels();
       loadAccordion();  // <- NUEVO
