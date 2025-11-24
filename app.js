@@ -1298,99 +1298,93 @@ function saveAccordion(){
     state.currentSpecialtyCounts = specCounts;
     state.currentPositionCounts = posCounts;
   }
-  function recomputeBonusStatus(){
-    const specCounts = state.currentSpecialtyCounts || {};
-    const posCounts  = state.currentPositionCounts || {};
+  function getThresholdPlayers(tier){
+  if(!tier || typeof tier !== 'object') return 0;
+  if(typeof tier.minPlayers === 'number') return tier.minPlayers;
+  const s = tier.minPlayers || tier.min || tier.minCount || 0;
+  const n = parseInt(s, 10);
+  return isNaN(n) ? 0 : n;
+}
 
-    // -------- Especialidades --------
-    const specList = Array.isArray(state.specialtyBonuses) ? state.specialtyBonuses : [];
-    const specByKey = {};
-    specList.forEach(cfg=>{
-      const key = cfg.key || cfg.tagKey || cfg.id;
-      if(key) specByKey[key] = cfg;
+function recomputeBonusStatus(){
+  const specCounts = state.currentSpecialtyCounts || {};
+  const posCounts  = state.currentPositionCounts || {};
+
+  // ---- Especialidades: agrupar filas por tagKey ----
+  const specList = Array.isArray(state.specialtyBonuses) ? state.specialtyBonuses : [];
+  const specByTag = {};
+  specList.forEach(row=>{
+    const key = row.tagKey;
+    if(!key) return;
+    if(!specByTag[key]) specByTag[key] = [];
+    specByTag[key].push(row);
+  });
+
+  const specStatus = {};
+  Object.entries(specCounts).forEach(([tagKey, count])=>{
+    const levels = specByTag[tagKey];
+    if(!levels || !levels.length) return;
+
+    const sorted = levels.slice().sort(
+      (a,b)=> getThresholdPlayers(a) - getThresholdPlayers(b)
+    );
+
+    let activeTier = null;
+    let nextTier = null;
+
+    sorted.forEach(row=>{
+      const thr = getThresholdPlayers(row);
+      if(count >= thr){
+        activeTier = { ...row, _thresholdPlayers: thr };
+      }else if(!nextTier){
+        nextTier = { ...row, _thresholdPlayers: thr };
+      }
     });
 
-    const specStatus = {};
-    Object.entries(specCounts).forEach(([tagKey, count])=>{
-      const cfg = specByKey[tagKey];
-      if(!cfg) return;
+    const missing = nextTier ? Math.max(0, nextTier._thresholdPlayers - count) : 0;
 
-      const levels = Array.isArray(cfg.levels) ? cfg.levels.slice() : [];
-      levels.sort((a,b)=>{
-        const ta = getThreshold(a);
-        const tb = getThreshold(b);
-        return ta - tb;
-      });
+    specStatus[tagKey] = { key: tagKey, count, activeTier, nextTier, missing };
+  });
 
-      let activeTier = null;
-      let nextTier = null;
+  // ---- Posiciones: agrupar filas por position ----
+  const posList = Array.isArray(state.positionBonuses) ? state.positionBonuses : [];
+  const posByKey = {};
+  posList.forEach(row=>{
+    const key = row.position || row.tagKey;
+    if(!key) return;
+    if(!posByKey[key]) posByKey[key] = [];
+    posByKey[key].push(row);
+  });
 
-      levels.forEach(lvl=>{
-        const thr = getThreshold(lvl);
-        if(count >= thr){
-          activeTier = { ...lvl, _threshold: thr };
-        }else if(!nextTier){
-          nextTier = { ...lvl, _threshold: thr };
-        }
-      });
+  const posStatus = {};
+  Object.entries(posCounts).forEach(([posKey, count])=>{
+    const levels = posByKey[posKey];
+    if(!levels || !levels.length) return;
 
-      const missing = nextTier ? Math.max(0, (nextTier._threshold || 0) - count) : 0;
+    const sorted = levels.slice().sort(
+      (a,b)=> getThresholdPlayers(a) - getThresholdPlayers(b)
+    );
 
-      specStatus[tagKey] = { key: tagKey, cfg, count, activeTier, nextTier, missing };
+    let activeTier = null;
+    let nextTier = null;
+
+    sorted.forEach(row=>{
+      const thr = getThresholdPlayers(row);
+      if(count >= thr){
+        activeTier = { ...row, _thresholdPlayers: thr };
+      }else if(!nextTier){
+        nextTier = { ...row, _thresholdPlayers: thr };
+      }
     });
 
-    // -------- Posiciones --------
-    const posList = Array.isArray(state.positionBonuses) ? state.positionBonuses : [];
-    const posByKey = {};
-    posList.forEach(cfg=>{
-      const key = cfg.position || cfg.key || cfg.id;
-      if(key) posByKey[key] = cfg;
-    });
+    const missing = nextTier ? Math.max(0, nextTier._thresholdPlayers - count) : 0;
 
-    const posStatus = {};
-    Object.entries(posCounts).forEach(([posKey, count])=>{
-      const cfg = posByKey[posKey];
-      if(!cfg) return;
+    posStatus[posKey] = { key: posKey, count, activeTier, nextTier, missing };
+  });
 
-      const levels = Array.isArray(cfg.levels) ? cfg.levels.slice() : [];
-      levels.sort((a,b)=>{
-        const ta = getThreshold(a);
-        const tb = getThreshold(b);
-        return ta - tb;
-      });
-
-      let activeTier = null;
-      let nextTier = null;
-
-      levels.forEach(lvl=>{
-        const thr = getThreshold(lvl);
-        if(count >= thr){
-          activeTier = { ...lvl, _threshold: thr };
-        }else if(!nextTier){
-          nextTier = { ...lvl, _threshold: thr };
-        }
-      });
-
-      const missing = nextTier ? Math.max(0, (nextTier._threshold || 0) - count) : 0;
-
-      posStatus[posKey] = { key: posKey, cfg, count, activeTier, nextTier, missing };
-    });
-
-    state.currentSpecialtyStatus = specStatus;
-    state.currentPositionStatus  = posStatus;
-  }
-
-  function getThreshold(tier){
-    if(!tier || typeof tier !== 'object') return 0;
-    if(typeof tier.minCount === 'number') return tier.minCount;
-    if(typeof tier.requiredCount === 'number') return tier.requiredCount;
-    if(typeof tier.count === 'number') return tier.count;
-    if(typeof tier.min === 'number') return tier.min;
-
-    const s = tier.minCount || tier.requiredCount || tier.count || tier.min || 0;
-    const n = parseInt(s, 10);
-    return isNaN(n) ? 0 : n;
-  }
+  state.currentSpecialtyStatus = specStatus;
+  state.currentPositionStatus  = posStatus;
+}
 
     function renderAll(){
     recomputeBonusCounts();
@@ -1442,14 +1436,23 @@ function saveAccordion(){
           );
           return (m && (m.nameES || m.name || m.label)) || fmtTitle(key);
         };
-        const tierLabel = (tier)=>{
+               const tierLabel = (tier)=>{
           if(!tier) return '';
-          const lbl = tier.label || tier.nameES || tier.name || tier.description || tier.text || tier.bonusText;
-          const thr = tier._threshold || getThreshold(tier);
-          if(lbl && thr) return `${lbl} (≥${thr} jugadores)`;
-          if(lbl) return lbl;
-          if(thr) return `Tramo de ${thr} jugadores`;
-          return '';
+          const thr = tier._thresholdPlayers || getThresholdPlayers(tier);
+          const stat = tier.stat || '';
+          const value = tier.value;
+          const type = tier.type;
+          let valText = '';
+          if(value != null && value !== ''){
+            valText = (type === 'porcentaje')
+              ? `+${value}%`
+              : `+${value}`;
+          }
+          const core = (stat ? `${stat} ${valText}` : valText).trim();
+          if(thr){
+            return core ? `${core} (con ${thr} jugadores)` : `Con ${thr} jugadores`;
+          }
+          return core || '';
         };
 
         const html = keys.sort().map(key=>{
