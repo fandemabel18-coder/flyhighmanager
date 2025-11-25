@@ -2142,8 +2142,36 @@ if (!host._accBound) {
     };
   }
 
-  async function exportImage(){
-    toast('Exportar imagen: lo activamos en un paso extra 👍');
+    function exportImage(){
+    try{
+      const payload = buildTeamExportPayload();
+      const json = JSON.stringify(payload, null, 2);
+
+      // Nombre de archivo amigable a partir del nombre del equipo
+      const rawName = (payload.team && payload.team.name) ? payload.team.name : 'equipo';
+      const safeName = rawName
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/gi, '-')
+        .replace(/^-+|-+$/g, '') || 'equipo';
+
+      const filename = `fhm-${safeName}.fhteam`;
+
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      toast('Equipo exportado correctamente.');
+    }catch(err){
+      console.error('Error al exportar equipo', err);
+      toast('No se pudo exportar el equipo.');
+    }
   }
 
   async function initOnce(){
