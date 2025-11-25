@@ -1466,7 +1466,7 @@ function recomputeBonusStatus(){
   state.currentPositionStatus  = posStatus;
 }
   // ========= Pestañas de equipos =========
-  function renderTeamTabs(){
+    function renderTeamTabs(){
     const host = $('#tb-team-tabs');
     if(!host) return;
 
@@ -1488,7 +1488,13 @@ function recomputeBonusStatus(){
         <button type="button"
                 class="tb-team-tab${activeClass}"
                 data-team-index="${i}">
-          ${label}
+          <span class="tb-team-name">${label}</span>
+          <span class="tb-team-action tb-team-dup"
+                data-team-dup="${i}"
+                title="Duplicar equipo">⧉</span>
+          <span class="tb-team-action tb-team-del"
+                data-team-del="${i}"
+                title="Eliminar equipo">×</span>
         </button>
       `;
     }).join('');
@@ -1503,12 +1509,44 @@ function recomputeBonusStatus(){
 
     host.innerHTML = tabsHtml + addHtml;
 
-    // Click en pestañas
+    // Click en pestañas → cambiar de equipo
     host.querySelectorAll('[data-team-index]').forEach(btn=>{
       btn.addEventListener('click', ()=>{
         const idx = parseInt(btn.dataset.teamIndex, 10);
         if(isNaN(idx)) return;
         switchTeam(idx);
+      });
+    });
+
+    // Doble click en nombre → renombrar
+    host.querySelectorAll('.tb-team-name').forEach(span=>{
+      span.addEventListener('dblclick', e=>{
+        e.stopPropagation();
+        const btn = span.closest('[data-team-index]');
+        if(!btn) return;
+        const idx = parseInt(btn.dataset.teamIndex, 10);
+        if(isNaN(idx)) return;
+        renameTeam(idx);
+      });
+    });
+
+    // Click en ⧉ → duplicar equipo
+    host.querySelectorAll('.tb-team-dup').forEach(span=>{
+      span.addEventListener('click', e=>{
+        e.stopPropagation();
+        const idx = parseInt(span.dataset.teamDup, 10);
+        if(isNaN(idx)) return;
+        duplicateTeam(idx);
+      });
+    });
+
+    // Click en × → borrar equipo
+    host.querySelectorAll('.tb-team-del').forEach(span=>{
+      span.addEventListener('click', e=>{
+        e.stopPropagation();
+        const idx = parseInt(span.dataset.teamDel, 10);
+        if(isNaN(idx)) return;
+        deleteTeam(idx);
       });
     });
 
@@ -1519,7 +1557,7 @@ function recomputeBonusStatus(){
     }
   }
 
-  function switchTeam(newIndex){
+    function switchTeam(newIndex){
     if(!Array.isArray(state.teams) || !state.teams.length) return;
     if(newIndex < 0 || newIndex >= state.teams.length) return;
     if(newIndex === state.currentTeamIndex) return;
@@ -1541,7 +1579,61 @@ function recomputeBonusStatus(){
     saveState();
   }
 
-      function renderAll(){
+  function renameTeam(index){
+    if(!Array.isArray(state.teams) || !state.teams[index]) return;
+    const team = state.teams[index];
+    const currentName = team.name || `Equipo ${index+1}`;
+    const next = prompt('Nuevo nombre para el equipo:', currentName);
+    if(!next) return;
+    const trimmed = next.trim();
+    if(!trimmed) return;
+    team.name = trimmed.slice(0, 40); // límite de caracteres
+    renderTeamTabs();
+    saveState();
+  }
+
+  function duplicateTeam(index){
+    if(!Array.isArray(state.teams) || !state.teams[index]) return;
+    const base = state.teams[index];
+    const copy = createNewTeam(
+      (base.name ? `${base.name} (copia)` : `Equipo ${state.teams.length+1}`)
+    );
+
+    // Copiamos composición (no el historial de deshacer)
+    copy.layoutIdx = base.layoutIdx;
+    copy.slots = Array.isArray(base.slots) ? [...base.slots] : Array(7).fill(null);
+    copy.bench = Array.isArray(base.bench) ? [...base.bench] : [];
+    copy.undoStack = [];
+
+    state.teams.push(copy);
+    state.currentTeamIndex = state.teams.length - 1;
+    renderAll();
+    saveState();
+  }
+
+  function deleteTeam(index){
+    if(!Array.isArray(state.teams) || !state.teams[index]) return;
+    if(state.teams.length <= 1){
+      toast('Debe existir al menos un equipo.');
+      return;
+    }
+    const team = state.teams[index];
+    const name = team.name || `Equipo ${index+1}`;
+    const ok = confirm(`¿Eliminar "${name}"? Esta acción no se puede deshacer.`);
+    if(!ok) return;
+
+    state.teams.splice(index, 1);
+
+    // Ajustar índice actual
+    if(state.currentTeamIndex >= state.teams.length){
+      state.currentTeamIndex = state.teams.length - 1;
+    }
+
+    renderAll();
+    saveState();
+  }
+
+  function renderAll(){
     // Aseguramos que haya un equipo y pintamos pestañas
     getCurrentTeam();
     renderTeamTabs();
