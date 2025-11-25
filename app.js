@@ -2294,6 +2294,25 @@ if (!host._accBound) {
       const clearBtn= $('#tb-clear'); if(clearBtn) clearBtn.addEventListener('click', clearAll);
       const rotBtn  = $('#tb-rotate'); if(rotBtn) rotBtn.addEventListener('click', rotateFormation);
       const expBtn  = $('#tb-export'); if(expBtn) expBtn.addEventListener('click', exportImage);
+      const btnImport  = $('#tb-import');
+      const inputImport = $('#tb-import-input');
+
+      if(btnImport && inputImport){
+        // Al hacer clic en el botón, abrimos el selector de archivo
+        btnImport.addEventListener('click', ()=>{
+          inputImport.click();
+        });
+
+        // Cuando el usuario elige un archivo, lo leemos e importamos
+        inputImport.addEventListener('change', ()=>{
+          const file = inputImport.files && inputImport.files[0];
+          if(file){
+            importTeamFromFile(file);
+          }
+          // limpiar para poder volver a seleccionar el mismo archivo luego
+          inputImport.value = '';
+        });
+      }
 
       const s = $('#tb-search'); if(s) s.addEventListener('input', renderList);
       const fr= $('#tb-filter-rareza'); if(fr) fr.addEventListener('change', renderList);
