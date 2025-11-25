@@ -1183,31 +1183,35 @@ function saveAccordion(){
     });
 
     $$('.droptarget', scope).forEach(target=>{
-      target.addEventListener('dragover', e=>{
+            target.addEventListener('dragover', e=>{
         e.preventDefault();
-        e.dataTransfer.dropEffect='move';
-
         target.classList.remove('drop-valid','drop-invalid');
         if(!draggingVarId) return;
         const p = state.byVar.get(draggingVarId);
         if(!p) return;
 
-                const team = getCurrentTeam();
+        const team = getCurrentTeam();
         const posTarget = target.dataset.pos;
         let ok = true;
+
         if(posTarget === 'BENCH'){
-          ok = p.posicion !== 'L' && team.bench.length < 6 && !isDuplicate(draggingVarId);
+          ok = p.posicion !== 'L'
+            && Array.isArray(team.bench)
+            && team.bench.length < 6
+            && !isDuplicate(draggingVarId);
         }else{
           const logicalIdx = Number(target.dataset.slotIndex);
-          const layout = SLOT_LAYOUTS[team.layoutIdx];
-          const needPos = layout[logicalIdx].pos;
-          ...
-          if (needPos === 'L' && p.posicion !== 'L') {
+          const layout = SLOT_LAYOUTS[team.layoutIdx] || [];
+          const conf = layout[logicalIdx];
+          const needPos = conf ? conf.pos : null;
+
+          if(needPos === 'L' && p.posicion !== 'L'){
             ok = false;
-          } else {
+          }else{
             ok = !isDuplicate(draggingVarId);
           }
         }
+
         target.classList.add(ok ? 'drop-valid' : 'drop-invalid');
       });
 
