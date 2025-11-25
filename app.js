@@ -667,27 +667,84 @@ const SLOT_LAYOUTS = [
     document.head.appendChild(style);
   }
 
-    const LS_KEY = 'tb_state_v1';
+      const LS_KEY       = 'tb_teams_v1';
+  const LS_KEY_LEGACY = 'tb_state_v1';
+
   function saveState(){
-    const team = getCurrentTeam();
     try{
-      localStorage.setItem(LS_KEY, JSON.stringify({
-        layoutIdx: team.layoutIdx,
-        slots: team.slots,
-        bench: team.bench
+      // Aseguramos que haya al menos un equipo
+      const current = getCurrentTeam();
+      const teams = Array.isArray(state.teams) && state.teams.length
+        ? state.teams
+        : [current];
+
+      const safeTeams = teams.map((t, idx)=>({
+        id: t.id || `team_${idx+1}`,
+        name: t.name || `Equipo ${idx+1}`,
+        layoutIdx: (typeof t.layoutIdx === 'number') ? t.layoutIdx : 0,
+        slots: (Array.isArray(t.slots) && t.slots.length === 7) ? t.slots : Array(7).fill(null),
+        bench: Array.isArray(t.bench) ? t.bench : []
       }));
-    }catch{}
+
+      const payload = {
+        schemaVersion: 'teams.v1',
+        currentTeamIndex: Math.min(
+          Math.max(0, state.currentTeamIndex | 0),
+          safeTeams.length - 1
+        ),
+        teams: safeTeams
+      };
+
+      localStorage.setItem(LS_KEY, JSON.stringify(payload));
+    }catch(e){
+      console.warn('No pude guardar estado del Team Builder', e);
+    }
   }
+
   function loadState(){
+    // 1) Intentar formato nuevo (múltiples equipos)
     try{
       const raw = localStorage.getItem(LS_KEY);
-      if(!raw) return;
-      const obj = JSON.parse(raw);
-      const team = getCurrentTeam();
-      team.layoutIdx = obj.layoutIdx ?? 0;
-      team.slots = Array.isArray(obj.slots) && obj.slots.length===7 ? obj.slots : Array(7).fill(null);
-      team.bench = Array.isArray(obj.bench) ? obj.bench : [];
-    }catch{}
+      if(raw){
+        const obj = JSON.parse(raw);
+        if(obj && Array.isArray(obj.teams) && obj.teams.length){
+          state.teams = obj.teams.map((t, idx)=>({
+            id: t.id || `team_${idx+1}`,
+            name: t.name || `Equipo ${idx+1}`,
+            layoutIdx: (typeof t.layoutIdx === 'number') ? t.layoutIdx : 0,
+            slots: (Array.isArray(t.slots) && t.slots.length === 7) ? t.slots : Array(7).fill(null),
+            bench: Array.isArray(t.bench) ? t.bench : [],
+            undoStack: []
+          }));
+          state.currentTeamIndex = Math.min(
+            Math.max(0, obj.currentTeamIndex | 0),
+            state.teams.length - 1
+          );
+          return;
+        }
+      }
+    }catch(e){
+      console.warn('No pude leer tb_teams_v1, intento formato legacy', e);
+    }
+
+    // 2) Fallback: formato antiguo (un solo equipo)
+    try{
+      const rawLegacy = localStorage.getItem(LS_KEY_LEGACY);
+      if(!rawLegacy) return;
+      const obj = JSON.parse(rawLegacy);
+      const team = {
+        id: 'team_1',
+        name: 'Equipo 1',
+        layoutIdx: obj.layoutIdx ?? 0,
+        slots: Array.isArray(obj.slots) && obj.slots.length===7 ? obj.slots : Array(7).fill(null),
+        bench: Array.isArray(obj.bench) ? obj.bench : [],
+        undoStack: []
+      };
+      state.teams = [team];
+      state.currentTeamIndex = 0;
+    }catch(e){
+      console.warn('No pude leer tb_state_v1 legacy', e);
+    }
   }
 
   function loadLinksLevels(){
