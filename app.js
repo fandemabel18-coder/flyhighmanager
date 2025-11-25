@@ -2173,6 +2173,111 @@ if (!host._accBound) {
       toast('No se pudo exportar el equipo.');
     }
   }
+  function importTeamFromFile(file){
+    if(!file) return;
+    const reader = new FileReader();
+
+    reader.onload = e=>{
+      try{
+        const text = String(e.target.result || '');
+        const raw = JSON.parse(text);
+        const normalized = normalizeImportedTeam(raw);
+        if(!normalized){
+          toast('El archivo no contiene un equipo válido para este Team Builder.');
+          return;
+        }
+
+        const { name, layoutIdx, slots, bench } = normalized;
+
+        state.teams = Array.isArray(state.teams) ? state.teams : [];
+        const team = createNewTeam(name);
+        team.layoutIdx = layoutIdx;
+        team.slots = slots;
+        team.bench = bench;
+        team.undoStack = [];
+
+        state.teams.push(team);
+        state.currentTeamIndex = state.teams.length - 1;
+
+        renderAll();
+        saveState();
+        toast('Equipo importado correctamente.');
+      }catch(err){
+        console.error('Error al importar equipo', err);
+        toast('No se pudo importar el archivo.');
+      }
+    };
+
+    reader.readAsText(file);
+  }
+
+  function normalizeImportedTeam(raw){
+    if(!raw || typeof raw !== 'object') return null;
+
+    const schema = raw.schemaVersion || raw.schema || '';
+    if(!schema || schema.indexOf('fhm.teambuilder.') !== 0){
+      // No es nuestro formato
+      return null;
+    }
+    if(raw.app && raw.app !== 'FlyHighManager-TeamBuilder'){
+      return null;
+    }
+
+    const t = raw.team || {};
+    const layoutIdx = (typeof t.layoutIdx === 'number') ? t.layoutIdx : 0;
+
+    const slots = Array(7).fill(null);
+
+    function resolveImportedVar(entry){
+      if(!entry || typeof entry !== 'object') return null;
+
+      const directId = entry.varId || entry.variantId || entry.id;
+      if(directId && state.byVar.has(directId)) return directId;
+
+      const baseId = entry.baseId || entry.characterId;
+      const pos = entry.posicion || entry.position;
+      if(baseId){
+        for(const [varId, p] of state.byVar.entries()){
+          if(p.baseId === baseId && (!pos || p.posicion === pos)){
+            return varId;
+          }
+        }
+      }
+      return null;
+    }
+
+    if(Array.isArray(t.slots)){
+      t.slots.forEach(entry=>{
+        const idx = entry.slotIndex;
+        if(typeof idx !== 'number') return;
+        if(idx < 0 || idx >= slots.length) return;
+        const varId = resolveImportedVar(entry);
+        if(varId) slots[idx] = varId;
+      });
+    }
+
+    const bench = [];
+    if(Array.isArray(t.bench)){
+      const sorted = [...t.bench].sort((a,b)=>
+        (a.order || 0) - (b.order || 0)
+      );
+      sorted.forEach(entry=>{
+        const varId = resolveImportedVar(entry);
+        if(!varId) return;
+        if(slots.includes(varId)) return;
+        if(bench.includes(varId)) return;
+        if(bench.length >= 6) return;
+        bench.push(varId);
+      });
+    }
+
+    return {
+      name: t.name || 'Equipo importado',
+      layoutIdx,
+      slots,
+      bench
+    };
+  }
 
   async function initOnce(){
     const screen = $('#tab-team'); if(!screen) return;
