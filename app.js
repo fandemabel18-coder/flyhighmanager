@@ -585,19 +585,23 @@ const SLOT_LAYOUTS = [
   ]
 ];
 
-  const state = {
+   const state = {
     characters: [],
     byVar: new Map(),
     byBase: new Map(),
     schools: [],
     links: [],
+    // Estado legacy (lo usaremos solo para inicializar el primer equipo)
     layoutIdx: 0,
     slots: Array(7).fill(null),
     bench: [],
     undoStack: [],
+    // Nuevo: estructura para múltiples equipos (por ahora solo 1)
+    teams: [],
+    currentTeamIndex: 0,
     linksLevels: {},
     accordion: { schools: {}, links: {} },
-        // Datos para sistema de bonificaciones del Team Builder
+    // Datos para sistema de bonificaciones del Team Builder
     bonusTags: [],
     bonusTagIndex: {},
     specialtyBonuses: [],
@@ -611,6 +615,34 @@ const SLOT_LAYOUTS = [
   // Para feedback de drop
   let draggingVarId = null;
 
+     function getCurrentTeam(){
+    // Garantiza que siempre haya al menos un equipo
+    if(!Array.isArray(state.teams) || !state.teams.length){
+      const initialSlots = Array.isArray(state.slots) && state.slots.length === 7
+        ? state.slots
+        : Array(7).fill(null);
+      const initialBench = Array.isArray(state.bench) ? state.bench : [];
+      const initialLayout = typeof state.layoutIdx === 'number' ? state.layoutIdx : 0;
+      const initialUndo = Array.isArray(state.undoStack) ? state.undoStack : [];
+
+      state.teams = [{
+        id: 'team_1',
+        name: 'Equipo 1',
+        layoutIdx: initialLayout,
+        slots: initialSlots,
+        bench: initialBench,
+        undoStack: initialUndo
+      }];
+      state.currentTeamIndex = 0;
+    }
+
+    const idx = Math.min(
+      Math.max(0, state.currentTeamIndex | 0),
+      state.teams.length - 1
+    );
+    return state.teams[idx];
+  }
+
   // Inyectar estilos drop-valid/invalid
   function ensureTBStyles(){
     if($('#tb-drop-styles')) return;
@@ -623,24 +655,29 @@ const SLOT_LAYOUTS = [
     document.head.appendChild(style);
   }
 
-  const LS_KEY = 'tb_state_v1';
+    const LS_KEY = 'tb_state_v1';
   function saveState(){
-    localStorage.setItem(LS_KEY, JSON.stringify({
-      layoutIdx: state.layoutIdx,
-      slots: state.slots,
-      bench: state.bench
-    }));
+    const team = getCurrentTeam();
+    try{
+      localStorage.setItem(LS_KEY, JSON.stringify({
+        layoutIdx: team.layoutIdx,
+        slots: team.slots,
+        bench: team.bench
+      }));
+    }catch{}
   }
   function loadState(){
     try{
       const raw = localStorage.getItem(LS_KEY);
       if(!raw) return;
       const obj = JSON.parse(raw);
-      state.layoutIdx = obj.layoutIdx ?? 0;
-      state.slots = Array.isArray(obj.slots) && obj.slots.length===7 ? obj.slots : Array(7).fill(null);
-      state.bench = Array.isArray(obj.bench) ? obj.bench : [];
+      const team = getCurrentTeam();
+      team.layoutIdx = obj.layoutIdx ?? 0;
+      team.slots = Array.isArray(obj.slots) && obj.slots.length===7 ? obj.slots : Array(7).fill(null);
+      team.bench = Array.isArray(obj.bench) ? obj.bench : [];
     }catch{}
   }
+
   function loadLinksLevels(){
     try{ state.linksLevels = JSON.parse(localStorage.getItem(LINKS_LS_KEY)) || {}; }
     catch{ state.linksLevels = {}; }
@@ -656,17 +693,25 @@ function loadAccordion(){
 function saveAccordion(){
   try { localStorage.setItem(ACC_LS_KEY, JSON.stringify(state.accordion)); } catch {}
 }
-  function pushUndo(){
-    state.undoStack.push(JSON.stringify({layoutIdx:state.layoutIdx, slots:[...state.slots], bench:[...state.bench]}));
-    if(state.undoStack.length>25) state.undoStack.shift();
+    function pushUndo(){
+    const team = getCurrentTeam();
+    team.undoStack = team.undoStack || [];
+    team.undoStack.push(JSON.stringify({
+      layoutIdx: team.layoutIdx,
+      slots: [...team.slots],
+      bench: [...team.bench]
+    }));
+    if(team.undoStack.length > 25) team.undoStack.shift();
   }
   function undo(){
-    const last = state.undoStack.pop();
+    const team = getCurrentTeam();
+    team.undoStack = team.undoStack || [];
+    const last = team.undoStack.pop();
     if(!last) return toast('Nada para deshacer');
     const snap = JSON.parse(last);
-    state.layoutIdx = snap.layoutIdx;
-    state.slots = snap.slots;
-    state.bench = snap.bench;
+    team.layoutIdx = snap.layoutIdx;
+    team.slots = snap.slots;
+    team.bench = snap.bench;
     renderAll();
     saveState();
   }
@@ -804,14 +849,18 @@ function saveAccordion(){
 
 
 
-  function isDuplicate(varId){
+    function isDuplicate(varId){
     const base = state.byVar.get(varId)?.baseId;
     if(!base) return false;
-    const exists = [...state.slots, ...state.bench]
+    const team = getCurrentTeam();
+    const slots = Array.isArray(team.slots) ? team.slots : [];
+    const bench = Array.isArray(team.bench) ? team.bench : [];
+    const exists = [...slots, ...bench]
       .filter(Boolean)
       .some(v => state.byVar.get(v)?.baseId === base);
     return exists;
   }
+
   function toast(msg){
     const el = document.createElement('div');
     el.className = 'tb-toast';
@@ -824,10 +873,12 @@ function saveAccordion(){
   }
 
 
-  function renderField(){
+    function renderField(){
     const field = $('#tb-field'); if(!field) return;
     field.innerHTML = '';
-    const layout = SLOT_LAYOUTS[state.layoutIdx];
+
+    const team = getCurrentTeam();
+    const layout = SLOT_LAYOUTS[team.layoutIdx];
 
     // Crear grilla básica 3x3
     for(let i=0;i<9;i++){
@@ -851,7 +902,7 @@ function saveAccordion(){
       inner.className = 'tb-slot-inner';
       host.appendChild(inner);
 
-      const varId = state.slots[logicalIdx];
+      const varId = team.slots[logicalIdx];
       if(varId){
         const card = makeCard(varId);
         inner.appendChild(card);
@@ -888,13 +939,16 @@ function saveAccordion(){
     bindDnD(field);
   }
 
-
-  function renderBench(){
+    function renderBench(){
     const el = $('#tb-bench'); if(!el) return;
     el.innerHTML = '';
+
+    const team = getCurrentTeam();
+    const bench = Array.isArray(team.bench) ? team.bench : [];
+
     const counter = $('#tb-bench-count');
-    if(counter) counter.textContent = `${state.bench.length}/6`;
-    state.bench.forEach(varId => el.appendChild(makeCard(varId)));
+    if(counter) counter.textContent = `${bench.length}/6`;
+    bench.forEach(varId => el.appendChild(makeCard(varId)));
     bindDnD(el);
   }
 
@@ -950,14 +1004,15 @@ function saveAccordion(){
   // === Fase 2: selector por casilla ===
   let pickerSlotIndex = null;
 
-  function openPicker(slotIdx){
+    function openPicker(slotIdx){
     pickerSlotIndex = slotIdx;
     const backdrop = $('#tb-picker-backdrop');
     if(!backdrop) return;
     backdrop.hidden = false;
     document.body.style.overflow = 'hidden';
 
-    const layout = SLOT_LAYOUTS[state.layoutIdx] || [];
+    const team = getCurrentTeam();
+    const layout = SLOT_LAYOUTS[team.layoutIdx] || [];
     const conf = layout[slotIdx] || null;
     const titleEl = $('#tb-picker-title');
     if(titleEl){
@@ -983,7 +1038,8 @@ function saveAccordion(){
       return;
     }
 
-    const layout = SLOT_LAYOUTS[state.layoutIdx] || [];
+        const team = getCurrentTeam();
+    const layout = SLOT_LAYOUTS[team.layoutIdx] || [];
     const conf = layout[pickerSlotIndex] || null;
     const needPos = conf ? conf.pos : null;
 
@@ -1081,8 +1137,9 @@ function saveAccordion(){
     return el;
   }
 
-  function quickPlace(p){
-    const layout = SLOT_LAYOUTS[state.layoutIdx];
+   function quickPlace(p){
+    const team = getCurrentTeam();
+    const layout = SLOT_LAYOUTS[team.layoutIdx];
     const liberoIdx = layout.findIndex(conf => conf.pos === 'L');
     const isLibero = p.posicion === 'L';
 
@@ -1090,15 +1147,15 @@ function saveAccordion(){
 
     if (isLibero) {
       // 1) Intentar primero la casilla de Líbero
-      if (liberoIdx >= 0 && !state.slots[liberoIdx]) {
+      if (liberoIdx >= 0 && !team.slots[liberoIdx]) {
         targetIdx = liberoIdx;
       } else {
         // 2) Cualquier otra casilla titular libre (no-L)
-        targetIdx = state.slots.findIndex((v, i) => !v && layout[i].pos !== 'L');
+        targetIdx = team.slots.findIndex((v, i) => !v && layout[i].pos !== 'L');
       }
     } else {
       // No-Líbero: cualquier casilla titular libre que no sea la de Líbero
-      targetIdx = state.slots.findIndex((v, i) => !v && layout[i].pos !== 'L');
+      targetIdx = team.slots.findIndex((v, i) => !v && layout[i].pos !== 'L');
     }
 
     if (targetIdx >= 0) {
@@ -1108,10 +1165,10 @@ function saveAccordion(){
 
     // Si no hay espacio en titulares, aplican reglas de banca actuales
     if(isLibero){ toast('No se permiten Líberos en la banca.'); return; }
-    if(state.bench.length>=6){ toast('Banca llena (máximo 6).'); return; }
+    if(team.bench.length>=6){ toast('Banca llena (máximo 6).'); return; }
     if(isDuplicate(p.varianteId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
     pushUndo();
-    state.bench.push(p.varianteId);
+    team.bench.push(p.varianteId);
     renderBench(); saveState(); renderLinks();
   }
 
@@ -1135,13 +1192,16 @@ function saveAccordion(){
         const p = state.byVar.get(draggingVarId);
         if(!p) return;
 
+                const team = getCurrentTeam();
         const posTarget = target.dataset.pos;
         let ok = true;
         if(posTarget === 'BENCH'){
-          ok = p.posicion !== 'L' && state.bench.length < 6 && !isDuplicate(draggingVarId);
+          ok = p.posicion !== 'L' && team.bench.length < 6 && !isDuplicate(draggingVarId);
         }else{
           const logicalIdx = Number(target.dataset.slotIndex);
-          const needPos = SLOT_LAYOUTS[state.layoutIdx][logicalIdx].pos;
+          const layout = SLOT_LAYOUTS[team.layoutIdx];
+          const needPos = layout[logicalIdx].pos;
+          ...
           if (needPos === 'L' && p.posicion !== 'L') {
             ok = false;
           } else {
@@ -1159,7 +1219,7 @@ function saveAccordion(){
         e.preventDefault();
         target.classList.remove('drop-valid','drop-invalid');
         const varId = e.dataTransfer.getData('text/plain');
-        const posTarget = target.dataset.pos;
+        
         if(posTarget === 'BENCH'){ handleDropBench(varId); return; }
         const logicalIdx = Number(target.dataset.slotIndex);
         handleDropSlot(varId, logicalIdx);
@@ -1167,10 +1227,13 @@ function saveAccordion(){
     });
   }
 
-  function handleDropSlot(varId, logicalIdx){
+    function handleDropSlot(varId, logicalIdx){
     const p = state.byVar.get(varId);
     if(!p) return;
-    const needPos = SLOT_LAYOUTS[state.layoutIdx][logicalIdx].pos;
+
+    const team = getCurrentTeam();
+    const layout = SLOT_LAYOUTS[team.layoutIdx];
+    const needPos = layout[logicalIdx].pos;
 
     // Única restricción de posición: la casilla de Líbero solo acepta Líberos
     if(needPos === 'L' && p.posicion !== 'L'){
@@ -1184,36 +1247,40 @@ function saveAccordion(){
     }
 
     pushUndo();
-    const iBench = state.bench.indexOf(varId);
-    if(iBench>=0) state.bench.splice(iBench,1);
+    const iBench = team.bench.indexOf(varId);
+    if(iBench>=0) team.bench.splice(iBench,1);
 
-    const prev = state.slots[logicalIdx];
+    const prev = team.slots[logicalIdx];
     if(prev){
       const prevP = state.byVar.get(prev);
-      if(prevP.posicion!=='L' && state.bench.length<6) state.bench.push(prev);
+      if(prevP.posicion!=='L' && team.bench.length<6) team.bench.push(prev);
     }
 
-    state.slots[logicalIdx] = varId;
+    team.slots[logicalIdx] = varId;
     renderAll(); saveState();
   }
 
-  function handleDropBench(varId){
+    function handleDropBench(varId){
     const p = state.byVar.get(varId); if(!p) return;
+    const team = getCurrentTeam();
+
     if(p.posicion==='L'){ toast('No se permiten Líberos en la banca.'); return; }
-    if(state.bench.length>=6){ toast('Banca llena (máximo 6).'); return; }
+    if(team.bench.length>=6){ toast('Banca llena (máximo 6).'); return; }
     if(isDuplicate(varId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
 
     pushUndo();
-    const idx = state.slots.findIndex(v=>v===varId);
-    if(idx>=0) state.slots[idx]=null;
+    const idx = team.slots.findIndex(v=>v===varId);
+    if(idx>=0) team.slots[idx]=null;
 
-    state.bench.push(varId);
+    team.bench.push(varId);
     renderAll(); saveState();
   }
 
-  function tryPlaceInSlot(varId, logicalIdx){
+    function tryPlaceInSlot(varId, logicalIdx){
     const p = state.byVar.get(varId); if(!p) return;
-    const needPos = SLOT_LAYOUTS[state.layoutIdx][logicalIdx].pos;
+    const team = getCurrentTeam();
+    const layout = SLOT_LAYOUTS[team.layoutIdx];
+    const needPos = layout[logicalIdx].pos;
 
     // Única restricción: esta casilla es de Líbero y el personaje no lo es
     if(needPos === 'L' && p.posicion !== 'L'){
@@ -1227,52 +1294,49 @@ function saveAccordion(){
     }
 
     pushUndo();
-    state.slots[logicalIdx] = varId;
+    team.slots[logicalIdx] = varId;
     renderAll(); saveState();
   }
 
-  function rotateFormation(){
-  // ciclo de índices en el campo (sin contar L): 0 → 1 → 2 → 5 → 4 → 3 → 0
-  const GRID_CYCLE = [0, 1, 2, 5, 4, 3];
-  const N = GRID_CYCLE.length;
+    function rotateFormation(){
+    const team = getCurrentTeam();
 
-  // layout actual y siguiente (solo cambia el "dibujo" de posiciones)
-  const prevLayout = SLOT_LAYOUTS[state.layoutIdx];
-  state.layoutIdx = (state.layoutIdx + 1) % SLOT_LAYOUTS.length;
-  const nextLayout = SLOT_LAYOUTS[state.layoutIdx];
+    // ciclo de índices en el campo (sin contar L): 0 → 1 → 2 → 5 → 4 → 3 → 0
+    const GRID_CYCLE = [0, 1, 2, 5, 4, 3];
+    const N = GRID_CYCLE.length;
 
-  // mapa: idx_grid_anterior -> varId en esa celda
-  const prevGridToVar = new Map();
-  prevLayout.forEach((conf, logicalIdx)=> {
-    prevGridToVar.set(conf.idx, state.slots[logicalIdx]);
-  });
+    const prevLayout = SLOT_LAYOUTS[team.layoutIdx];
+    team.layoutIdx = (team.layoutIdx + 1) % SLOT_LAYOUTS.length;
+    const nextLayout = SLOT_LAYOUTS[team.layoutIdx];
 
-  // rotamos las cartas en el ciclo de 6 celdas; el L (6) se mantiene fijo
-  const newGridToVar = new Map(prevGridToVar); // copiamos todo (incluye L en 6)
-  for (let i = 0; i < N; i++) {
-    const dst = GRID_CYCLE[i];
-    const src = GRID_CYCLE[(i - 1 + N) % N];
-    newGridToVar.set(dst, prevGridToVar.get(src) || null);
-  }
-  // L se queda donde está (idx 6); nada que hacer
+    const prevGridToVar = new Map();
+    prevLayout.forEach((conf, logicalIdx)=> {
+      prevGridToVar.set(conf.idx, team.slots[logicalIdx]);
+    });
 
-  // construimos los nuevos 7 slots lógicos para el nuevo layout
-  const newSlots = Array(7).fill(null);
-  nextLayout.forEach((conf, logicalIdx) => {
-    newSlots[logicalIdx] = newGridToVar.get(conf.idx) || null;
-  });
+    const newGridToVar = new Map(prevGridToVar);
+    for (let i = 0; i < N; i++) {
+      const dst = GRID_CYCLE[i];
+      const src = GRID_CYCLE[(i - 1 + N) % N];
+      newGridToVar.set(dst, prevGridToVar.get(src) || null);
+    }
 
-  // aplicar y render
-  pushUndo();
-  state.slots = newSlots;
-  renderAll();
-  saveState();
-}
+    const newSlots = Array(7).fill(null);
+    nextLayout.forEach((conf, logicalIdx) => {
+      newSlots[logicalIdx] = newGridToVar.get(conf.idx) || null;
+    });
 
-  function clearAll(){
     pushUndo();
-    state.slots = Array(7).fill(null);
-    state.bench = [];
+    team.slots = newSlots;
+    renderAll();
+    saveState();
+  }
+
+    function clearAll(){
+    const team = getCurrentTeam();
+    pushUndo();
+    team.slots = Array(7).fill(null);
+    team.bench = [];
     renderAll(); saveState();
   }
 
@@ -1397,8 +1461,10 @@ function recomputeBonusStatus(){
   }
 
   /* ---------- Vínculos ---------- */
-  function getTitulares(){
-    return state.slots.map(v=> v ? state.byVar.get(v) : null).filter(Boolean);
+    function getTitulares(){
+    const team = getCurrentTeam();
+    const slots = Array.isArray(team.slots) ? team.slots : [];
+    return slots.map(v=> v ? state.byVar.get(v) : null).filter(Boolean);
   }
 
   function renderLinks(){
