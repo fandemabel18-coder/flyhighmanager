@@ -1465,8 +1465,87 @@ function recomputeBonusStatus(){
   state.currentSpecialtyStatus = specStatus;
   state.currentPositionStatus  = posStatus;
 }
+  // ========= Pestañas de equipos =========
+  function renderTeamTabs(){
+    const host = $('#tb-team-tabs');
+    if(!host) return;
 
-    function renderAll(){
+    // Aseguramos que haya al menos un equipo
+    const current = getCurrentTeam();
+    const teams = Array.isArray(state.teams) && state.teams.length
+      ? state.teams
+      : [current];
+
+    const currentIdx = Math.min(
+      Math.max(0, state.currentTeamIndex | 0),
+      teams.length - 1
+    );
+
+    const tabsHtml = teams.map((team, i)=>{
+      const activeClass = (i === currentIdx) ? ' active' : '';
+      const label = team.name || `Equipo ${i+1}`;
+      return `
+        <button type="button"
+                class="tb-team-tab${activeClass}"
+                data-team-index="${i}">
+          ${label}
+        </button>
+      `;
+    }).join('');
+
+    const addHtml = `
+      <button type="button"
+              class="tb-team-tab tb-team-tab-add"
+              data-team-add="1">
+        +
+      </button>
+    `;
+
+    host.innerHTML = tabsHtml + addHtml;
+
+    // Click en pestañas
+    host.querySelectorAll('[data-team-index]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const idx = parseInt(btn.dataset.teamIndex, 10);
+        if(isNaN(idx)) return;
+        switchTeam(idx);
+      });
+    });
+
+    // Botón de añadir equipo
+    const addBtn = host.querySelector('[data-team-add]');
+    if(addBtn){
+      addBtn.addEventListener('click', addTeamFromUI);
+    }
+  }
+
+  function switchTeam(newIndex){
+    if(!Array.isArray(state.teams) || !state.teams.length) return;
+    if(newIndex < 0 || newIndex >= state.teams.length) return;
+    if(newIndex === state.currentTeamIndex) return;
+
+    state.currentTeamIndex = newIndex;
+    // Garantizamos que el equipo existe y redibujamos todo
+    getCurrentTeam();
+    renderAll();
+    saveState();
+  }
+
+  function addTeamFromUI(){
+    state.teams = Array.isArray(state.teams) ? state.teams : [];
+    const name = `Equipo ${state.teams.length + 1}`;
+    const team = createNewTeam(name);
+    state.teams.push(team);
+    state.currentTeamIndex = state.teams.length - 1;
+    renderAll();
+    saveState();
+  }
+
+      function renderAll(){
+    // Aseguramos que haya un equipo y pintamos pestañas
+    getCurrentTeam();
+    renderTeamTabs();
+
     recomputeBonusCounts();
     recomputeBonusStatus();
     renderField();
