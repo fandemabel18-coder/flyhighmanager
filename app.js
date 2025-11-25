@@ -643,6 +643,18 @@ const SLOT_LAYOUTS = [
     return state.teams[idx];
   }
 
+  function createNewTeam(name){
+    const idx = Array.isArray(state.teams) ? state.teams.length + 1 : 1;
+    return {
+      id: `team_${Date.now()}_${Math.random().toString(36).slice(2,7)}`,
+      name: name || `Equipo ${idx}`,
+      layoutIdx: 0,
+      slots: Array(7).fill(null),
+      bench: [],
+      undoStack: []
+    };
+  }
+   
   // Inyectar estilos drop-valid/invalid
   function ensureTBStyles(){
     if($('#tb-drop-styles')) return;
