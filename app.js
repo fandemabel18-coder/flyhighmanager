@@ -2088,6 +2088,59 @@ if (!host._accBound) {
     });
   });
 }
+  const TEAM_EXPORT_SCHEMA = 'fhm.teambuilder.1.0.0';
+
+  function buildTeamExportPayload(teamIndex){
+    // Aseguramos que exista al menos un equipo
+    const current = getCurrentTeam();
+    const teams = Array.isArray(state.teams) && state.teams.length
+      ? state.teams
+      : [current];
+
+    let idx = (typeof teamIndex === 'number') ? teamIndex : (state.currentTeamIndex | 0);
+    if(idx < 0 || idx >= teams.length) idx = 0;
+
+    const team = teams[idx];
+    const slots = Array.isArray(team.slots) ? team.slots : [];
+    const bench = Array.isArray(team.bench) ? team.bench : [];
+
+    // Slots: solo guardamos los ocupados
+    const slotEntries = slots.map((varId, slotIndex)=>{
+      if(!varId) return null;
+      const p = state.byVar.get(varId);
+      return {
+        slotIndex,
+        varId,
+        baseId: p ? p.baseId : null,
+        posicion: p ? p.posicion : null
+      };
+    }).filter(Boolean);
+
+    // Banca: mismo concepto, con el índice como "order"
+    const benchEntries = bench.map((varId, order)=>{
+      if(!varId) return null;
+      const p = state.byVar.get(varId);
+      return {
+        order,
+        varId,
+        baseId: p ? p.baseId : null,
+        posicion: p ? p.posicion : null
+      };
+    }).filter(Boolean);
+
+    return {
+      schemaVersion: TEAM_EXPORT_SCHEMA,
+      app: 'FlyHighManager-TeamBuilder',
+      exportedAt: new Date().toISOString(),
+      teamIndex: idx,
+      team: {
+        name: team.name || `Equipo ${idx+1}`,
+        layoutIdx: (typeof team.layoutIdx === 'number') ? team.layoutIdx : 0,
+        slots: slotEntries,
+        bench: benchEntries
+      }
+    };
+  }
 
   async function exportImage(){
     toast('Exportar imagen: lo activamos en un paso extra 👍');
