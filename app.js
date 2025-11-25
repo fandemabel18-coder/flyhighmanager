@@ -1975,16 +1975,20 @@ if (!host._accBound) {
             if(idx>=0) openPicker(idx);
             return;
           }
-          const clearBtn = ev.target.closest && ev.target.closest('.tb-slot-clear');
-          if(clearBtn){
-            const idx = Number(clearBtn.dataset.slotIndex||'-1');
-            if(idx>=0 && state.slots[idx]){
-              pushUndo();
-              state.slots[idx] = null;
-              renderAll();
-              saveState();
-            }
+                const clearBtn = ev.target.closest && ev.target.closest('.tb-slot-clear');
+      if(clearBtn){
+        const idx = Number(clearBtn.dataset.slotIndex||'-1');
+        if(idx>=0){
+          const team = getCurrentTeam();
+          const slots = Array.isArray(team.slots) ? team.slots : [];
+          if(slots[idx]){
+            pushUndo();
+            team.slots[idx] = null;
+            renderAll();
+            saveState();
           }
+        }
+      }
         });
       }
 
