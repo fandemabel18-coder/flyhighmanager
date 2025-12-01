@@ -108,83 +108,83 @@
     ]
   },
   {
-    "id": "free-sample-03",
+    "id": "murdoc-guia-01",
     "type": "video",
-    "slug": "free-sample-03",
-    "title": "Build barata para libero",
+    "slug": "murdoc-guia-01",
+    "title": "¡KOMORI UR! 🔥 LLEGA EL MEJOR LIBERO! 😱 ¿TIRAR O NO?",
     "character_ids": [],
     "school": "",
-    "creator_id": "coachmabel",
+    "creator_id": "Murdoc",
     "thumbnail": "",
-    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-    "published_at": "2025-10-01",
+    "source_url": "https://www.youtube.com/watch?v=HTCT5ewy7FU",
+    "published_at": "2025-12-01",
     "featured": false,
     "tags": [
-      "tips"
+      "Komori"
     ]
   },
   {
-    "id": "free-sample-04",
+    "id": "zisko-gamer-guia-01",
     "type": "video",
-    "slug": "free-sample-04",
-    "title": "Potentials: 2+2+2 o 4+2",
+    "slug": "zisko-gamer-guia-01",
+    "title": "🚨 OJO!! 1er Cambio de Balance en JP - ¡Buffean a Kageyama UR y Nishinoya SP! 💥",
     "character_ids": [],
     "school": "",
-    "creator_id": "coachmabel",
+    "creator_id": "ZiskoGamer",
     "thumbnail": "",
-    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-    "published_at": "2025-10-01",
+    "source_url": "https://www.youtube.com/watch?v=SUivzIi4ylc&t",
+    "published_at": "2025-12-01",
     "featured": false,
     "tags": [
-      "tips"
+      "Kageyama"
     ]
   },
   {
-    "id": "free-sample-05",
+    "id": "the-spiker-guia-02",
     "type": "video",
-    "slug": "free-sample-05",
-    "title": "Cómo priorizar stats al subir",
+    "slug": "the-spiker-guia-02",
+    "title": "GUÍA KORAI HOSHIUMI UR 🕊️ | Showcase y guía de habilidades",
     "character_ids": [],
     "school": "",
-    "creator_id": "coachmabel",
+    "creator_id": "TheSpiker",
     "thumbnail": "",
-    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-    "published_at": "2025-10-01",
+    "source_url": "https://www.youtube.com/watch?v=99KdV7pWQng",
+    "published_at": "2025-12-01",
     "featured": false,
     "tags": [
-      "tips"
+      "Hoshiumi"
     ]
   },
   {
-    "id": "free-sample-06",
+    "id": "murdoc-guia-02",
     "type": "video",
-    "slug": "free-sample-06",
-    "title": "WS vs OP: ¿qué elegir primero?",
+    "slug": "murdoc-guia-02",
+    "title": "¿QUIÉN ES EL MEJOR LIBERO? 😳 NISHINOYA SP vs KOMORI UR",
     "character_ids": [],
     "school": "",
-    "creator_id": "coachmabel",
+    "creator_id": "Murdoc",
     "thumbnail": "",
-    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-    "published_at": "2025-10-01",
+    "source_url": "https://www.youtube.com/watch?v=Lysp2fuDoKk",
+    "published_at": "2025-12-01",
     "featured": false,
     "tags": [
-      "tips"
+      "Libero"
     ]
   },
   {
-    "id": "free-sample-07",
+    "id": "la-mano-de-kita-guia-02",
     "type": "video",
-    "slug": "free-sample-07",
-    "title": "Errores comunes al bloquear",
+    "slug": "la-mano-de-kita-guia-02",
+    "title": "Llegó al TOP 47 SIN GASTAR: el equipo F2P que nadie está usando",
     "character_ids": [],
     "school": "",
-    "creator_id": "coachmabel",
+    "creator_id": "LaManoDeKita",
     "thumbnail": "",
-    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-    "published_at": "2025-10-01",
+    "source_url": "https://www.youtube.com/watch?v=7u9R96mlExk&t",
+    "published_at": "2025-12-01",
     "featured": false,
     "tags": [
-      "tips"
+      "f2p"
     ]
   },
   {
