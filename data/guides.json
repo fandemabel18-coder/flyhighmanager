@@ -76,35 +76,35 @@
     ]
   },
   {
-    "id": "free-sample-01",
+    "id": "the-spiker-guia-01",
     "type": "video",
-    "slug": "free-sample-01",
-    "title": "Cómo rotar tu primera alineación (3 pasos)",
+    "slug": "the-spiker-guia-01",
+    "title": "GUÍA SACHIRO HIRUGAMI UR 🛡️ | Showcase y guía de habilidades",
     "character_ids": [],
     "school": "",
-    "creator_id": "coachmabel",
+    "creator_id": "TheSpiker",
     "thumbnail": "",
-    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-    "published_at": "2025-10-01",
+    "source_url": "https://www.youtube.com/watch?v=q4f2CuyEHiY",
+    "published_at": "2025-12-01",
     "featured": false,
     "tags": [
-      "tips"
+      "Hirugami"
     ]
   },
   {
-    "id": "free-sample-02",
+    "id": "la-mano-de-kita-guia-01",
     "type": "video",
-    "slug": "free-sample-02",
-    "title": "Ruta F2P para tu primer setter",
+    "slug": "la-mano-de-kita-guia-01",
+    "title": "TODOS los SP con FECHA – empieza a PLANEAR tu equipo del futuro",
     "character_ids": [],
     "school": "",
-    "creator_id": "coachmabel",
+    "creator_id": "LaManoDeKita",
     "thumbnail": "",
-    "source_url": "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-    "published_at": "2025-10-01",
+    "source_url": "https://www.youtube.com/watch?v=SXhjT4ay-T4",
+    "published_at": "2025-12-01",
     "featured": false,
     "tags": [
-      "tips"
+      "SP"
     ]
   },
   {
