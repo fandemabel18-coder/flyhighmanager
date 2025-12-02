@@ -158,13 +158,13 @@
     "rarity": "SSR",
     "updated": "2025-10-02 00:00:00",
     "statsMax": {
-      "atqRapido": 1,
-      "atqPoderoso": 1,
-      "colocacion": 1,
-      "saque": 1,
-      "recepcion": 1,
-      "bloqueo": 1,
-      "recuperacion": 1
+      "atqRapido": 166,
+      "atqPoderoso": 1206,
+      "colocacion": 1330,
+      "saque": 1206,
+      "recepcion": 1477,
+      "bloqueo": 1172,
+      "recuperacion": 1410
     },
     "tags": [
       "inarizaki",
@@ -356,13 +356,13 @@
     "rarity": "SSR",
     "updated": "2025-11-01 00:00:00",
     "statsMax": {
-      "atqRapido": 1,
-      "atqPoderoso": 1583,
-      "colocacion": 1206,
-      "saque": 1480,
-      "recepcion": 1352,
-      "bloqueo": 1284,
-      "recuperacion": 1238
+      "atqRapido": 205,
+      "atqPoderoso": 1483,
+      "colocacion": 1196,
+      "saque": 1411,
+      "recepcion": 1332,
+      "bloqueo": 1264,
+      "recuperacion": 1198
     },
     "tags": [
       "Inarizaki"
@@ -423,13 +423,13 @@
     "rarity": "SSR",
     "updated": "2025-10-16 00:00:00",
     "statsMax": {
-      "atqRapido": 285,
-      "atqPoderoso": 1387,
-      "colocacion": 1118,
-      "saque": 1322,
-      "recepcion": 1254,
-      "bloqueo": 1190,
-      "recuperacion": 1122
+      "atqRapido": 204,
+      "atqPoderoso": 1478,
+      "colocacion": 1191,
+      "saque": 1410,
+      "recepcion": 1337,
+      "bloqueo": 1269,
+      "recuperacion": 1196
     },
     "tags": [
       "Ataque Poderoso",
@@ -3633,7 +3633,10 @@
       "recuperacion": 1753
     },
     "tags": [
-      "Karasuno"
+      "bloqueo",
+      "ataque-rápido",
+      "karasuno",
+      "mb"
     ],
     "skills": [
       {
@@ -4069,13 +4072,13 @@
     "rarity": "SSR",
     "updated": "2025-10-02 00:00:00",
     "statsMax": {
-      "atqRapido": 232,
-      "atqPoderoso": 1131,
-      "colocacion": 1248,
-      "saque": 1131,
-      "recepcion": 1385,
-      "bloqueo": 1098,
-      "recuperacion": 1322
+      "atqRapido": 166,
+      "atqPoderoso": 1206,
+      "colocacion": 1331,
+      "saque": 1206,
+      "recepcion": 1477,
+      "bloqueo": 1172,
+      "recuperacion": 1410
     },
     "tags": [
       "shiratorizawa",
@@ -4128,5 +4131,223 @@
         "effect": "Aumenta el atributo Recepción del portador en un 10% y aumenta los reflejos del portador en un 6% al usar la definitiva de recepción."
       }
     ]
+  },
+  {
+    "id": "atsumu-sp",
+    "name": "Atsumu Miya (Vacaciones de Invierno)",
+    "avatar": "assets/characters/atsumu_sp.png",
+    "school": "Inarizaki",
+    "role": "Setter",
+    "rarity": "SP",
+    "updated": "2025-12-02 00:00:00",
+    "statsMax": {
+      "atqRapido": 1744,
+      "atqPoderoso": 241,
+      "colocacion": 1951,
+      "saque": 1887,
+      "recepcion": 1578,
+      "bloqueo": 1755,
+      "recuperacion": 1485
+    },
+    "tags": [
+      "SP",
+      "Setter",
+      "Inarizaki",
+      "Saque",
+      "Buff",
+      "Potenciador",
+      "Tecnica Ofensiva"
+    ],
+    "skills": [
+      {
+        "name": "Juego versátil",
+        "icon": "",
+        "effect": "El atributo [Colocación] aumenta en +10% y el atributo [Servicio] aumenta en +10% para Atsumu Miya (Vacaciones de Invierno). Si Atsumu Miya (Vacaciones de Invierno) está en la cancha, al inicio del rally los aliados cuya [Concentración] sea menor a 3% obtienen el efecto [Organización] con lo cual obtienen un aumento de [Técnica Ofensiva] +10% y [Técnica Defensiva] +10% durante 1 rally."
+      },
+      {
+        "name": "Servicio abrumador",
+        "icon": "",
+        "effect": "Atsumu Miya (Vacaciones de Invierno) alterna entre su Saque Flotante y su Saque Potente: Saque Flotante: Ejecuta un Saque con una potencia de su estadistica de [Saque] × 140% y los rivales no pueden activar habilidades especiales de Remate (potente/rápido). Dura 2 cruces de Red. Saque Potente: ejecuta un Saque con uuna potencia de su estadistica de [Saque] × 160% y los rivales no pueden activar habilidades especiales de Recepción. Dura 2 cruces de Red."
+      },
+      {
+        "name": "Colocación por intuición",
+        "icon": "",
+        "effect": "Al comenzar el rally, la [Colocación] de Atsumu Miya (Vacaciones de Invierno) aumenta en +20% hasta el siguiente toque de balón. Al activar <Set-up inquebrantable>, los aliados que tengan el efecto [Organización] obtienen [Técnica Ofensiva] +20% y [Técnica Defensiva] +15% durante 1 rally. Al activar <Set-up inquebrantable>, si el compañero que va a rematar (Ataque Poderoso o Ataque Rápido) tiene [Técnica Ofensiva] igual o mayor a 60%, ese remate será siempre una “buena jugada”."
+      },
+      {
+        "name": "Habilidad especial: Set-up inquebrantable (Colocación)",
+        "icon": "",
+        "effect": "Atsumu Miya (Vacaciones de Invierno) realiza una colocación con una potencia de 260% de su atributo [Colocación]. Si la [Técnica Ofensiva] de Atsumu Miya (Vacaciones de Invierno) es igual o mayor a 40%, su próxima colocación será siempre una “buena jugada”."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Pase preciso",
+        "icon": "assets/potentials/pase_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [],
+    "links": [],
+    "builds": [],
+    "teams": []
+  },
+  {
+    "id": "tendo-sp",
+    "name": "Tendō Satori (Vacaciones de Invierno)",
+    "avatar": "assets/characters/tendo_sp.png",
+    "school": "Shiratorizawa",
+    "role": "Middle Blocker",
+    "rarity": "SP",
+    "updated": "2025-12-02 00:00:00",
+    "statsMax": {
+      "atqRapido": 1881,
+      "atqPoderoso": 260,
+      "colocacion": 1748,
+      "saque": 1754,
+      "recepcion": 1577,
+      "bloqueo": 1951,
+      "recuperacion": 1489
+    },
+    "tags": [
+      "Middle Blocker",
+      "Ataque Rápido",
+      "Shiratorizawa",
+      "Potenciador",
+      "Bloqueo",
+      "SP"
+    ],
+    "skills": [
+      {
+        "name": "Bloqueo por intuición (Pasiva)",
+        "icon": "",
+        "effect": "El atributo [Bloqueo] de Tendō Satori (Vacaciones de Invierno) aumenta en un 12%. Aumenta la probabiliadd de obtener una buena jugada cuando Recibe, Bloquea o Recupera en base a su atributo de [Concentración]. Al iniciar el partido, la [Reacción] de Tendō se reduce a 0% y, por cada 1% reducido, su [Mental] +2%."
+      },
+      {
+        "name": "Ataque agudo (Activa)",
+        "icon": "",
+        "effect": "Tendō Satori (Vacaciones de Invierno) ejecuta un Ataque Rápido con una potencia de x 140% de su atributo [Ataque Rápido]. Si la potencia de ese ataque supera por 200 su atributo de [Ataque Rápido], aumenta en un 20% extra  de su atributo [Ataque Rápido]. Este efecto dura hasta que el balón cruce la red 8 veces."
+      },
+      {
+        "name": "Fuera de lo convencional (Pasiva)",
+        "icon": "",
+        "effect": "Al iniciar el partido, la [Concentración] de Tendō Satori (Vacaciones de Invierno) aumenta en un +50%. Cuando Tendō hace buena jugada, su [Concentración] −10% y su [Bloqueo] +3%. Máx. 6 acumulaciones. Cuando Tendō hace buena jugada, la potencia de la jugada sube +65% del parámetro correspondiente; si no es buena jugada, la potencia baja −85% del parámetro correspondiente. Al activar una Habilidad especial un aliado, ese aliado gana 1 acumulación de [Sinergia]. Cuando [Sinergia] llega a 2 acumulaciones, se reinicia y ese aliado obtiene [Técnica Ofensiva] +15% y [Técnica Defensiva] +15% durante 2 rallies; además, la Moral del equipo +10."
+      },
+      {
+        "name": "Un muro que se alza (Habilidad especial / Activa)",
+        "icon": "",
+        "effect": "Tendō (Invierno) realiza un Bloqueo con potencia [Bloqueo] × 240%. Cada vez que activa esta habilidad especial, la potencia de la misma aumenta [Bloqueo] × 20%, y el límite de enfriamiento aumenta en 2 cruces de red."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo Preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Movimiento de Bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [],
+    "links": [],
+    "builds": [],
+    "teams": []
+  },
+  {
+    "id": "ginjima-sp",
+    "name": "Hitoshi Ginjima (Limpieza)",
+    "avatar": "assets/characters/ginjima_sp.png",
+    "school": "Inarizaki",
+    "role": "Wing Spiker",
+    "rarity": "SP",
+    "updated": "2025-12-02 00:00:00",
+    "statsMax": {
+      "atqRapido": 271,
+      "atqPoderoso": 1964,
+      "colocacion": 1573,
+      "saque": 1762,
+      "recepcion": 1855,
+      "bloqueo": 1667,
+      "recuperacion": 1564
+    },
+    "tags": [
+      "Wing Spiker",
+      "Ataque Poderoso",
+      "Inarizaki",
+      "Recepción",
+      "Potenciador"
+    ],
+    "skills": [
+      {
+        "name": "Remate feroz (Pasiva)",
+        "icon": "",
+        "effect": "El [Ataque Poderoso] de Ginjima (Limpieza) aumenta en 10%. Si Ginjima está en cancha y el resultado de la recepción rival no es MALA, la potencia de su proximo remate de aumenta [Ataque Poderoso] × 10%. Máx. 3 acumulaciones. Este efecto dura 1 set."
+      },
+      {
+        "name": "Defensa poderosa (Pasiva)",
+        "icon": "",
+        "effect": "Ginjima (Limpieza) realiza una recepción con potencia del 140% de su atributo [Recepción]. El próximo remate de Ginjima (Limpieza) aumenta su potencia en x 40% de su atributo de [Ataque Poderoso]."
+      },
+      {
+        "name": "Ataque infinito (Pasiva)",
+        "icon": "",
+        "effect": "Al rematar Ginjima (Limpieza), la potencia del remate de esa jugada aumenta en un 100% de su atributo [Ataque Poderoso] ahsta un máximo de 150%. Hasta 2 veces por set, al rematar: [Concentración] +100% y [Fuerza] +30%. Este efecto dura hasta que el balón cruce la red 2 veces. Si el remate de Ginjima (Limpieza) coincide con que tu equipo alcanza un cierto conteo de “remates/ultimate de remate” en ese set, el [Ataque Poderoso] de Ginjima aumenta en +100% (dura hasta que el balón cruce la red 2 veces)."
+      },
+      {
+        "name": "Remate que cambia el ambiente (Habilidad especial / Activa)",
+        "icon": "",
+        "effect": "Ginjima (Limpieza) realiza un remate con una potencia de x 260% de su atributo de [Ataque Poderoso]. Los rivales que bloqueen y/o reciban pierden 8 de Resistencia. Si el atributo de tu equipo es favorable con el del rival, la [Técnica Ofensiva] de Ginjima (Limpieza) aumenta en +20%."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Incremento de poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Poder vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Recepción suprema",
+        "icon": "assets/potentials/recepcion_suprema.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [],
+    "links": [],
+    "builds": [],
+    "teams": []
   }
 ]
