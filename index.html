@@ -696,6 +696,40 @@ Basada en la versión Global de Haikyu FlyHigh. ¡Saca cuentas y asegura tu pity
   <!-- Social SDK + Juego FlyQuiz -->
   <script type="module" src="/src/modules/social/social-sdk.js"></script>
   <script type="module" src="/games/flyquiz15.js"></script>
+  <script>
+    (function () {
+      const STORAGE_KEY = 'fhm_mini_video_dismissed_v1';
 
+      document.addEventListener('DOMContentLoaded', function () {
+        const mini = document.querySelector('[data-mini-player]');
+        if (!mini) return;
+
+        // Si el usuario ya lo cerró antes, no lo mostramos
+        try {
+          if (localStorage.getItem(STORAGE_KEY) === '1') {
+            mini.remove();
+            return;
+          }
+        } catch (e) {
+          // Si localStorage falla, simplemente seguimos sin romper nada
+        }
+
+        const closeBtn = mini.querySelector('[data-mini-player-close]');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', function () {
+            mini.remove();
+            try {
+              localStorage.setItem(STORAGE_KEY, '1');
+            } catch (e) {}
+          });
+        }
+
+        // Pequeño retraso para que no aparezca en la cara de inmediato
+        setTimeout(function () {
+          mini.classList.add('is-visible');
+        }, 4000); // 4 segundos
+      });
+    })();
+  </script>
 </body>
 </html>
