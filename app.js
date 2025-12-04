@@ -971,30 +971,45 @@ function saveAccordion(){
       inner.className = 'tb-slot-inner';
       host.appendChild(inner);
 
-      const varId = team.slots[logicalIdx];
-      if(varId){
+            const varId = team.slots[logicalIdx];
+
+      if (varId) {
         const card = makeCard(varId);
         inner.appendChild(card);
         host.classList.add('filled');
 
-        const p = state.byVar.get(varId);
-        const meta = document.createElement('div');
-        meta.className = 'tb-slot-meta';
-        meta.innerHTML = `
-          <div class="tb-slot-name">${p ? (p.nombreES || '') : ''}</div>
-          <div class="tb-slot-role">${p ? `${p.posicion || ''} · ${p.rareza || ''}` : ''}</div>
-          <div class="tb-slot-actions">
-            <button type="button" class="tb-slot-choose" data-slot-index="${logicalIdx}">Cambiar personaje</button>
-            <button type="button" class="tb-slot-clear" data-slot-index="${logicalIdx}">Quitar</button>
-          </div>
+        // NUEVO: controles minimalistas superpuestos (solo iconos)
+        const controls = document.createElement('div');
+        controls.className = 'tb-slot-controls';
+        controls.innerHTML = `
+          <button
+            type="button"
+            class="tb-slot-icon tb-slot-clear tb-slot-icon-remove"
+            data-slot-index="${logicalIdx}"
+            aria-label="Quitar jugador"
+          >
+            ×
+          </button>
+          <button
+            type="button"
+            class="tb-slot-icon tb-slot-choose tb-slot-icon-swap"
+            data-slot-index="${logicalIdx}"
+            aria-label="Cambiar jugador"
+          >
+            ⟳
+          </button>
         `;
-        inner.appendChild(meta);
+        inner.appendChild(controls);
       } else {
+        // NUEVO: slot vacío = toda la ficha es el botón de selección
         inner.innerHTML = `
-          <div class="tb-slot-empty">
-            <p class="banner-meta" style="margin-bottom:6px">Sin jugador</p>
-            <button type="button" class="tb-slot-choose" data-slot-index="${logicalIdx}">Elegir personaje</button>
-          </div>
+          <button
+            type="button"
+            class="tb-slot-choose tb-slot-empty-btn"
+            data-slot-index="${logicalIdx}"
+          >
+            <span class="tb-slot-empty-label">Seleccionar jugador</span>
+          </button>
         `;
       }
     });
@@ -1189,22 +1204,31 @@ function saveAccordion(){
     });
   }
   function makeCard(varId){
-    const p = state.byVar.get(varId);
-    const el = document.createElement('div');
-    el.className = 'tb-card-item';
-    el.draggable = true;
-    el.dataset.varid = p.varianteId;
-    el.dataset.pos = p.posicion;
-    el.title = `${p.nombreES} [${p.posicion}] (${p.rareza})`;
-    el.innerHTML = `
+  const p = state.byVar.get(varId);
+  const el = document.createElement('div');
+  el.className = 'tb-card-item';
+
+  // === NUEVO: info de rareza para estilos ===
+  const rarity = (p.rareza || '').toUpperCase();
+  el.dataset.rareza = rarity;
+  if (rarity) {
+    el.classList.add('tb-rarity-' + rarity.toLowerCase()); // sp, ur, ssr, sr, r, n
+  }
+  // ==========================================
+
+  el.draggable = true;
+  el.dataset.varid = p.varianteId;
+  el.dataset.pos = p.posicion;
+  el.title = `${p.nombreES} [${p.posicion}] (${p.rareza})`;
+  el.innerHTML = `
       <img loading="lazy" src="${p.avatarPath}" alt="${p.nombreES}"
            onerror="this.onerror=null;this.src='assets/placeholder.png'">
       <span class="tb-pos-tag">${p.posicion}</span>
       <span class="tb-badge">${p.rareza}</span>
     `;
-    el.addEventListener('click', () => quickPlace(p));
-    return el;
-  }
+  el.addEventListener('click', () => quickPlace(p));
+  return el;
+}
 
    function quickPlace(p){
     const team = getCurrentTeam();

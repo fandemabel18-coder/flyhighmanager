@@ -526,7 +526,55 @@ input, select {
 .tb-bench-wrap{background:#0f2a3a;border:1px solid #1f3c52;border-radius:12px;padding:10px}
 .tb-bench-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .tb-bench{display:flex;gap:8px;flex-wrap:wrap;min-height:100px}
-.tb-card-item{width:86px;height:124px;border-radius:10px;border:1px solid #2c4e69;background:#112b3b;position:relative;overflow:hidden;cursor:grab}
+.tb-card-item{
+  width:86px;
+  height:124px;
+  border-radius:10px;
+  border:2px solid #2c4e69;          /* base, se sobrescribe por rareza */
+  background:#112b3b;
+  position:relative;
+  overflow:hidden;
+  cursor:grab;
+  box-shadow:0 4px 12px rgba(0,0,0,.55);
+}
+
+/* Rarezas: borde + glow exterior */
+/* SP = Celeste */
+.tb-card-item.tb-rarity-sp{
+  border-color:#38bdf8;
+  box-shadow:0 0 0 1px rgba(56,189,248,.8),
+             0 0 18px rgba(56,189,248,.55);
+}
+/* UR = Rojo */
+.tb-card-item.tb-rarity-ur{
+  border-color:#ef4444;
+  box-shadow:0 0 0 1px rgba(239,68,68,.85),
+             0 0 18px rgba(239,68,68,.65);
+}
+/* SSR = Dorado */
+.tb-card-item.tb-rarity-ssr{
+  border-color:#facc15;
+  box-shadow:0 0 0 1px rgba(250,204,21,.9),
+             0 0 20px rgba(250,204,21,.75);
+}
+/* SR = Morado */
+.tb-card-item.tb-rarity-sr{
+  border-color:#a855f7;
+  box-shadow:0 0 0 1px rgba(168,85,247,.85),
+             0 0 18px rgba(168,85,247,.6);
+}
+/* R = Azul */
+.tb-card-item.tb-rarity-r{
+  border-color:#3b82f6;
+  box-shadow:0 0 0 1px rgba(59,130,246,.85),
+             0 0 16px rgba(59,130,246,.6);
+}
+/* N = Verde */
+.tb-card-item.tb-rarity-n{
+  border-color:#22c55e;
+  box-shadow:0 0 0 1px rgba(34,197,94,.8),
+             0 0 16px rgba(34,197,94,.6);
+}
 .tb-card-item img{width:100%;height:100%;object-fit:cover;display:block}
 .tb-badge{position:absolute;inset:auto 6px 6px auto;padding:2px 6px;border-radius:8px;background:#1f3c52;border:1px solid #2c4e69;color:#9bd7f7;font-size:.72rem}
 .tb-pos-tag{position:absolute;top:6px;left:6px;background:#0008;color:#fff;padding:2px 6px;border-radius:8px;font-size:.72rem}
@@ -1211,6 +1259,7 @@ input, select {
 
 /* === Fase 2: selector por casilla y modal de personajes === */
 .tb-slot-inner{
+  position:relative;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -1219,6 +1268,75 @@ input, select {
   padding:8px;
   text-align:center;
 }
+/* Controles superpuestos en cada slot ocupado */
+.tb-slot-controls{
+  position:absolute;
+  top:4px;
+  right:4px;
+  display:flex;
+  gap:4px;
+  pointer-events:none;
+  z-index:3;
+}
+
+.tb-slot-icon{
+  pointer-events:auto;
+  width:26px;
+  height:26px;
+  border-radius:999px;
+  border:1px solid #1f2937;
+  background:#020617;
+  color:#e5e7eb;
+  font-size:14px;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 0 0 1px rgba(15,23,42,.6), 0 4px 10px rgba(0,0,0,.6);
+}
+
+.tb-slot-icon:hover{
+  filter:brightness(1.1);
+  transform:translateY(-1px);
+}
+
+.tb-slot-icon-remove{
+  border-color:#7f1d1d;
+  background:#450a0a;
+  color:#fecaca;
+}
+
+.tb-slot-icon-swap{
+  border-color:#0f766e;
+  background:#022c22;
+  color:#a5f3fc;
+}
+
+.tb-slot-empty-btn{
+  width:100%;
+  height:100%;
+  border-radius:10px;
+  border:2px dashed #f6d4b0;
+  background:rgba(0,0,0,.12);
+  color:#f9fafb;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-size:.8rem;
+  gap:4px;
+}
+
+.tb-slot-empty-btn:hover{
+  background:rgba(0,0,0,.2);
+  border-style:solid;
+}
+
+.tb-slot-empty-label{
+  opacity:.9;
+}
+
 .tb-slot-empty .banner-meta{
   font-size:.8rem;
 }
