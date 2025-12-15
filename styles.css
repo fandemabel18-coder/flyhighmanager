@@ -523,9 +523,80 @@ input, select {
 .tb-slot{border:2px dashed #f6d4b0;background:linear-gradient(#0000,#0002);border-radius:14px;display:flex;align-items:center;justify-content:center;position:relative}
 .tb-slot .slot-label{position:absolute;top:6px;left:8px;background:#0007;color:#fff;font-size:.8rem;padding:2px 6px;border-radius:8px}
 .tb-slot.filled{border-style:solid;border-color:#f0c090}
-.tb-bench-wrap{background:#0f2a3a;border:1px solid #1f3c52;border-radius:12px;padding:10px}
-.tb-bench-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.tb-bench{display:flex;gap:8px;flex-wrap:wrap;min-height:100px}
+.tb-bench-wrap{
+  background:#0f2a3a;
+  border:1px solid #1f3c52;
+  border-radius:12px;
+  padding:10px;
+}
+
+.tb-bench-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+}
+
+.tb-bench{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:flex-start;
+  align-items:flex-start;
+}
+
+/* Cada slot de banca: mucho más pequeño que los titulares */
+.tb-bench-slot{
+  position:relative;
+  flex:0 0 calc(33.333% - 8px);   /* 3 por fila en móviles */
+  max-width:90px;
+  aspect-ratio:3/4;
+  border-radius:10px;
+  border:2px dashed #1f3c52;
+  background:radial-gradient(circle at top,#0b1724,#020617);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* En pantallas grandes podemos fijar un ancho algo más cómodo */
+@media (min-width: 900px){
+  .tb-bench-slot{
+    flex:0 0 72px;
+  }
+}
+
+.tb-bench-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+}
+
+/* La carta dentro de la banca se adapta al tamaño reducido */
+.tb-bench-slot .tb-card-item{
+  width:100%;
+  height:100%;
+}
+
+/* Botón de casilla vacía de banca */
+.tb-bench-empty-btn{
+  width:100%;
+  height:100%;
+  border-radius:10px;
+  border:2px dashed #334155;
+  background:rgba(15,23,42,.6);
+  color:#e5e7eb;
+  font-size:.78rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px;
+}
+
+.tb-bench-empty-btn:hover{
+  background:rgba(15,23,42,.9);
+}
 .tb-card-item{
   width:86px;
   height:124px;
