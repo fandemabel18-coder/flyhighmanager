@@ -1026,21 +1026,53 @@ function saveAccordion(){
   bindDnD(field);
 }
 
-    function renderBench(){
-  const el = $('#tb-bench'); 
+ function renderBench(){
+  const el = $('#tb-bench');
   if (!el) return;
   el.innerHTML = '';
 
-  const team  = getCurrentTeam();
-  const bench = Array.isArray(team.bench) ? team.bench : [];
+  const team      = getCurrentTeam();
+  const benchRaw  = Array.isArray(team.bench) ? team.bench : [];
+  const MAX_BENCH = 6;
 
-  const counter = $('#tb-bench-count');
-  if (counter) counter.textContent = `${bench.length}/6`;
+  // Solo contamos casillas realmente ocupadas
+  const usedCount = benchRaw.filter(Boolean).length;
+  const counter   = $('#tb-bench-count');
+  if (counter) counter.textContent = `${usedCount}/${MAX_BENCH}`;
 
-  bench.forEach(varId => {
-    el.appendChild(makeCard(varId, { enableQuickPlace: true }));
-  });
+  // Pintamos SIEMPRE 6 casillas de banca
+  for (let i = 0; i < MAX_BENCH; i++){
+    const varId = benchRaw[i] || null;
 
+    const slotEl = document.createElement('div');
+    slotEl.className = 'tb-bench-slot droptarget';
+    slotEl.dataset.pos = 'BENCH';
+    slotEl.dataset.benchIndex = String(i);
+
+    const inner = document.createElement('div');
+    inner.className = 'tb-bench-inner';
+    slotEl.appendChild(inner);
+
+    if (varId){
+      // Casilla ocupada → mostramos la carta normal
+      inner.appendChild(
+        makeCard(varId, { enableQuickPlace: true })
+      );
+    } else {
+      // Casilla vacía → “hueco” clicable (por ahora sólo visual;
+      // la lógica de click la afinamos en fases siguientes si hace falta)
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tb-bench-empty-btn';
+      btn.dataset.benchIndex = String(i);
+      btn.innerHTML = `<span class="tb-slot-empty-label">Vacío</span>`;
+      inner.appendChild(btn);
+    }
+
+    el.appendChild(slotEl);
+  }
+
+  // Re-enganchar drag & drop para las cartas de la banca
   bindDnD(el);
 }
 
