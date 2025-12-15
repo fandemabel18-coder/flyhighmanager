@@ -943,12 +943,12 @@ function saveAccordion(){
 
 
     function renderField(){
-  const field = $('#tb-field'); 
+  const field = $('#tb-field');
   if (!field) return;
   field.innerHTML = '';
 
   const team   = getCurrentTeam();
-  const layout = SLOT_LAYOUTS[team.layoutIdx];
+  const layout = SLOT_LAYOUTS[team.layoutIdx] || SLOT_LAYOUTS[0];
 
   // Crear grilla básica 3x3
   for (let i = 0; i < 9; i++) {
@@ -959,7 +959,8 @@ function saveAccordion(){
   }
 
   layout.forEach((conf, logicalIdx) => {
-    const host = field.querySelector(`.tb-slot[data-grid="${conf.grid}"]`);
+    // OJO: en tus layouts la propiedad es "idx", no "grid"
+    const host = field.querySelector(`.tb-slot[data-grid="${conf.idx}"]`);
     if (!host) return;
 
     host.classList.add('droptarget');
@@ -977,7 +978,7 @@ function saveAccordion(){
     inner.className = 'tb-slot-inner';
     host.appendChild(inner);
 
-    const varId = team.slots[logicalIdx];
+    const varId = getCurrentTeam().slots[logicalIdx];
 
     if (varId) {
       // SLOT OCUPADO → solo tarjeta + iconos superpuestos
@@ -1044,52 +1045,74 @@ function saveAccordion(){
 }
 
   function renderList(){
-    const root = $('#tb-list'); if(!root) return;
-    root.innerHTML = '';
+  const root = $('#tb-list');
+  if (!root) return;
+  root.innerHTML = '';
 
-    const q = normalizeStr($('#tb-search').value||'');
-    const esc = $('#tb-filter-escuela').value;
-    const rar = $('#tb-filter-rareza').value;
+  const q       = normalizeStr($('#tb-search')?.value || '');
+  const escSel  = $('#tb-filter-escuela');
+  const rarSel  = $('#tb-filter-rareza');
+  const esc     = escSel ? escSel.value : '';
+  const rar     = rarSel ? rarSel.value : '';
 
-    const filtered = state.characters.filter(p => {
-      if(esc && p.escuelaId!==esc) return false;
-      if(rar && p.rareza!==rar) return false;
-      if(q){
-        const items = [p.nombreES, p.nombreEN, p.nombreJP, p.baseId, ...(p.alias||[])].filter(Boolean);
-        const hit = items.some(txt => normalizeStr(txt).includes(q));
-        if(!hit) return false;
-      }
-      return true;
-    });
-
-    const sections = [["OP","Opuesto"],["WS","Wing Spiker"],["MB","Middle Blocker"],["S","Setter"],["L","Líbero"]];
-    sections.forEach(([code,label])=>{
-      const sec = document.createElement('div');
-      sec.className = 'section tb-card';
-      sec.innerHTML = `<h4>${label}</h4><div class="tb-grid"></div>`;
-      const grid = sec.querySelector('.tb-grid');
-
-      filtered
-        .filter(p=>p.posicion===code)
-        .sort((a,b)=> (RAREZA_ORDER[b.rareza]-RAREZA_ORDER[a.rareza]) || a.nombreES.localeCompare(b.nombreES))
-        .forEach(p => grid.appendChild(
-    makeCard(p.varianteId, { enableQuickPlace: true })
-  ));
-
-    const selEs = $('#tb-filter-escuela');
-    if(selEs && selEs.childElementCount<=1){
-      const set = new Set(state.characters.map(p=>p.escuelaId));
-      Array.from(set).sort().forEach(id=>{
-        const opt = document.createElement('option');
-        opt.value = id; opt.textContent = fmtTitle(id);
-        selEs.appendChild(opt);
-      });
+  const filtered = state.characters.filter(p => {
+    if (esc && p.escuelaId !== esc) return false;
+    if (rar && p.rareza !== rar) return false;
+    if (q) {
+      const items = [p.nombreES, p.nombreEN, p.nombreJP, p.baseId, ...(p.alias || [])].filter(Boolean);
+      const hit = items.some(txt => normalizeStr(txt).includes(q));
+      if (!hit) return false;
     }
+    return true;
+  });
 
-    // Habilitar DnD desde la lista
-    bindDnD(root);
+  const sections = [
+    ['OP','Opuesto'],
+    ['WS','Wing Spiker'],
+    ['MB','Middle Blocker'],
+    ['S','Setter'],
+    ['L','Líbero']
+  ];
+
+  sections.forEach(([code, label]) => {
+    const sec = document.createElement('div');
+    sec.className = 'section tb-card';
+    sec.innerHTML = `<h4>${label}</h4><div class="tb-grid"></div>`;
+    const grid = sec.querySelector('.tb-grid');
+
+    filtered
+      .filter(p => p.posicion === code)
+      .sort((a, b) =>
+        (RAREZA_ORDER[b.rareza] - RAREZA_ORDER[a.rareza]) ||
+        a.nombreES.localeCompare(b.nombreES)
+      )
+      .forEach(p => {
+        grid.appendChild(
+          makeCard(p.varianteId, { enableQuickPlace: true })
+        );
+      });
+
+    // Sólo añadimos la sección si tiene al menos una carta
+    if (grid.children.length > 0) {
+      root.appendChild(sec);
+    }
+  });
+
+  // Rellenar combo de escuelas si aún no está poblado
+  const selEs = $('#tb-filter-escuela');
+  if (selEs && selEs.childElementCount <= 1) {
+    const set = new Set(state.characters.map(p => p.escuelaId));
+    Array.from(set).sort().forEach(id => {
+      const opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = fmtTitle(id);
+      selEs.appendChild(opt);
+    });
   }
 
+  // Habilitar DnD desde la lista
+  bindDnD(root);
+}
 
   // === Fase 2: selector por casilla ===
   let pickerSlotIndex = null;
