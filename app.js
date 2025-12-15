@@ -943,98 +943,105 @@ function saveAccordion(){
 
 
     function renderField(){
-    const field = $('#tb-field'); if(!field) return;
-    field.innerHTML = '';
+  const field = $('#tb-field'); 
+  if (!field) return;
+  field.innerHTML = '';
 
-    const team = getCurrentTeam();
-    const layout = SLOT_LAYOUTS[team.layoutIdx];
+  const team   = getCurrentTeam();
+  const layout = SLOT_LAYOUTS[team.layoutIdx];
 
-    // Crear grilla básica 3x3
-    for(let i=0;i<9;i++){
-      const slotEl = document.createElement('div');
-      slotEl.className = 'tb-slot';
-      slotEl.dataset.grid = String(i);
-      field.appendChild(slotEl);
-    }
-
-    layout.forEach((conf, logicalIdx) => {
-      const host = field.children[conf.idx];
-      host.classList.add('droptarget');
-      host.dataset.slotIndex = String(logicalIdx);
-      host.dataset.pos = conf.pos;
-      const lab = document.createElement('span');
-      lab.className = 'slot-label';
-      lab.textContent = conf.pos;
-      host.appendChild(lab);
-
-      const inner = document.createElement('div');
-      inner.className = 'tb-slot-inner';
-      host.appendChild(inner);
-
-            const varId = team.slots[logicalIdx];
-
-      if (varId) {
-        const card = makeCard(varId);
-        inner.appendChild(card);
-        host.classList.add('filled');
-
-        // NUEVO: controles minimalistas superpuestos (solo iconos)
-        const controls = document.createElement('div');
-        controls.className = 'tb-slot-controls';
-        controls.innerHTML = `
-          <button
-            type="button"
-            class="tb-slot-icon tb-slot-clear tb-slot-icon-remove"
-            data-slot-index="${logicalIdx}"
-            aria-label="Quitar jugador"
-          >
-            ×
-          </button>
-          <button
-            type="button"
-            class="tb-slot-icon tb-slot-choose tb-slot-icon-swap"
-            data-slot-index="${logicalIdx}"
-            aria-label="Cambiar jugador"
-          >
-            ⟳
-          </button>
-        `;
-        inner.appendChild(controls);
-      } else {
-        // NUEVO: slot vacío = toda la ficha es el botón de selección
-        inner.innerHTML = `
-          <button
-            type="button"
-            class="tb-slot-choose tb-slot-empty-btn"
-            data-slot-index="${logicalIdx}"
-          >
-            <span class="tb-slot-empty-label">Seleccionar jugador</span>
-          </button>
-        `;
-      }
-    });
-
-    // Ocultar celdas que no pertenecen al layout activo
-    $$('.tb-slot', field).forEach(cell=>{
-      if(!cell.classList.contains('droptarget')) cell.style.display = 'none';
-      else cell.style.display = '';
-    });
-
-    bindDnD(field);
+  // Crear grilla básica 3x3
+  for (let i = 0; i < 9; i++) {
+    const slotEl = document.createElement('div');
+    slotEl.className = 'tb-slot';
+    slotEl.dataset.grid = String(i);
+    field.appendChild(slotEl);
   }
+
+  layout.forEach((conf, logicalIdx) => {
+    const host = field.querySelector(`.tb-slot[data-grid="${conf.grid}"]`);
+    if (!host) return;
+
+    host.classList.add('droptarget');
+    host.dataset.pos = conf.pos;
+    host.dataset.slotIndex = String(logicalIdx);
+
+    // Etiqueta pequeña de posición (arriba a la izquierda)
+    const lab = document.createElement('span');
+    lab.className = 'slot-label';
+    lab.textContent = conf.pos;
+    host.appendChild(lab);
+
+    // Contenedor interior del slot
+    const inner = document.createElement('div');
+    inner.className = 'tb-slot-inner';
+    host.appendChild(inner);
+
+    const varId = team.slots[logicalIdx];
+
+    if (varId) {
+      // SLOT OCUPADO → solo tarjeta + iconos superpuestos
+      host.classList.add('filled');
+
+      const card = makeCard(varId); // sin quickPlace en la cancha
+      inner.appendChild(card);
+
+      // Controles superpuestos (🔄 y ✕)
+      const controls = document.createElement('div');
+      controls.className = 'tb-slot-controls';
+      controls.innerHTML = `
+        <button type="button"
+          class="tb-slot-icon tb-slot-choose tb-slot-change"
+          data-slot-index="${logicalIdx}"
+          aria-label="Cambiar personaje">🔄</button>
+        <button type="button"
+          class="tb-slot-icon tb-slot-clear"
+          data-slot-index="${logicalIdx}"
+          aria-label="Quitar personaje">×</button>
+      `;
+      inner.appendChild(controls);
+
+    } else {
+      // SLOT VACÍO → ficha completa clicable
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tb-slot-choose tb-slot-empty-btn';
+      btn.dataset.slotIndex = String(logicalIdx);
+      btn.innerHTML = `
+        <span class="tb-slot-empty-pos">${conf.pos}</span>
+        <span class="tb-slot-empty-label">Elegir personaje</span>
+      `;
+      inner.appendChild(btn);
+    }
+  });
+
+  // Ocultar celdas que no pertenecen al layout activo
+  $$('.tb-slot', field).forEach(cell => {
+    if (!cell.classList.contains('droptarget')) {
+      cell.style.visibility = 'hidden';
+    }
+  });
+
+  bindDnD(field);
+}
 
     function renderBench(){
-    const el = $('#tb-bench'); if(!el) return;
-    el.innerHTML = '';
+  const el = $('#tb-bench'); 
+  if (!el) return;
+  el.innerHTML = '';
 
-    const team = getCurrentTeam();
-    const bench = Array.isArray(team.bench) ? team.bench : [];
+  const team  = getCurrentTeam();
+  const bench = Array.isArray(team.bench) ? team.bench : [];
 
-    const counter = $('#tb-bench-count');
-    if(counter) counter.textContent = `${bench.length}/6`;
-    bench.forEach(varId => el.appendChild(makeCard(varId)));
-    bindDnD(el);
-  }
+  const counter = $('#tb-bench-count');
+  if (counter) counter.textContent = `${bench.length}/6`;
+
+  bench.forEach(varId => {
+    el.appendChild(makeCard(varId, { enableQuickPlace: true }));
+  });
+
+  bindDnD(el);
+}
 
   function renderList(){
     const root = $('#tb-list'); if(!root) return;
@@ -1065,10 +1072,9 @@ function saveAccordion(){
       filtered
         .filter(p=>p.posicion===code)
         .sort((a,b)=> (RAREZA_ORDER[b.rareza]-RAREZA_ORDER[a.rareza]) || a.nombreES.localeCompare(b.nombreES))
-        .forEach(p => grid.appendChild(makeCard(p.varianteId)));
-
-      root.appendChild(sec);
-    });
+        .forEach(p => grid.appendChild(
+    makeCard(p.varianteId, { enableQuickPlace: true })
+  ));
 
     const selEs = $('#tb-filter-escuela');
     if(selEs && selEs.childElementCount<=1){
@@ -1203,30 +1209,28 @@ function saveAccordion(){
       });
     });
   }
-  function makeCard(varId){
+  function makeCard(varId, options = {}){
   const p = state.byVar.get(varId);
+  if(!p){
+    const dummy = document.createElement('div');
+    return dummy;
+  }
   const el = document.createElement('div');
   el.className = 'tb-card-item';
-
-  // === NUEVO: info de rareza para estilos ===
-  const rarity = (p.rareza || '').toUpperCase();
-  el.dataset.rareza = rarity;
-  if (rarity) {
-    el.classList.add('tb-rarity-' + rarity.toLowerCase()); // sp, ur, ssr, sr, r, n
-  }
-  // ==========================================
-
   el.draggable = true;
   el.dataset.varid = p.varianteId;
   el.dataset.pos = p.posicion;
   el.title = `${p.nombreES} [${p.posicion}] (${p.rareza})`;
   el.innerHTML = `
-      <img loading="lazy" src="${p.avatarPath}" alt="${p.nombreES}"
-           onerror="this.onerror=null;this.src='assets/placeholder.png'">
-      <span class="tb-pos-tag">${p.posicion}</span>
-      <span class="tb-badge">${p.rareza}</span>
-    `;
-  el.addEventListener('click', () => quickPlace(p));
+    <img loading="lazy" src="${p.avatarPath}" alt="${p.nombreES}"
+         onerror="this.onerror=null;this.src='assets/placeholder.png'">
+    <span class="tb-pos-tag">${p.posicion}</span>
+    <span class="tb-badge">${p.rareza}</span>
+  `;
+  // Ahora el click de “colocar rápido” es opcional
+  if (options.enableQuickPlace) {
+    el.addEventListener('click', () => quickPlace(p));
+  }
   return el;
 }
 
@@ -1313,14 +1317,18 @@ function saveAccordion(){
       });
 
       target.addEventListener('drop', e=>{
-        e.preventDefault();
-        target.classList.remove('drop-valid','drop-invalid');
-        const varId = e.dataTransfer.getData('text/plain');
-        
-        if(posTarget === 'BENCH'){ handleDropBench(varId); return; }
-        const logicalIdx = Number(target.dataset.slotIndex);
-        handleDropSlot(varId, logicalIdx);
-      });
+  e.preventDefault();
+  target.classList.remove('drop-valid','drop-invalid');
+  const varId    = e.dataTransfer.getData('text/plain');
+  const posTarget = target.dataset.pos;
+
+  if (posTarget === 'BENCH') {
+    handleDropBench(varId);
+    return;
+  }
+  const logicalIdx = Number(target.dataset.slotIndex);
+  handleDropSlot(varId, logicalIdx);
+});
     });
   }
 
