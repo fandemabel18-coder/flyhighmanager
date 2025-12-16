@@ -2406,32 +2406,45 @@ if (!host._accBound) {
       const fe= $('#tb-filter-escuela'); if(fe) fe.addEventListener('change', renderList);
 
 
-      // Fase 2: delegar clicks en casillas (Elegir/Cambiar/Quitar)
-      const fieldWrap = $('#tb-field');
-      if(fieldWrap){
-        fieldWrap.addEventListener('click', ev=>{
-          const chooseBtn = ev.target.closest && ev.target.closest('.tb-slot-choose');
-          if(chooseBtn){
-            const idx = Number(chooseBtn.dataset.slotIndex||'-1');
-            if(idx>=0) openPicker(idx);
-            return;
-          }
-                const clearBtn = ev.target.closest && ev.target.closest('.tb-slot-clear');
-      if(clearBtn){
-        const idx = Number(clearBtn.dataset.slotIndex||'-1');
-        if(idx>=0){
-          const team = getCurrentTeam();
-          const slots = Array.isArray(team.slots) ? team.slots : [];
-          if(slots[idx]){
-            pushUndo();
-            team.slots[idx] = null;
-            renderAll();
-            saveState();
-          }
+      // Fase 4: delegar clicks en casillas (Elegir/Cambiar/Quitar)
+const fieldWrap = $('#tb-field');
+if (fieldWrap) {
+  fieldWrap.addEventListener('click', ev => {
+    // 1) Priorizar el botón de quitar (✕)
+    const clearBtn = ev.target.closest && ev.target.closest('.tb-slot-clear');
+    if (clearBtn) {
+      const idx = Number(clearBtn.dataset.slotIndex || '-1');
+      if (idx >= 0) {
+        const team  = getCurrentTeam();
+        const slots = Array.isArray(team.slots) ? team.slots : [];
+        if (slots[idx]) {
+          pushUndo();
+          team.slots[idx] = null;
+          renderAll();
+          saveState();
         }
       }
-        });
-      }
+      return;
+    }
+
+    // 2) Botones explícitos de elegir/cambiar (icono 🔄 o botón de slot vacío)
+    const chooseBtn = ev.target.closest && ev.target.closest('.tb-slot-choose');
+    if (chooseBtn) {
+      const idx = Number(chooseBtn.dataset.slotIndex || '-1');
+      if (idx >= 0) openPicker(idx);
+      return;
+    }
+
+    // 3) Click en cualquier parte de la carta titular llena
+    const inner = ev.target.closest && ev.target.closest('.tb-slot-inner');
+    if (inner) {
+      const host = inner.closest('.tb-slot');
+      if (!host) return;
+      const idx = Number(host.dataset.slotIndex || '-1');
+      if (idx >= 0) openPicker(idx);
+    }
+  });
+}
 
       // Fase 2: eventos del selector modal
       const pickerBackdrop = $('#tb-picker-backdrop');
