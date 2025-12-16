@@ -3584,22 +3584,22 @@
       {
         "name": "Colocador Prodigio",
         "icon": "assets/skills/kageyama_genio_setter_movimiento.png",
-        "effect": "Tobio Kageyama realiza una colocación con potencia [Colocación] × (Lv1: 120%, Lv2: 135%, Lv3: 150%). Al colocar Kageyama, el [Ataque Rápido] del compañero que vaya a rematar (remate potente o ataque rápido) aumenta en [Colocación] de Kageyama × 15%. Dura hasta que el balón cruce la red 2 veces."
+        "effect": "Tobio Kageyama realiza una colocación con potencia [Colocación] × (Lv1: 130%, Lv2: 145%, Lv3: 160%). Al colocar Kageyama, el [Ataque Rápido] del compañero que vaya a rematar (remate potente o ataque rápido) aumenta en [Colocación] de Kageyama × 18%. Dura hasta que el balón cruce la red 2 veces."
       },
       {
         "name": "Saque Asesino",
         "icon": "assets/skills/kageyama_servicio_asesino_movimiento.png",
-        "effect": "Kageyama realiza un saque en suspensión potente con potencia [Servicio] × (Lv1: 130%, Lv2: 145%, Lv3: 160%). Si esta jugada resulta en buena jugada, los aliados obtienen [Técnica Ofensiva] +10%. Dura hasta que el balón cruce la red 6 veces."
+        "effect": "Kageyama realiza un saque en suspensión potente con potencia [Servicio] × (Lv1: 130%, Lv2: 145%, Lv3: 160%). Si esta jugada resulta en buena jugada, los aliados de Tobio Kageyama UR obtienen [Conciencia] +20% y [Fuerza] +15%. Dura hasta que el balón cruce la red 6 veces."
       },
       {
         "name": "El Rey Silencioso",
         "icon": "assets/skills/kageyama_el_rey_silencioso_movimiento.png",
-        "effect": "La [Técnica Ofensiva] de Kageyama aumenta en (Lv1: 8%, Lv2: 10%, Lv3: 12%). Si Kageyama está en cancha y el saque / ataque de segunda / remate (potente o rápido) del rival resulta en buena jugada, Kageyama obtiene 1 acumulación del efecto [Competitivo]. Máximo 5 acumulaciones. Si Kageyama está en cancha, cuando un aliado hace saque / ataque de segunda / remate (potente o rápido), se consume 1 acumulación de [Competitivo] y la [Concentración] de ese aliado aumenta (Lv1: 20%, Lv2: 25%, Lv3: 30%). Dura hasta que el balón cruce la red 2 veces. Al iniciar cada rally, Kageyama gana 1 acumulación de [Competitivo]."
+        "effect": "La [Técnica Ofensiva] de Kageyama aumenta en (Lv1: 14%, Lv2: 16%, Lv3: 18%). Si Kageyama está en cancha y el saque / finta / remate (potente o rápido) del rival resulta en buena jugada, Kageyama obtiene 1 acumulación del efecto [Competitivo]. Máximo 5 acumulaciones. Si Kageyama está en cancha, cuando un aliado hace saque / ataque de segunda / remate (potente o rápido), se consume 1 acumulación de [Competitivo] y la [Concentración] de ese aliado aumenta (Lv1: 20%, Lv2: 25%, Lv3: 30%). Dura hasta que el balón cruce la red 2 veces. Al iniciar cada rally, Kageyama gana 1 acumulación de [Competitivo]."
       },
       {
         "name": "Dominar el Partido",
         "icon": "assets/skills/kageyama_domina_el_juego_movimiento.png",
-        "effect": "Kageyama realiza unna finta de colocador con una potencia de (Lv1: 240%, Lv2: 255%, Lv3: 270%, Lv4: 285%, Lv5: 300%) de su estadistica de[Colocación]. La finta no puede ser bloqueada. Las habilidades de bloqueo de la línea delantera rival extienden su enfriamiento en 4 cruces de red."
+        "effect": "Kageyama realiza unna finta de colocador con una potencia de (Lv1: 250%, Lv2: 265%, Lv3: 280%, Lv4: 295%, Lv5: 310%) de su estadistica de[Colocación]. La finta no puede ser bloqueada. Las habilidades de bloqueo de la línea delantera rival extienden su enfriamiento en 4 cruces de red."
       }
     ],
     "recuerdos": [
