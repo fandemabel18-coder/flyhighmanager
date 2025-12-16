@@ -1310,17 +1310,21 @@ function openBenchPicker(benchIdx){
     `).join('');
 
     $$('.tb-picker-select', listEl).forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const varId = btn.getAttribute('data-varid');
-        if(!varId || pickerSlotIndex==null) return;
-        if(pickerBenchIndex != null){
-  handleDropBench(varId, pickerBenchIndex);
-} else if(pickerSlotIndex != null){
-  handleDropSlot(varId, pickerSlotIndex);
-}
-closePicker();
-      });
-    });
+  btn.addEventListener('click', ()=>{
+    const varId = btn.getAttribute('data-varid');
+    if(!varId) return;
+
+    if(pickerBenchIndex != null){
+      handleDropBench(varId, pickerBenchIndex);
+    } else if(pickerSlotIndex != null){
+      handleDropSlot(varId, pickerSlotIndex);
+    } else {
+      return; // por seguridad
+    }
+
+    closePicker();
+  });
+});
   }
   function makeCard(varId, options = {}){
   const p = state.byVar.get(varId);
