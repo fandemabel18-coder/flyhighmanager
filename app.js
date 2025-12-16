@@ -1078,7 +1078,7 @@ function saveAccordion(){
     if (varId){
       // Casilla ocupada → mostramos la carta normal
       inner.appendChild(
-        makeCard(varId, { enableQuickPlace: true })
+        makeCard(varId, { enableQuickPlace: false })
       );
        const controls = document.createElement('div');
 controls.className = 'tb-bench-controls';
@@ -2548,6 +2548,37 @@ if (!host._accBound) {
 
 
       // Fase 4: delegar clicks en casillas (Elegir/Cambiar/Quitar)
+       // Fase 3: delegar clicks en banca (Elegir/Cambiar/Quitar)
+const benchWrap = $('#tb-bench');
+if (benchWrap) {
+  benchWrap.addEventListener('click', ev => {
+
+    // 1) Priorizar la X (quitar)
+    const clearBtn = ev.target.closest && ev.target.closest('.tb-bench-clear');
+    if (clearBtn) {
+      const bi = Number(clearBtn.dataset.benchIndex || '-1');
+      if (bi >= 0) {
+        const team = getCurrentTeam();
+        const bench = ensureBench(team);
+        if (bench[bi]) {
+          pushUndo();
+          bench[bi] = null;
+          renderAll();
+          saveState();
+        }
+      }
+      return;
+    }
+
+    // 2) Click en cualquier parte del slot de banca (vacío u ocupado) => abrir selector
+    const slot = ev.target.closest && ev.target.closest('.tb-bench-slot');
+    if (slot) {
+      const bi = Number(slot.dataset.benchIndex || '-1');
+      if (bi >= 0) openBenchPicker(bi);
+    }
+  });
+}
+
 const fieldWrap = $('#tb-field');
 if (fieldWrap) {
   fieldWrap.addEventListener('click', ev => {
@@ -2619,39 +2650,6 @@ if (fieldWrap) {
 
   return { initOnce };
 })();
-const benchWrap = $('#tb-bench');
-if(benchWrap){
-  benchWrap.addEventListener('click', ev => {
-    const clearBtn = ev.target.closest && ev.target.closest('.tb-bench-clear');
-    if(clearBtn){
-      const bi = Number(clearBtn.dataset.benchIndex || '-1');
-      if(bi >= 0){
-        const team = getCurrentTeam();
-        const bench = ensureBench(team);
-        if(bench[bi]){
-          pushUndo();
-          bench[bi] = null;
-          renderAll();
-          saveState();
-        }
-      }
-      return;
-    }
-
-    const emptyBtn = ev.target.closest && ev.target.closest('.tb-bench-empty-btn');
-    if(emptyBtn){
-      const bi = Number(emptyBtn.dataset.benchIndex || '-1');
-      if(bi >= 0) openBenchPicker(bi);
-      return;
-    }
-
-    const slot = ev.target.closest && ev.target.closest('.tb-bench-slot');
-    if(slot){
-      const bi = Number(slot.dataset.benchIndex || '-1');
-      if(bi >= 0) openBenchPicker(bi);
-    }
-  });
-}
 
 /* =====================================================================
    TIER LIST BUILDER (esqueleto – sin drag&drop aún)
