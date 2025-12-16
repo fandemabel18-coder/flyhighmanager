@@ -642,6 +642,22 @@ const SLOT_LAYOUTS = [
     );
     return state.teams[idx];
   }
+const MAX_BENCH = 6;
+
+function ensureBench(team){
+  if(!Array.isArray(team.bench)) team.bench = [];
+  if(team.bench.length < MAX_BENCH){
+    team.bench = team.bench.concat(Array(MAX_BENCH - team.bench.length).fill(null));
+  }else if(team.bench.length > MAX_BENCH){
+    team.bench = team.bench.slice(0, MAX_BENCH);
+  }
+  return team.bench;
+}
+
+function firstEmptyBenchIndex(team){
+  const bench = ensureBench(team);
+  return bench.findIndex(v => !v);
+}
 
   function createNewTeam(name){
     const idx = Array.isArray(state.teams) ? state.teams.length + 1 : 1;
@@ -918,17 +934,23 @@ function saveAccordion(){
 
 
 
-    function isDuplicate(varId){
-    const base = state.byVar.get(varId)?.baseId;
-    if(!base) return false;
-    const team = getCurrentTeam();
-    const slots = Array.isArray(team.slots) ? team.slots : [];
-    const bench = Array.isArray(team.bench) ? team.bench : [];
-    const exists = [...slots, ...bench]
-      .filter(Boolean)
-      .some(v => state.byVar.get(v)?.baseId === base);
-    return exists;
-  }
+    function isDuplicate(varId, exceptVarId = null){
+  const base = state.byVar.get(varId)?.baseId;
+  if(!base) return false;
+
+  const team  = getCurrentTeam();
+  const slots = Array.isArray(team.slots) ? team.slots : [];
+  const bench = ensureBench(team);
+
+  const exists = [...slots, ...bench]
+    .filter(Boolean)
+    .some(v => {
+      if(exceptVarId && v === exceptVarId) return false;
+      return state.byVar.get(v)?.baseId === base;
+    });
+
+  return exists;
+}
 
   function toast(msg){
     const el = document.createElement('div');
@@ -1058,6 +1080,15 @@ function saveAccordion(){
       inner.appendChild(
         makeCard(varId, { enableQuickPlace: true })
       );
+       const controls = document.createElement('div');
+controls.className = 'tb-bench-controls';
+controls.innerHTML = `
+  <button type="button"
+    class="tb-bench-icon tb-bench-clear"
+    data-bench-index="${i}"
+    aria-label="Quitar suplente">×</button>
+`;
+inner.appendChild(controls);
     } else {
       // Casilla vacía → “hueco” clicable (por ahora sólo visual;
       // la lógica de click la afinamos en fases siguientes si hace falta)
@@ -1147,10 +1178,13 @@ function saveAccordion(){
 }
 
   // === Fase 2: selector por casilla ===
-  let pickerSlotIndex = null;
+let pickerSlotIndex = null;
+let pickerBenchIndex = null;
+
 
     function openPicker(slotIdx){
     pickerSlotIndex = slotIdx;
+    pickerBenchIndex = null;
     const backdrop = $('#tb-picker-backdrop');
     if(!backdrop) return;
     backdrop.hidden = false;
@@ -1167,18 +1201,35 @@ function saveAccordion(){
 
     renderPickerList();
   }
+function openBenchPicker(benchIdx){
+  pickerSlotIndex = null;
+  pickerBenchIndex = benchIdx;
+
+  const backdrop = $('#tb-picker-backdrop');
+  if(!backdrop) return;
+  backdrop.hidden = false;
+  document.body.style.overflow = 'hidden';
+
+  const titleEl = $('#tb-picker-title');
+  if(titleEl){
+    titleEl.textContent = `Elegir suplente (Banca ${benchIdx + 1})`;
+  }
+
+  renderPickerList();
+}
 
   function closePicker(){
-    const backdrop = $('#tb-picker-backdrop');
-    if(!backdrop) return;
-    backdrop.hidden = true;
-    document.body.style.overflow = '';
-    pickerSlotIndex = null;
-  }
+  const backdrop = $('#tb-picker-backdrop');
+  if(!backdrop) return;
+  backdrop.hidden = true;
+  document.body.style.overflow = '';
+  pickerSlotIndex = null;
+  pickerBenchIndex = null;
+}
 
   function renderPickerList(){
     const listEl = $('#tb-picker-list'); if(!listEl) return;
-    if(pickerSlotIndex == null){
+    if(pickerSlotIndex == null && pickerBenchIndex == null){
       listEl.innerHTML = '<p class="banner-meta">Selecciona primero una casilla.</p>';
       return;
     }
@@ -1215,6 +1266,9 @@ function saveAccordion(){
     if(needPos === 'L'){
       list = list.filter(p=>p.posicion === 'L');
     }
+     if(pickerBenchIndex != null){
+  list = list.filter(p => p.posicion !== 'L');
+}
 
     if(role){
       list = list.filter(p=>p.posicion === role);
@@ -1259,8 +1313,12 @@ function saveAccordion(){
       btn.addEventListener('click', ()=>{
         const varId = btn.getAttribute('data-varid');
         if(!varId || pickerSlotIndex==null) return;
-        handleDropSlot(varId, pickerSlotIndex);
-        closePicker();
+        if(pickerBenchIndex != null){
+  handleDropBench(varId, pickerBenchIndex);
+} else if(pickerSlotIndex != null){
+  handleDropSlot(varId, pickerSlotIndex);
+}
+closePicker();
       });
     });
   }
@@ -1311,17 +1369,19 @@ function saveAccordion(){
     }
 
     if (targetIdx >= 0) {
-      tryPlaceInSlot(p.varianteId, targetIdx);
-      return;
-    }
+  handleDropSlot(p.varianteId, targetIdx);
+  return;
+}
 
-    // Si no hay espacio en titulares, aplican reglas de banca actuales
-    if(isLibero){ toast('No se permiten Líberos en la banca.'); return; }
-    if(team.bench.length>=6){ toast('Banca llena (máximo 6).'); return; }
-    if(isDuplicate(p.varianteId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
-    pushUndo();
-    team.bench.push(p.varianteId);
-    renderBench(); saveState(); renderLinks();
+// Si no hay espacio en titulares → banca fija
+if(isLibero){ toast('No se permiten Líberos en la banca.'); return; }
+if(isDuplicate(p.varianteId, p.varianteId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
+
+const team2 = getCurrentTeam();
+const empty = firstEmptyBenchIndex(team2);
+if(empty < 0){ toast('Banca llena (máximo 6).'); return; }
+
+handleDropBench(p.varianteId, empty);
   }
 
   function bindDnD(scope){
@@ -1346,23 +1406,23 @@ function saveAccordion(){
         const posTarget = target.dataset.pos;
         let ok = true;
 
-        if(posTarget === 'BENCH'){
-          ok = p.posicion !== 'L'
-            && Array.isArray(team.bench)
-            && team.bench.length < 6
-            && !isDuplicate(draggingVarId);
-        }else{
-          const logicalIdx = Number(target.dataset.slotIndex);
-          const layout = SLOT_LAYOUTS[team.layoutIdx] || [];
-          const conf = layout[logicalIdx];
-          const needPos = conf ? conf.pos : null;
+        if (posTarget === 'BENCH') {
+  const benchIndex = Number(target.dataset.benchIndex || '-1');
+  ok = benchIndex >= 0 && benchIndex < 6
+    && p.posicion !== 'L'
+    && !isDuplicate(draggingVarId, draggingVarId);
+} else {
+  const logicalIdx = Number(target.dataset.slotIndex);
+  const layout = SLOT_LAYOUTS[team.layoutIdx] || [];
+  const conf = layout[logicalIdx];
+  const needPos = conf ? conf.pos : null;
 
-          if(needPos === 'L' && p.posicion !== 'L'){
-            ok = false;
-          }else{
-            ok = !isDuplicate(draggingVarId);
-          }
-        }
+  if (needPos === 'L' && p.posicion !== 'L') {
+    ok = false;
+  } else {
+    ok = !isDuplicate(draggingVarId, draggingVarId);
+  }
+}
 
         target.classList.add(ok ? 'drop-valid' : 'drop-invalid');
       });
@@ -1378,9 +1438,11 @@ function saveAccordion(){
   const posTarget = target.dataset.pos;
 
   if (posTarget === 'BENCH') {
-    handleDropBench(varId);
-    return;
-  }
+  const benchIndex = Number(target.dataset.benchIndex || '-1');
+  handleDropBench(varId, benchIndex);
+  return;
+}
+
   const logicalIdx = Number(target.dataset.slotIndex);
   handleDropSlot(varId, logicalIdx);
 });
@@ -1388,53 +1450,132 @@ function saveAccordion(){
   }
 
     function handleDropSlot(varId, logicalIdx){
-    const p = state.byVar.get(varId);
-    if(!p) return;
+  const p = state.byVar.get(varId);
+  if(!p) return;
 
-    const team = getCurrentTeam();
-    const layout = SLOT_LAYOUTS[team.layoutIdx];
-    const needPos = layout[logicalIdx].pos;
+  const team  = getCurrentTeam();
+  const bench = ensureBench(team);
 
-    // Única restricción de posición: la casilla de Líbero solo acepta Líberos
-    if(needPos === 'L' && p.posicion !== 'L'){
-      toast('Solo Líberos pueden ocupar esta casilla.');
-      return;
-    }
+  const layout  = SLOT_LAYOUTS[team.layoutIdx] || [];
+  const needPos = layout[logicalIdx]?.pos || null;
 
-    if(isDuplicate(varId)){
-      toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).');
-      return;
-    }
-
-    pushUndo();
-    const iBench = team.bench.indexOf(varId);
-    if(iBench>=0) team.bench.splice(iBench,1);
-
-    const prev = team.slots[logicalIdx];
-    if(prev){
-      const prevP = state.byVar.get(prev);
-      if(prevP.posicion!=='L' && team.bench.length<6) team.bench.push(prev);
-    }
-
-    team.slots[logicalIdx] = varId;
-    renderAll(); saveState();
+  // Única restricción de posición: casilla L solo acepta Líberos
+  if(needPos === 'L' && p.posicion !== 'L'){
+    toast('Solo Líberos pueden ocupar esta casilla.');
+    return;
   }
 
-    function handleDropBench(varId){
-    const p = state.byVar.get(varId); if(!p) return;
-    const team = getCurrentTeam();
-
-    if(p.posicion==='L'){ toast('No se permiten Líberos en la banca.'); return; }
-    if(team.bench.length>=6){ toast('Banca llena (máximo 6).'); return; }
-    if(isDuplicate(varId)){ toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).'); return; }
-
-    pushUndo();
-    const idx = team.slots.findIndex(v=>v===varId);
-    if(idx>=0) team.slots[idx]=null;
-
-    team.bench.push(varId);
-    renderAll(); saveState();
+  if(isDuplicate(varId, varId)){
+    toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).');
+    return;
   }
+
+  const originSlot  = team.slots.findIndex(v => v === varId);
+  const originBench = bench.findIndex(v => v === varId);
+  if(originSlot === logicalIdx) return; // no-op
+
+  const prev = team.slots[logicalIdx];
+
+  // Si viene desde la lista y desplaza a alguien, necesitamos hueco en banca (si el prev no es L)
+  if(originSlot < 0 && originBench < 0 && prev){
+    const prevP = state.byVar.get(prev);
+    if(prevP && prevP.posicion !== 'L'){
+      const empty = bench.findIndex(v => !v);
+      if(empty < 0){
+        toast('Banca llena. Libera un espacio antes de reemplazar titulares.');
+        return;
+      }
+    }
+  }
+
+  pushUndo();
+
+  // quitar origen del varId
+  if(originSlot >= 0) team.slots[originSlot] = null;
+  if(originBench >= 0) bench[originBench] = null;
+
+  // colocar en destino
+  team.slots[logicalIdx] = varId;
+
+  // resolver el que estaba antes
+  if(prev && prev !== varId){
+    const prevP = state.byVar.get(prev);
+
+    if(originSlot >= 0){
+      team.slots[originSlot] = prev;          // swap titular ↔ titular
+    } else if(originBench >= 0){
+      // swap titular ↔ banca (si prev no es Líbero)
+      if(prevP && prevP.posicion !== 'L'){
+        bench[originBench] = prev;
+      }
+    } else {
+      // viene desde lista: manda prev a banca si no es Líbero
+      if(prevP && prevP.posicion !== 'L'){
+        const empty = bench.findIndex(v => !v);
+        if(empty >= 0) bench[empty] = prev;
+      }
+    }
+  }
+
+  renderAll(); saveState();
+}
+
+    function handleDropBench(varId, benchIndex){
+  const p = state.byVar.get(varId); if(!p) return;
+  const team  = getCurrentTeam();
+  const bench = ensureBench(team);
+
+  if(!(benchIndex >= 0 && benchIndex < MAX_BENCH)){
+    toast('Casilla de banca inválida.');
+    return;
+  }
+  if(p.posicion === 'L'){
+    toast('No se permiten Líberos en la banca.');
+    return;
+  }
+  if(isDuplicate(varId, varId)){
+    toast('Personaje ya en uso (no se permiten variantes duplicadas en el equipo).');
+    return;
+  }
+
+  const originSlot  = team.slots.findIndex(v => v === varId);
+  const originBench = bench.findIndex(v => v === varId);
+  if(originBench === benchIndex) return; // no-op
+
+  const prev = bench[benchIndex];
+
+  // Si viene desde la lista y el slot está ocupado, exigimos un espacio libre (para no “perder” al prev)
+  if(originSlot < 0 && originBench < 0 && prev){
+    const empty = bench.findIndex((v, i) => !v && i !== benchIndex);
+    if(empty < 0){
+      toast('Esa casilla de banca está ocupada. Libera un espacio primero.');
+      return;
+    }
+  }
+
+  pushUndo();
+
+  // quitar origen
+  if(originSlot >= 0) team.slots[originSlot] = null;
+  if(originBench >= 0) bench[originBench] = null;
+
+  // colocar en destino
+  bench[benchIndex] = varId;
+
+  // resolver el que estaba antes en ese slot (swap inteligente)
+  if(prev && prev !== varId){
+    if(originSlot >= 0){
+      team.slots[originSlot] = prev;          // swap banca ↔ titular
+    } else if(originBench >= 0){
+      bench[originBench] = prev;              // swap banca ↔ banca
+    } else {
+      const empty = bench.findIndex((v, i) => !v && i !== benchIndex);
+      if(empty >= 0) bench[empty] = prev;     // mover prev a hueco libre
+    }
+  }
+
+  renderAll(); saveState();
+}
 
     function tryPlaceInSlot(varId, logicalIdx){
     const p = state.byVar.get(varId); if(!p) return;
@@ -2478,7 +2619,39 @@ if (fieldWrap) {
 
   return { initOnce };
 })();
+const benchWrap = $('#tb-bench');
+if(benchWrap){
+  benchWrap.addEventListener('click', ev => {
+    const clearBtn = ev.target.closest && ev.target.closest('.tb-bench-clear');
+    if(clearBtn){
+      const bi = Number(clearBtn.dataset.benchIndex || '-1');
+      if(bi >= 0){
+        const team = getCurrentTeam();
+        const bench = ensureBench(team);
+        if(bench[bi]){
+          pushUndo();
+          bench[bi] = null;
+          renderAll();
+          saveState();
+        }
+      }
+      return;
+    }
 
+    const emptyBtn = ev.target.closest && ev.target.closest('.tb-bench-empty-btn');
+    if(emptyBtn){
+      const bi = Number(emptyBtn.dataset.benchIndex || '-1');
+      if(bi >= 0) openBenchPicker(bi);
+      return;
+    }
+
+    const slot = ev.target.closest && ev.target.closest('.tb-bench-slot');
+    if(slot){
+      const bi = Number(slot.dataset.benchIndex || '-1');
+      if(bi >= 0) openBenchPicker(bi);
+    }
+  });
+}
 
 /* =====================================================================
    TIER LIST BUILDER (esqueleto – sin drag&drop aún)
