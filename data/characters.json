@@ -17,7 +17,11 @@
       "recuperacion": 1489
     },
     "tags": [
-      "Fukurodani"
+      "Fukurodani",
+      "setter",
+      "Ataque Poderoso",
+      "colocación",
+      "sp"
     ],
     "skills": [
       {
@@ -85,10 +89,10 @@
     },
     "tags": [
       "setter",
-      "soporte",
+      "Ataque Poderoso",
       "moral",
-      "saque",
-      "control",
+      "colocación",
+      "ssr",
       "fukurodani"
     ],
     "skills": [
@@ -169,7 +173,8 @@
     "tags": [
       "inarizaki",
       "recepción",
-      "soporte"
+      "libero",
+      "ssr"
     ],
     "skills": [
       {
@@ -241,7 +246,7 @@
       "saque",
       "bloqueo",
       "date",
-      "control"
+      "sp"
     ],
     "skills": [
       {
@@ -345,6 +350,13 @@
         "effect": "Aumenta la Técnica defensiva del portador en un 8%; cuando el resultado del bloqueo del portador no es MALO, reduce la resistencia del rematador rival en 2 puntos; si el rival es de tipo Ataque Poderoso, reduce 1 punto de resistencia adicional.",
         "icon": "assets/memories/aone_ssr_memory.png"
       }
+    ],
+    "tags": [
+      "date",
+      "mb",
+      "ssr",
+      "bloqueo",
+      "Ataque Rápido"
     ]
   },
   {
@@ -365,7 +377,10 @@
       "recuperacion": 1198
     },
     "tags": [
-      "Inarizaki"
+      "Inarizaki",
+      "Ataque Poderoso",
+      "saque",
+      "ssr"
     ],
     "skills": [
       {
@@ -435,6 +450,7 @@
       "Ataque Poderoso",
       "Saque",
       "Wing Spiker",
+      "ssr",
       "Karasuno"
     ],
     "skills": [
@@ -498,9 +514,10 @@
     "tags": [
       "saque",
       "inarizaki",
-      "ataque-rápido",
-      "soporte",
-      "setter"
+      "Ataque Rápido",
+      "colocación",
+      "setter",
+      "ur"
     ],
     "skills": [
       {
@@ -567,7 +584,11 @@
       "recuperacion": 1572
     },
     "tags": [
-      "Fukurodani"
+      "Fukurodani",
+      "wing spiker",
+      "ataque poderoso",
+      "recepción",
+      "sp"
     ],
     "skills": [
       {
@@ -638,7 +659,7 @@
       "ataque poderoso",
       "moral",
       "saque",
-      "potenciador",
+      "ur",
       "fuerza",
       "fukurodani"
     ],
@@ -728,7 +749,7 @@
       "Potenciador",
       "Buff",
       "Recepción",
-      "Ataque Poderoso",
+      "ssr",
       "Opposite",
       "soporte"
     ],
@@ -793,7 +814,7 @@
     "tags": [
       "Bloqueo",
       "Soporte",
-      "Potenciador",
+      "ssr",
       "Buff",
       "Date",
       "Wing Spiker",
@@ -852,7 +873,10 @@
       "recuperacion": 1
     },
     "tags": [
-      "inarizaki"
+      "inarizaki",
+      "ataque poderoso",
+      "ssr",
+      "Recepción"
     ],
     "skills": [
       {
@@ -921,8 +945,8 @@
     "tags": [
       "shiratorizawa",
       "ataque poderoso",
-      "fuerza",
-      "moral"
+      "saque",
+      "ssr"
     ],
     "skills": [
       {
@@ -1088,6 +1112,12 @@
         "effect": "Aumenta la Percepción del portador en un 8%; cuando la Percepción del portador es superior al 40% aumenta la Percepción en un 10% más y reduce el atributo Bloqueo en un 8%.",
         "icon": "assets/memories/hinata_ssr_memory.png"
       }
+    ],
+    "tags": [
+      "ssr",
+      "Karasuno",
+      "Ataque Rápido",
+      "Middle Blocker"
     ]
   },
   {
@@ -1115,7 +1145,7 @@
       "Kamomedai",
       "Middle Blocker",
       "Saque",
-      "Potenciador"
+      "ur"
     ],
     "skills": [
       {
@@ -1171,10 +1201,11 @@
     },
     "tags": [
       "bloqueo",
+      "ur",
       "wing spiker",
-      "potenciador",
+      "recepción",
       "ataque poderoso",
-      "pequeño gigante"
+      "saque"
     ],
     "skills": [
       {
@@ -1241,7 +1272,11 @@
       "recuperacion": 1670
     },
     "tags": [
-      "Aoba Johsai"
+      "Aoba Johsai",
+      "sp",
+      "wing spiker",
+      "recepción",
+      "ataque poderoso"
     ],
     "skills": [
       {
@@ -1345,6 +1380,12 @@
         "effect": "Aumenta el atributo Recepción del portador en un 10%; cuando el portador ejecuta una definitiva de Ataque Poderoso Crítica, su atributo Ataque Poderoso recibe un aumento equivalente al 8% de su atributo Recepción durante 3 cruces de Red.",
         "icon": "assets/memories/iwaizumi_ssr_memory.png"
       }
+    ],
+    "tags": [
+      "Aoba Johsai",
+      "ssr",
+      "ataque poderoso",
+      "wing spiker"
     ]
   },
   {
@@ -1367,6 +1408,9 @@
     "tags": [
       "Nekoma",
       "Buff",
+      "recepción",
+      "colocación",
+      "sp",
       "Soporte"
     ],
     "skills": [
@@ -1436,9 +1480,10 @@
     "tags": [
       "nekoma",
       "setter",
-      "control",
-      "ataque-rápido",
+      "recepción",
+      "colocación",
       "soporte",
+      "ssr",
       "potenciador"
     ],
     "skills": [
@@ -1542,6 +1587,11 @@
         "effect": "Aumenta el atributo Recepción del portador en un 20%. Si la recepción del portador no es MALA, el poder de la siguiente recepción aumenta en un 40% por cada miembro de tipo Recepción del equipo.",
         "icon": "assets/memories/kita_memory.png"
       }
+    ],
+    "tags": [
+      "ssr",
+      "inarizaki",
+      "recepción"
     ]
   },
   {
@@ -1562,7 +1612,11 @@
       "recuperacion": 1573
     },
     "tags": [
-      "Date"
+      "Date",
+      "Setter",
+      "Bloqueo",
+      "colocación",
+      "sp"
     ],
     "skills": [
       {
@@ -1633,8 +1687,8 @@
       "Setter",
       "Date",
       "Bloqueo",
-      "Buff",
-      "Potenciador"
+      "ssr",
+      "colocación"
     ],
     "skills": [
       {
@@ -1726,6 +1780,12 @@
         "effect": "Aumenta los atributos Recepción y Recuperación del portador en un 8%. Cuando el resultado de una recepción o recuperación del portador no sea MALO, tu equiop gana 10 de moral. El siguiente Remate poderoso de tu equipo obtiene una bonificación de poder equivalente al 6% del atributo Ataque Poderoso del rematador.",
         "icon": "assets/memories/komi_memory.png"
       }
+    ],
+    "tags": [
+      "fukurodani",
+      "recepción",
+      "libero",
+      "ssr"
     ]
   },
   {
@@ -1746,9 +1806,9 @@
       "atqRapido": 0
     },
     "tags": [
-      "recuperación",
+      "colocación",
       "recepción",
-      "soporte",
+      "ur",
       "potenciador",
       "libero",
       "Itachiyama"
@@ -1818,13 +1878,12 @@
       "recuperacion": 1335
     },
     "tags": [
-      "ataque poderoso",
+      "ssr",
       "fukurodani",
       "opposite",
       "moral",
       "soporte",
-      "recepción",
-      "recuperación"
+      "recepción"
     ],
     "skills": [
       {
@@ -1891,7 +1950,11 @@
       "recuperacion": 1570
     },
     "tags": [
-      "Aoba Johsai"
+      "Aoba Johsai",
+      "recepción",
+      "ataque poderoso",
+      "sp",
+      "opposite"
     ],
     "skills": [
       {
@@ -1958,7 +2021,11 @@
       "recuperacion": 1577
     },
     "tags": [
-      "Nekoma"
+      "Nekoma",
+      "bloqueo",
+      "recepción",
+      "sp",
+      "mb"
     ],
     "skills": [
       {
@@ -2025,7 +2092,11 @@
       "recuperacion": 1123
     },
     "tags": [
-      "Nekoma"
+      "Nekoma",
+      "ssr",
+      "ataque rápido",
+      "mb",
+      "bloqueo"
     ],
     "skills": [
       {
@@ -2096,6 +2167,7 @@
       "ataque-rápido",
       "nekoma",
       "mb",
+      "ur",
       "control"
     ],
     "skills": [
@@ -2189,7 +2261,8 @@
       "Ataque Poderoso",
       "Opposite",
       "Aoba Johsai",
-      "Saque"
+      "Saque",
+      "ssr"
     ],
     "skills": [
       {
@@ -2295,6 +2368,13 @@
         "effect": "Si el portador está presente, aumenta el atributo Recepción de los jugadores de la fila trasera de tu equipo en un 6%. Mientras el portador está presente, cuando tu equipo consigue una recepción PERFECTA, el poder de la siguiente definitiva de Ataque Rápido del portador recibe un aumento equivalente al 12% del atributo Ataque Rápido.",
         "icon": "assets/memories/lev_memory.png"
       }
+    ],
+    "tags": [
+      "ataque rápido",
+      "bloqueo",
+      "nekoma",
+      "ssr",
+      "mb"
     ]
   },
   {
@@ -2315,7 +2395,11 @@
       "recuperacion": 1862
     },
     "tags": [
-      "Karasuno"
+      "Karasuno",
+      "sp",
+      "recepción",
+      "colocación",
+      "libero"
     ],
     "skills": [
       {
@@ -2386,6 +2470,7 @@
       "potenciador",
       "recepción",
       "karasuno",
+      "ssr",
       "moral"
     ],
     "skills": [
@@ -2459,7 +2544,12 @@
       "recuperacion": 1476
     },
     "tags": [
-      "Aoba Johsai"
+      "Aoba Johsai",
+      "sp",
+      "Ataque Poderoso",
+      "saque",
+      "colocación",
+      "setter"
     ],
     "skills": [
       {
@@ -2526,6 +2616,11 @@
       "recuperacion": 1054
     },
     "tags": [
+      "setter",
+      "colocación",
+      "ataque poderoso",
+      "saque",
+      "ssr",
       "Aoba Johsai"
     ],
     "skills": [
@@ -2594,10 +2689,10 @@
     },
     "tags": [
       "setter",
-      "soporte",
+      "colocación",
       "ataque poderoso",
       "saque",
-      "potenciador",
+      "ur",
       "Aoba Johsai"
     ],
     "skills": [
@@ -2667,11 +2762,11 @@
     "tags": [
       "debuffer",
       "control",
-      "ataque-rápido",
+      "ataque rápido",
       "soporte",
-      "potenciador",
+      "colocación",
       "inarizaki",
-      "soporte"
+      "ur"
     ],
     "skills": [
       {
@@ -2746,7 +2841,7 @@
     },
     "tags": [
       "wing spiker",
-      "ataque",
+      "ssr",
       "recepción",
       "shiratorizawa"
     ],
@@ -2873,6 +2968,12 @@
         "effect": "Aumenta el atributo Ataque Rápido del portador en un 20%. Si el miembro bloqueador oponente tiene una desventaja cuando el portador de esta memoria ataca con un Ataque Rápido, el poder de este Ataque Rápido aumenta en un 40% del valor total de Ataque Rápido del portador de esta memoria.",
         "icon": "assets/memories/rintaro_memory.png"
       }
+    ],
+    "tags": [
+      "ssr",
+      "inarizaki",
+      "ataque rápido",
+      "bloqueo"
     ]
   },
   {
@@ -2896,8 +2997,8 @@
       "Wing Spiker",
       "Itachiyama",
       "Ataque Poderoso",
-      "Saque",
-      "Recepcion",
+      "ur",
+      "recepción",
       "Debuff"
     ],
     "skills": [
@@ -2953,7 +3054,10 @@
       "recuperacion": 1127
     },
     "tags": [
-      "Date"
+      "Date",
+      "op",
+      "ataque Poderoso",
+      "ssr"
     ],
     "skills": [
       {
@@ -3022,7 +3126,10 @@
     "tags": [
       "saque",
       "setter",
-      "shiratorizawa"
+      "shiratorizawa",
+      "ataque Poderoso",
+      "colocación",
+      "ssr"
     ],
     "skills": [
       {
@@ -3090,8 +3197,10 @@
     },
     "tags": [
       "setter",
-      "soporte",
-      "control"
+      "colocación",
+      "ataque Poderoso",
+      "ssr",
+      "shiratorizawa"
     ],
     "skills": [
       {
@@ -3170,7 +3279,13 @@
       "recuperacion": 1487
     },
     "tags": [
-      "Karasuno"
+      "setter",
+      "Karasuno",
+      "sp",
+      "potenciador",
+      "colocación",
+      "saque",
+      "bloqueo"
     ],
     "skills": [
       {
@@ -3237,7 +3352,12 @@
       "recuperacion": 926
     },
     "tags": [
-      "Karasuno"
+      "Karasuno",
+      "setter",
+      "colocación",
+      "ataque Poderoso",
+      "saque",
+      "sr"
     ],
     "skills": [
       {
@@ -3341,6 +3461,12 @@
         "effect": "Aumenta el atributo Ataque Poderoso del portador en un 10%. Además, aumenta el poder de las priemras 2 definitivas de ataque poderoso del portador en cada partido en un valor equivalente al 18% del atributo ataque poderoso.",
         "icon": "assets/memories/tanaka_memory.png"
       }
+    ],
+    "tags": [
+      "Karasuno",
+      "Wing Spiker",
+      "ssr",
+      "Ataque Poderoso"
     ]
   },
   {
@@ -3362,9 +3488,9 @@
     },
     "tags": [
       "shiratorizawa",
-      "ataque-rápido",
       "bloqueo",
-      "mb"
+      "mb",
+      "ssr"
     ],
     "skills": [
       {
@@ -3431,7 +3557,10 @@
       "recuperacion": 1
     },
     "tags": [
-      "Buff"
+      "Wing Spiker",
+      "Ataque Poderoso",
+      "saque",
+      "ssr"
     ],
     "skills": [
       {
@@ -3499,9 +3628,10 @@
     },
     "tags": [
       "setter",
-      "control",
+      "colocación",
       "ataque-rápido",
       "soporte",
+      "ssr",
       "potenciador",
       "karasuno",
       "saque"
@@ -3574,11 +3704,12 @@
       "Setter",
       "Karasuno",
       "Saque",
-      "Debuff",
+      "ur",
+      "ataque-rápido",
       "Buff",
       "Potenciador",
       "Tecnica Ofensiva",
-      "Finta"
+      "colocación"
     ],
     "skills": [
       {
@@ -3634,6 +3765,7 @@
     },
     "tags": [
       "bloqueo",
+      "sp",
       "ataque-rápido",
       "karasuno",
       "mb"
@@ -3706,7 +3838,8 @@
       "bloqueo",
       "ataque-rápido",
       "karasuno",
-      "mb"
+      "mb",
+      "ssr"
     ],
     "skills": [
       {
@@ -3783,8 +3916,10 @@
     },
     "tags": [
       "opposite",
-      "ataque",
-      "shiratorizawa"
+      "ataque poderoso",
+      "shiratorizawa",
+      "saque",
+      "ur"
     ],
     "skills": [
       {
@@ -3872,7 +4007,11 @@
       "recuperacion": 1482
     },
     "tags": [
-      "OPposite"
+      "OPposite",
+      "ataque poderoso",
+      "shiratorizawa",
+      "saque",
+      "sp"
     ],
     "skills": [
       {
@@ -3931,8 +4070,9 @@
     "updated": "2025-10-06",
     "tags": [
       "bloqueo",
+      "Fukurodani",
       "mb",
-      "control",
+      "ssr",
       "ataque-rápido"
     ],
     "skills": [
@@ -4013,7 +4153,7 @@
       "soporte",
       "recepción",
       "potenciador",
-      "soporte",
+      "ssr",
       "libero"
     ],
     "skills": [
@@ -4082,6 +4222,8 @@
     },
     "tags": [
       "shiratorizawa",
+      "ssr",
+      "recepción",
       "libero",
       "soporte"
     ],
@@ -4155,8 +4297,8 @@
       "Inarizaki",
       "Saque",
       "Buff",
-      "Potenciador",
-      "Tecnica Ofensiva"
+      "colocación",
+      "ataque rápido"
     ],
     "skills": [
       {
@@ -4291,7 +4433,8 @@
       "Ataque Poderoso",
       "Inarizaki",
       "Recepción",
-      "Potenciador"
+      "Potenciador",
+      "sp"
     ],
     "skills": [
       {
