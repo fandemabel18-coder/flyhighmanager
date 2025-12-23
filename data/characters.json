@@ -4492,5 +4492,85 @@
     "links": [],
     "builds": [],
     "teams": []
+  },
+  {
+    "id": "osamu-sp",
+    "name": "Osamu Miya (Vacaciones de Invierno)",
+    "avatar": "assets/characters/osamu_sp.png",
+    "school": "Inarizaki",
+    "role": "Opposite",
+    "rarity": "SP",
+    "updated": "2025-12-18",
+    "statsMax": {
+      "atqRapido": 2804,
+      "atqPoderoso": 1,
+      "colocacion": 2113,
+      "saque": 2440,
+      "recepcion": 2078,
+      "bloqueo": 2278,
+      "recuperacion": 1724
+    },
+    "tags": [
+      "ataque rápido",
+      "Inarizaki",
+      "colocación",
+      "SP"
+    ],
+    "skills": [
+      {
+        "name": "Ataque Rápido de alta velocidad (Pasiva)",
+        "icon": "",
+        "effect": "El [Ataque Rápido] de Osamu aumenta [Colocación] × 30% (hasta +1000). Al empezar el partido, su [Concentración] se reduce a 0% y, por cada 1% reducido, la potencia del Ataque Rápido aumenta [Ataque Rápido] × 2% (hasta +100%). Al finalizar cada rally, la [Concentración] de Osamu vuelve a 0%."
+      },
+      {
+        "name": "Colocación experimentada (Pasiva)",
+        "icon": "",
+        "effect": "Osamu realiza una colocación con potencia [Colocación] × 150%. Si Osamu está en cancha, cada vez que un aliado activa una habilidad de Colocación, la potencia de “Colocación experimentada” aumenta [Colocación] × 30%, hasta +210% acumulable."
+      },
+      {
+        "name": "Ajuste táctico (Pasiva)",
+        "icon": "",
+        "effect": "Si Osamu está en cancha, cuando un aliado activa una habilidad de Colocación, ese aliado con habilidad de Colocación obtiene [Técnica Ofensiva] +2% y [Técnica Defensiva] +2%. Máx. 4 acumulaciones. Cuando Osamu activa su Habilidad especial, su [Técnica Ofensiva] aumenta [Técnica Ofensiva] × 50% (hasta +100%). Dura hasta que el balón cruce la red 2 veces. Si la potencia de “Colocación experimentada (熟練トス)” es ≥ [Colocación] × 300%, entonces la [Colocación] de Osamu +5% y “Colocación experimentada” pasa a ser una Habilidad especial."
+      },
+      {
+        "name": "Habilidad especial: Ataque Rápido que engulle al rival",
+        "icon": "",
+        "effect": "Osamu (Invierno) ejecuta un Ataque Rápido con potencia [Ataque Rápido] × 255%. Si su [Técnica Ofensiva] ≥ 40%, este Ataque Rápido obtiene potencia adicional [Ataque Rápido] × 60% y no puede ser bloqueado."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Ataque Veloz II",
+        "icon": "assets/potentials/ataque_veloz.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Saque preciso",
+        "icon": "assets/potentials/saque_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Sentido agudo",
+        "icon": "assets/potentials/sentido_agudo.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Potenciador de «Ataque Rápido & Poder ↑ · Miya Osamu (Vacaciones de Invierno)",
+        "rarity": "SP",
+        "icon": "assets/memories/osamu_sp_memory.png",
+        "effect": "Los siguientes efectos solo aplican a miembros en la posición [Opuesto]. El miembro que equipa esta Memoria obtiene [Ataque Rápido] +12%. Cuando un aliado realiza una Colocación, el [Poder] del miembro afectado +2%. Máx. 15 acumulaciones. Si la Colocación la hace el propio miembro afectado, gana 2 acumulaciones adicionales (es decir, +3 acumulaciones en total por su propia colocación)."
+      }
+    ],
+    "links": [],
+    "builds": [],
+    "teams": []
   }
 ]
