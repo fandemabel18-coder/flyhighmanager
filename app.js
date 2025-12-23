@@ -18,11 +18,17 @@ async function loadJSON(path){
 
 function normalizeStr(s=''){
   try {
-    return String(s).toLowerCase()
+    return String(s)
+      .toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g,'');
+      .replace(/[\u0300-\u036f]/g,'')   // quita tildes
+      .replace(/#/g,'')                // quita hashtags si existen
+      .replace(/[_\-]+/g,' ')          // _ y - => espacio
+      .replace(/[^\w\s]+/g,' ')        // resto de signos => espacio
+      .replace(/\s+/g,' ')             // colapsa espacios múltiples
+      .trim();                         // recorta extremos
   } catch {
-    return String(s).toLowerCase();
+    return String(s).toLowerCase().replace(/\s+/g,' ').trim();
   }
 }
 /* ===========================
