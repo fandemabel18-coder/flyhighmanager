@@ -1,0 +1,763 @@
+{
+  "schemaVersion": "fhm.teambuilder.presets.1.0.0",
+  "app": "FlyHighManager-TeamBuilder",
+  "updatedAt": "2025-12-24T14:55:00Z",
+  "presets": [
+    {
+      "presetId": "ar_01",
+      "title": "Ataque Rápido 1",
+      "primarySpecialty": "ataque_rapido",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:01:01.658Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "Equipo 1",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "oikawa-sp__sp",
+              "baseId": "oikawa-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "hinata-sp__sp",
+              "baseId": "hinata-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "atsumu-sp__sp",
+              "baseId": "atsumu-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "tobio-ur__ur",
+              "baseId": "tobio-ur",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "tendo-sp__sp",
+              "baseId": "tendo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "osamu-sp__sp",
+              "baseId": "osamu-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "komori-ur__ur",
+              "baseId": "komori-ur",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "ar_02",
+      "title": "Ataque Rápido 2",
+      "primarySpecialty": "ataque_rapido",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:23:10.335Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "ataque rapido 2",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "atsumu-sp__sp",
+              "baseId": "atsumu-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "tobio-ur__ur",
+              "baseId": "tobio-ur",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "hinata-sp__sp",
+              "baseId": "hinata-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "kuroo-sp__sp",
+              "baseId": "kuroo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "tendo-sp__sp",
+              "baseId": "tendo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "tsukishima-sp__sp",
+              "baseId": "tsukishima-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "nishinoya-sp__sp",
+              "baseId": "nishinoya-sp",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "ar_03",
+      "title": "Ataque Rápido 3",
+      "primarySpecialty": "ataque_rapido",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:26:32.974Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "ataque rapido 3",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "rintaro-ssr__ssr",
+              "baseId": "rintaro-ssr",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "osamu-sp__sp",
+              "baseId": "osamu-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "tendo-sp__sp",
+              "baseId": "tendo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "ushujima-sp__sp",
+              "baseId": "ushujima-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "atsumu-sp__sp",
+              "baseId": "atsumu-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "kuroo-sp__sp",
+              "baseId": "kuroo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "komori-ur__ur",
+              "baseId": "komori-ur",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "ap_01",
+      "title": "Ataque Poderoso 1",
+      "primarySpecialty": "ataque_poderoso",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:33:25.635Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "ataque poderoso 3",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "hirugami-ur__ur",
+              "baseId": "hirugami-ur",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "sakusa-ur__ur",
+              "baseId": "sakusa-ur",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "oikawa-sp__sp",
+              "baseId": "oikawa-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "ushujima-sp__sp",
+              "baseId": "ushujima-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "hoshiumi-ur__ur",
+              "baseId": "hoshiumi-ur",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "tendo-sp__sp",
+              "baseId": "tendo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "komori-ur__ur",
+              "baseId": "komori-ur",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "ap_02",
+      "title": "Ataque Poderoso 2",
+      "primarySpecialty": "ataque_poderoso",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:28:46.508Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "ataque poderoso 2",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "iwaizumi-sp__sp",
+              "baseId": "iwaizumi-sp",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "kunimi-sp__sp",
+              "baseId": "kunimi-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "ushujima-sp__sp",
+              "baseId": "ushujima-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "oikawa-sp__sp",
+              "baseId": "oikawa-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "kuroo-sp__sp",
+              "baseId": "kuroo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "tendo-sp__sp",
+              "baseId": "tendo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "komori-ur__ur",
+              "baseId": "komori-ur",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "ap_03",
+      "title": "Ataque Poderoso 3",
+      "primarySpecialty": "ataque_poderoso",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:21:26.818Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "ataque poderoso 1",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "iwaizumi-sp__sp",
+              "baseId": "iwaizumi-sp",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "kunimi-sp__sp",
+              "baseId": "kunimi-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "ginjima-sp__sp",
+              "baseId": "ginjima-sp",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "tendo-sp__sp",
+              "baseId": "tendo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "hoshiumi-ur__ur",
+              "baseId": "hoshiumi-ur",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "lev-ssr__ssr",
+              "baseId": "lev-ssr",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "komori-ur__ur",
+              "baseId": "komori-ur",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "re_01",
+      "title": "Recepción 1",
+      "primarySpecialty": "recepcion",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:16:45.739Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "re_01",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "oikawa-sp__sp",
+              "baseId": "oikawa-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "iwaizumi-sp__sp",
+              "baseId": "iwaizumi-sp",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "kunimi-sp__sp",
+              "baseId": "kunimi-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "ushujima-sp__sp",
+              "baseId": "ushujima-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "hinata-sp__sp",
+              "baseId": "hinata-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "ginjima-sp__sp",
+              "baseId": "ginjima-sp",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "nishinoya-sp__sp",
+              "baseId": "nishinoya-sp",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "re_02",
+      "title": "Recepción 2",
+      "primarySpecialty": "recepcion",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:41:07.249Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "recepcion 2",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "ushujima-sp__sp",
+              "baseId": "ushujima-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "iwaizumi-sp__sp",
+              "baseId": "iwaizumi-sp",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "sakusa-ur__ur",
+              "baseId": "sakusa-ur",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "kenma-sp__sp",
+              "baseId": "kenma-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "kuroo-sp__sp",
+              "baseId": "kuroo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "oikawa-sp__sp",
+              "baseId": "oikawa-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "komori-ur__ur",
+              "baseId": "komori-ur",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "re_03",
+      "title": "Recepción 3",
+      "primarySpecialty": "recepcion",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:43:47.863Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "recepcion 3",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "terushima-ssr__ssr",
+              "baseId": "terushima-ssr",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "hinata-sp__sp",
+              "baseId": "hinata-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "kunimi-sp__sp",
+              "baseId": "kunimi-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "kenma-sp__sp",
+              "baseId": "kenma-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "kuroo-sp__sp",
+              "baseId": "kuroo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "hoshiumi-ur__ur",
+              "baseId": "hoshiumi-ur",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "komori-ur__ur",
+              "baseId": "komori-ur",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "bl_01",
+      "title": "Bloqueo 1",
+      "primarySpecialty": "bloqueo",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:18:46.950Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "bloqueo 1",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "tendo-sp__sp",
+              "baseId": "tendo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "hinata-sp__sp",
+              "baseId": "hinata-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "osamu-sp__sp",
+              "baseId": "osamu-sp",
+              "posicion": "OP"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "sugawara-sp__sp",
+              "baseId": "sugawara-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "kuroo-sp__sp",
+              "baseId": "kuroo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "koganegawa-sp__sp",
+              "baseId": "koganegawa-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "nishinoya-sp__sp",
+              "baseId": "nishinoya-sp",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "bl_02",
+      "title": "Bloqueo 2",
+      "primarySpecialty": "bloqueo",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:35:21.026Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "bloqueo 2",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "ginjima-sp__sp",
+              "baseId": "ginjima-sp",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "hinata-sp__sp",
+              "baseId": "hinata-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "tsukishima-sp__sp",
+              "baseId": "tsukishima-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "sugawara-sp__sp",
+              "baseId": "sugawara-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "koganegawa-sp__sp",
+              "baseId": "koganegawa-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "aone-sp__sp",
+              "baseId": "aone-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "nishinoya-sp__sp",
+              "baseId": "nishinoya-sp",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    },
+    {
+      "presetId": "bl_03",
+      "title": "Bloqueo 3",
+      "primarySpecialty": "bloqueo",
+      "secondarySpecialties": [],
+      "basePlayerIds": [],
+      "notes": "",
+      "teamExport": {
+        "schemaVersion": "fhm.teambuilder.1.0.0",
+        "app": "FlyHighManager-TeamBuilder",
+        "exportedAt": "2025-12-24T14:37:09.983Z",
+        "teamIndex": 0,
+        "team": {
+          "name": "bloqueo 3",
+          "layoutIdx": 3,
+          "slots": [
+            {
+              "slotIndex": 0,
+              "varId": "oikawa-sp__sp",
+              "baseId": "oikawa-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 1,
+              "varId": "koganegawa-sp__sp",
+              "baseId": "koganegawa-sp",
+              "posicion": "S"
+            },
+            {
+              "slotIndex": 2,
+              "varId": "iwaizumi-sp__sp",
+              "baseId": "iwaizumi-sp",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 3,
+              "varId": "tendo-sp__sp",
+              "baseId": "tendo-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 4,
+              "varId": "tsukishima-sp__sp",
+              "baseId": "tsukishima-sp",
+              "posicion": "MB"
+            },
+            {
+              "slotIndex": 5,
+              "varId": "hoshiumi-ur__ur",
+              "baseId": "hoshiumi-ur",
+              "posicion": "WS"
+            },
+            {
+              "slotIndex": 6,
+              "varId": "komori-ur__ur",
+              "baseId": "komori-ur",
+              "posicion": "L"
+            }
+          ],
+          "bench": []
+        }
+      }
+    }
+  ]
+}
