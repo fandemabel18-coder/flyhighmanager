@@ -345,7 +345,7 @@
     <div class="tb-header">
       <h1>Constructor de Equipos Haikyu Fly High</h1>
       <div class="tb-actions">
-        <button id="tb-undo" class="tb-btn">Deshacer</button>
+        <button id="tb-assistant" class="tb-btn tb-assistant">Asistente de Construcción</button>
         <button id="tb-clear" class="tb-btn">Limpiar</button>
         <button id="tb-rotate" class="tb-btn tb-primary">Rotar formación</button>
         <button id="tb-export" class="tb-btn">Exportar equipo</button>
@@ -438,6 +438,43 @@
             </div>
           </div>
         </div>
+
+        <!-- Asistente de construcción (Fase 2) -->
+        <div id="tb-assistant-backdrop" class="tb-picker-backdrop" hidden>
+          <div class="tb-picker-modal tb-assistant-modal" role="dialog" aria-modal="true" aria-labelledby="tb-assistant-title">
+            <header class="tb-picker-header">
+              <h2 id="tb-assistant-title">Asistente de Construcción de Equipos</h2>
+              <button type="button" class="tb-picker-close tb-assistant-close" aria-label="Cerrar asistente">×</button>
+            </header>
+
+            <div class="tb-assistant-form">
+              <div class="tb-assistant-row">
+                <label class="tb-assistant-label" for="tba-specialty">Especialidad</label>
+                <select id="tba-specialty">
+                  <option value="ataque_rapido">Ataque rápido</option>
+                  <option value="ataque_poderoso">Ataque poderoso</option>
+                  <option value="recepcion">Recepción</option>
+                  <option value="bloqueo">Bloqueo</option>
+                </select>
+              </div>
+
+              <div class="tb-assistant-row">
+                <label class="tb-assistant-label" for="tba-player">Jugador base (opcional)</label>
+                <input id="tba-player" type="search" list="tba-player-list" placeholder="Escribe un nombre (ej: Hinata)" />
+                <datalist id="tba-player-list"></datalist>
+              </div>
+
+              <div class="banner-meta" id="tba-hint">
+                Tip: puedes elegir solo especialidad, o especialidad + jugador base para filtrar mejor.
+              </div>
+            </div>
+
+            <div id="tba-results" class="tb-assistant-results">
+              <!-- Presets recomendados -->
+            </div>
+          </div>
+        </div>
+
         </div>
       </div>
     </section>

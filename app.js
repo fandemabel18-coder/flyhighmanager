@@ -18,17 +18,11 @@ async function loadJSON(path){
 
 function normalizeStr(s=''){
   try {
-    return String(s)
-      .toLowerCase()
+    return String(s).toLowerCase()
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g,'')   // quita tildes
-      .replace(/#/g,'')                // quita hashtags si existen
-      .replace(/[_\-]+/g,' ')          // _ y - => espacio
-      .replace(/[^\w\s]+/g,' ')        // resto de signos => espacio
-      .replace(/\s+/g,' ')             // colapsa espacios múltiples
-      .trim();                         // recorta extremos
+      .replace(/[\u0300-\u036f]/g,'');
   } catch {
-    return String(s).toLowerCase().replace(/\s+/g,' ').trim();
+    return String(s).toLowerCase();
   }
 }
 /* ===========================
@@ -919,6 +913,23 @@ function saveAccordion(){
     recomputeSpecialtyTagsForAll();
   }
 
+
+  async function loadTeamPresets(){
+    try{
+      const data = await loadJSON('data/team-presets.json');
+      // Esperamos: { presets: [...] } (pero aceptamos arreglo directo)
+      if(Array.isArray(data)){
+        state.teamPresets = { presets: data };
+      }else if(data && typeof data === 'object'){
+        state.teamPresets = data;
+      }else{
+        state.teamPresets = { presets: [] };
+      }
+    }catch(e){
+      console.warn('No se pudo cargar data/team-presets.json', e);
+      state.teamPresets = { presets: [] };
+    }
+  }
   function recomputeSpecialtyTagsForAll(){
     const index = state.bonusTagIndex || {};
     if(!Array.isArray(state.characters)) return;
@@ -1232,6 +1243,202 @@ function openBenchPicker(benchIdx){
   pickerSlotIndex = null;
   pickerBenchIndex = null;
 }
+
+  // === Fase 2: Asistente de Construcción de Equipos ===
+  const SPECIALTY_LABELS = {
+    ataque_rapido: 'Ataque rápido',
+    ataque_poderoso: 'Ataque poderoso',
+    recepcion: 'Recepción',
+    bloqueo: 'Bloqueo',
+  };
+
+  function openAssistant(){
+    const backdrop = $('#tb-assistant-backdrop');
+    if(!backdrop) return;
+    backdrop.hidden = false;
+    document.body.style.overflow = 'hidden';
+
+    // Reset UI
+    const sel = $('#tba-specialty');
+    if(sel && !sel.value) sel.value = 'ataque_rapido';
+
+    const inp = $('#tba-player');
+    if(inp){
+      inp.value = '';
+      inp.dataset.baseId = '';
+    }
+
+    populateAssistantPlayersDatalist();
+    renderAssistantResults();
+  }
+
+  function closeAssistant(){
+    const backdrop = $('#tb-assistant-backdrop');
+    if(!backdrop) return;
+    backdrop.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function populateAssistantPlayersDatalist(){
+    const dl = $('#tba-player-list');
+    if(!dl) return;
+    dl.innerHTML = '';
+
+    // Un option por baseId (tomamos el primer variante que encontremos)
+    if(!state.byBase) return;
+
+    const baseIds = Array.from(state.byBase.keys()).sort();
+    baseIds.forEach(baseId=>{
+      const vars = state.byBase.get(baseId);
+      if(!vars || !vars.length) return;
+      const p = state.byVar.get(vars[0]);
+      if(!p) return;
+
+      const opt = document.createElement('option');
+      opt.value = `${p.nombreES} (${baseId})`;
+      dl.appendChild(opt);
+    });
+  }
+
+  function parseBaseIdFromAssistantInput(){
+    const inp = $('#tba-player');
+    if(!inp) return null;
+    const v = String(inp.value || '').trim();
+    if(!v) return null;
+
+    // Caso "Nombre (baseId)"
+    const m = v.match(/\(([^)]+)\)\s*$/);
+    if(m && m[1]){
+      const baseId = m[1].trim();
+      if(state.byBase && state.byBase.has(baseId)) return baseId;
+    }
+
+    // Fallback: matchear por nombre ES exacto (normalizado)
+    const norm = normalizeStr(v);
+    if(!norm) return null;
+
+    for(const [baseId, vars] of state.byBase.entries()){
+      const p = state.byVar.get(vars && vars[0]);
+      if(!p) continue;
+      if(normalizeStr(p.nombreES) === norm) return baseId;
+    }
+    return null;
+  }
+
+  function getAssistantFilters(){
+    const sel = $('#tba-specialty');
+    const specialty = sel ? String(sel.value || '') : '';
+
+    const baseId = parseBaseIdFromAssistantInput();
+    const inp = $('#tba-player');
+    if(inp) inp.dataset.baseId = baseId || '';
+
+    return { specialty, baseId };
+  }
+
+  function getFilteredPresets(){
+    const { specialty, baseId } = getAssistantFilters();
+
+    const presets = (state.teamPresets && Array.isArray(state.teamPresets.presets))
+      ? state.teamPresets.presets
+      : [];
+
+    let list = presets.slice();
+
+    if(specialty){
+      list = list.filter(p => p && p.primarySpecialty === specialty);
+    }
+    if(baseId){
+      list = list.filter(p => Array.isArray(p.basePlayerIds) && p.basePlayerIds.includes(baseId));
+    }
+
+    return list;
+  }
+
+  function renderAssistantResults(){
+    const root = $('#tba-results');
+    if(!root) return;
+
+    const presets = getFilteredPresets();
+
+    if(!presets.length){
+      root.innerHTML = '<div class="banner-meta">No hay presets que calcen con esos filtros (por ahora).</div>';
+      return;
+    }
+
+    const team = getCurrentTeam();
+    const currentLayout = (typeof team.layoutIdx === 'number') ? team.layoutIdx : 0;
+
+    root.innerHTML = presets.map(p=>{
+      const title = escapeHtml(p.title || p.presetId || 'Preset');
+      const notes = escapeHtml(p.notes || '');
+
+      const chips = [
+        p.primarySpecialty ? `<span class="tb-assistant-chip">${escapeHtml(SPECIALTY_LABELS[p.primarySpecialty] || p.primarySpecialty)}</span>` : '',
+        Array.isArray(p.secondarySpecialties) && p.secondarySpecialties.length
+          ? p.secondarySpecialties.slice(0,3).map(s=>`<span class="tb-assistant-chip">${escapeHtml(SPECIALTY_LABELS[s] || s)}</span>`).join('')
+          : '',
+        (p.teamExport && p.teamExport.team && typeof p.teamExport.team.layoutIdx === 'number')
+          ? `<span class="tb-assistant-chip">Formación ${p.teamExport.team.layoutIdx}</span>`
+          : '',
+        (p.teamExport && p.teamExport.team && typeof p.teamExport.team.layoutIdx === 'number' && p.teamExport.team.layoutIdx === currentLayout)
+          ? `<span class="tb-assistant-chip">Calza con tu formación</span>`
+          : '',
+      ].filter(Boolean).join('');
+
+      return `
+        <div class="tb-assistant-card">
+          <div class="tb-assistant-card-title">${title}</div>
+          ${notes ? `<div class="banner-meta">${notes}</div>` : ''}
+          ${chips ? `<div class="tb-assistant-card-meta">${chips}</div>` : ''}
+          <div class="tb-assistant-card-actions">
+            <button type="button" class="tb-btn tb-assistant-apply" data-presetid="${escapeHtml(p.presetId)}">Aplicar</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function applyPresetById(presetId){
+    const presets = (state.teamPresets && Array.isArray(state.teamPresets.presets))
+      ? state.teamPresets.presets
+      : [];
+
+    const preset = presets.find(p=>p && p.presetId === presetId);
+    if(!preset || !preset.teamExport){
+      toast('Preset inválido.');
+      return;
+    }
+
+    const normalized = normalizeImportedTeam(preset.teamExport);
+    if(!normalized){
+      toast('No pude leer ese preset (formato incompatible).');
+      return;
+    }
+
+    pushUndo(); // aunque quitemos el botón, dejamos snapshot por si a futuro vuelve
+    const team = getCurrentTeam();
+
+    team.name = preset.title || team.name || 'Equipo';
+    team.layoutIdx = normalized.layoutIdx;
+    team.slots = normalized.slots;
+    team.bench = normalized.bench;
+
+    renderAll();
+    saveState();
+    closeAssistant();
+    toast('Preset aplicado ✅');
+  }
+
+  // Escapar HTML mínimo (para evitar que un preset rompa el DOM)
+  function escapeHtml(str){
+    return String(str || '')
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#039;');
+  }
 
   function renderPickerList(){
     const listEl = $('#tb-picker-list'); if(!listEl) return;
@@ -2524,11 +2731,12 @@ if (!host._accBound) {
       ensureTBStyles();
       await loadData();
       await loadBonuses();
+      await loadTeamPresets();
       loadState();
       loadLinksLevels();
       loadAccordion();  // <- NUEVO
 
-      const undoBtn = $('#tb-undo'); if(undoBtn) undoBtn.addEventListener('click', undo);
+      const assistantBtn = $('#tb-assistant'); if(assistantBtn) assistantBtn.addEventListener('click', openAssistant);
       const clearBtn= $('#tb-clear'); if(clearBtn) clearBtn.addEventListener('click', clearAll);
       const rotBtn  = $('#tb-rotate'); if(rotBtn) rotBtn.addEventListener('click', rotateFormation);
       const expBtn  = $('#tb-export'); if(expBtn) expBtn.addEventListener('click', exportImage);
@@ -2646,10 +2854,40 @@ if (fieldWrap) {
       if(pz) pz.addEventListener('change', renderPickerList);
       if(pe) pe.addEventListener('change', renderPickerList);
 
+
+      // Fase 2: eventos del asistente modal
+      const assistantBackdrop = $('#tb-assistant-backdrop');
+      if(assistantBackdrop){
+        const closeBtn2 = assistantBackdrop.querySelector('.tb-assistant-close') || assistantBackdrop.querySelector('.tb-picker-close');
+        if(closeBtn2) closeBtn2.addEventListener('click', closeAssistant);
+
+        assistantBackdrop.addEventListener('click', ev=>{
+          if(ev.target === assistantBackdrop) closeAssistant();
+        });
+
+        const sel = $('#tba-specialty');
+        const inp = $('#tba-player');
+        if(sel) sel.addEventListener('change', renderAssistantResults);
+        if(inp) inp.addEventListener('input', renderAssistantResults);
+
+        const results = $('#tba-results');
+        if(results){
+          results.addEventListener('click', ev=>{
+            const btn = ev.target.closest && ev.target.closest('.tb-assistant-apply');
+            if(!btn) return;
+            const pid = btn.getAttribute('data-presetid');
+            if(pid) applyPresetById(pid);
+          });
+        }
+      }
+
       document.addEventListener('keydown', ev=>{
         if(ev.key === 'Escape'){
           const backdrop = $('#tb-picker-backdrop');
           if(backdrop && !backdrop.hidden) closePicker();
+
+          const assistantBackdrop = $('#tb-assistant-backdrop');
+          if(assistantBackdrop && !assistantBackdrop.hidden) closeAssistant();
         }
       });
       state._inited = true;
