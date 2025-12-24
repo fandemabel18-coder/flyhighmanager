@@ -4572,5 +4572,105 @@
     "links": [],
     "builds": [],
     "teams": []
+  },
+  {
+    "id": "korai-sp",
+    "name": "Hoshiumi Kōrai (Deportes de Invierno)",
+    "avatar": "assets/characters/korai_sp.png",
+    "school": "Kamomedai",
+    "role": "Wing Spiker",
+    "rarity": "SP",
+    "updated": "2025-12-24 00:00:00",
+    "statsMax": {
+      "atqRapido": 1,
+      "atqPoderoso": 1,
+      "colocacion": 1,
+      "saque": 1,
+      "recepcion": 1,
+      "bloqueo": 1,
+      "recuperacion": 1
+    },
+    "tags": [
+      "Kamomedai",
+      "sp",
+      "ataque poderoso",
+      "bloqueo",
+      "recepción",
+      "saque"
+    ],
+    "skills": [
+      {
+        "name": "Main Player",
+        "icon": "",
+        "effect": "Si Hoshiumi (Invierno) está en cancha, cuando un aliado con habilidad de Bloqueo entra en contacto con el balón, mejora su [Bloqueo]. Si ese aliado además posee una habilidad especial de Bloqueo, su [Bloqueo] / [Ataque Poderoso] / [Ataque Rápido] suben aún más (según el efecto)."
+      },
+      {
+        "name": "Ataque súper versátil",
+        "icon": "",
+        "effect": "Hoshiumi (Invierno) puede activar varias “play skills” diferentes: Saque Poderoso: Hoshiumi ejecuta un Saque Poderoso; luego de esto suben su [Ataque Poderoso] y [Ataque Rápido]. Recepción: Hoshiumi realiza una Recepción; si la afinidad del equipo (atributo/tema del equipo) contrarresta a la del rival, aumenta su [Bloqueo]. Bloqueo: Hoshiumi realiza un Bloqueo; si la afinidad del equipo es favorable (o en ciertas condiciones del equipo), aumenta su [Recepción]."
+      },
+      {
+        "name": "Jugador todoterreno",
+        "icon": "",
+        "effect": "Cuando un aliado usa una play skill cuyo rasgo coincide con la afinidad del equipo, Hoshiumi (Invierno) recibe mejoras (por ejemplo [Poder], [Reacción], según el contexto de la habilidad que se use). Si esas mejoras superan cierto umbral, su [Ataque Rápido] aumenta. Además, cuando la afinidad del equipo favorece Bloqueo/Recepción, también se fortalece su Ataque Poderoso."
+      },
+      {
+        "name": "Habilidad especial — Point Getter",
+        "icon": "",
+        "effect": "Hoshiumi (Invierno) realiza un Remate potenciado. Si la Recepción del equipo está fortalecida por afinidad, Hoshiumi obtiene mejoras adicionales a su [Ataque Rápido] y a la potencia de esta habilidad (Point Getter). Si la jugada resulta en buena jugada (Nice Play), la potencia sube todavía más."
+      }
+    ],
+    "potencial": [
+      {
+        "name": "Bloqueo preciso",
+        "icon": "assets/potentials/bloqueo_preciso.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Movimiento de bloqueo",
+        "icon": "assets/potentials/movimiento_bloqueo.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Poder vibrante",
+        "icon": "assets/potentials/poder_vibrante.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Incremento de poder",
+        "icon": "assets/potentials/incremento_poder.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Recepción suprema",
+        "icon": "assets/potentials/recepcion_suprema.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      },
+      {
+        "name": "Recepción de asistencia",
+        "icon": "assets/potentials/recepcion_asistencia.png",
+        "set2": "",
+        "set4": "",
+        "notas": ""
+      }
+    ],
+    "recuerdos": [
+      {
+        "name": "Super Memory — Ofensiva & Defensiva ↑ Hoshiumi Kōrai (Deportes de Invierno)",
+        "rarity": "sp",
+        "icon": "assets/memories/osamu_sp_memory.png",
+        "effect": "EL DIA 26 DE DICIEMBRE LO ACTUALIZAREMOS"
+      }
+    ]
   }
 ]
