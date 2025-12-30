@@ -11,40 +11,32 @@ function json(status, data) {
   };
 }
 
-function getBearerToken(event) {
-  const h = event.headers || {};
-  const authHeader = h.authorization || h.Authorization || '';
-  return authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+function httpError(statusCode, message) {
+  const err = new Error(message || 'Error');
+  err.statusCode = statusCode;
+  return err;
 }
 
-/**
- * Verifies JWT and returns the user row from fhm_users.
- * Throws { statusCode, message } on errors.
- */
 async function requireUser(event) {
-  const token = getBearerToken(event);
-  if (!token) {
-    throw { statusCode: 401, message: 'Token no enviado.' };
-  }
+  const authHeader = event.headers?.authorization || event.headers?.Authorization || '';
+  const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
+
+  if (!token) throw httpError(401, 'Token no enviado.');
 
   let payload;
   try {
     payload = jwt.verify(token, JWT_SECRET);
-  } catch (err) {
-    throw { statusCode: 401, message: 'Token inválido o expirado.' };
+  } catch (e) {
+    throw httpError(401, 'Token inválido o expirado.');
   }
 
-  const userId = payload.sub;
-  const result = await query(
+  const res = await query(
     'SELECT id, nickname, created_at, last_login_at FROM fhm_users WHERE id = $1',
-    [userId]
+    [payload.sub]
   );
 
-  if (result.rowCount === 0) {
-    throw { statusCode: 404, message: 'Usuario no encontrado.' };
-  }
-
-  return { user: result.rows[0], payload };
+  if (res.rowCount === 0) throw httpError(404, 'Usuario no encontrado.');
+  return { user: res.rows[0], payload };
 }
 
-module.exports = { requireUser, json };
+module.exports = { json, requireUser };
