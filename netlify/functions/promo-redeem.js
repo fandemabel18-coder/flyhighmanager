@@ -1,5 +1,5 @@
 const { query } = require('./db');
-const { requireUser } = require('./lib/auth');
+const { requireUser, json } = require('./lib/auth');
 
 /**
  * POST /.netlify/functions/promo-redeem
@@ -7,16 +7,9 @@ const { requireUser } = require('./lib/auth');
  * Rules:
  * - Requires JWT (userId = payload.sub)
  * - 1 redemption per user per code (enforced by UNIQUE)
- * - Optional global limit (max_global_redemptions) enforced atomically via redeemed_count
+ * - Optional global limit (max_global_redemptions)
  * - Awards BONUS coins (does NOT count toward daily earn cap)
  */
-function json(status, data) {
-  return {
-    statusCode: status,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  };
-}
 
 function normalizeCode(code) {
   return String(code || '')
@@ -30,9 +23,13 @@ exports.handler = async (event) => {
     return json(405, { ok: false, error: 'Método no permitido' });
   }
 
-  // Auth (JWT)
-  const auth = requireUser(event);
-  if (!auth.ok) return json(auth.statusCode, auth.body);
+  let user;
+  try {
+    ({ user } = await requireUser(event)); // ✅ IMPORTANTE: await
+  } catch (err) {
+    console.error('promo-redeem auth error', err);
+    return json(err?.statusCode || 401, { ok: false, error: err?.message || 'No autorizado' });
+  }
 
   let body;
   try {
@@ -46,12 +43,10 @@ exports.handler = async (event) => {
     return json(400, { ok: false, error: 'Código inválido' });
   }
 
-  const userId = auth.userId;
-
   try {
     await query('BEGIN');
 
-    // Lock the promo code row
+    // Lock row para evitar condiciones de carrera
     const promoRes = await query(
       `
       SELECT id, code, amount, is_active, starts_at, ends_at, max_global_redemptions, redeemed_count
@@ -69,13 +64,11 @@ exports.handler = async (event) => {
 
     const promo = promoRes.rows[0];
 
-    // Active & time window checks
     if (!promo.is_active) {
       await query('ROLLBACK');
       return json(400, { ok: false, error: 'Código inactivo' });
     }
 
-    // starts_at / ends_at can be NULL
     const nowRes = await query('SELECT now() AS now');
     const now = nowRes.rows[0].now;
 
@@ -94,63 +87,58 @@ exports.handler = async (event) => {
       return json(500, { ok: false, error: 'Código mal configurado' });
     }
 
-    // Enforce global limit atomically (if configured)
+    // 1 por cuenta: intenta insertar redención primero
+    const redRes = await query(
+      `
+      INSERT INTO public.fhm_promo_redemptions (code_id, user_id)
+      VALUES ($1, $2)
+      ON CONFLICT (code_id, user_id) DO NOTHING
+      RETURNING id
+      `,
+      [promo.id, user.id]
+    );
+
+    if (redRes.rowCount === 0) {
+      await query('ROLLBACK');
+      return json(409, { ok: false, error: 'Ya canjeaste este código' });
+    }
+
+    // Límite global (si existe): lo aplicamos después de asegurar que este user no lo había canjeado
     if (promo.max_global_redemptions !== null) {
       const upd = await query(
         `
         UPDATE public.fhm_promo_codes
         SET redeemed_count = redeemed_count + 1
         WHERE id = $1
-          AND (max_global_redemptions IS NULL OR redeemed_count < max_global_redemptions)
-        RETURNING redeemed_count, max_global_redemptions
+          AND redeemed_count < max_global_redemptions
+        RETURNING redeemed_count
         `,
         [promo.id]
       );
+
       if (upd.rowCount === 0) {
         await query('ROLLBACK');
         return json(400, { ok: false, error: 'Código agotado' });
       }
     } else {
-      // No global cap: still keep redeemed_count accurate for analytics
       await query(
         `UPDATE public.fhm_promo_codes SET redeemed_count = redeemed_count + 1 WHERE id = $1`,
         [promo.id]
       );
     }
 
-    // 1 per user: attempt insert redemption row
-    const redRes = await query(
-      `
-      INSERT INTO public.fhm_promo_redemptions (code_id, user_id)
-      VALUES ($1, $2)
-      ON CONFLICT (code_id, user_id) DO NOTHING
-      RETURNING id, redeemed_at
-      `,
-      [promo.id, userId]
-    );
-
-    if (redRes.rowCount === 0) {
-      // user already redeemed. revert redeemed_count increment
-      await query(
-        `UPDATE public.fhm_promo_codes SET redeemed_count = GREATEST(redeemed_count - 1, 0) WHERE id = $1`,
-        [promo.id]
-      );
-      await query('ROLLBACK');
-      return json(409, { ok: false, error: 'Ya canjeaste este código' });
-    }
-
-    // Award coins (BONUS) via ledger + wallet (does not touch daily caps)
-    const refId = `promo:${promo.id}:${userId}`;
+    // Ledger BONUS (no toca cap diario)
+    const refId = `promo:${promo.id}:${user.id}`;
     await query(
       `
       INSERT INTO public.fhm_coin_ledger (user_id, amount, entry_type, reason, ref_id, meta)
       VALUES ($1, $2, 'BONUS', 'PROMO_REDEEM', $3, $4)
       ON CONFLICT (user_id, ref_id) DO NOTHING
       `,
-      [userId, amount, refId, JSON.stringify({ code: promo.code, codeId: promo.id })]
+      [user.id, amount, refId, JSON.stringify({ code: promo.code, codeId: promo.id })]
     );
 
-    // Upsert wallet balance
+    // Wallet upsert
     const walletRes = await query(
       `
       INSERT INTO public.fhm_wallets (user_id, balance)
@@ -160,7 +148,7 @@ exports.handler = async (event) => {
             updated_at = now()
       RETURNING balance
       `,
-      [userId, amount]
+      [user.id, amount]
     );
 
     await query('COMMIT');
@@ -170,7 +158,7 @@ exports.handler = async (event) => {
       code: promo.code,
       codeId: promo.id,
       amount,
-      balance: walletRes.rows[0].balance,
+      balance: walletRes.rows[0].balance
     });
   } catch (err) {
     console.error('promo-redeem error', err);
