@@ -2620,7 +2620,8 @@ if (!host._accBound) {
 
         // Si no hay sesión, no disparamos misiones (evita 401)
         if (token) {
-          const refId = `team_exported_${Date.now()}_${Math.random().toString(36).slice(2,7)}`;
+          const day = new Date().toLocaleDateString('sv-SE'); // YYYY-MM-DD
+const refId = `tb_export:${day}`;
 
           const resM = await fetch('/.netlify/functions/missions-event', {
             method: 'POST',
