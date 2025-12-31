@@ -2587,7 +2587,7 @@ if (!host._accBound) {
     };
   }
 
-    function exportImage(){
+    async function exportImage(){
     try{
       const payload = buildTeamExportPayload();
       const json = JSON.stringify(payload, null, 2);
@@ -2611,6 +2611,43 @@ if (!host._accBound) {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      // =========================
+      // Missions Engine: TEAM EXPORTED
+      // =========================
+      try {
+        const acc = JSON.parse(localStorage.getItem('fhm.account.v2') || '{}');
+        const token = acc.token;
+
+        // Si no hay sesión, no disparamos misiones (evita 401)
+        if (token) {
+          const refId = `team_exported_${Date.now()}_${Math.random().toString(36).slice(2,7)}`;
+
+          const resM = await fetch('/.netlify/functions/missions-event', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              eventName: 'TEAM_EXPORTED',
+              refId,
+              payload: {
+                source: 'team_builder',
+                teamName: rawName || 'equipo'
+              }
+            })
+          });
+
+          const dataM = await resM.json().catch(() => ({}));
+
+          // Si la misión otorgó monedas, mostramos un mini feedback
+          if (resM.ok && dataM && dataM.awardedTotal) {
+            toast(`+${dataM.awardedTotal} MabelCoins ✨`);
+          }
+        }
+      } catch (e) {
+        console.warn('[missions] TEAM_EXPORTED failed', e);
+      }
 
       toast('Equipo exportado correctamente.');
     }catch(err){
