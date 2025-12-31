@@ -2660,7 +2660,7 @@ const refId = `tb_export:${day}`;
     if(!file) return;
     const reader = new FileReader();
 
-    reader.onload = e=>{
+    reader.onload = async (e)=>{
       try{
         const text = String(e.target.result || '');
         const raw = JSON.parse(text);
@@ -2684,6 +2684,45 @@ const refId = `tb_export:${day}`;
 
         renderAll();
         saveState();
+                 // =========================
+        // Missions Engine: TEAM_IMPORTED
+        // =========================
+        try {
+          const acc = JSON.parse(localStorage.getItem('fhm.account.v2') || '{}');
+          const token = acc.token;
+
+          // Si no hay sesión, no disparamos misiones (evita 401)
+          if (token) {
+            const day = new Date().toLocaleDateString('sv-SE'); // YYYY-MM-DD
+            const refId = `tb_import:${day}`; // 1 vez por día (idempotente)
+
+            const resM = await fetch('/.netlify/functions/missions-event', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                eventName: 'TEAM_IMPORTED',
+                refId,
+                payload: {
+                  source: 'team_builder',
+                  teamName: name || 'equipo',
+                  fileName: file?.name || null
+                }
+              })
+            });
+
+            const dataM = await resM.json().catch(() => ({}));
+
+            // Feedback opcional si otorgó coins
+            if (resM.ok && dataM && dataM.awardedTotal) {
+              toast(`+${dataM.awardedTotal} MabelCoins ✨`);
+            }
+          }
+        } catch (e) {
+          console.warn('[missions] TEAM_IMPORTED failed', e);
+        }
         toast('Equipo importado correctamente.');
       }catch(err){
         console.error('Error al importar equipo', err);
